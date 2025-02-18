@@ -8,6 +8,7 @@ public class zlzl {
 
 	@GetMapping("/zlzl")
 	public String testd() {
+		int a = 1;
 		return "sss";
 	}
 
