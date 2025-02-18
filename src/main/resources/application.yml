@@ -1,8 +1,13 @@
 server:
-  port: 8082
+  port: 8082  # 서버 포트 설정
 
 spring:
   mvc:
     view:
-      prefix: /WEB-INF/view/
-      suffix: .jsp
+      prefix: /WEB-INF/view/  # JSP 파일 경로
+      suffix: .jsp  # JSP 파일 확장자
+  devtools:
+    livereload:
+      enabled: true  # LiveReload 활성화 (자동 새로고침)
+    restart:
+      enabled: true  # 코드 변경 시 자동 서버 재시작
