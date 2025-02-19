@@ -8,7 +8,7 @@
 		        if (checkbox !== clickedCheckbox) {
 		            checkbox.checked = false;
 		        }
-		    });
+		    });//
 		}
 		function fileupload() {
 

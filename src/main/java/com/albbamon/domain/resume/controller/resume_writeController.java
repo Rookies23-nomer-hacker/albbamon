@@ -48,7 +48,7 @@ public class resume_writeController {
 		String introduction = resume_write_DTO.getIntroduction();
 		String portfolioData = resume_write_DTO.getPortfolioData();
 		String portfolioName = resume_write_DTO.getPortfolioName();
-		
+		//
 		try {
 			data.put("school", school);
 			data.put("status", status);
