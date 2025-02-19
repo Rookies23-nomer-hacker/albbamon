@@ -1,0 +1,162 @@
+@charset "UTF-8";
+
+
+
+
+.section-head__required {
+    color: red;
+    margin-left: 4px
+}
+.section-line {
+    border-bottom: 1px solid #000000; /* 얇은 회색 선 */
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+.section-line-gry {
+    border-bottom: 1px solid #D8D8D8; /* 얇은 회색 선 */
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+.section-text {
+    font-size: 15px;
+    letter-spacing: -.005em;
+    line-height: 26px;
+    margin-left: 12px
+}
+
+.section-text-gry {
+    color: #B8B8B8;
+}
+
+.section-input-text {
+    width: 700px;  /* 너비 설정 */
+    height: 30px; /* 높이 설정 */
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none; /* 사용자가 크기 조절 못하게 설정 */
+    vertical-align: top;
+}
+
+.section-input-datetime-local {
+    width: 200px;  /* 너비 설정 */
+    height: 30px; /* 높이 설정 */
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none; /* 사용자가 크기 조절 못하게 설정 */
+    vertical-align: top;
+}
+
+.section-textarea {
+    width: 700px;  /* 너비 설정 */
+    height: 300px; /* 높이 설정 */
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none; /* 사용자가 크기 조절 못하게 설정 */
+    vertical-align: top;
+}
+
+.section-title {
+    width: 700px;  /* 너비 설정 */
+    height: 150px; /* 높이 설정 */
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none; /* 사용자가 크기 조절 못하게 설정 */
+    vertical-align: top;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    gap: 10px; /* 버튼 간 간격 */
+    margin-top: 50px; /* 버튼 위 여백 */
+    width: 100%; /* 전체 너비 사용 */
+}
+
+
+.center-container {
+    display: flex;
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+}
+
+
+.selected {
+    color: black; /* 텍스트 색상 (예: 흰색) */
+    cursor: pointer;
+}
+
+
+
+.section-box-personal-left.selected, .section-box-personal-right.selected {
+    color: black;
+}
+
+
+
+.section-bold {
+    font-weight: bold;
+}
+
+.section-margin-left {
+    margin-left: 70px
+}
+
+.section-margin-left2 {
+    margin-left: 84px
+}
+
+.section-margin-left3 {
+    margin-left: 30px
+}
+
+
+
+.section-margin-top {
+    margin-top: 30px
+}
+
+.section-margin-top2 {
+    margin-top: 60px
+}
+
+
+.required {
+    color: red;
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.optional {
+    color: gray;
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.button-container {
+    display: flex;
+    gap: 10px;
+}
+
+button {
+    font-size: 16px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.save {
+    background: #ff5722;
+    color: white;
+}
