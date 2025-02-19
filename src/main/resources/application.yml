@@ -25,6 +25,12 @@ spring:
    restart:
       enabled: true  # 코드 변경 시 자동 서버 재시작
 
+
+
+  api:
+    base:
+      url: http://192.168.0.230
+
 #  http:
 #    encoding:
 #      charset: UTF-8
