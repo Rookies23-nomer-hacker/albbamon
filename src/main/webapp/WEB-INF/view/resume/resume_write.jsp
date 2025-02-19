@@ -6,6 +6,7 @@
 	<meta charset="UTF-8">
 	<title>이력서 작성</title>
 	<link rel="stylesheet" href="/css/resume/resume.css">
+	<script src="<%= request.getContextPath() %>/js/resume_write.js"></script>
 </head>
 <body>
 	<form id="resumeForm" action="/api/resume/write" method="POST">
@@ -38,7 +39,7 @@
 		</h2>
 		<div class="section-line"></div>
 		<div class="section-text section-bold section-margin-top">최종학력
-		<select name="education" id="" class="section-margin-left2 section-box" tabindex="-1">
+		<select name="school" id="" class="section-margin-left2 section-box" tabindex="-1">
 			<option value="">학교</option>
 			<option value="초등학교">초등학교</option>
 			<option value="중학교">중학교</option>
@@ -149,7 +150,7 @@
 		<div class="section-line"></div>
 		<div class="section-text section-bold section-margin-top">자기소개
 		<span class="section-head__required">*</span>
-			<textarea class="section-margin-left section-textarea" id="statement" name="statement" placeholder="자기소개를 입력해 주세요.(최소 20자 필수)" rows="5"></textarea>
+			<textarea class="section-margin-left section-textarea" id="introduction" name="introduction" placeholder="자기소개를 입력해 주세요.(최소 20자 필수)" rows="5"></textarea>
 		</div>
 		
 		
@@ -211,93 +212,5 @@
     </div>
 	</div>
 	</form>
-	<script>
-		function checkOnlyOne(clickedCheckbox){
-			// 모든 체크박스를 가져옴
-		    const checkboxes = document.getElementsByName("employmentType");
-
-		    // 현재 클릭된 체크박스를 제외하고 모든 체크박스 해제
-		    checkboxes.forEach((checkbox) => {
-		        if (checkbox !== clickedCheckbox) {
-		            checkbox.checked = false;
-		        }
-		    });
-		}
-		function fileupload() {
-		    alert('ssss'); // 정상적으로 실행되는지 확인
-
-		    const fileInput = document.getElementById('fileInput');
-		    if (!fileInput) {
-		        alert("파일 입력 요소를 찾을 수 없습니다."); // 예외 처리
-		        return;
-		    }
-		    fileInput.click(); // 숨겨진 파일 선택창을 클릭하도록 유도
-		}
-		function handleFileUpload(event) {
-		    const file = event.target.files[0]; // 사용자가 선택한 파일 가져오기
-		    if (file) {
-		        const reader = new FileReader();
-		        reader.onload = function (e) {
-		        	const file_base64 = e.target.result.split(',')[1]; // Base64 데이터 추출
-		            const uploadDate = new Date().toISOString().split('T')[0]; // YYYY-MM-DD 형식
-		            const fileSize = (file.size / 1024).toFixed(2) + ' KB'; // KB 단위 변환
-		            const emptyMessage = document.getElementById('emptyMessage'); // 빈 메시지 가져오기
-		            
-		        	// 테이블 보이도록 설정
-		            document.getElementById('portfolioTable').style.display = 'table';
-					
-		            
-		            if (emptyMessage){
-		            	emptyMessage.style.display = 'none'
-		            }
-		            
-		            
-		            
-
-		            // 테이블에 파일 정보 추가
-		            const tableBody = document.getElementById('portfolioTableBody');
-		            const newRow = tableBody.insertRow();
-
-		            // 제목 셀 추가
-		            const titleCell = newRow.insertCell(0);
-		            titleCell.textContent = file.name;
-		            titleCell.style.width = "630px";  // 너비 설정
-		            titleCell.style.textAlign = "center";
-		            titleCell.style.overflow = "hidden";
-		            titleCell.style.textOverflow = "ellipsis"; // 긴 텍스트 '...' 처리
-		            titleCell.style.whiteSpace = "nowrap"; // 한 줄 유지
-
-		            // 등록일 셀 추가
-		            const dateCell = newRow.insertCell(1);
-		            dateCell.textContent = uploadDate;
-		            dateCell.style.width = "200px"; // 너비 설정
-		            dateCell.style.textAlign = "center";
-
-		            // 용량 셀 추가
-		            const sizeCell = newRow.insertCell(2);
-		            sizeCell.textContent = fileSize;
-		            sizeCell.style.width = "200px"; // 너비 설정
-		            sizeCell.style.textAlign = "center";
-		            
-		         	// Hidden input에 Base64 데이터 저장 (폼 전송 시 사용)
-		            const hiddenInput_data = document.createElement("input");
-		            hiddenInput_data.type = "hidden";
-		            hiddenInput_data.name = "portfolioData"; // 백엔드에서 받을 이름
-		            hiddenInput_data.value = file_base64
-		            document.getElementById("resumeForm").appendChild(hiddenInput_data);
-		            
-		         	//Hidden input에 Base64 데이터 저장 (폼 전송 시 사용)
-		            const hiddenInput_name = document.createElement("input");
-		            hiddenInput_name.type = "hidden";
-		            hiddenInput_name.name = "portfolioName"; // 백엔드에서 받을 이름
-		            hiddenInput_name.value = file.name
-		            document.getElementById("resumeForm").appendChild(hiddenInput_name);
-		            
-		        };
-		        reader.readAsDataURL(file); // 파일 읽기
-		    }
-		}
-		
-	</script>
 </body>
 </html>
