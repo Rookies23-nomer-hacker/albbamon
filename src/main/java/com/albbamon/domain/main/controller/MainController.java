@@ -1,28 +1,38 @@
 package com.albbamon.domain.main.controller;
 
+import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.client.RestTemplate;
 
-public class MainController {
-/*
-    private final RestTemplate restTemplate;
+import com.albbamon.config.ApiProperties;
+import com.albbamon.domain.main.entity.MainEntity;
 
-    @Value("${api.base.url}") // API 서버의 기본 URL (예: http://api-server-ip:8080)
+@Controller
+public class MainController {
+	
+    private final RestTemplate restTemplate;
+    private final ApiProperties apiProperties;
+
+    @Value("http://localhost:8082")
     private String apiBaseUrl;
 
-    public WebController(RestTemplate restTemplate) {
+    @Autowired
+    public MainController(RestTemplate restTemplate, ApiProperties apiProperties) {
         this.restTemplate = restTemplate;
+        this.apiProperties = apiProperties;
     }
-
-    @GetMapping("/posts")
+    
+    @GetMapping("/main")
     public String getAllPosts(Model model) {
         String url = apiBaseUrl + "/api/post/";
-        List<MainEntity> posts = Arrays.asList(restTemplate.getForObject(url, MainEntity[].class)); // API에서 데이터 가져오기
-        model.addAttribute("posts", posts); // JSP에 데이터 전달
-        return "index"; // JSP 파일 이름 (index.jsp)
+        List<MainEntity> posts = Arrays.asList(restTemplate.getForObject(url, MainEntity[].class));
+        model.addAttribute("posts", posts);
+        return "main";
     }
-    */
 }
