@@ -1,11 +1,9 @@
-package com.example.demo;
+package com.albbamon;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication(scanBasePackages = {"com.albbamon.apply","com.albbamon.career",
-		"com.albbamon.community","com.albbamon.recruitment",
-		"com.albbamon.resume","com.albbamon.user"})
+@SpringBootApplication
 public class AlbbamonWebApplication {
 
 	public static void main(String[] args) {
