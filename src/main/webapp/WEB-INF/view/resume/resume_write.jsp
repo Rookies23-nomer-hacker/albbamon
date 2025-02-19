@@ -116,10 +116,10 @@
 		</div>
 		<div class="section-line-gry section-margin-top"></div>
 		<div class="section-text section-bold section-margin-top">근무기간
-			<select name="Industry_occupation" id="" class="section-margin-left2 section-box-from" tabindex="-1">
+			<select name="working_period" id="" class="section-margin-left2 section-box-from" tabindex="-1">
 				<option value="무관">무관</option>
 				<option value="하루">하루</option>
-				<option value="주일이하">1주일이하</option>
+				<option value="1주일이하">1주일이하</option>
 				<option value="1개월 ~ 3개월">1개월 ~ 3개월</option>
 				<option value="3개월 ~ 6개월">3개월 ~ 6개월</option>
 				<option value="6개월 ~ 1년">6개월 ~ 1년</option>
@@ -129,7 +129,7 @@
 		
 		<div class="section-line-gry section-margin-top"></div>
 		<div class="section-text section-bold section-margin-top">근무일시
-			<select name="Industry_occupation" id="" class="section-margin-left2 section-box-from" tabindex="-1">
+			<select name="working_day" id="" class="section-margin-left2 section-box-from" tabindex="-1">
 				<option value="무관">무관</option>
 				<option value="주1일">주1일</option>
 				<option value="주2일">주2일</option>
@@ -149,7 +149,7 @@
 		<div class="section-line"></div>
 		<div class="section-text section-bold section-margin-top">자기소개
 		<span class="section-head__required">*</span>
-			<textarea class="section-margin-left section-textarea" id="statement" placeholder="자기소개를 입력해 주세요.(최소 20자 필수)" rows="5"></textarea>
+			<textarea class="section-margin-left section-textarea" id="statement" name="statement" placeholder="자기소개를 입력해 주세요.(최소 20자 필수)" rows="5"></textarea>
 		</div>
 		
 		
@@ -159,17 +159,23 @@
 		포트폴리오
 		</h2>
 		<div class="section-line"></div>
-		<table>
-			<th id="title" style="width: 630px;">포트폴리오제목</th>
-			<th id="date" style="width: 200px;">등록일</th>
-			<th id="volume" style="width: 200px;">용량</th>
+		<table id="portfolioTable" style="table-layout: fixed;">
+			<thead>
+				<th id="title" style="width: 630px;">포트폴리오제목</th>
+				<th id="date" style="width: 200px;">등록일</th>
+				<th id="volume" style="width: 200px;">용량</th>
+			</thead>
+			<tbody id="portfolioTableBody">
+			
+			</tbody>
 		</table>
 		
 		
 		<div class="section-line-gry"></div>
-		<div align="center" class="empty-portfolio">등록된 포트폴리오가 없습니다.</div>
+		<div align="center" class="empty-portfolio" id="emptyMessage">등록된 포트폴리오가 없습니다.</div>
 		<div class="center-container">
-		<button id="portfolio" class="empty-portfolio-btn">포트폴리오 추가</button>
+		<button id="portfolio" type="button" class="empty-portfolio-btn" onclick="fileupload()">포트폴리오 추가</button>
+		<input type="file" id="fileInput" style="display: none;" onchange="handleFileUpload(event)">
 		</div>
 		<div class="section-line-gry section-margin-top"></div>
 		<div class="center-container">
@@ -217,7 +223,81 @@
 		        }
 		    });
 		}
-	
+		function fileupload() {
+		    alert('ssss'); // 정상적으로 실행되는지 확인
+
+		    const fileInput = document.getElementById('fileInput');
+		    if (!fileInput) {
+		        alert("파일 입력 요소를 찾을 수 없습니다."); // 예외 처리
+		        return;
+		    }
+		    fileInput.click(); // 숨겨진 파일 선택창을 클릭하도록 유도
+		}
+		function handleFileUpload(event) {
+		    const file = event.target.files[0]; // 사용자가 선택한 파일 가져오기
+		    if (file) {
+		        const reader = new FileReader();
+		        reader.onload = function (e) {
+		        	const file_base64 = e.target.result.split(',')[1]; // Base64 데이터 추출
+		            const uploadDate = new Date().toISOString().split('T')[0]; // YYYY-MM-DD 형식
+		            const fileSize = (file.size / 1024).toFixed(2) + ' KB'; // KB 단위 변환
+		            const emptyMessage = document.getElementById('emptyMessage'); // 빈 메시지 가져오기
+		            
+		        	// 테이블 보이도록 설정
+		            document.getElementById('portfolioTable').style.display = 'table';
+					
+		            
+		            if (emptyMessage){
+		            	emptyMessage.style.display = 'none'
+		            }
+		            
+		            
+		            
+
+		            // 테이블에 파일 정보 추가
+		            const tableBody = document.getElementById('portfolioTableBody');
+		            const newRow = tableBody.insertRow();
+
+		            // 제목 셀 추가
+		            const titleCell = newRow.insertCell(0);
+		            titleCell.textContent = file.name;
+		            titleCell.style.width = "630px";  // 너비 설정
+		            titleCell.style.textAlign = "center";
+		            titleCell.style.overflow = "hidden";
+		            titleCell.style.textOverflow = "ellipsis"; // 긴 텍스트 '...' 처리
+		            titleCell.style.whiteSpace = "nowrap"; // 한 줄 유지
+
+		            // 등록일 셀 추가
+		            const dateCell = newRow.insertCell(1);
+		            dateCell.textContent = uploadDate;
+		            dateCell.style.width = "200px"; // 너비 설정
+		            dateCell.style.textAlign = "center";
+
+		            // 용량 셀 추가
+		            const sizeCell = newRow.insertCell(2);
+		            sizeCell.textContent = fileSize;
+		            sizeCell.style.width = "200px"; // 너비 설정
+		            sizeCell.style.textAlign = "center";
+		            
+		         	// Hidden input에 Base64 데이터 저장 (폼 전송 시 사용)
+		            const hiddenInput_data = document.createElement("input");
+		            hiddenInput_data.type = "hidden";
+		            hiddenInput_data.name = "portfolioData"; // 백엔드에서 받을 이름
+		            hiddenInput_data.value = file_base64
+		            document.getElementById("resumeForm").appendChild(hiddenInput_data);
+		            
+		         	//Hidden input에 Base64 데이터 저장 (폼 전송 시 사용)
+		            const hiddenInput_name = document.createElement("input");
+		            hiddenInput_name.type = "hidden";
+		            hiddenInput_name.name = "portfolioName"; // 백엔드에서 받을 이름
+		            hiddenInput_name.value = file.name
+		            document.getElementById("resumeForm").appendChild(hiddenInput_name);
+		            
+		        };
+		        reader.readAsDataURL(file); // 파일 읽기
+		    }
+		}
+		
 	</script>
 </body>
 </html>

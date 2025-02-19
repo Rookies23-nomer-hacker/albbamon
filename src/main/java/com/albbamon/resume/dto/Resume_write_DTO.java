@@ -1,7 +1,5 @@
 package com.albbamon.resume.dto;
 
-import java.util.List;
-
 public class Resume_write_DTO {
 	private String education;
 	private String status;
@@ -10,7 +8,11 @@ public class Resume_write_DTO {
 	private String work_place_city;
 	private String industry_occupation;
 	private String employmentType;
-	
+	private String working_period;
+	private String working_day;
+	private String statement;
+	private String portfolioData;
+	private String portfolioName;
 	
 	
 	public String getEducation() {
@@ -62,6 +64,47 @@ public class Resume_write_DTO {
     public void setEmploymentType(String employmentType) {
         this.employmentType = employmentType;
     }
+    public String getWorking_period() {
+        return working_period;
+    }
+
+    public void setWorking_period(String working_period) {
+        this.working_period = working_period;
+    }
+    
+    public String getWorking_day() {
+        return working_day;
+    }
+
+    public void setWorking_day(String working_day) {
+        this.working_day = working_day;
+    }
+    
+    public String getStatement() {
+        return statement;
+    }
+
+    public void setStatement(String statement) {
+        this.statement = statement;
+    }
+    
+    public String getPortfolioData() {
+        return portfolioData;
+    }
+
+    public void setPortfolioData(String portfolioData) {
+        this.portfolioData =portfolioData;
+    }
+    
+    public String getPortfolioName() {
+        return portfolioName;
+    }
+
+    public void setPortfolioName(String portfolioName) {
+        this.portfolioName =portfolioName;
+    }
+    
+    
 	
 	
 	public String toString() {
@@ -73,6 +116,11 @@ public class Resume_write_DTO {
 	            ", work_place_city='" + work_place_city +'\''+
 	            ", industry_occupation='" + industry_occupation +'\''+
 	            ", employmentType='" + employmentType +'\''+
+	            ", working_period='" + working_period +'\''+
+	            ", working_day='" + working_day +'\''+
+	            ", statement='" + statement +'\''+
+	            ", portfolioData='" + portfolioData +'\''+
+	            ", portfolioName='" + portfolioName +'\''+
 	            '}';
 	}
 }
