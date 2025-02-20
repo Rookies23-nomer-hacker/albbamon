@@ -19,7 +19,7 @@ import lombok.Setter;
 @Builder(access = AccessLevel.PRIVATE)
 @Getter
 @Setter
-@Table(name = "resume")
+@Table(name = "resume")//
 @Entity
 public class Resume_write {
 	@Id

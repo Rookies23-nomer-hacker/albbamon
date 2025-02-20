@@ -48,7 +48,7 @@ public class resume_writeController {
     
 	@GetMapping("/api/resume/write")
 	public String wrtie(Model model) {
-		
+		//
 		
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);

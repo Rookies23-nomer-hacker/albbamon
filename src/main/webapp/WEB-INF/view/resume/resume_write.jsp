@@ -7,7 +7,7 @@
 	<meta charset="UTF-8">
 	<title>이력서 작성</title>
 	<link rel="stylesheet" href="/css/resume/resume.css">
-	
+	//
 </head>
 <body>
 	<script src="<%= request.getContextPath() %>/js/resume_write.js"></script>
