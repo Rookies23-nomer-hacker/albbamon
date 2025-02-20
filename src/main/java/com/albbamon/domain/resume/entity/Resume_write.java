@@ -57,9 +57,6 @@ public class Resume_write {
 	@Column(name = "introduction")
 	private String introduction;
 	
-	@Column(name = "portfolioData")
-	private String portfolioData;
-	
 	@Column(name = "portfolioName")
 	private String portfolioName;
 	
