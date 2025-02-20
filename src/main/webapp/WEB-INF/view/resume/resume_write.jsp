@@ -21,16 +21,16 @@
     </button>
     	<div class="profile-info">
         	<div class="profile-details">
-            	<span class="profile-name">신혁수</span>
+            	<span class="profile-name" style="margin-bottom: 3px;">${profile.name}</span>
             	<span>남자 25세</span>
             	<span>/ 2000년생</span>
         	</div>
         		<div class="profile-address">
-            		<span>주소<span class="section-head__required">*</span><span class="section-margin-left3">서울 동작구 사당1동</span></span>
-            		<span class="section-margin-left">이메일</span><span class="section-margin-left3">s~~~~~~~~.com</span>
+            		<span >주소<span class="section-head__required">*</span><span class="section-margin-left3">서울 동작구 사당1동</span></span>
+            		<span class="section-margin-left">이메일</span><span class="section-margin-left3" style="font-size: 16px;">${profile.email}</span>
         		</div>
         		<div>
-        			<span>휴대폰<span class="section-margin-left3">010-1111-2222</span></span>
+        			<span style="margin-top:6px;">휴대폰<span class="section-margin-left3">${profile.phone}</span></span>
         		</div>
     		</div>
     		</div>

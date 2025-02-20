@@ -21,8 +21,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.client.RestTemplate;
 
-import com.albbamon.domain.main.entity.Main;
 import com.albbamon.domain.resume.entity.Resume_write;
+import com.albbamon.domain.resume.entity.Resume_write_profile;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -33,25 +33,44 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 public class resume_writeController {
 	
 	String jsondata;
+	String jsondata2;
 	private final String TARGET_API_URL ="http://192.168.0.251:8083/api/resume/write";
+	
+
+	
 	private final RestTemplate restTemplate;
 	
-	//@Value("http://localhost:8083") 테스트용
-    @Value("${api.base-url}")
-    private String apiBaseUrl;
-    
+
+    String url = "http://192.168.0.251:8083/api/resume/profile";
     public resume_writeController(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
     
 	@GetMapping("/api/resume/write")
 	public String wrtie(Model model) {
-		String url = apiBaseUrl + "/api/resume/write";
-	
-		//ResponseEntity<String> response = restTemplate.exchange(TARGET_API_URL, HttpMethod.POST, requestEntity, String.class);
 		
 		
-		//model.addAttribute("profile", profile);
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		
+		Map<String, Object> data = new HashMap<>();
+		ObjectMapper objectMapper = new ObjectMapper();
+		
+		try {
+			data.put("email", "testt@gmail.com");
+			jsondata2 = objectMapper.writeValueAsString(data);
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+					
+		HttpEntity<String> requestEntity = new HttpEntity<>(jsondata2, headers);
+		ResponseEntity<Resume_write_profile> response = restTemplate.exchange(url, HttpMethod.POST,requestEntity, Resume_write_profile.class);
+		System.out.println(response.getBody().getEmail());
+		System.out.println(response.getBody().getName());
+		System.out.println(response.getBody().getPhone());
+		Resume_write_profile profileData = response.getBody();
+		model.addAttribute("profile", profileData);
 		return "resume/resume_write";
 	}
 	
