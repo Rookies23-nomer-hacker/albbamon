@@ -92,7 +92,6 @@ public class resume_writeController {
 		String working_period = resume_write.getWorking_period();
 		String working_day = resume_write.getWorking_day();
 		String introduction = resume_write.getIntroduction();
-		String portfolioName = resume_write.getPortfolioName();
 		LocalDateTime create_date = LocalDateTime.now();
 		try {
 			data.put("school", school);
@@ -105,7 +104,6 @@ public class resume_writeController {
 			data.put("working_period", working_period);
 			data.put("working_day", working_day);
 			data.put("introduction", introduction);
-			data.put("portfolioName", portfolioName);
 			data.put("create_date", create_date);
 			jsondata = objectMapper.writeValueAsString(data);
 			// API 서버로 JSON 데이터 전송
