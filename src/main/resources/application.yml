@@ -26,7 +26,7 @@ spring:
       enabled: true  # 코드 변경 시 자동 서버 재시작
 
 api:
-  base-url: http://localhost:60085
+  base-url: http://58.127.241.84:60085
 
 #  http:
 #    encoding:
