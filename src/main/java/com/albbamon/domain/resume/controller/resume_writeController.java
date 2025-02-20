@@ -3,6 +3,7 @@ package com.albbamon.domain.resume.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import java.time.LocalDateTime;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -17,6 +18,8 @@ import org.springframework.web.client.RestTemplate;
 import com.albbamon.domain.resume.dto.Resume_write_DTO;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 
 @Controller
@@ -35,6 +38,9 @@ public class resume_writeController {
 	public String wwww(@ModelAttribute Resume_write_DTO resume_write_DTO) {
 		
 		ObjectMapper objectMapper = new ObjectMapper();
+		objectMapper.registerModule(new JavaTimeModule()); // JavaTimeModule 등록
+	    objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS); // ISO-8601 포맷 사용
+	    
 		Map<String, Object> data = new HashMap<>();
 		String school = resume_write_DTO.getSchool();
 		String status = resume_write_DTO.getStatus();
@@ -48,7 +54,7 @@ public class resume_writeController {
 		String introduction = resume_write_DTO.getIntroduction();
 		String portfolioData = resume_write_DTO.getPortfolioData();
 		String portfolioName = resume_write_DTO.getPortfolioName();
-		//
+		LocalDateTime create_date = LocalDateTime.now();
 		try {
 			data.put("school", school);
 			data.put("status", status);
@@ -62,8 +68,8 @@ public class resume_writeController {
 			data.put("introduction", introduction);
 			data.put("portfolioData", portfolioData);
 			data.put("portfolioName", portfolioName);
+			data.put("create_date", create_date);
 			jsondata = objectMapper.writeValueAsString(data);
-			
 			// API 서버로 JSON 데이터 전송
 			RestTemplate restTemplate = new RestTemplate();
 			HttpHeaders headers = new HttpHeaders();
@@ -79,7 +85,7 @@ public class resume_writeController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("이력서 : "+ jsondata);
+		//System.out.println("이력서 : "+ jsondata);
 		return "resume/resume_write";
 	}
 

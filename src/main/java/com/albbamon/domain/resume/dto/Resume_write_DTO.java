@@ -14,7 +14,6 @@ public class Resume_write_DTO {
 	private String portfolioData;
 	private String portfolioName;
 	
-	//
 	public String getSchool() {
 	 return school;
 	}
