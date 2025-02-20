@@ -1,21 +1,28 @@
 package com.albbamon.domain.resume.controller;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import java.time.LocalDateTime;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.client.RestTemplate;
 
-import com.albbamon.domain.resume.dto.Resume_write_DTO;
+import com.albbamon.domain.main.entity.Main;
+import com.albbamon.domain.resume.entity.Resume_write;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -27,33 +34,47 @@ public class resume_writeController {
 	
 	String jsondata;
 	private final String TARGET_API_URL ="http://192.168.0.251:8083/api/resume/write";
-
+	private final RestTemplate restTemplate;
+	
+	//@Value("http://localhost:8083") 테스트용
+    @Value("${api.base-url}")
+    private String apiBaseUrl;
+    
+    public resume_writeController(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
+    
 	@GetMapping("/api/resume/write")
-	public String wrtie() {
+	public String wrtie(Model model) {
+		String url = apiBaseUrl + "/api/resume/write";
+	
+		//ResponseEntity<String> response = restTemplate.exchange(TARGET_API_URL, HttpMethod.POST, requestEntity, String.class);
 		
+		
+		//model.addAttribute("profile", profile);
 		return "resume/resume_write";
 	}
 	
 	@PostMapping("/api/resume/write")
-	public String wwww(@ModelAttribute Resume_write_DTO resume_write_DTO) {
+	public String wwww(@ModelAttribute Resume_write resume_write) {
 		
 		ObjectMapper objectMapper = new ObjectMapper();
 		objectMapper.registerModule(new JavaTimeModule()); // JavaTimeModule 등록
 	    objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS); // ISO-8601 포맷 사용
 	    
 		Map<String, Object> data = new HashMap<>();
-		String school = resume_write_DTO.getSchool();
-		String status = resume_write_DTO.getStatus();
-		String personal = resume_write_DTO.getPersonal();
-		String work_place_region = resume_write_DTO.getWork_place_region();
-		String work_place_city = resume_write_DTO.getWork_place_city();
-		String industry_occupation = resume_write_DTO.getIndustry_occupation();
-		String employmentType = resume_write_DTO.getEmploymentType();
-		String working_period = resume_write_DTO.getWorking_period();
-		String working_day = resume_write_DTO.getWorking_day();
-		String introduction = resume_write_DTO.getIntroduction();
-		String portfolioData = resume_write_DTO.getPortfolioData();
-		String portfolioName = resume_write_DTO.getPortfolioName();
+		String school = resume_write.getSchool();
+		String status = resume_write.getStatus();
+		String personal = resume_write.getPersonal();
+		String work_place_region = resume_write.getWork_place_region();
+		String work_place_city = resume_write.getWork_place_city();
+		String industry_occupation = resume_write.getIndustry_occupation();
+		String employmentType = resume_write.getEmploymentType();
+		String working_period = resume_write.getWorking_period();
+		String working_day = resume_write.getWorking_day();
+		String introduction = resume_write.getIntroduction();
+		String portfolioData = resume_write.getPortfolioData();
+		String portfolioName = resume_write.getPortfolioName();
 		LocalDateTime create_date = LocalDateTime.now();
 		try {
 			data.put("school", school);
