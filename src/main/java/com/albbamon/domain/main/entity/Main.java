@@ -11,9 +11,10 @@ import lombok.*;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder(access = AccessLevel.PRIVATE)
 @Getter
+@Setter
 @Table(name = "post")
 @Entity
-public class MainEntity extends BaseTimeEntity {
+public class Main extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "POST_ID")
@@ -30,8 +31,4 @@ public class MainEntity extends BaseTimeEntity {
 
     @Column(name = "CREATE_DATE", nullable = false)
     private LocalDateTime createDate;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID")
-    private User user;
 }
