@@ -136,6 +136,7 @@ input:not(:last-child) {
 	}
 
     </style>
+    <script>let NotLogin = "${NotLogin}"; if(NotLogin==1){alert('로그인 해주세요.');}</script>
 </head>
 <body>
 
