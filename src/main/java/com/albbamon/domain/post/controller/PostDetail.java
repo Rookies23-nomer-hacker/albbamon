@@ -1,0 +1,86 @@
+package com.albbamon.domain.post.controller;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.RestTemplate;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+@Controller
+public class PostDetail {
+
+    private final RestTemplate restTemplate;
+
+    @Value("${api.base-url}")
+    private String apiBaseUrl;
+
+    @Autowired
+    public PostDetail(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
+
+    @GetMapping("/api/post/{postId}")
+    public String getPostById(@PathVariable("postId") int postId, Model model) {
+        String url = apiBaseUrl + "/api/post/" + postId;
+        ResponseEntity<String> response = null;
+
+        try {
+            // GET 요청 수행
+            response = restTemplate.exchange(url, HttpMethod.GET, null, String.class);
+
+            // 전체 JSON 응답 출력
+            System.out.println("++++++ Post Detail Response ++++++");
+            System.out.println(response.getBody());
+
+            if (response.getStatusCode() == HttpStatus.OK) {
+                // JSON 파싱
+                ObjectMapper mapper = new ObjectMapper();
+                JsonNode rootNode = mapper.readTree(response.getBody());
+                JsonNode postNode = rootNode.path("data");
+
+                // 게시글 정보 추출
+                String title = postNode.path("title").asText();
+                String contents = postNode.path("contents").asText();
+                String file = postNode.path("file").asText();
+                String createDate = postNode.path("createDate").asText();
+                String userName = postNode.path("userName").asText();
+
+                // 모델에 데이터 추가
+                Map<String, String> post = new HashMap<>();
+                post.put("postId", String.valueOf(postId));  // postId로 수정
+                post.put("title", title);
+                post.put("contents", contents);
+                post.put("file", file);
+                post.put("userName", userName);
+                post.put("createDate", createDate.substring(0,10) + ' ' + createDate.substring(11, 16));
+
+                model.addAttribute("post", post);
+            } else {
+                System.out.println("API 호출 실패: " + response.getStatusCode());
+                model.addAttribute("error", "게시글을 불러오는 데 실패했습니다.");
+            }
+
+        } catch (HttpClientErrorException e) {
+            System.err.println("HTTP 에러 발생: " + e.getStatusCode() + " - " + e.getResponseBodyAsString());
+            model.addAttribute("error", "요청 중 오류가 발생했습니다. (" + e.getStatusCode() + ")");
+        } catch (Exception e) {
+            System.err.println("기타 에러: " + e.getMessage());
+            model.addAttribute("error", "알 수 없는 오류가 발생했습니다.");
+        }
+
+        // post_detail.jsp로 이동
+        return "post/post_detail";
+    }
+}
