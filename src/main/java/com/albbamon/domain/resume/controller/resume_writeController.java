@@ -65,11 +65,15 @@ public class resume_writeController {
 		try {
 			if (session != null) {
 				String session_user=(String) session.getAttribute("userid");
-				Long userId = Long.parseLong(session_user);
-	            data.put("user_id", userId);
-	            jsondata2 = objectMapper.writeValueAsString(data);
-			}else {
-				System.out.println("세션없음");
+				if(session_user==null) {
+					
+					model.addAttribute("NotLogin", 1);
+					return "user/login";
+				}else {
+					Long userId = Long.parseLong(session_user);
+					data.put("user_id", userId);
+					jsondata2 = objectMapper.writeValueAsString(data);
+				}
 			}
 		} catch (JsonProcessingException e) {
 			// TODO Auto-generated catch block
@@ -104,9 +108,14 @@ public class resume_writeController {
 		try {
 			if (session != null) {
 				String session_user=(String) session.getAttribute("userid");
-				Long userId = Long.parseLong(session_user);
-				data.put("user_id", userId);
-				jsondata2 = objectMapper.writeValueAsString(data);
+				if(session_user==null) {
+					
+					return "user/login";
+				}else {
+					Long userId = Long.parseLong(session_user);
+					data.put("user_id", userId);
+					jsondata2 = objectMapper.writeValueAsString(data);
+				}
 			}
 		} catch (JsonProcessingException e) {
 			// TODO Auto-generated catch block
