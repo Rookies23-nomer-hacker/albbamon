@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bootstrap Header</title>
+    <title>Header</title>
     
     <!-- Bootstrap CSS CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -22,19 +22,22 @@
                 <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
                     <use xlink:href="#bootstrap"/>
                 </svg>
-                <span class="fs-4">알빠몬(로고)</span>
+                <span class="fs-4"  style="color: black; font-weight: bold;">알빠몬(로고)</span>
             </a>
 
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="#" class="nav-link px-2 text-white">채용정보</a></li>
-                <li><a href="#" class="nav-link px-2 text-white">인재정보</a></li>
-                <li><a href="#" class="nav-link px-2 text-white">QnA</a></li>
-                <li><a href="#" class="nav-link px-2 text-white">커뮤니티</a></li>
+                <li><a href="#" class="nav-link px-2 text-black" style="color: black; font-weight: bold;">채용정보</a></li>
+                <li><a href="#" class="nav-link px-2 text-black" style="color: black; font-weight: bold;">인재정보</a></li>
+                <li><a href="#" class="nav-link px-2 text-black" style="color: black; font-weight: bold;">QnA</a></li>
+                <li><a href="#" class="nav-link px-2 text-black" style="color: black; font-weight: bold;">커뮤니티</a></li>
+				<li><a href="#" class="nav-link px-2 text-black" style="color: black; font-weight: bold;">지원자 이력서 확인</a></li>
             </ul>
 
             <div class="text-end">
                 <button type="button" class="btn btn-outline-light me-2">로그인</button>
                 <button type="button" class="btn btn-warning">회원가입</button>
+				<button type="button" class="btn" style="background-color: white; color: black; border: 1px solid #ccc;">이력서 등록</button>
+				<button type="button" class="btn" style="background-color: white; color: black; border: 1px solid #ccc;">공고 등록</button>
             </div>
         </div>
     </div>
