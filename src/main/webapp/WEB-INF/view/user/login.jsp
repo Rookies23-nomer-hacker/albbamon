@@ -86,7 +86,7 @@
             color: #ff6600;
         }
     </style>
-    <script>let NotLogin = "${NotLogin}"; if(NotLogin==null){alert('로그인 해주세요.');}}</script>
+    <script>let NotLogin = "${NotLogin}"; if(NotLogin==1){alert('로그인 해주세요.');}</script>
 </head>
 <body>
     <div class="container">
