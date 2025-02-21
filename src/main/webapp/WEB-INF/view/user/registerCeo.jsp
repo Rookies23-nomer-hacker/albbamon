@@ -3,106 +3,236 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>통합 기업 회원가입</title>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #f8f8f8;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>통합 개인 회원가입</title>
+    <style>
+        /* 헤더 스타일 */
+        .header-wrapper {
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
 
-    .container {
-        width: 400px;
-        background: #ffffff;
-        padding: 30px;
-        border-radius: 10px;
-        border: 2px solid #ff6600;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
+        /* 전체 페이지 스타일 (기존 회원가입 디자인 유지) */
+/*         body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        } */
 
-    h1 {
-        font-size: 22px;
-        text-align: left;
-        margin-bottom: 20px;
-    }
+        /* 회원가입 컨테이너 (헤더와 겹치지 않도록 패딩 추가) */
+        .register-container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            width: 500px;
+            border: 2px solid #ff6600;
+            margin-top: 100px; /* 헤더와 겹치지 않도록 설정 */
+            margin-bottom: 80px;
+            margin-left: 35%;
+        }
 
-    label {
-        font-weight: bold;
-        display: block;
-        margin-bottom: 5px;
-    }
+        h1 {
+            font-size: 20px !important;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
 
-    .required {
-        color: red;
-        margin-left: 3px;
-    }
+        label {
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+            display: block;
+            margin-top: 10px;
+        }
 
-    input{
-        width: 93%;
-        padding: 12px;
-        margin-bottom: 15px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        background-color: #f5f5f5;
-    }
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: #f5f5f5;
+        }
 
-    input:focus {
-        background-color: #ffffff;
-        border: 1px solid #aaa;
-    }
+        .register-btn {
+            width: 100%;
+            background-color: #ff6600;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+        }
 
-    .button-container {
-        text-align: center;
-    }
+        .register-btn:hover {
+            background-color: #e55a00;
+        }
 
-    button {
-        width: 100%;
-        padding: 12px;
-        background-color: #ff6600;
-        border: none;
-        border-radius: 5px;
-        font-size: 16px;
-        color: #FFFFFF;
-        cursor: pointer;
-    }
-</style>
+        .links {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #666;
+            text-align: center;
+        }
+
+        .links a {
+            text-decoration: none;
+            color: #666;
+            margin: 0 10px;
+        }
+
+        .links a:hover {
+            color: #ff6600;
+        }
+        .terms-container {
+    width: 100%; /* 입력 필드와 동일한 너비로 설정 */
+    max-width: 700px; /* 최대 너비 지정 */
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px; /* 입력 필드와 여백 확보 */
+}
+
+/* 개별 약관 항목 */
+.terms-item {
+    display: flex;
+    align-items: center; /* 체크박스와 텍스트를 수직 정렬 */
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+    gap: 10px; /* 체크박스와 텍스트 간격 확보 */
+}
+
+.terms-item:last-child {
+    border-bottom: none;
+}
+
+.terms-item input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-right: 10px; /* 체크박스와 텍스트 사이 간격 */
+}
+
+.bold-text {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    flex-grow: 1; /* 체크박스 옆 텍스트가 올바르게 배치되도록 */
+}
+
+.sub-text, .detail-text {
+    font-size: 12px;
+    color: #888;
+    margin-left: auto;
+}
+
+.detail-arrow {
+    font-size: 16px;
+    color: #999;
+}
+.bottom-wrapper {
+	width: 100%;
+	}
+    </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>통합 기업 회원가입</h1>
-    <form action="/api/user" method="post">
-        <label for="phone">휴대폰번호<span class="required">*</span></label>
-        <input type="text" id="userPhone" name="phone" placeholder="휴대폰 번호 ‘-’ 제외하고 입력" required>
-        
-        <label for="email">이메일<span class="required">*</span></label>
-        <input type="email" id="userEmail" name="email" required>
+    <!-- 헤더 추가 -->
+    <div class="header-wrapper">
+        <%@ include file="/WEB-INF/view/common/header.jsp" %>
+    </div>
 
-        <label for="password">비밀번호<span class="required">*</span></label>
-        <input type="password" id="userPw" name="password" required>
+    <!-- 회원가입 폼 -->
+    <div class="register-container">
+        <h1>통합 개인 회원가입</h1>
+        <form action="/api/user" method="post">
+            <div class="terms-container">
 
-        <label for="name">이름<span class="required">*</span></label>
-        <input type="text" id="userName" name="name" required>
-        
-        <label for="ceoNum">사업자 번호<span class="required">*</span></label>
-        <input type="text" id="userName" name="ceoNum" required>
-        
-        <label for="company">회사명<span class="required">*</span></label>
-        <input type="text" id="userName" name="company" required>
+    <label class="terms-item">
+        <input type="checkbox">
+        <span class="bold-text">(필수) 만 15세 이상입니다.</span>
+        <span class="detail-arrow">></span>
+    </label>
 
-        <div class="button-container" location.href="http://localhost:60083/api/user/sign-in">
-            <button type="submit">가입하기</button>
-        </div>
-    </form>
+    <label class="terms-item">
+        <input type="checkbox">
+        <span class="bold-text">(필수) 서비스 이용약관 동의</span>
+        <span class="detail-arrow">></span>
+    </label>
+
+    <label class="terms-item">
+        <input type="checkbox">
+        <span class="bold-text">(필수) 개인정보 수집 및 이용 동의</span>
+        <span class="detail-arrow">></span>
+    </label>
+
+    <label class="terms-item">
+        <input type="checkbox">
+        <span class="bold-text">(선택) 문자 서비스 이용약관 동의</span>
+        <span class="detail-arrow">></span>
+    </label>
+
+    <label class="terms-item">
+        <input type="checkbox">
+        <span class="bold-text">(선택) 광고성 정보 이메일/SMS 수신 동의</span>
+        <span class="detail-arrow">></span>
+    </label>
+
+<!--     <label class="terms-item">
+        <input type="checkbox">
+        <span class="bold-text">(선택) 개인정보 수집 및 이용 동의-공고추천·혜택</span>
+        <span class="detail-text">맞춤알바 등 다양한 혜택 알림 제공</span>
+        <span class="detail-arrow">></span>
+    </label> -->
 </div>
+            <label for="phone">휴대폰번호 <span style="color: red;">*</span></label>
+            <input type="text" placeholder="휴대폰 번호 '-' 제외하고 입력" name="phone" id="phone" required>
 
+            <label for="email">이메일 <span style="color: red;">*</span></label>
+            <input type="email" placeholder="이메일 입력" name="email" id="email" required>
+
+            <label for="password">비밀번호 <span style="color: red;">*</span></label>
+            <input type="password" placeholder="비밀번호 입력" name="password" id="password" required>
+
+            <label for="name">이름 <span style="color: red;">*</span></label>
+            <input type="text" placeholder="이름 입력" name="name" id="name" required>
+        
+        	<label for="ceoNum">사업자 번호 <span style="color: red;">*</span></label>
+        	<input type="text" id="userName" name="ceoNum" required>
+        
+        	<label for="company">회사명 <span style="color: red;">*</span></label>
+        	<input type="text" id="userName" name="company" required>
+        	
+             <button type="submit" class="register-btn">가입하기</button>
+        
+    </form>
+    <div class="links">
+            <a href="/api/user/sign-in">이미 계정이 있으신가요? 로그인</a>
+        </div>
+</div>
+    <div class="bottom-wrapper">
+    	<%@ include file="/WEB-INF/view/common/footer.jsp" %>
+    </div>
 </body>
 <script>
 

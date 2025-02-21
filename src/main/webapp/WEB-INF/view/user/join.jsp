@@ -7,6 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>albbamon 회원가입</title>
     <style>
+            /* 헤더 스타일 */
+       .header-wrapper {
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
         body {
             font-family: Arial, sans-serif;
             display: flex;
@@ -15,8 +23,10 @@
             height: 100vh;
             background-color: #ffffff;
             flex-direction: column;
+            margin: 0;
+            padding: 0;
         }
-        .container {
+        .join-container {
             background: white;
             padding: 40px;
             border-radius: 10px;
@@ -27,6 +37,8 @@
             flex-direction: column;
             align-items: center;
             border: 2px solid #ff6600;
+            margin-top: 180px; /* 헤더와 겹치지 않도록 설정 */
+            margin-bottom: 50px;
         }
         .logo {
             width: 100%;
@@ -88,10 +100,18 @@
         .business-btn:hover {
             background-color: #555;
         }
+        .bottom-wrapper {
+		width: 100%;
+		}
     </style>
 </head>
 <body>
-    <div class="container">
+    <!-- 헤더 추가 -->
+    <div class="header-wrapper">
+        <%@ include file="/WEB-INF/view/common/header.jsp" %>
+    </div>
+    
+    <div class="join-container">
         <div class="logo">
             <h1>albbamon</h1>
         </div>
@@ -100,7 +120,7 @@
                 <h2 style="color: #ff6600;">개인 회원</h2>
                 <p>이력서를 등록하고 알바를 찾아보세요</p>
                 <button class="signup-btn personal-btn" onclick="location.href='http://localhost:60083/api/user'">통합 개인 회원가입</button>
-                <p style="font-size: 12px; color: #888; margin-top: 10px;">* 블라 블라 블라</p>
+                <p style="font-size: 12px; color: #888; margin-top: 10px;"></p>
             </div>
             <div class="section">
                 <h2 style="color: #333;">기업 회원</h2>
@@ -109,6 +129,9 @@
                 <p style="font-size: 12px; color: #888; margin-top: 10px;">* 알바를 채용하시는 개인사업자, 사업체 직원 포함</p>
             </div>
         </div>
+    </div>
+        <div class="bottom-wrapper">
+    	<%@ include file="/WEB-INF/view/common/footer.jsp" %>
     </div>
 </body>
 </html>

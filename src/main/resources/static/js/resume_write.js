@@ -49,6 +49,7 @@
 		            const titleCell = newRow.insertCell(0);
 		            titleCell.textContent = file.name;
 		            titleCell.style.width = "630px";
+		            titleCell.style.height = "70px";
 		            titleCell.style.textAlign = "center";
 		            titleCell.style.overflow = "hidden";
 		            titleCell.style.textOverflow = "ellipsis";
@@ -57,11 +58,13 @@
 		            const dateCell = newRow.insertCell(1);
 		            dateCell.textContent = uploadDate;
 		            dateCell.style.width = "200px";
+	            	dateCell.style.height = "70px";
 		            dateCell.style.textAlign = "center";
 
 		            const sizeCell = newRow.insertCell(2);
 		            sizeCell.textContent = fileSize;
 		            sizeCell.style.width = "200px";
+		            sizeCell.style.height = "70px";
 		            sizeCell.style.textAlign = "center";
 
 		            // Hidden input에 Base64 데이터 저장 (폼 전송 시 사용)

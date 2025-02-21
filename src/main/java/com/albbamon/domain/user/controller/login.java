@@ -35,7 +35,7 @@ public class login {
         String apiUrl = apiBaseUrl+ "/api/user/sign-in";
         
         System.out.println("비밀번호 " + loginDto.getPassword());
-        System.out.println("이거ㅓㅓㅓㅓㅓㅓㅓㅓㅓ " + loginDto.toString());
+        System.out.println("이거ㅓㅓㅓㅓㅓㅓㅓㅓㅓ " + loginDto);
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -71,7 +71,7 @@ public class login {
     		session.invalidate();
     	}
     	
-    	return "main/main";
+    	return "/";
     }
 
 
