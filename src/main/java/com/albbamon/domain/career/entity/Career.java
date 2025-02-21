@@ -1,6 +1,5 @@
 package com.albbamon.domain.career.entity;
 
-import com.albbamon.domain.resume.entity.Resume;
 import com.albbamon.global.common.entity.BaseTimeEntity;
 import jakarta.persistence.*;
 import lombok.*;
@@ -24,8 +23,4 @@ public class Career extends BaseTimeEntity {
     private LocalDateTime endDate;
 
     private String work;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "resume_id")
-    private Resume resume;
 }

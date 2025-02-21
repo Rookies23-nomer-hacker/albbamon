@@ -22,7 +22,7 @@ public class User extends BaseTimeEntity {
     @Id
     @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long userId;
 
     @NotNull
     private String email;
@@ -56,8 +56,10 @@ public class User extends BaseTimeEntity {
     private List<Qna> qnaList = new ArrayList<>();
 
     public static User createUser(CreateUserRequestDto requestDto, String encodedPassword) {
+    	Long user_id = Long.parseLong(requestDto.userId());
         return User.builder()
                 .email(requestDto.email())
+                .userId(user_id)
                 .password(encodedPassword)
                 .name(requestDto.name())
                 .phone(requestDto.phone())

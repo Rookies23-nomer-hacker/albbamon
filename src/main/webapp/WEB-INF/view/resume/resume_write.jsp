@@ -3,15 +3,16 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%@ include file="/WEB-INF/view/common/header.jsp" %>
 	<meta charset="UTF-8">
 	<title>이력서 작성</title>
 	<link rel="stylesheet" href="/css/resume/resume.css">
-	<script src="<%= request.getContextPath() %>/js/resume_write.js"></script>
 </head>
 <body>
+	<script src="<%= request.getContextPath() %>/js/resume_write.js"></script>
 	<form id="resumeForm" action="/api/resume/write" method="POST">
 	<div class="section">
-		<h2>이력서 작성</h2>
+		<h2 class="section-title">이력서 작성</h2>
 		<div class="profile-box">
 		<div class="profile">
     <button type="button" onclick="alert('클릭')">
@@ -19,21 +20,21 @@
     </button>
     	<div class="profile-info">
         	<div class="profile-details">
-            	<span class="profile-name">신혁수</span>
+            	<span class="profile-name" style="margin-bottom: 3px;">${profile.name}</span>
             	<span>남자 25세</span>
             	<span>/ 2000년생</span>
         	</div>
         		<div class="profile-address">
-            		<span>주소<span class="section-head__required">*</span><span class="section-margin-left3">서울 동작구 사당1동</span></span>
-            		<span class="section-margin-left">이메일</span><span class="section-margin-left3">s~~~~~~~~.com</span>
+            		<span >주소<span class="section-head__required">*</span><span class="section-margin-left3">서울 동작구 사당1동</span></span>
+            		<span class="section-margin-left">이메일</span><span class="section-margin-left3" style="font-size: 16px;">${profile.email}</span>
         		</div>
         		<div>
-        			<span>휴대폰<span class="section-margin-left3">010-1111-2222</span></span>
+        			<span style="margin-top:6px;">휴대폰<span class="section-margin-left3">${profile.phone}</span></span>
         		</div>
     		</div>
     		</div>
 		</div>
-		<h2>
+		<h2 class="section-title">
 		학력사항
 		<span class="section-head__required">*</span>
 		</h2>
@@ -55,7 +56,7 @@
 		</select>
 		</div>
 		<div class="section-line-gry section-margin-top"></div>
-		<h2 class="section-margin-top2">
+		<h2 class="section-margin-top2 section-title">
 		경력사항
 		<span class="section-head__required">*</span>
 		</h2>
@@ -66,7 +67,7 @@
 			<span class="section-box-personal-right" data-value="경력">경력</span>
 		</div>
 		<div class="section-line-gry section-margin-top"></div>
-		<h2 class="section-margin-top2">
+		<h2 class="section-margin-top2 section-title">
 		희망근무조건
 		<span class="section-head__required">*</span>
 		</h2>
@@ -143,7 +144,7 @@
 		</div>
 		<div class="section-line-gry section-margin-top"></div>
 		
-		<h2 class="section-margin-top2">
+		<h2 class="section-margin-top2 section-title">
 		자기소개
 		<span class="section-head__required">*</span>
 		</h2>
@@ -156,15 +157,15 @@
 		
 		<div class="section-line-gry section-margin-top"></div>
 		
-		<h2 class="section-margin-top2">
+		<h2 class="section-margin-top2 section-title">
 		포트폴리오
 		</h2>
 		<div class="section-line"></div>
 		<table id="portfolioTable" style="table-layout: fixed;">
 			<thead>
-				<th id="title" style="width: 630px;">포트폴리오제목</th>
-				<th id="date" style="width: 200px;">등록일</th>
-				<th id="volume" style="width: 200px;">용량</th>
+				<th id="title" style="width: 630px; text-align: center;">포트폴리오제목</th>
+				<th id="date" style="width: 200px; text-align: center;">등록일</th>
+				<th id="volume" style="width: 200px; text-align: center;">용량</th>
 			</thead>
 			<tbody id="portfolioTableBody">
 			
@@ -172,7 +173,6 @@
 		</table>
 		
 		
-		<div class="section-line-gry"></div>
 		<div align="center" class="empty-portfolio" id="emptyMessage">등록된 포트폴리오가 없습니다.</div>
 		<div class="center-container">
 		<button id="portfolio" type="button" class="empty-portfolio-btn" onclick="fileupload()">포트폴리오 추가</button>

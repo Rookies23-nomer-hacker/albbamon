@@ -16,17 +16,19 @@ spring:
       hibernate.dialect: org.hibernate.dialect.MySQL8Dialect
 
   mvc:
-   view:
+    view:
       prefix: /WEB-INF/view/  # JSP 파일 경로
       suffix: .jsp  # JSP 파일 확장자
   devtools:
-   livereload:
+    livereload:
       enabled: true  # LiveReload 활성화 (자동 새로고침)
-   restart:
+    restart:
       enabled: true  # 코드 변경 시 자동 서버 재시작
 
+
+
 api:
-  base-url: http://58.127.241.84:60085
+  base-url: http://localhost:60085
 
 #  http:
 #    encoding:

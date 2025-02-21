@@ -1,0 +1,42 @@
+/* 기본 레이아웃 */
+html, body {
+    height: 100%;
+    font-family: Pretendard, sans-serif;
+}
+
+/* 링크 스타일 */
+a {
+    color: #171717;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #ff501b;
+}
+
+/* 푸터 */
+.footer {
+    text-align: center;
+    padding: 10px;
+    font-size: 12px;
+    background: #f8f8f8;
+}
+
+/* 버튼 기본 스타일 */
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+}
+
+/* 기본 색상 */
+.primary {
+    background: #ff5722;
+    color: white;
+}
+
+.primary:hover {
+    background: #e64a19;
+}
