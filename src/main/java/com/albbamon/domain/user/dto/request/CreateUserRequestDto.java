@@ -5,6 +5,7 @@ public record CreateUserRequestDto(
          String password,
          String name,
          String phone,
+         String userId,
 		/*
 		 * String addr, String bday,
 		 */

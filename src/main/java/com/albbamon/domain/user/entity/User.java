@@ -62,9 +62,10 @@ public class User extends BaseTimeEntity {
     private List<Qna> qnaList = new ArrayList<>();
 
     public static User createUser(CreateUserRequestDto requestDto, String encodedPassword) {
+    	Long user_id = Long.parseLong(requestDto.userId());
         return User.builder()
                 .email(requestDto.email())
-                .userId(requestDto.userId())
+                .userId(user_id)
                 .password(encodedPassword)
                 .name(requestDto.name())
                 .phone(requestDto.phone())
