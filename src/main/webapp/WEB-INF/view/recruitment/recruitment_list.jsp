@@ -26,8 +26,8 @@
                 <tbody>
 					<c:forEach var="recruitment" items="${recruitmentList}">
 					    <c:if test="${buyerIds.contains(recruitment.id)}">
-					        <tr style="color: red;">
-					            <td>${recruitment.title}</td>
+					        <tr class="blinking-text" style="color: red;">
+					            <td>★${recruitment.title}★</td>
 					            <td>${recruitment.wage}</td>
 					            <td>${recruitment.dueDate}</td>
 					            <td>${recruitment.userName}</td>

@@ -235,3 +235,21 @@ button {
     background: #ff5722;
     color: white;
 }
+
+/* 깜빡이는 애니메이션 */
+.blinking-text {
+    animation: blink-animation 1s infinite;
+}
+
+/* 깜빡이는 애니메이션 */
+@keyframes blink-animation {
+    0% {
+        opacity: 1;  /* 텍스트 보임 */
+    }
+    50% {
+        opacity: 0.3;  /* 텍스트 안 보임 */
+    }
+    100% {
+        opacity: 1;  /* 텍스트 다시 보임 */
+    }
+}

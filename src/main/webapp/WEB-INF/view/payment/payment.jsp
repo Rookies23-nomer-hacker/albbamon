@@ -11,7 +11,7 @@
 
     <!-- 포트원 SDK 라이브러리 추가 -->
     <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
-	<script src="../static/payment/payment.js"></script>
+	<script src="/js/payment/payment.js"></script>
 
 </head>
 <body>
