@@ -14,35 +14,31 @@
 </head>
 <body>
 
-<header class="p-3" style="background-color: #ff7f00; color: white;">
-    <div class="container">
-        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-            <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+<header class="p-3" style="background-color: #ff6600; color: white; width: 100%">
+	<div class="container-fluid">
+	    <div class="d-flex justify-content-between align-items-center">
+	        <a href="/">
+	            <!-- 이미지의 width와 height 속성 대신, max-width와 height를 auto로 설정하여 비율을 맞춤 -->
+	            <img src="/img/albbamonlog.png" alt="Albbamon Logo" style="max-width: 100%; height: auto;">
+	        </a>
 
-                <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
-                    <use xlink:href="#bootstrap"/>
-                </svg>
-                <span class="fs-4"  style="color: black; font-weight: bold;" onclick="location.href='<%=request.getContextPath()%>/main'">알빠몬(로고)</span>
-            </a>
+	        <ul class="nav mb-2 justify-content-center mb-md-0">
+	            <li><a href="/recruitment/list" class="nav-link px-2 text-black" style="color: black; font-weight: bold;">채용공고</a></li>
+	            <li><a href="#" class="nav-link px-2 text-black" style="color: black; font-weight: bold;">인재정보</a></li>
+	            <li><a href="#" class="nav-link px-2 text-black" style="color: black; font-weight: bold;">QnA</a></li>
+	            <li><a href="/api/post/" class="nav-link px-2 text-black" style="color: black; font-weight: bold;">커뮤니티</a></li>
+	            <li><a href="#" class="nav-link px-2 text-black" style="color: black; font-weight: bold;">지원자 이력서 확인</a></li>
+	            <li><a href="/payment/payment" class="nav-link px-2 text-black" style="color: black; font-weight: bold;">아이템 구매</a></li>
+	        </ul>
 
-            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="#" class="nav-link px-2 text-black" style="color: black; font-weight: bold;">채용정보</a></li>
-                <li><a href="#" class="nav-link px-2 text-black" style="color: black; font-weight: bold;">인재정보</a></li>
-                <li><a href="#" class="nav-link px-2 text-black" style="color: black; font-weight: bold;">QnA</a></li>
-                <li><a href="#" class="nav-link px-2 text-black" style="color: black; font-weight: bold;">커뮤니티</a></li>
-				<li><a href="#" class="nav-link px-2 text-black" style="color: black; font-weight: bold;">지원자 이력서 확인</a></li>
-            </ul>
-
-            <div class="text-end">
-                <button type="button" class="btn btn-outline-light me-2" onclick="location.href='<%= request.getContextPath() %>/api/user/sign-in'">로그인</button>
-                <button type="button" class="btn btn-outline-light me-2" onclick="location.href='<%= request.getContextPath() %>/api/user/log-out'">로그아웃</button>
-                <button type="button" class="btn btn-warning" onclick="location.href='<%= request.getContextPath() %>/api/user'">회원가입</button>
-				<button type="button" class="btn" style="background-color: white; color: black; border: 1px solid #ccc;" onclick="location.href='<%= request.getContextPath() %>/api/resume'">이력서 관리</button>
-				<button type="button" class="btn" style="background-color: white; color: black; border: 1px solid #ccc;" onclick="location.href='<%= request.getContextPath() %>/api/resume'">지원 현황</button>
-				<button type="button" class="btn" style="background-color: white; color: black; border: 1px solid #ccc;">공고 등록</button>
-            </div>
-        </div>
-    </div>
+	        <div class="d-flex">
+	            <button type="button" class="btn btn-outline-light me-2" onclick="location.href='<%= request.getContextPath() %>/api/user/sign-in'">로그인</button>
+	            <button type="button" class="btn btn-warning me-2" onclick="location.href='<%= request.getContextPath() %>/api/user'">회원가입</button>
+	            <button type="button" class="btn me-2" style="background-color: white; color: black; border: 1px solid #ccc;" onclick="location.href='<%= request.getContextPath() %>/api/resume'">이력서 관리</button>
+	            <button type="button" class="btn me-2" style="background-color: white; color: black; border: 1px solid #ccc;">공고 등록</button>
+	        </div>
+	    </div>
+	</div>
 </header>
 
 <!-- Bootstrap JS and Popper.js CDN -->
