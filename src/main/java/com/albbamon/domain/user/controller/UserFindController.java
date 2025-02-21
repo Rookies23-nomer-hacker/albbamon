@@ -1,21 +1,10 @@
-/*package com.albbamon.domain.user.controller;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
-
-import com.albbamon.config.ApiProperties;
-import com.albbamon.domain.user.service.UserService;
-
-import lombok.RequiredArgsConstructor;*/
-
 package com.albbamon.domain.user.controller;
+import java.util.List;//리스트형태로 받기위해 임포트
+
+import org.springframework.core.ParameterizedTypeReference;//리스트형태로 받기위해
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod; //리스트형태로 받기위해
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder; //리스트형태로 받기위해임포트
 
 import com.albbamon.domain.user.dto.request.UserFindRequestDto;
 import com.albbamon.domain.user.dto.response.UserFindResponseDto;
@@ -37,7 +27,7 @@ import com.albbamon.domain.user.dto.response.UserFindResponseDto;
 public class UserFindController {
     @GetMapping("/api/user/find-id")
     public String reg() {
-        return "/user/user_find_id"; // 📌 여기에 해당 HTML 파일이 있어야 함
+        return "/user/find_id"; // 📌 여기에 해당 HTML 파일이 있어야 함
     }
     //
     private final RestTemplate restTemplate = new RestTemplate();
@@ -57,13 +47,31 @@ public class UserFindController {
         System.out.println("📌 API 요청 URL: " + requestUrl);
 
         try {
-            // API 서버로 GET 요청 보내기
-            ResponseEntity<UserFindResponseDto> response = restTemplate.getForEntity(requestUrl, UserFindResponseDto.class);
+            // ✅ API 서버로 GET 요청 보내기 (리스트 형태로 응답 받기)
+            ResponseEntity<List<UserFindResponseDto>> response = restTemplate.exchange(
+                    requestUrl,
+                    HttpMethod.GET,
+                    null,
+                    new ParameterizedTypeReference<List<UserFindResponseDto>>() {}
+            );
 
-            // API 서버에서 받은 응답을 웹 서버에서 처리
+         // ✅ 응답 데이터 처리
             if (response.getStatusCode() == HttpStatus.OK && response.getBody() != null) {
-                model.addAttribute("email", response.getBody().getEmail());
-                return "find-id-result"; // 성공하면 결과 페이지로 이동
+                List<UserFindResponseDto> users = response.getBody();
+                
+                if (!users.isEmpty()) {
+                    // ✅ 이메일 정보만 추출하여 리스트로 변환
+                    List<String> emailList = users.stream()
+                            .map(UserFindResponseDto::getEmail) // getEmail()만 추출
+                            .toList();
+
+                    // ✅ 모델에 이메일 리스트 추가
+                    model.addAttribute("emails", emailList);
+
+                    System.out.println("📌 웹 서버에서 최종 반환할 이메일 리스트: " + emailList);
+
+                    return "/user/find_id_result"; // ✅ 성공 시 결과 페이지로 이동
+                }
             } else {
                 model.addAttribute("error", "사용자 정보를 찾을 수 없습니다.");
             }
@@ -72,6 +80,12 @@ public class UserFindController {
             model.addAttribute("error", "서버와의 통신 중 오류가 발생했습니다.");
         }
 
-        return "find-id"; // 실패 시 다시 아이디 찾기 페이지로 이동
+        return "/user/find_id_result"; // 실패 시 다시 아이디 찾기 페이지로 이동
     }
+    @GetMapping("/api/user/find-pw")
+    public String findPwView() {
+        return "/user/find_pw"; // 📌 여기에 해당 HTML 파일이 있어야 함
+    }
+    
+    
 }

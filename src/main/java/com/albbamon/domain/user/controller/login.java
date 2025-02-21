@@ -1,5 +1,6 @@
 package com.albbamon.domain.user.controller;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +18,10 @@ import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class login {
-	
+	 //@Value("http://localhost:60085")
+    @Value("${api.base-url}")
+    private String apiBaseUrl;
+    
     @GetMapping("/api/user/sign-in")
     public String loginPage() {
         return "user/login"; // login.jsp로 이동
@@ -28,7 +32,7 @@ public class login {
     @PostMapping("/api/user/sign-in")
     public String loginUser(@ModelAttribute LoginRequestDto loginDto, Model model,HttpServletRequest request) throws JsonProcessingException {
         ObjectMapper om = new ObjectMapper();
-        String apiUrl = "http://localhost:8083/api/user/sign-in";
+        String apiUrl = apiBaseUrl+ "/api/user/sign-in";
         
         System.out.println("비밀번호 " + loginDto.getPassword());
         System.out.println("이거ㅓㅓㅓㅓㅓㅓㅓㅓㅓ " + loginDto.toString());
