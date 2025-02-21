@@ -30,11 +30,16 @@ public class MainController {
     
     @GetMapping("/main")
     public String getAllPosts(Model model) {
-        String url = apiBaseUrl + "/api/post/";
+        String url = apiBaseUrl + "/api/post/list";
         List<Main> posts = Arrays.asList(restTemplate.getForObject(url, Main[].class));
         
         model.addAttribute("posts", posts);
         return "main/main";
+    }
+    
+    @GetMapping("/pay")
+    public String pay(Model model) {
+        return "main/pay";
     }
     
 }
