@@ -42,13 +42,41 @@ public class resume_writeController {
 	
 
     String url = "http://192.168.0.251:8083/api/resume/profile";
+    String resume_url = "http://192.168.0.251:8083/api/resume";
     public resume_writeController(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
     
+    @GetMapping("/api/resume")
+    public String resume(Model model){
+    	
+    	HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		
+		Map<String, Object> data = new HashMap<>();
+		ObjectMapper objectMapper = new ObjectMapper();
+		
+		try {
+			data.put("user_id", 15);
+			jsondata2 = objectMapper.writeValueAsString(data);
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+					
+		HttpEntity<String> requestEntity = new HttpEntity<>(jsondata2, headers);
+		ResponseEntity<Resume_write> response = restTemplate.exchange(resume_url, HttpMethod.POST,requestEntity, Resume_write.class);
+		Resume_write profileData = response.getBody();
+    	System.out.println(profileData.getPersonal());
+    	System.out.println(profileData.getWork_place_region());
+    	System.out.println(profileData.getIndustry_occupation());
+    	
+    	model.addAttribute("resume", profileData);
+    	return "resume/resume";
+    }
+    
 	@GetMapping("/api/resume/write")
 	public String wrtie(Model model) {
-		//
 		
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
@@ -66,9 +94,6 @@ public class resume_writeController {
 					
 		HttpEntity<String> requestEntity = new HttpEntity<>(jsondata2, headers);
 		ResponseEntity<Resume_write_profile> response = restTemplate.exchange(url, HttpMethod.POST,requestEntity, Resume_write_profile.class);
-		System.out.println(response.getBody().getEmail());
-		System.out.println(response.getBody().getName());
-		System.out.println(response.getBody().getPhone());
 		Resume_write_profile profileData = response.getBody();
 		model.addAttribute("profile", profileData);
 		return "resume/resume_write";

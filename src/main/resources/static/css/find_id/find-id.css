@@ -1,0 +1,173 @@
+/* 기본 스타일 */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* 컨테이너 스타일 */
+.find-id-container {
+    width: 500px;
+    background: white;
+    padding: 40px 32px 60px;
+    border-top: 2px solid #171717; /*박스 상단 검정*/
+    text-align: center;
+}
+/*박스 위 title*/
+.find-id-title {
+	font-weight: 700;
+	font-size: 1.75rem;
+    letter-spacing: -.015em;
+    line-height: 36px;
+}
+
+/* 탭 메뉴 스타일 */
+.tab-menu {
+    display: flex;
+    border-bottom: 2px solid #fff;
+    margin-bottom: 20px;
+}
+
+.tab-menu button {
+    flex: 1;
+    background: #f8f8f8;
+    border: 1px solid #ddd;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    color: #555;
+    border-bottom: none;
+}
+
+.tab-menu button.active {
+    font-weight: bold;
+    color: black;
+    background: white;
+    border: 1px solid black;
+    border-bottom: 2px solid #ff5722;
+}
+
+/* 라디오 버튼 컨테이너 */
+.auth-methods {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2개씩 배치 */
+    gap: 10px 20px; /* 위아래 간격 10px, 좌우 간격 20px */
+    padding-top: 60px;
+    margin-bottom: 20px;
+}
+
+/* 라벨 정렬 (라디오 버튼과 텍스트를 같은 줄에 배치) */
+.auth-methods label {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    cursor: pointer;
+    gap: 8px; /* 라디오 버튼과 텍스트 사이 간격 */
+    margin-bottom: 24px; /* 🔥 라벨 하단 간격 추가 */
+}
+
+/* 라디오 버튼 스타일 */
+input[type='radio'] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    outline: none;
+    cursor: pointer;
+}
+
+/* 체크될 시 스타일 */
+input[type='radio']:checked {
+    background-color: #ff5722;
+    border: 3px solid white;
+    box-shadow: 0 0 0 1.6px #ff5722;
+}
+.text-box {
+	padding: 24px 0; 
+}
+.text {
+    color: #6A6A6A; /* 연한 회색 */
+    font-size: 14px; /* 폰트 크기 */
+    font-family: "Pretendard Variable", -apple-system, system-ui, sans-serif; /* 폰트 패밀리 */
+    text-align: center; /* 중앙 정렬 */
+    margin-bottom: 24px; /* 하단 여백 추가 */
+    line-height: 1.5; /* 줄 간격 */
+}
+
+/* 입력 필드 스타일 */
+.input-group {
+    text-align: left;
+    margin-bottom: 15px;
+}
+.input-group-box {
+	display: flex
+;
+    align-items: center;
+    width: 180px;
+    flex-direction: row;
+}
+.input-group-text{
+	font-weight: 700;
+	font-size: 1.125rem;
+    letter-spacing: -.005em;
+    line-height: 26px;
+}
+.input-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.input-group input,
+.input-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    outline: none;
+}
+
+/* 연락처 필드 정렬 */
+.phone-group {
+    display: flex;
+    gap: 10px;
+}
+
+#phone-type {
+    width: 30%;
+}
+
+#phone {
+    width: 70%;
+}
+
+/* 버튼 스타일 */
+.submit-btn {
+    width: 50%;
+    margin-top: 12px;
+    padding: 12px;
+    background-color: #ff5722;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background-color: #e64a19;
+}
+
+
+
+

@@ -35,9 +35,11 @@ public class User extends BaseTimeEntity {
 
     private String phone;
 
-    private String addr;
-
-    private LocalDateTime bday;
+	/*
+	 * private String addr;
+	 * 
+	 * private LocalDateTime bday;
+	 */
 
     @Builder.Default
     private Integer pwChkNum = 0;
@@ -65,8 +67,9 @@ public class User extends BaseTimeEntity {
                 .password(encodedPassword)
                 .name(requestDto.name())
                 .phone(requestDto.phone())
-                .addr(requestDto.addr())
-                .bday(requestDto.bday())
+				/*
+				 * .addr(requestDto.addr()) .bday(requestDto.bday())
+				 */
                 .ceoNum(requestDto.ceoNum())
                 .company(requestDto.company())
                 .build();

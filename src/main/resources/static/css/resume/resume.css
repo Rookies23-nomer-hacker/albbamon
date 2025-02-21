@@ -186,12 +186,28 @@
     display: flex;
     justify-content: center; /* 가로 중앙 정렬 */
     align-items: center; /* 세로 중앙 정렬 */
+    visibility: visible;
     text-align: center; /* 텍스트 중앙 정렬 */
     color: #B8B8B8; /* 글자 색상 조절 */
     font-size: 18px; /* 글자 크기 */
     margin-top: 20px; /* 위쪽 여백 */
-    margin-bottom: 20px; /* 아래쪽 여백 */
     padding: 20px; /* 내부 여백 추가 */
+}
+
+.grey-row {
+    height: 40px; /* 테이블 행 자체의 높이를 늘려 여백 추가 */
+}
+
+.grey-row-bottom {
+    height: 55px; /* 테이블 행 자체의 높이를 늘려 여백 추가 */
+}
+
+.fixed-size {
+    width: 990px; /* 너비 고정 */
+    height: 180px; /* 높이 고정 */
+    overflow: hidden; /* 내용이 넘쳐도 크기 유지 */
+    white-space: nowrap; /* 줄바꿈 방지 */
+    text-overflow: ellipsis; /* 넘칠 경우 ... 표시 */
 }
 
 .empty-portfolio-btn {
