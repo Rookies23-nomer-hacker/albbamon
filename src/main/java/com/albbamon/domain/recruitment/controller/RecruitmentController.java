@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Controller
 public class RecruitmentController {
@@ -31,7 +32,7 @@ public class RecruitmentController {
         this.objectMapper = objectMapper;
     }
 
-    @Value("http://localhost:8083")
+    @Value("http://localhost:60085")
     // @Value("${api.base-url}")
     private String apiBaseUrl;
     String body;
@@ -61,11 +62,15 @@ public class RecruitmentController {
     @GetMapping("/recruitment/list")
     public String list(Model model) {
         List<Map<String, String>> recruitments = new ArrayList<>();
-
+        List<Long> buyerIds = new ArrayList<>();
+        
         try {
-            ResponseEntity<String> responseEntity = restTemplate.getForEntity(apiBaseUrl + "/api/recruitment/list", String.class);
+        	ResponseEntity<String> responseEntity = restTemplate.getForEntity(apiBaseUrl + "/api/recruitment/list", String.class);
+        	ResponseEntity<String> responseBuyerEntity = restTemplate.getForEntity(apiBaseUrl + "/api/payment/findUserId", String.class);
+        	
             JsonNode rootNode = objectMapper.readTree(responseEntity.getBody());
             JsonNode recruitmentList = rootNode.path("data").path("recruitmentList");
+
 
             for(JsonNode recruitment: recruitmentList) {
                 Integer id = recruitment.path("id").asInt();
@@ -84,11 +89,23 @@ public class RecruitmentController {
                 r.put("userName", userName);
                 recruitments.add(r);
             }
-
+            
+            
+            // 아이템 구매자 user id
+            JsonNode rootNode2 = objectMapper.readTree(responseBuyerEntity.getBody());
+            
+            for (JsonNode buyerId : rootNode2) {  // buyerId는 직접 반복문을 사용
+                buyerIds.add(buyerId.asLong());
+            }
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
         model.addAttribute("recruitmentList", recruitments);  // List 객체 전달
+        
+        // 아이템 구매자 user id. long -> string으로 
+        List<String> buyerIdsString = buyerIds.stream().map(String::valueOf).collect(Collectors.toList());
+        model.addAttribute("buyerIds", buyerIdsString);
 
         return "recruitment/recruitment_list";
     }

@@ -24,14 +24,24 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach var="recruitment" items="${recruitmentList}">
-                    <tr>
-                        <td>${recruitment.title}</td>
-                        <td>${recruitment.wage}</td>
-                        <td>${recruitment.dueDate}</td>
-                        <td>${recruitment.userName}</td>
-                    </tr>
-                </c:forEach>
+					<c:forEach var="recruitment" items="${recruitmentList}">
+					    <c:if test="${buyerIds.contains(recruitment.id)}">
+					        <tr style="color: red;">
+					            <td>${recruitment.title}</td>
+					            <td>${recruitment.wage}</td>
+					            <td>${recruitment.dueDate}</td>
+					            <td>${recruitment.userName}</td>
+					        </tr>
+					    </c:if>
+					    <c:if test="${!buyerIds.contains(recruitment.id)}">
+					        <tr>
+					            <td>${recruitment.title}</td>
+					            <td>${recruitment.wage}</td>
+					            <td>${recruitment.dueDate}</td>
+					            <td>${recruitment.userName}</td>
+					        </tr>
+					    </c:if>
+					</c:forEach>
                 </tbody>
             </table>
         </div>
