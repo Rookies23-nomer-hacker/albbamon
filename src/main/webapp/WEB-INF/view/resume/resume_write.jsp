@@ -161,11 +161,18 @@
 		포트폴리오
 		</h2>
 		<div class="section-line"></div>
-		<table id="portfolioTable" style="table-layout: fixed;">
+		<table id="portfolioTable" style="width: 100%; table-layout: fixed; border-collapse: collapse;">
 			<thead>
-				<th id="title" style="width: 630px; text-align: center;">포트폴리오제목</th>
-				<th id="date" style="width: 200px; text-align: center;">등록일</th>
-				<th id="volume" style="width: 200px; text-align: center;">용량</th>
+				<tr>
+					<th id="title" style="width: 630px; text-align: center;">포트폴리오제목</th>
+					<th id="date" style="width: 200px; text-align: center;">등록일</th>
+					<th id="volume" style="width: 200px; text-align: center;">용량</th>
+				</tr>
+				
+   					<tr class="section-line-gry-plus section-margin-top-plus">
+        				<td style="padding-bottom: 15px;"></td>
+    				</tr>
+				
 			</thead>
 			<tbody id="portfolioTableBody">
 			
