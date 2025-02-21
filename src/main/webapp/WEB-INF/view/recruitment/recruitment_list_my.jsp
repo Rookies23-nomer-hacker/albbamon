@@ -26,7 +26,9 @@
                 <tbody>
                 <c:forEach var="recruitment" items="${recruitmentList}">
                     <tr>
-                        <td>${recruitment.title}</td>
+                        <td>
+                            <a href="/recruitment/${recruitment.id}/apply">${recruitment.title}</a>
+                        </td>
                         <td>${recruitment.wage}</td>
                         <td>${recruitment.dueDate}</td>
                         <td>${recruitment.userName}</td>

@@ -27,7 +27,9 @@
 					<c:forEach var="recruitment" items="${recruitmentList}">
 					    <c:if test="${buyerIds.contains(recruitment.id)}">
 					        <tr class="blinking-text" style="color: red;">
-					            <td>★${recruitment.title}★</td>
+                      <td>
+                          <a href="/recruitment/${recruitment.id}/apply">★${recruitment.title}★</a>
+                      </td>
 					            <td>${recruitment.wage}</td>
 					            <td>${recruitment.dueDate}</td>
 					            <td>${recruitment.userName}</td>
@@ -35,7 +37,9 @@
 					    </c:if>
 					    <c:if test="${!buyerIds.contains(recruitment.id)}">
 					        <tr>
-					            <td>${recruitment.title}</td>
+                      <td>
+                          <a href="/recruitment/${recruitment.id}/apply">${recruitment.title}</a>
+                      </td>
 					            <td>${recruitment.wage}</td>
 					            <td>${recruitment.dueDate}</td>
 					            <td>${recruitment.userName}</td>
