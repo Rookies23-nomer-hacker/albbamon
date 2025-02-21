@@ -1,11 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>albbamon �α���</title>
+    <title>albbamon 로그인</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -87,35 +86,35 @@
             color: #ff6600;
         }
     </style>
-    <script>let NotLogin = "${NotLogin}"; alert('�α��� ���ּ���.');</script>
+    <script>let NotLogin = "${NotLogin}"; alert('로그인 해주세요.');</script>
 </head>
 <body>
     <div class="container">
         <h1>albbamon</h1>
         <div class="tab-container">
-            <div class="tab active" id="personal-tab">����ȸ��</div>
-            <div class="tab" id="business-tab">���ȸ��</div>
+            <div class="tab active" id="personal-tab">개인회원</div>
+            <div class="tab" id="business-tab">기업회원</div>
         </div>
         
 <form action="/api/user/sign-in" method="post">
     <input type="hidden" name="userType" id="userType" value="personal">
 
     <div id="personal-form">
-        <input type="text" placeholder="�̸���" name="email" id="personal-email">
-        <input type="password" placeholder="��й�ȣ" name="personal-password" id="personal-password">
+        <input type="text" placeholder="이메일" name="email" id="personal-email">
+        <input type="password" placeholder="비밀번호" name="personal-password" id="personal-password">
     </div>
 
     <div id="business-form" style="display: none;">
-        <input type="text" placeholder="��� �̸���" name="ceoemail" id="business-email">
-        <input type="password" placeholder="��� ��й�ȣ" name="business-password" id="business-password">
+        <input type="text" placeholder="기업 이메일" name="ceoemail" id="business-email">
+        <input type="password" placeholder="기업 비밀번호" name="business-password" id="business-password">
     </div>
 
     <input type="hidden" name="password" id="final-password">
-    <button type="submit" class="login-btn">�α���</button>
+    <button type="submit" class="login-btn">로그인</button>
 </form>
 
         <div class="links">
-            <a href="#">���̵� ã��</a> | <a href="#">��й�ȣ ã��</a> | <a href="/api/user/join" style="color: #ff6600; font-weight: bold;">ȸ������</a>
+            <a href="#">아이디 찾기</a> | <a href="#">비밀번호 찾기</a> | <a href="/api/user/join" style="color: #ff6600; font-weight: bold;">회원가입</a>
         </div>
     </div>
     

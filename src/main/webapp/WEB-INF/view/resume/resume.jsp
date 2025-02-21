@@ -11,7 +11,7 @@
 </head>
 <body>
 	<script src="<%= request.getContextPath() %>/js/resume.js"></script>
-	<script>let resumePersonal = "${resume.personal}"; // 서버에서 받은 값
+	<script>let resumePersonal = "${resume.personal}";
     	let resumeWork_place_region = "${resume.work_place_region}";
         let resumeIntroduction = "${resume.industry_occupation}";
         let duplicated = "${duplicated}";</script>
@@ -25,7 +25,6 @@
 				<th id="volume" style="width: 200px; text-align: center;">공개 여부</th>
 				<th id="volume" style="width: 200px; text-align: center;">맞춤알바</th>
 			</thead>
-			
 			<tbody id="portfolioTableBody">
 				
 			</tbody>
