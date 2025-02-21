@@ -11,9 +11,10 @@
 </head>
 <body>
 	<script src="<%= request.getContextPath() %>/js/resume.js"></script>
-	<script>let resumePersonal = "${resume.personal}"; // 서버에서 받은 값
-    	let resumeWork_place_region = "${resume.work_place_region}"
-        let resumeIntroduction = "${resume.industry_occupation}"</script>
+	<script>let resumePersonal = "${resume.personal}";
+    	let resumeWork_place_region = "${resume.work_place_region}";
+        let resumeIntroduction = "${resume.industry_occupation}";
+        let duplicated = "${duplicated}";</script>
 	<div class="section">
 		<div class="section-line"></div>
 		<table id="portfolioTable" style="table-layout: fixed;">
@@ -24,13 +25,11 @@
 				<th id="volume" style="width: 200px; text-align: center;">공개 여부</th>
 				<th id="volume" style="width: 200px; text-align: center;">맞춤알바</th>
 			</thead>
-			
 			<tbody id="portfolioTableBody">
 				
 			</tbody>
 		</table>
 		
-		<!--  <div class="section-line-gry"></div>-->
 		<div align="center" class="empty-portfolio" id="emptyMessage">등록된 이력서가 없습니다.</div>
 		<div class="center-container">
 		<button id="portfolio" type="button" class="save" onclick="location.href='<%= request.getContextPath() %>/api/resume/write'">이력서 작성</button>

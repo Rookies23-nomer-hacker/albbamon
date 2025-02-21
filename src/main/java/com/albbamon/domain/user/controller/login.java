@@ -1,34 +1,38 @@
 package com.albbamon.domain.user.controller;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import com.albbamon.domain.user.dto.request.LoginRequestDto;
-import com.albbamon.domain.user.entity.User;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 //import javax.servlet.http.HttpSession;
 
 @Controller
 public class login {
-	
+	 //@Value("http://localhost:60085")
+    @Value("${api.base-url}")
+    private String apiBaseUrl;
+    
     @GetMapping("/api/user/sign-in")
     public String loginPage() {
         return "user/login"; // login.jsp로 이동
     }
 
     private final RestTemplate restTemplate = new RestTemplate();
-
+    
     @PostMapping("/api/user/sign-in")
     public String loginUser(@ModelAttribute LoginRequestDto loginDto, Model model,HttpServletRequest request) throws JsonProcessingException {
         ObjectMapper om = new ObjectMapper();
-        String apiUrl = "http://localhost:8083/api/user/sign-in";
+        String apiUrl = apiBaseUrl+ "/api/user/sign-in";
         
         System.out.println("비밀번호 " + loginDto.getPassword());
         System.out.println("이거ㅓㅓㅓㅓㅓㅓㅓㅓㅓ " + loginDto.toString());
@@ -58,6 +62,16 @@ public class login {
             model.addAttribute("error", "이메일 또는 비밀번호가 잘못되었습니다.");
             return "api/user/sign-in"; // 로그인 페이지로 다시 이동
         }
+    }
+    @GetMapping("/api/user/log-out")
+    public String logout(HttpServletRequest request,HttpServletResponse response) {
+    	
+    	HttpSession session = request.getSession(false);
+    	if(session!=null) {
+    		session.invalidate();
+    	}
+    	
+    	return "main/main";
     }
 
 

@@ -28,7 +28,7 @@ public class MainController {
         this.restTemplate = restTemplate;
     }
     
-    @GetMapping("/main")
+    @GetMapping("/")
     public String getAllPosts(Model model) {
         String url = apiBaseUrl + "/api/post/list";
         List<Main> posts = Arrays.asList(restTemplate.getForObject(url, Main[].class));
@@ -37,9 +37,5 @@ public class MainController {
         return "main/main";
     }
     
-    @GetMapping("/pay")
-    public String pay(Model model) {
-        return "main/pay";
-    }
     
 }

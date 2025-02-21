@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -20,12 +21,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.albbamon.domain.resume.entity.Resume_write;
 import com.albbamon.domain.resume.entity.Resume_write_profile;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+
 import com.fasterxml.jackson.databind.SerializationFeature;
 
 
@@ -35,7 +41,7 @@ public class resume_writeController {
 	String jsondata;
 	String jsondata2;
 	private final String TARGET_API_URL ="http://192.168.0.251:8083/api/resume/write";
-	
+	//
 
 	
 	private final RestTemplate restTemplate;
@@ -48,45 +54,68 @@ public class resume_writeController {
     }
     
     @GetMapping("/api/resume")
-    public String resume(Model model){
+    public String resume(Model model,HttpServletRequest request){
     	
     	HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		
 		Map<String, Object> data = new HashMap<>();
 		ObjectMapper objectMapper = new ObjectMapper();
-		
+		HttpSession session = request.getSession(false);
 		try {
-			data.put("user_id", 15);
-			jsondata2 = objectMapper.writeValueAsString(data);
+			if (session != null) {
+				String session_user=(String) session.getAttribute("userid");
+				if(session_user==null) {
+					
+					model.addAttribute("NotLogin", 1);
+					return "user/login";
+				}else {
+					Long userId = Long.parseLong(session_user);
+					data.put("user_id", userId);
+					jsondata2 = objectMapper.writeValueAsString(data);
+				}
+			}
 		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 					
 		HttpEntity<String> requestEntity = new HttpEntity<>(jsondata2, headers);
 		ResponseEntity<Resume_write> response = restTemplate.exchange(resume_url, HttpMethod.POST,requestEntity, Resume_write.class);
 		Resume_write profileData = response.getBody();
-    	System.out.println(profileData.getPersonal());
-    	System.out.println(profileData.getWork_place_region());
-    	System.out.println(profileData.getIndustry_occupation());
-    	
-    	model.addAttribute("resume", profileData);
-    	return "resume/resume";
+		System.out.println(profileData);
+		if(profileData!=null) {
+			System.out.println("===="+profileData.getPersonal());
+			System.out.println("===="+profileData.getWork_place_region());
+			System.out.println("===="+profileData.getIndustry_occupation());
+			
+			model.addAttribute("resume", profileData);
+			return "resume/resume";
+		}else {
+			return "resume/resume";
+		}
     }
     
 	@GetMapping("/api/resume/write")
-	public String wrtie(Model model) {
+	public String wrtie(Model model,HttpServletRequest request) {
 		
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		
 		Map<String, Object> data = new HashMap<>();
 		ObjectMapper objectMapper = new ObjectMapper();
-		
+		HttpSession session = request.getSession(false);
 		try {
-			data.put("email", "testt@gmail.com");
-			jsondata2 = objectMapper.writeValueAsString(data);
+			if (session != null) {
+				String session_user=(String) session.getAttribute("userid");
+				if(session_user==null) {
+					
+					return "user/login";
+				}else {
+					Long userId = Long.parseLong(session_user);
+					data.put("user_id", userId);
+					jsondata2 = objectMapper.writeValueAsString(data);
+				}
+			}
 		} catch (JsonProcessingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -100,13 +129,17 @@ public class resume_writeController {
 	}
 	
 	@PostMapping("/api/resume/write")
-	public String wwww(@ModelAttribute Resume_write resume_write) {
+	public String wwww(@ModelAttribute Resume_write resume_write,HttpServletRequest request,RedirectAttributes redirectAttributes) {
 		
 		ObjectMapper objectMapper = new ObjectMapper();
 		objectMapper.registerModule(new JavaTimeModule()); // JavaTimeModule 등록
 	    objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS); // ISO-8601 포맷 사용
 	    
 		Map<String, Object> data = new HashMap<>();
+		HttpSession session = request.getSession(false);
+		
+		
+		
 		String school = resume_write.getSchool();
 		String status = resume_write.getStatus();
 		String personal = resume_write.getPersonal();
@@ -119,28 +152,39 @@ public class resume_writeController {
 		String introduction = resume_write.getIntroduction();
 		LocalDateTime create_date = LocalDateTime.now();
 		try {
-			data.put("school", school);
-			data.put("status", status);
-			data.put("personal", personal);
-			data.put("work_place_region", work_place_region);
-			data.put("work_place_city", work_place_city);
-			data.put("industry_occupation", industry_occupation);
-			data.put("employmentType", employmentType);
-			data.put("working_period", working_period);
-			data.put("working_day", working_day);
-			data.put("introduction", introduction);
-			data.put("create_date", create_date);
-			jsondata = objectMapper.writeValueAsString(data);
-			// API 서버로 JSON 데이터 전송
-			RestTemplate restTemplate = new RestTemplate();
-			HttpHeaders headers = new HttpHeaders();
-			headers.setContentType(MediaType.APPLICATION_JSON);
-						
-			HttpEntity<String> requestEntity = new HttpEntity<>(jsondata, headers);
-			ResponseEntity<String> response = restTemplate.exchange(TARGET_API_URL, HttpMethod.POST, requestEntity, String.class);
+			if (session != null) {
+				String session_user=(String) session.getAttribute("userid");
+				Long userId = Long.parseLong(session_user);
+				jsondata2 = objectMapper.writeValueAsString(data);
+				data.put("user_id", userId);
+				data.put("school", school);
+				data.put("status", status);
+				data.put("personal", personal);
+				data.put("work_place_region", work_place_region);
+				data.put("work_place_city", work_place_city);
+				data.put("industry_occupation", industry_occupation);
+				data.put("employmentType", employmentType);
+				data.put("working_period", working_period);
+				data.put("working_day", working_day);
+				data.put("introduction", introduction);
+				data.put("create_date", create_date);
+				jsondata = objectMapper.writeValueAsString(data);
+				// API 서버로 JSON 데이터 전송
+				RestTemplate restTemplate = new RestTemplate();
+				HttpHeaders headers = new HttpHeaders();
+				headers.setContentType(MediaType.APPLICATION_JSON);
+							
+				HttpEntity<String> requestEntity = new HttpEntity<>(jsondata, headers);
+				ResponseEntity<String> response = restTemplate.exchange(TARGET_API_URL, HttpMethod.POST, requestEntity, String.class);
 
-			// 응답 확인
-			System.out.println("API 서버 응답: " + response.getBody());
+				// 응답 확인
+				if(response.getBody().equals("이미 이력서가 있습니다.")) {
+					
+					redirectAttributes.addFlashAttribute("duplicated", "이미 이력서가 있습니다.");
+					return "redirect:/api/resume";
+				}
+				System.out.println("API 서버 응답: " + response.getBody());
+			}
 			
 		} catch (JsonProcessingException e) {
 			// TODO Auto-generated catch block

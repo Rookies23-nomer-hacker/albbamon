@@ -1,7 +1,12 @@
-document.addEventListener("DOMContentLoaded", function () {
-    // resume.personal 데이터를 가져와야 한다고 가정
-    
 
+document.addEventListener("DOMContentLoaded", function () {
+	if(duplicated==("이미 이력서가 있습니다.")){
+			alert("이미 이력서가 있습니다.")
+	}
+	
+
+    
+	
     // 테이블 body 요소 가져오기
     let tableBody = document.getElementById("portfolioTableBody");
     let emptyMessage = document.getElementById("emptyMessage");
