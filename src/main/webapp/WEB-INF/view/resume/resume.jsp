@@ -13,7 +13,8 @@
 	<script src="<%= request.getContextPath() %>/js/resume.js"></script>
 	<script>let resumePersonal = "${resume.personal}"; // 서버에서 받은 값
     	let resumeWork_place_region = "${resume.work_place_region}"
-        let resumeIntroduction = "${resume.industry_occupation}"</script>
+        let resumeIntroduction = "${resume.industry_occupation}"
+        let duplicated = "${duplicated}"</script>
 	<div class="section">
 		<div class="section-line"></div>
 		<table id="portfolioTable" style="table-layout: fixed;">

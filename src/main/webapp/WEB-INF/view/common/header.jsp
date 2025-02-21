@@ -35,8 +35,10 @@
 
             <div class="text-end">
                 <button type="button" class="btn btn-outline-light me-2" onclick="location.href='<%= request.getContextPath() %>/api/user/sign-in'">로그인</button>
+                <button type="button" class="btn btn-outline-light me-2" onclick="location.href='<%= request.getContextPath() %>/api/user/log-out'">로그아웃</button>
                 <button type="button" class="btn btn-warning" onclick="location.href='<%= request.getContextPath() %>/api/user'">회원가입</button>
 				<button type="button" class="btn" style="background-color: white; color: black; border: 1px solid #ccc;" onclick="location.href='<%= request.getContextPath() %>/api/resume'">이력서 관리</button>
+				<button type="button" class="btn" style="background-color: white; color: black; border: 1px solid #ccc;" onclick="location.href='<%= request.getContextPath() %>/api/resume'">지원 현황</button>
 				<button type="button" class="btn" style="background-color: white; color: black; border: 1px solid #ccc;">공고 등록</button>
             </div>
         </div>

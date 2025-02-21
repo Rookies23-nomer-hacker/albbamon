@@ -10,7 +10,9 @@ import com.albbamon.domain.user.entity.User;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 //import javax.servlet.http.HttpSession;
@@ -24,7 +26,7 @@ public class login {
     }
 
     private final RestTemplate restTemplate = new RestTemplate();
-
+    
     @PostMapping("/api/user/sign-in")
     public String loginUser(@ModelAttribute LoginRequestDto loginDto, Model model,HttpServletRequest request) throws JsonProcessingException {
         ObjectMapper om = new ObjectMapper();
@@ -58,6 +60,16 @@ public class login {
             model.addAttribute("error", "이메일 또는 비밀번호가 잘못되었습니다.");
             return "api/user/sign-in"; // 로그인 페이지로 다시 이동
         }
+    }
+    @GetMapping("/api/user/log-out")
+    public String logout(HttpServletRequest request,HttpServletResponse response) {
+    	
+    	HttpSession session = request.getSession(false);
+    	if(session!=null) {
+    		session.invalidate();
+    	}
+    	
+    	return "main/main";
     }
 
 
