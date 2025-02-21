@@ -7,7 +7,6 @@
 	<meta charset="UTF-8">
 	<title>이력서 작성</title>
 	<link rel="stylesheet" href="/css/resume/resume.css">
-	//
 </head>
 <body>
 	<script src="<%= request.getContextPath() %>/js/resume_write.js"></script>
@@ -174,7 +173,6 @@
 		</table>
 		
 		
-		<div class="section-line-gry"></div>
 		<div align="center" class="empty-portfolio" id="emptyMessage">등록된 포트폴리오가 없습니다.</div>
 		<div class="center-container">
 		<button id="portfolio" type="button" class="empty-portfolio-btn" onclick="fileupload()">포트폴리오 추가</button>
