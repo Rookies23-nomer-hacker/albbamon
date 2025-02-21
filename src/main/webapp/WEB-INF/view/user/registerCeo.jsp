@@ -96,7 +96,7 @@
         <label for="company">회사명<span class="required">*</span></label>
         <input type="text" id="userName" name="company" required>
 
-        <div class="button-container">
+        <div class="button-container" location.href="http://localhost:60083/api/user/sign-in">
             <button type="submit">가입하기</button>
         </div>
     </form>
