@@ -41,7 +41,7 @@ public class resume_writeController {
 	String jsondata;
 	String jsondata2;
 	private final String TARGET_API_URL ="http://192.168.0.251:8083/api/resume/write";
-	
+	//
 
 	
 	private final RestTemplate restTemplate;

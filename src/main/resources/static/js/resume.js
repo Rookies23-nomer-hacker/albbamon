@@ -4,8 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			alert("이미 이력서가 있습니다.")
 	}
 	
-	
-	// resume.personal 데이터를 가져와야 한다고 가정
+
     
 	
     // 테이블 body 요소 가져오기

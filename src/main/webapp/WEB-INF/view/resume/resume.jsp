@@ -31,7 +31,6 @@
 			</tbody>
 		</table>
 		
-		<!--  <div class="section-line-gry"></div>-->
 		<div align="center" class="empty-portfolio" id="emptyMessage">등록된 이력서가 없습니다.</div>
 		<div class="center-container">
 		<button id="portfolio" type="button" class="save" onclick="location.href='<%= request.getContextPath() %>/api/resume/write'">이력서 작성</button>
