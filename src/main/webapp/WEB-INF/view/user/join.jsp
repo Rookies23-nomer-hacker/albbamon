@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>albbamon È¸¿ø°¡ÀÔ</title>
+    <title>albbamon íšŒì›ê°€ìž…</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -97,16 +97,16 @@
         </div>
         <div class="sections">
             <div class="section">
-                <h2 style="color: #ff6600;">°³ÀÎ È¸¿ø</h2>
-                <p>ÀÌ·Â¼­¸¦ µî·ÏÇÏ°í ¾Ë¹Ù¸¦ Ã£¾Æº¸¼¼¿ä</p>
-                <button class="signup-btn personal-btn" onclick="location.href='http://localhost:60083/api/user'">ÅëÇÕ °³ÀÎ È¸¿ø°¡ÀÔ</button>
-                <p style="font-size: 12px; color: #888; margin-top: 10px;">* ºí¶ó ºí¶ó ºí¶ó</p>
+                <h2 style="color: #ff6600;">ê°œì¸ íšŒì›</h2>
+                <p>ì´ë ¥ì„œë¥¼ ë“±ë¡í•˜ê³  ì•Œë°”ë¥¼ ì°¾ì•„ë³´ì„¸ìš”</p>
+                <button class="signup-btn personal-btn" onclick="location.href='http://localhost:60083/api/user'">í†µí•© ê°œì¸ íšŒì›ê°€ìž…</button>
+                <p style="font-size: 12px; color: #888; margin-top: 10px;">* ë¸”ë¼ ë¸”ë¼ ë¸”ë¼</p>
             </div>
             <div class="section">
-                <h2 style="color: #333;">±â¾÷ È¸¿ø</h2>
-                <p>°ø°í¸¦ µî·ÏÇÏ°í ÀÎÀç¸¦ Ã£¾Æº¸¼¼¿ä</p>
-                <button class="signup-btn business-btn" onclick="location.href='http://localhost:60083/api/user/ceo'">ÅëÇÕ ±â¾÷ È¸¿ø°¡ÀÔ</button>
-                <p style="font-size: 12px; color: #888; margin-top: 10px;">* ¾Ë¹Ù¸¦ Ã¤¿ëÇÏ½Ã´Â °³ÀÎ»ç¾÷ÀÚ, »ç¾÷Ã¼ Á÷¿ø Æ÷ÇÔ</p>
+                <h2 style="color: #333;">ê¸°ì—… íšŒì›</h2>
+                <p>ê³µê³ ë¥¼ ë“±ë¡í•˜ê³  ì¸ìž¬ë¥¼ ì°¾ì•„ë³´ì„¸ìš”</p>
+                <button class="signup-btn business-btn" onclick="location.href='http://localhost:60083/api/user/ceo'">í†µí•© ê¸°ì—… íšŒì›ê°€ìž…</button>
+                <p style="font-size: 12px; color: #888; margin-top: 10px;">* ì•Œë°”ë¥¼ ì±„ìš©í•˜ì‹œëŠ” ê°œì¸ì‚¬ì—…ìž, ì‚¬ì—…ì²´ ì§ì› í¬í•¨</p>
             </div>
         </div>
     </div>

@@ -22,7 +22,7 @@
                 <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
                     <use xlink:href="#bootstrap"/>
                 </svg>
-                <span class="fs-4"  style="color: black; font-weight: bold;">알빠몬(로고)</span>
+                <span class="fs-4"  style="color: black; font-weight: bold;" onclick="location.href='<%=request.getContextPath()%>/main'">알빠몬(로고)</span>
             </a>
 
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
@@ -34,9 +34,9 @@
             </ul>
 
             <div class="text-end">
-                <button type="button" class="btn btn-outline-light me-2">로그인</button>
-                <button type="button" class="btn btn-warning">회원가입</button>
-				<button type="button" class="btn" style="background-color: white; color: black; border: 1px solid #ccc;">이력서 등록</button>
+                <button type="button" class="btn btn-outline-light me-2" onclick="location.href='<%= request.getContextPath() %>/api/user/sign-in'">로그인</button>
+                <button type="button" class="btn btn-warning" onclick="location.href='<%= request.getContextPath() %>/api/user'">회원가입</button>
+				<button type="button" class="btn" style="background-color: white; color: black; border: 1px solid #ccc;" onclick="location.href='<%= request.getContextPath() %>/api/resume'">이력서 관리</button>
 				<button type="button" class="btn" style="background-color: white; color: black; border: 1px solid #ccc;">공고 등록</button>
             </div>
         </div>
