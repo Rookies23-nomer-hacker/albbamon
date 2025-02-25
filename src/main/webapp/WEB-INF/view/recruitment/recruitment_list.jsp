@@ -26,15 +26,15 @@
                 <tbody>
 					<c:forEach var="recruitment" items="${recruitmentList}">
 					    <c:if test="${buyerIds.contains(recruitment.id)}">
-					        <tr onclick="window.location.href='/recruitment/list/${recruitment.id}';" class="blinking-text" style="color: red;cursor:pointer;">
-                      <td>★${recruitment.title}★</td>
-					            <td>${recruitment.wage}</td>
-					            <td>${recruitment.dueDate}</td>
-					            <td>${recruitment.userName}</td>
+					        <tr class="blinking-text">
+                      			<td style="color: red;">★${recruitment.title}★</td>
+					            <td style="color: red;">${recruitment.wage}</td>
+					            <td style="color: red;">${recruitment.dueDate}</td>
+					            <td style="color: red;">${recruitment.userName}</td>
 					        </tr>
 					    </c:if>
 					    <c:if test="${!buyerIds.contains(recruitment.id)}">
-					        <tr onclick="window.location.href='/recruitment/list/${recruitment.id}';" style="cursor:pointer;">
+					        <tr>
                       <td>${recruitment.title}</td>
 					            <td>${recruitment.wage}</td>
 					            <td>${recruitment.dueDate}</td>
