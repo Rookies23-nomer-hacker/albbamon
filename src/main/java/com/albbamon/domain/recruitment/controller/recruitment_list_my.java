@@ -1,10 +1,14 @@
 package com.albbamon.domain.recruitment.controller;
 
+import com.albbamon.domain.user.dto.request.UserRequestDto;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
+import org.springframework.http.client.JdkClientHttpRequestFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,35 +16,39 @@ import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 public class recruitment_list_my {
-    private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper;
     @Value("${api.base-url}")
     private String apiBaseUrl;
     String body;
 
     @Autowired
-    public recruitment_list_my(RestTemplate restTemplate, ObjectMapper objectMapper) {
-        this.restTemplate = restTemplate;
+    public recruitment_list_my(ObjectMapper objectMapper) {
         this.objectMapper = objectMapper;
     }
 
     @GetMapping("/recruitment/list/my")
-    public String myList(Model model) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.add("Cookie", "JSESSIONID=A7DBE136B1A65FEFD1014A2DE6ECBFDB");
-        HttpEntity<String> httpEntity = new HttpEntity<>(headers);
+    public String myList(Model model, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        Long userId = Long.valueOf((String) session.getAttribute("userid"));
+        if(userId == null) {
+            model.addAttribute("NotLogin", 1);
+            return "user/login";
+        }
 
         List<Map<String, String>> recruitments = new ArrayList<>();
 
         try {
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            UserRequestDto userRequestDto = UserRequestDto.of(userId);
+            body = objectMapper.writeValueAsString(userRequestDto);
+            HttpEntity<String> httpEntity = new HttpEntity<>(body, headers);
+
+            RestTemplate restTemplate = new RestTemplate(new JdkClientHttpRequestFactory());
             ResponseEntity<String> responseEntity = restTemplate.exchange(apiBaseUrl + "/api/recruitment/list/my", HttpMethod.GET, httpEntity, String.class);
             JsonNode rootNode = objectMapper.readTree(responseEntity.getBody());
             JsonNode recruitmentList = rootNode.path("data").path("recruitmentList");
@@ -66,6 +74,7 @@ public class recruitment_list_my {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         model.addAttribute("recruitmentList", recruitments);  // List 객체 전달
 
         return "recruitment/recruitment_list_my";

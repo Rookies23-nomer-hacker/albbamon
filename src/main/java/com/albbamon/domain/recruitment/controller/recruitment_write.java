@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Arrays;
-
 @Controller
 public class recruitment_write {
     private final RestTemplate restTemplate;
@@ -38,26 +36,23 @@ public class recruitment_write {
 
     @PostMapping("/api/recruitment")
     public String createRecruitment(@ModelAttribute CreateRecruitmentRequestDto createRecruitmentRequestDto,
-                                    HttpServletRequest httpServletRequest,
+                                    HttpServletRequest request,
                                     Model model) {
-        System.out.println("************************ " + httpServletRequest.getSession().getId());
-        System.out.println("************************ " + Arrays.stream(httpServletRequest.getCookies()).toList().toString());
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.add("Cookie", "JSESSIONID=" + httpServletRequest.getSession().getId());
-        HttpSession session = httpServletRequest.getSession(false);
-        if(session.getAttribute("userid") == null) {
+        HttpSession session = request.getSession();
+        Long userId = (Long) session.getAttribute("userid");
+        if(userId == null) {
             model.addAttribute("NotLogin", 1);
             return "user/login";
         }
 
         try {
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            createRecruitmentRequestDto.setUserId(userId);
             body = objectMapper.writeValueAsString(createRecruitmentRequestDto);
             HttpEntity<String> requestEntity = new HttpEntity<>(body, headers);
-
-            ResponseEntity<String> response = restTemplate.postForEntity(apiBaseUrl + "/api/recruitment", requestEntity, String.class);
+            restTemplate.postForEntity(apiBaseUrl + "/api/recruitment", requestEntity, String.class);
         } catch (JsonProcessingException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         return "redirect:/recruitment/list/my";
