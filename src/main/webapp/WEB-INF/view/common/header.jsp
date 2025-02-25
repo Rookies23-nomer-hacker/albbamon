@@ -43,7 +43,7 @@
 			    <c:if test="${not empty sessionScope.email}">
 			        <!-- 로그인한 이메일 출력 -->
 					<p class="me-2">
-					    ${sessionScope.email}님이 로그인 하였습니다.
+					    ${sessionScope.email}님이 로그인 하였습니다.${ceoNum}, ${sessionScope.ceoNum}, ${ceonum}, ${sessionScope.ceonum}
 					    <c:if test="${not empty sessionScope.ceoNum}">
 					        <!-- ceo_num이 존재하면 '사장님'으로 구분 -->
 					        <span>(사장님)</span>
