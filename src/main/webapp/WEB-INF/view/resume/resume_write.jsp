@@ -169,8 +169,8 @@
 					<th id="volume" style="width: 200px; text-align: center;">용량</th>
 				</tr>
 				
-   					<tr class="section-line-gry-plus section-margin-top-plus">
-        				<td style="padding-bottom: 15px;"></td>
+   					<tr>
+        				<td class="section-line-gry-plus" style="padding-bottom: 15px;"></td>
     				</tr>
 				
 			</thead>
