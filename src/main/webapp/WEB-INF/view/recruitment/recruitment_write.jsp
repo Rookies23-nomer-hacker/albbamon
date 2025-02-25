@@ -13,7 +13,7 @@
     <form id="recruitmentForm" action="/api/recruitment", method="POST">
         <div class="recruitment-container">
             <h2>채용 공고 등록</h2>
-            <div>
+            <div class="orange-form">
                 <h3 class="section-margin-top2">모집 내용</h3>
                 <div class="section-line"></div>
                 <div class="section-text section-bold section-margin-top">공고 제목
@@ -26,7 +26,7 @@
                 </div>
                 <div class="section-text section-bold section-margin-top">시급
                     <span class="section-head__required">*</span>
-                    <input type="number" class="section-margin-left section-input-number" id="wage" name="wage"/>
+                    <input type="number" class="section-margin-left section-input-number" id="wage" name="wage" style="margin-left: 8%;"/>
                 </div>
                 <div class="section-text section-bold section-margin-top">마감 기한
                     <span class="section-head__required">*</span>
