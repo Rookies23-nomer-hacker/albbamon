@@ -26,7 +26,7 @@ public class Resume_write {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "resume_id")
 	private Long resume_id;
-	//
+	
 	@Column(name = "school")
 	private String school;
 	
@@ -58,6 +58,7 @@ public class Resume_write {
 	private String introduction;
 	
 	@Column(name = "portfolioname")
-	private String portfolioname;
+	private String portfolioName;
+
 	
 }

@@ -2,6 +2,8 @@
 document.addEventListener("DOMContentLoaded", function () {
 	if(duplicated==("이미 이력서가 있습니다.")){
 			alert("이미 이력서가 있습니다.")
+	}else{
+		alert("이력서 작성 완료!")
 	}
 	
 

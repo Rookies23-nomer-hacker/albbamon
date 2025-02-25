@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.albbamon.domain.resume.entity.File_data;
 import com.albbamon.domain.resume.entity.Resume_write;
 import com.albbamon.domain.resume.entity.Resume_write_profile;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -40,22 +41,18 @@ public class resume_writeController {
 	
 	String jsondata;
 	String jsondata2;
-	private final String TARGET_API_URL ="http://192.168.0.251:8083/api/resume/write";
-	//
-
+	
+	@Value("${api.base-url}")
+    private String apiBaseUrl;
 	
 	private final RestTemplate restTemplate;
 	
-
-    String url = "http://192.168.0.251:8083/api/resume/profile";
-    String resume_url = "http://192.168.0.251:8083/api/resume";
     public resume_writeController(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
     
     @GetMapping("/api/resume")
     public String resume(Model model,HttpServletRequest request){
-    	
     	HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		
@@ -80,14 +77,10 @@ public class resume_writeController {
 		}
 					
 		HttpEntity<String> requestEntity = new HttpEntity<>(jsondata2, headers);
-		ResponseEntity<Resume_write> response = restTemplate.exchange(resume_url, HttpMethod.POST,requestEntity, Resume_write.class);
+		ResponseEntity<Resume_write> response = restTemplate.exchange(apiBaseUrl+"/api/resume", HttpMethod.POST,requestEntity, Resume_write.class);
 		Resume_write profileData = response.getBody();
 		System.out.println(profileData);
 		if(profileData!=null) {
-			System.out.println("===="+profileData.getPersonal());
-			System.out.println("===="+profileData.getWork_place_region());
-			System.out.println("===="+profileData.getIndustry_occupation());
-			
 			model.addAttribute("resume", profileData);
 			return "resume/resume";
 		}else {
@@ -122,14 +115,14 @@ public class resume_writeController {
 		}
 					
 		HttpEntity<String> requestEntity = new HttpEntity<>(jsondata2, headers);
-		ResponseEntity<Resume_write_profile> response = restTemplate.exchange(url, HttpMethod.POST,requestEntity, Resume_write_profile.class);
+		ResponseEntity<Resume_write_profile> response = restTemplate.exchange(apiBaseUrl+"/api/resume/profile", HttpMethod.POST,requestEntity, Resume_write_profile.class);
 		Resume_write_profile profileData = response.getBody();
 		model.addAttribute("profile", profileData);
 		return "resume/resume_write";
 	}
 	
 	@PostMapping("/api/resume/write")
-	public String wwww(@ModelAttribute Resume_write resume_write,HttpServletRequest request,RedirectAttributes redirectAttributes) {
+	public String wwww(@ModelAttribute Resume_write resume_write,File_data file_data,HttpServletRequest request,RedirectAttributes redirectAttributes) {
 		
 		ObjectMapper objectMapper = new ObjectMapper();
 		objectMapper.registerModule(new JavaTimeModule()); // JavaTimeModule 등록
@@ -151,6 +144,8 @@ public class resume_writeController {
 		String working_day = resume_write.getWorking_day();
 		String introduction = resume_write.getIntroduction();
 		LocalDateTime create_date = LocalDateTime.now();
+		String portfoliodata = file_data.getPortfolioData();
+		String portfolioname = resume_write.getPortfolioName();
 		try {
 			if (session != null) {
 				String session_user=(String) session.getAttribute("userid");
@@ -168,6 +163,8 @@ public class resume_writeController {
 				data.put("working_day", working_day);
 				data.put("introduction", introduction);
 				data.put("create_date", create_date);
+				data.put("portfolioData", portfoliodata);
+				data.put("portfolioName",portfolioname);
 				jsondata = objectMapper.writeValueAsString(data);
 				// API 서버로 JSON 데이터 전송
 				RestTemplate restTemplate = new RestTemplate();
@@ -175,15 +172,17 @@ public class resume_writeController {
 				headers.setContentType(MediaType.APPLICATION_JSON);
 							
 				HttpEntity<String> requestEntity = new HttpEntity<>(jsondata, headers);
-				ResponseEntity<String> response = restTemplate.exchange(TARGET_API_URL, HttpMethod.POST, requestEntity, String.class);
+				ResponseEntity<String> response = restTemplate.exchange(apiBaseUrl+"/api/resume/write", HttpMethod.POST, requestEntity, String.class);
 
 				// 응답 확인
 				if(response.getBody().equals("이미 이력서가 있습니다.")) {
 					
 					redirectAttributes.addFlashAttribute("duplicated", "이미 이력서가 있습니다.");
 					return "redirect:/api/resume";
+				}else {
+					redirectAttributes.addFlashAttribute("duplicated", response.getBody());
+					return "redirect:/api/resume";
 				}
-				System.out.println("API 서버 응답: " + response.getBody());
 			}
 			
 		} catch (JsonProcessingException e) {
