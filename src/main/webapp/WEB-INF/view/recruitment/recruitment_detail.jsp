@@ -5,14 +5,14 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>지원하기</title>
+    <title>채용 공고 상세</title>
     <link rel="stylesheet" href="/css/recruitment/recruitment.css">
 </head>
 <body>
 <%@ include file="/WEB-INF/view/common/header.jsp" %>
 <main>
     <div class="recruitment-container">
-        <h2>지원하기</h2>
+        <h2>채용 공고 상세</h2>
         <div>
             <h3 class="section-margin-top2">모집 내용</h3>
             <div class="section-line"></div>
@@ -30,7 +30,7 @@
             </div>
         </div>
         <div class="button-container">
-            <button class="btn-primary" onclick="location.href='/recruitment/list/${recruitment.id}/apply'">지원하기</button>
+            <button class="btn-primary" onclick="location.href='/recruitment/${recruitment.id}/apply-info'">지원하기</button>
         </div>
     </div>
 </main>
