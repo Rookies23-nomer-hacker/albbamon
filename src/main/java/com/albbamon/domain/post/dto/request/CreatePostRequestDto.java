@@ -1,10 +1,15 @@
 package com.albbamon.domain.post.dto.request;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public record CreatePostRequestDto(
-		long postid,
+		Long postid,
+		Long userid,
         String title,
-        String contentes,
-        String file
+        String contents,
+        MultipartFile file
         
 ) {
+
+
 }
