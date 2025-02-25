@@ -6,21 +6,23 @@ public class LoginResponseDto {
     private Long userId;
     private boolean success;
     private String message;
+    private String ceoNum;
 
     // 기본 생성자
     public LoginResponseDto() {}
 
-    public LoginResponseDto(String email, String userType, boolean success, String message, Long userId) {
+    public LoginResponseDto(String email, String userType, boolean success, String message, Long userId, String ceoNum) {
         this.email = email;
         this.userId = userId;
         this.userType = userType;
         this.success = success;
         this.message = message;
+        this.ceoNum = ceoNum;
     }
 
     // Getter 및 Setter
-    public String getUsername() { return email; }
-    public void setUsername(String email) { this.email = email; }
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
     
     public Long getUserId() { return userId; }
     public void setUserId(Long userId) { this.userId = userId; }
@@ -33,4 +35,7 @@ public class LoginResponseDto {
 
     public String getMessage() { return message; }
     public void setMessage(String message) { this.message = message; }
+    
+    public String getCeoNum() { return ceoNum; }
+    public void setCeoNum(String ceoNum) { this.ceoNum = ceoNum; }
 }

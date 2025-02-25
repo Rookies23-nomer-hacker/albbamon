@@ -57,7 +57,11 @@ public class login {
         if (response.getStatusCode() == HttpStatus.OK && response.getBody() != null) {
             session.setAttribute("userid", response.getBody());
             System.out.println(session.getAttribute("userid"));
-            return "/main/main"; // main.jsp로 이동
+            session.setAttribute("email", loginDto.getEmail());
+            session.setAttribute("ceoNum", loginDto.getCeoNum());
+            System.out.println(session.getAttribute("ceoNum"));
+
+            return "redirect:/"; // 메인으로 redirect
         } else {
             model.addAttribute("error", "이메일 또는 비밀번호가 잘못되었습니다.");
             return "api/user/sign-in"; // 로그인 페이지로 다시 이동
@@ -71,7 +75,7 @@ public class login {
     		session.invalidate();
     	}
     	
-    	return "/";
+    	return "redirect:/";
     }
 
 
