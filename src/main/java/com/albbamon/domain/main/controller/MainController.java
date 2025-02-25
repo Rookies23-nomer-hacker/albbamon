@@ -21,10 +21,12 @@ import com.albbamon.config.ApiProperties;
 import com.albbamon.domain.main.entity.Main;
 import com.albbamon.domain.post.entity.Post;
 import com.albbamon.domain.recruitment.dto.response.GetRecruitmentResponseDto;
-import com.albbamon.domain.recruitment.entity.Recruitment;
 import com.albbamon.domain.user.entity.User;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class MainController {
@@ -43,7 +45,13 @@ public class MainController {
     }
     
     @GetMapping("/")
-    public String getAllPosts(Model model, ObjectMapper objectMapper) {
+    public String getAllPosts(Model model, ObjectMapper objectMapper, HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        String ceoNum = null;
+        if (session != null) {
+            ceoNum = (String) session.getAttribute("ceoNum");
+        }
+        
         String url = apiBaseUrl + "/api/post/list";
         List<Post> posts = Arrays.asList(restTemplate.getForObject(url, Post[].class));
         List<Map<String, String>> recruitments = new ArrayList<>();
@@ -78,6 +86,7 @@ public class MainController {
         
         model.addAttribute("posts", posts);
         model.addAttribute("recruitmentList", recruitments); 
+        model.addAttribute("ceoNum", ceoNum);
         return "main/main";
     }
     
