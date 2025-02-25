@@ -17,7 +17,8 @@
     	let resumeWork_place_region = "${resume.work_place_region}";
         let resumeIntroduction = "${resume.industry_occupation}";
         let duplicated = "${duplicated}";
-        let base_url = "${contextPath}";</script>
+        let base_url = "${contextPath}";
+        let deleted = "${delete}";</script>
 	<div class="section" style="margin-left: 7%;">
 	<div class="orange-form-resume">
 		<div class="section-line" style="width: 100%; margin-top: 30px;"></div>

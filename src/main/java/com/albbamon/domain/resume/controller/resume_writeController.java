@@ -79,13 +79,51 @@ public class resume_writeController {
 		HttpEntity<String> requestEntity = new HttpEntity<>(jsondata2, headers);
 		ResponseEntity<Resume_write> response = restTemplate.exchange(apiBaseUrl+"/api/resume", HttpMethod.POST,requestEntity, Resume_write.class);
 		Resume_write profileData = response.getBody();
-		System.out.println(profileData);
 		if(profileData!=null) {
 			model.addAttribute("resume", profileData);
 			return "resume/resume";
 		}else {
 			return "resume/resume";
 		}
+    }
+    
+    
+    @GetMapping("/api/resume/delete")
+    public String delete(Model model,HttpServletRequest request,RedirectAttributes redirectAttributes){
+    	HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		
+		Map<String, Object> data = new HashMap<>();
+		ObjectMapper objectMapper = new ObjectMapper();
+		HttpSession session = request.getSession(false);
+		try {
+			if (session != null) {
+				String session_user=(String) session.getAttribute("userid");
+				if(session_user==null) {
+					
+					model.addAttribute("NotLogin", 1);
+					return "user/login";
+				}else {
+					Long userId = Long.parseLong(session_user);
+					data.put("user_id", userId);
+					jsondata2 = objectMapper.writeValueAsString(data);
+				}
+			}
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+					
+		HttpEntity<String> requestEntity = new HttpEntity<>(jsondata2, headers);
+		ResponseEntity<Resume_write> resume_response = restTemplate.exchange(apiBaseUrl+"/api/resume", HttpMethod.POST,requestEntity, Resume_write.class);
+		Resume_write profileData = resume_response.getBody();
+		
+		Long resume_id = profileData.getResume_id();
+
+		HttpEntity<Long> requestEntity2 = new HttpEntity<>(resume_id, headers);
+		ResponseEntity<String> response = restTemplate.exchange(apiBaseUrl+"/api/resume/delete?resume_id="+resume_id, HttpMethod.GET,requestEntity2, String.class);
+		
+		redirectAttributes.addFlashAttribute("delete", response.getBody());
+		return "redirect:/api/resume";
     }
     
 	@GetMapping("/api/resume/write")
