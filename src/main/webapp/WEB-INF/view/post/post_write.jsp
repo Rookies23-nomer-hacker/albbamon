@@ -125,7 +125,7 @@
     <%@ include file="/WEB-INF/view/common/header.jsp" %>
 
     <main class="container2">
-        <form id="writeForm" action="/api/post" method="POST" enctype="multipart/form-data">
+        <form id="writeForm" action="/api/post" method="POST">
             <h2>알바경험담 작성</h2>
 
             <!-- 제목 입력 -->
@@ -136,9 +136,9 @@
             <label for="contents">내용</label>
             <textarea id="contents" name="contents" placeholder="내용을 입력하세요." required></textarea>
 
-            <!-- 이미지 업로드 -->
+<!--             이미지 업로드
             <label for="file">이미지 (선택)</label>
-            <input type="file" id="file" name="file">
+            <input type="file" id="file" name="file"> -->
 
             <!-- 버튼 영역 -->
             <div class="buttons">
