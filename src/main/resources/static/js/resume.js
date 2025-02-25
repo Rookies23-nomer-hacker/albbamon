@@ -76,6 +76,8 @@ document.addEventListener("DOMContentLoaded", function () {
         deleteBtn.style.display = "flex";
         deleteBtn.style.alignItems = "center";  // 수직 중앙 정렬
         deleteBtn.style.justifyContent = "center";  // 수평 중앙 정렬
+		deleteBtn.addEventListener("click", function() {
+				    window.location.href = base_url+"/api/resume/delete";});
 
         // 버튼을 컨테이너에 추가
         buttonContainer.appendChild(editBtn);

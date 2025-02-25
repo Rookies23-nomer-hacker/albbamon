@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath" value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +16,8 @@
 	<script>let resumePersonal = "${resume.personal}";
     	let resumeWork_place_region = "${resume.work_place_region}";
         let resumeIntroduction = "${resume.industry_occupation}";
-        let duplicated = "${duplicated}";</script>
+        let duplicated = "${duplicated}";
+        let base_url = "${contextPath}";</script>
 	<div class="section" style="margin-left: 7%";>
 		<div class="section-line" style="width: 116.8%;"></div>
 		<table id="portfolioTable" style="table-layout: fixed;">
@@ -31,8 +34,8 @@
 		</table>
 		
 		<div align="center" class="empty-portfolio" id="emptyMessage">등록된 이력서가 없습니다.</div>
-		<div class="center-container">
-		<button id="portfolio" type="button" class="save" style="margin-left: 20%;" onclick="location.href='<%= request.getContextPath() %>/api/resume/write'">이력서 작성</button>
+		<div class="center-container">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+		<button id="portfolio" type="button" class="save" style="margin-left: 20%;" onclick="location.href=base_url + '/api/resume/write'">이력서 작성</button>
 		<input type="file" id="fileInput" style="display: none;" onchange="handleFileUpload(event)">
 		</div>
 		<div class="section-line-gry section-margin-top" style="margin-bottom: 300px; width: 117%;"></div>

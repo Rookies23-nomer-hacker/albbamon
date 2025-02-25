@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath" value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +11,7 @@
 	<link rel="stylesheet" href="/css/resume/resume.css">
 </head>
 <body>
-	<script src="<%= request.getContextPath() %>/js/resume_write.js"></script>
+	<script src="${contextPath}/js/resume_write.js"></script>
 	<form id="resumeForm" action="/api/resume/write" method="POST">
 	<div class="section">
 		<h2 class="section-title">이력서 작성</h2>
