@@ -14,6 +14,7 @@
 	<script src="${contextPath}/js/resume_write.js"></script>
 	<form id="resumeForm" action="/api/resume/write" method="POST">
 	<div class="section">
+	<div class="orange-form">
 		<h2 class="section-title">이력서 작성</h2>
 		<div class="profile-box">
 		<div class="profile">
@@ -166,9 +167,9 @@
 		<table id="portfolioTable" style="width: 100%; table-layout: fixed; border-collapse: collapse;">
 			<thead>
 				<tr>
-					<th id="title" style="width: 630px; text-align: center;">포트폴리오제목</th>
+					<th id="title" style="width: 450px; text-align: center;">포트폴리오제목</th>
 					<th id="date" style="width: 200px; text-align: center;">등록일</th>
-					<th id="volume" style="width: 200px; text-align: center;">용량</th>
+					<th id="volume" style="width: 280px; text-align: center;">용량</th>
 				</tr>
 				
    					<tr>
@@ -211,6 +212,8 @@
         </div>
     </div>
 	</div>
+	</div>
+	</div>
     <div class="button-container">
         <button class="temp-save">
             <span class="loading-icon"></span> 임시 저장
@@ -219,7 +222,8 @@
             이력서 저장
         </button>
     </div>
-	</div>
+	
 	</form>
+	<%@ include file="/WEB-INF/view/common/footer.jsp" %>
 </body>
 </html>
