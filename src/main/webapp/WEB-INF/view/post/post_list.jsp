@@ -108,13 +108,21 @@
     </style>
 </head>
 <body>
-        <%@ include file="/WEB-INF/view/common/header.jsp" %>
+    <%@ include file="/WEB-INF/view/common/header.jsp" %>
 
     <div class="container">
         <!-- 헤더 영역 -->
         <div class="board-header" style="margin-top: 30px;">
             <h2>알바경험담</h2>
-            <button onclick="location.href='/api/post/write'">글쓰기</button>
+            <c:choose>
+                <%-- 로그인한 사용자에게만 글쓰기 버튼 표시 --%>
+                <c:when test="${isLoggedIn}">
+                    <button onclick="location.href='/api/post/write'">글쓰기</button>
+                </c:when>
+                <c:otherwise>
+                    <button onclick="alert('로그인이 필요합니다.'); location.href='/api/user/sign-in';">글쓰기</button>
+                </c:otherwise>
+            </c:choose>
         </div>
 
         <!-- 검색 바 -->
@@ -161,6 +169,6 @@
         </ul>
     </div>
 
-        <%@ include file="/WEB-INF/view/common/footer.jsp" %>
+    <%@ include file="/WEB-INF/view/common/footer.jsp" %>
 </body>
 </html>

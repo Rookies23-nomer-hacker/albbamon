@@ -8,6 +8,8 @@ group = 'com.albbamon'
 version = '0.0.1-SNAPSHOT'
 
 java {
+	sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 	toolchain {
 		languageVersion = JavaLanguageVersion.of(17)
 	}
@@ -40,6 +42,10 @@ dependencies {
 
 	// 결제
 	implementation 'com.github.iamport:iamport-rest-client-java:0.2.21'
+	
+	implementation 'org.springframework:spring-context:6.2.2'
+    implementation 'org.springframework:spring-beans:6.2.2'
+    implementation 'org.springframework:spring-core:6.2.2' // spring-core도 추가
 
 	runtimeOnly 'com.mysql:mysql-connector-j'
 

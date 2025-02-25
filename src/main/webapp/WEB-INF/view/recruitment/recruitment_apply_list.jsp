@@ -21,16 +21,16 @@
                     <th>지원자명</th>
                     <th>학력</th>
                     <th>학력 상태</th>
-                    <th>personal</th>
-                    <th>workPlaceRegion</th>
-                    <th>workPlaceCity</th>
-                    <th>industryOccupation</th>
-                    <th>employmentType</th>
-                    <th>workingPeriod</th>
-                    <th>workingDay</th>
-                    <th>portfoliourl</th>
-                    <th>createDate</th>
-                    <th>applyStatus</th>
+                    <th>Personal</th>
+                    <th>근무 지역</th>
+                    <th>근무 도시</th>
+                    <th>산업/직무</th>
+                    <th>고용 형태</th>
+                    <th>근무 기간</th>
+                    <th>근무 일자</th>
+                    <th>포트폴리오</th>
+                    <th>등록일</th>
+                    <th>지원 상태</th>
                 </tr>
                 </thead>
                 <tbody>
