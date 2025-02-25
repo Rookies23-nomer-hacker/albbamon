@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		alert(duplicated)
 	}
 	if(deleted==("삭제완료")){
-		alert(deleted);
+		alert("이력서 삭제 완료!");
 	}
 	
 
