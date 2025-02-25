@@ -1,9 +1,13 @@
 
 document.addEventListener("DOMContentLoaded", function () {
 	if(duplicated==("이미 이력서가 있습니다.")){
-			alert("이미 이력서가 있습니다.")
-	}else{
-		alert("이력서 작성 완료!")
+			alert(duplicated)
+	}
+	if(duplicated==("이력서 작성 완료!")){
+		alert(duplicated)
+	}
+	if(deleted==("삭제완료")){
+		alert("이력서 삭제 완료!");
 	}
 	
 
@@ -35,9 +39,21 @@ document.addEventListener("DOMContentLoaded", function () {
         // 실제 데이터 행 추가
         let newRow = tableBody.insertRow();
 
-        let cell1 = newRow.insertCell(0);
-        cell1.innerHTML = resumePersonal + "<br><span style='color: gray; font-size: 14px; margin-left: 22px;'>" + resumeWork_place_region + "</span><br><span style='color: gray; font-size: 14px; margin-left: 9px;'>" + resumeIntroduction + "</span>";
-        cell1.style.textAlign = "center";
+		let cell1 = newRow.insertCell(0);
+		cell1.innerHTML = `
+		    <a href="${base_url}/api/resume/view?resumeId=${resumeId}" style="text-decoration: none; color: inherit;">
+		        ${resumePersonal}
+		    </a>
+		    <br>
+		    <span style="color: gray; font-size: 14px; margin-left: 22px;">
+		        ${resumeWork_place_region}
+		    </span>
+		    <br>
+		    <span style="color: gray; font-size: 14px; margin-left: 9px;">
+		        ${resumeIntroduction}
+		    </span>
+		`;
+		cell1.style.textAlign = "center";
 
         let cell2 = newRow.insertCell(1);
         cell2.textContent = "2024-02-20";
@@ -76,6 +92,8 @@ document.addEventListener("DOMContentLoaded", function () {
         deleteBtn.style.display = "flex";
         deleteBtn.style.alignItems = "center";  // 수직 중앙 정렬
         deleteBtn.style.justifyContent = "center";  // 수평 중앙 정렬
+		deleteBtn.addEventListener("click", function() {
+				    window.location.href = base_url+"/api/resume/delete";});
 
         // 버튼을 컨테이너에 추가
         buttonContainer.appendChild(editBtn);

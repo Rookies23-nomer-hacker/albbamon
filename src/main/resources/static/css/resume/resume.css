@@ -97,6 +97,8 @@
     border-bottom: 1px solid #D8D8D8; /* 얇은 회색 선 */
     margin-top: 5px;
     margin-bottom: 15px;
+    width: 207%;
+    display: block;
 }
 
 .section-text {
@@ -233,12 +235,15 @@
     justify-content: center; /* 가로 중앙 정렬 */
     align-items: center; /* 세로 중앙 정렬 */
     gap: 10px; /* 버튼 간 간격 */
-    margin-top: 20px; /* 버튼 위 여백 */
-    width: 100%; /* 전체 너비 사용 */
+    margin-top: 40px; /* 버튼 위 여백 */
+    margin-bottom: 40px;
+    margin-left: 1%;
+    width: 100%; /* 전체 너비 사용 */    
 }
 
 
 .center-container {
+	margin-top: 40px;
     display: flex;
     justify-content: center; /* 가로 중앙 정렬 */
     align-items: center; /* 세로 중앙 정렬 */
@@ -393,4 +398,23 @@ button {
     width: 100%;
     table-layout: fixed; /* 테이블 크기 고정 */
     border-collapse: collapse;
+}
+
+.orange-form {
+	border: 2px solid #ff6600; /* 주황색 테두리 추가 */
+    padding: 40px; /* 내부 여백 추가 */
+    border-radius: 10px; /* 둥근 모서리 */
+    background-color: white; /* 배경 흰색 */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 약간의 그림자 효과 */
+    width: 115%;
+    margin-left: -4%;
+}
+
+.orange-form-resume {
+	border: 2px solid #ff6600; 
+	padding: 20px; 
+	border-radius: 10px;
+	width: 100%;
+	height: 70%;
+	margin-left: 10%;
 }

@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Áö¿øÇöÈ²</title>
+    <title>ì§€ì›í˜„í™©</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -117,82 +117,82 @@
 </head>
 <body>
     <div class="container">
-        <div class="header">Áö¿øÇöÈ²</div>
-        <div class="info">ÃÖ±Ù 1³â ÀÌ³»ÀÇ Áö¿ø³»¿ªÀ» È®ÀÎÇÒ ¼ö ÀÖ½À´Ï´Ù.</div>
+        <div class="header">ì§€ì›í˜„í™©</div>
+        <div class="info">ìµœê·¼ 1ë…„ ì´ë‚´ì˜ ì§€ì›ë‚´ì—­ì„ í™•ì¸í•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤.</div>
         <div class="status-container">
             <div class="status-box">
                 <div class="status-number total">0</div>
-                <div class="status-label">ÀüÃ¼</div>
+                <div class="status-label">ì „ì²´</div>
             </div>
             <div class="status-box">
                 <div class="status-number">0</div>
-                <div class="status-label">Áö¿ø¿Ï·á</div>
+                <div class="status-label">ì§€ì›ì™„ë£Œ</div>
             </div>
             <div class="status-box">
                 <div class="status-number">0</div>
-                <div class="status-label">¸éÁ¢</div>
+                <div class="status-label">ë©´ì ‘</div>
             </div>
             <div class="status-box">
                 <div class="status-number">0</div>
-                <div class="status-label">ÇÕ°Ý</div>
+                <div class="status-label">í•©ê²©</div>
             </div>
             <div class="status-box">
                 <div class="status-number">0</div>
-                <div class="status-label">ºÒÇÕ°Ý/Ãë¼Ò</div>
+                <div class="status-label">ë¶ˆí•©ê²©/ì·¨ì†Œ</div>
             </div>
         </div>
         <div class="tab-menu">
-            <div class="tab active">¿Â¶óÀÎ¡¤¹®ÀÚ¡¤ÀÌ¸ÞÀÏ Áö¿ø</div>
-            <div class="tab">±âÅ¸ Áö¿ø</div>
-            <div class="tab">¼û±ä³»¿ª</div>
+            <div class="tab active">ì˜¨ë¼ì¸Â·ë¬¸ìžÂ·ì´ë©”ì¼ ì§€ì›</div>
+            <div class="tab">ê¸°íƒ€ ì§€ì›</div>
+            <div class="tab">ìˆ¨ê¸´ë‚´ì—­</div>
         </div>
         <div class="job-list">
             <div class="job-item">
-                <div class="job-title">´õ¸Õ Çªµå - Áß¾Ó´ëÇÐ±³ ±¤¸íº´¿ø ÇªµåÆ®·° ¹è½Ä ¾Ë¹Ù</div>
-                <div class="job-meta">2024.06.27 | °£Æí¹®ÀÚÁö¿ø | ¸¶°¨</div>
+                <div class="job-title">ë”ë¨¼ í‘¸ë“œ - ì¤‘ì•™ëŒ€í•™êµ ê´‘ëª…ë³‘ì› í‘¸ë“œíŠ¸ëŸ­ ë°°ì‹ ì•Œë°”</div>
+                <div class="job-meta">2024.06.27 | ê°„íŽ¸ë¬¸ìžì§€ì› | ë§ˆê°</div>
                 <div class="actions">
-                    <button class="btn btn-gray">±â¾÷ÈÄ±â ÀÛ¼ºÇÏ±â</button>
-                    <button class="btn btn-orange">¸Þ¸ðÇÏ±â</button>
+                    <button class="btn btn-gray">ê¸°ì—…í›„ê¸° ìž‘ì„±í•˜ê¸°</button>
+                    <button class="btn btn-orange">ë©”ëª¨í•˜ê¸°</button>
                 </div>
             </div>
             <div class="job-item">
-                <div class="job-title">ÄÉÀÌÁ¦ÀÌ - Áß¾Ó´ëÇÐ±³ ±¤¸íº´¿ø ¿¬¼ö°­ÁÂ ¿î¿µ¿ä¿ø ¾Æ¸£¹ÙÀÌÆ®</div>
-                <div class="job-meta">2024.06.06 | ¿Â¶óÀÎÁö¿ø | ¸¶°¨</div>
+                <div class="job-title">ì¼€ì´ì œì´ - ì¤‘ì•™ëŒ€í•™êµ ê´‘ëª…ë³‘ì› ì—°ìˆ˜ê°•ì¢Œ ìš´ì˜ìš”ì› ì•„ë¥´ë°”ì´íŠ¸</div>
+                <div class="job-meta">2024.06.06 | ì˜¨ë¼ì¸ì§€ì› | ë§ˆê°</div>
                 <div class="actions">
-                    <button class="btn btn-gray">±â¾÷ÈÄ±â ÀÛ¼ºÇÏ±â</button>
-                    <button class="btn btn-orange">¸Þ¸ðÇÏ±â</button>
+                    <button class="btn btn-gray">ê¸°ì—…í›„ê¸° ìž‘ì„±í•˜ê¸°</button>
+                    <button class="btn btn-orange">ë©”ëª¨í•˜ê¸°</button>
                 </div>
             </div>
             <div class="job-item">
-                <div class="job-title">ÄÉÀÌÁ¦ÀÌ - Áß¾Ó´ëÇÐ±³ ±¤¸íº´¿ø ¿¬¼ö°­ÁÂ ¿î¿µ¿ä¿ø ¾Æ¸£¹ÙÀÌÆ®</div>
-                <div class="job-meta">2024.06.06 | ¿Â¶óÀÎÁö¿ø | ¸¶°¨</div>
+                <div class="job-title">ì¼€ì´ì œì´ - ì¤‘ì•™ëŒ€í•™êµ ê´‘ëª…ë³‘ì› ì—°ìˆ˜ê°•ì¢Œ ìš´ì˜ìš”ì› ì•„ë¥´ë°”ì´íŠ¸</div>
+                <div class="job-meta">2024.06.06 | ì˜¨ë¼ì¸ì§€ì› | ë§ˆê°</div>
                 <div class="actions">
-                    <button class="btn btn-gray">±â¾÷ÈÄ±â ÀÛ¼ºÇÏ±â</button>
-                    <button class="btn btn-orange">¸Þ¸ðÇÏ±â</button>
+                    <button class="btn btn-gray">ê¸°ì—…í›„ê¸° ìž‘ì„±í•˜ê¸°</button>
+                    <button class="btn btn-orange">ë©”ëª¨í•˜ê¸°</button>
                 </div>
             </div>
             <div class="job-item">
-                <div class="job-title">ÄÉÀÌÁ¦ÀÌ - Áß¾Ó´ëÇÐ±³ ±¤¸íº´¿ø ¿¬¼ö°­ÁÂ ¿î¿µ¿ä¿ø ¾Æ¸£¹ÙÀÌÆ®</div>
-                <div class="job-meta">2024.06.06 | ¿Â¶óÀÎÁö¿ø | ¸¶°¨</div>
+                <div class="job-title">ì¼€ì´ì œì´ - ì¤‘ì•™ëŒ€í•™êµ ê´‘ëª…ë³‘ì› ì—°ìˆ˜ê°•ì¢Œ ìš´ì˜ìš”ì› ì•„ë¥´ë°”ì´íŠ¸</div>
+                <div class="job-meta">2024.06.06 | ì˜¨ë¼ì¸ì§€ì› | ë§ˆê°</div>
                 <div class="actions">
-                    <button class="btn btn-gray">±â¾÷ÈÄ±â ÀÛ¼ºÇÏ±â</button>
-                    <button class="btn btn-orange">¸Þ¸ðÇÏ±â</button>
+                    <button class="btn btn-gray">ê¸°ì—…í›„ê¸° ìž‘ì„±í•˜ê¸°</button>
+                    <button class="btn btn-orange">ë©”ëª¨í•˜ê¸°</button>
                 </div>
             </div>
             <div class="job-item">
-                <div class="job-title">ÄÉÀÌÁ¦ÀÌ - Áß¾Ó´ëÇÐ±³ ±¤¸íº´¿ø ¿¬¼ö°­ÁÂ ¿î¿µ¿ä¿ø ¾Æ¸£¹ÙÀÌÆ®</div>
-                <div class="job-meta">2024.06.06 | ¿Â¶óÀÎÁö¿ø | ¸¶°¨</div>
+                <div class="job-title">ì¼€ì´ì œì´ - ì¤‘ì•™ëŒ€í•™êµ ê´‘ëª…ë³‘ì› ì—°ìˆ˜ê°•ì¢Œ ìš´ì˜ìš”ì› ì•„ë¥´ë°”ì´íŠ¸</div>
+                <div class="job-meta">2024.06.06 | ì˜¨ë¼ì¸ì§€ì› | ë§ˆê°</div>
                 <div class="actions">
-                    <button class="btn btn-gray">±â¾÷ÈÄ±â ÀÛ¼ºÇÏ±â</button>
-                    <button class="btn btn-orange">¸Þ¸ðÇÏ±â</button>
+                    <button class="btn btn-gray">ê¸°ì—…í›„ê¸° ìž‘ì„±í•˜ê¸°</button>
+                    <button class="btn btn-orange">ë©”ëª¨í•˜ê¸°</button>
                 </div>
             </div>
             <div class="job-item">
-                <div class="job-title">ÄÉÀÌÁ¦ÀÌ - Áß¾Ó´ëÇÐ±³ ±¤¸íº´¿ø ¿¬¼ö°­ÁÂ ¿î¿µ¿ä¿ø ¾Æ¸£¹ÙÀÌÆ®</div>
-                <div class="job-meta">2024.06.06 | ¿Â¶óÀÎÁö¿ø | ¸¶°¨</div>
+                <div class="job-title">ì¼€ì´ì œì´ - ì¤‘ì•™ëŒ€í•™êµ ê´‘ëª…ë³‘ì› ì—°ìˆ˜ê°•ì¢Œ ìš´ì˜ìš”ì› ì•„ë¥´ë°”ì´íŠ¸</div>
+                <div class="job-meta">2024.06.06 | ì˜¨ë¼ì¸ì§€ì› | ë§ˆê°</div>
                 <div class="actions">
-                    <button class="btn btn-gray">±â¾÷ÈÄ±â ÀÛ¼ºÇÏ±â</button>
-                    <button class="btn btn-orange">¸Þ¸ðÇÏ±â</button>
+                    <button class="btn btn-gray">ê¸°ì—…í›„ê¸° ìž‘ì„±í•˜ê¸°</button>
+                    <button class="btn btn-orange">ë©”ëª¨í•˜ê¸°</button>
                 </div>
             </div>
         </div>

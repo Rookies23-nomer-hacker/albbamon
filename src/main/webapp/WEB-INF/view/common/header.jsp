@@ -25,11 +25,11 @@
 
 	        <ul class="nav mb-2 justify-content-center mb-md-0">
 	            <li><a href="/recruitment/list" class="nav-link px-2 text-black" style="color: black; font-weight: bold;">채용공고</a></li>
+	            <li><a href="/api/post" class="nav-link px-2 text-black" style="color: black; font-weight: bold;">커뮤니티</a></li>
 	            <li><a href="#" class="nav-link px-2 text-black" style="color: black; font-weight: bold;">인재정보</a></li>
-	            <li><a href="#" class="nav-link px-2 text-black" style="color: black; font-weight: bold;">QnA</a></li>
-	            <li><a href="/api/post/" class="nav-link px-2 text-black" style="color: black; font-weight: bold;">커뮤니티</a></li>
-	            <li><a href="#" class="nav-link px-2 text-black" style="color: black; font-weight: bold;">지원자 이력서 확인</a></li>
-	            <li><a href="/payment/payment" class="nav-link px-2 text-black" style="color: black; font-weight: bold;">아이템 구매</a></li>
+				<c:if test="${not empty sessionScope.email}">
+	            	<li><a href="/payment/payment" class="nav-link px-2 text-black" style="color: black; font-weight: bold;">아이템 구매</a></li>
+				</c:if>
 	        </ul>
 
 			<div class="d-flex">
@@ -37,13 +37,13 @@
 			    <c:if test="${empty sessionScope.email}">
 			        <button type="button" class="btn btn-outline-light me-2" onclick="location.href='<%= request.getContextPath() %>/api/user/sign-in'">로그인</button>
 					<!-- 회원가입 버튼 -->
-					<button type="button" class="btn btn-warning me-2" onclick="location.href='<%= request.getContextPath() %>/api/user'">회원가입</button>
+					<button type="button" class="btn btn-warning me-2" onclick="location.href='<%= request.getContextPath() %>api/user/join'">회원가입</button>
 				</c:if>
 			    
 			    <c:if test="${not empty sessionScope.email}">
 			        <!-- 로그인한 이메일 출력 -->
 					<p class="me-2">
-					    ${sessionScope.email}님이 로그인 하였습니다.
+					    ${sessionScope.email}님이 로그인 하였습니다.${ceoNum}, ${sessionScope.ceoNum}, ${ceonum}, ${sessionScope.ceonum}
 					    <c:if test="${not empty sessionScope.ceoNum}">
 					        <!-- ceo_num이 존재하면 '사장님'으로 구분 -->
 					        <span>(사장님)</span>

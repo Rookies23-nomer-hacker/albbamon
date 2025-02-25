@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import com.albbamon.domain.user.dto.request.LoginRequestDto;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -55,11 +56,18 @@ public class login {
             session = request.getSession(); // 새 세션 생성 (필요할 때만)
         }
         if (response.getStatusCode() == HttpStatus.OK && response.getBody() != null) {
+            String responseBody = response.getBody();
+            JsonNode jsonResponse = om.readTree(responseBody);
+        	String ceoNum = jsonResponse.path("ceoNum").asText();  // ceoNum 값 추출
+            System.out.println("ceoNum from response: " + ceoNum);
+        	
             session.setAttribute("userid", response.getBody());
             System.out.println(session.getAttribute("userid"));
             session.setAttribute("email", loginDto.getEmail());
-            session.setAttribute("ceoNum", loginDto.getCeoNum());
-            System.out.println(session.getAttribute("ceoNum"));
+            session.setAttribute("ceonum", loginDto.getCeoNum());
+            System.out.println(session.getAttribute("ceonum"));
+            session.setAttribute("ceoNum", ceoNum);
+            System.out.println(loginDto.getCeoNum());
 
             return "redirect:/"; // 메인으로 redirect
         } else {
