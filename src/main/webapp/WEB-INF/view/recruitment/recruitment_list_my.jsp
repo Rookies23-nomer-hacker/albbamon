@@ -20,18 +20,16 @@
                     <th>제목</th>
                     <th>시급</th>
                     <th>마감 기한</th>
-                    <th>작성자</th>
+                    <th>지원서 목록</th>
                 </tr>
                 </thead>
                 <tbody>
                 <c:forEach var="recruitment" items="${recruitmentList}">
                     <tr>
-                        <td>
-                            <a href="/recruitment/${recruitment.id}/apply">${recruitment.title}</a>
-                        </td>
+                        <td><a href="/recruitment/${recruitment.id}">${recruitment.title}</a></td>
                         <td>${recruitment.wage}</td>
                         <td>${recruitment.dueDate}</td>
-                        <td>${recruitment.userName}</td>
+                        <td><button class="btn-primary" onclick="location.href='/recruitment/${recruitment.id}/apply'">지원서 보기</button></td>
                     </tr>
                 </c:forEach>
                 </tbody>
