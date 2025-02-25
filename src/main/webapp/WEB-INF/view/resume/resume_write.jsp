@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath" value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,9 +11,10 @@
 	<link rel="stylesheet" href="/css/resume/resume.css">
 </head>
 <body>
-	<script src="<%= request.getContextPath() %>/js/resume_write.js"></script>
+	<script src="${contextPath}/js/resume_write.js"></script>
 	<form id="resumeForm" action="/api/resume/write" method="POST">
 	<div class="section">
+	<div class="orange-form">
 		<h2 class="section-title">이력서 작성</h2>
 		<div class="profile-box">
 		<div class="profile">
@@ -164,13 +167,13 @@
 		<table id="portfolioTable" style="width: 100%; table-layout: fixed; border-collapse: collapse;">
 			<thead>
 				<tr>
-					<th id="title" style="width: 630px; text-align: center;">포트폴리오제목</th>
+					<th id="title" style="width: 450px; text-align: center;">포트폴리오제목</th>
 					<th id="date" style="width: 200px; text-align: center;">등록일</th>
-					<th id="volume" style="width: 200px; text-align: center;">용량</th>
+					<th id="volume" style="width: 280px; text-align: center;">용량</th>
 				</tr>
 				
-   					<tr class="section-line-gry-plus section-margin-top-plus">
-        				<td style="padding-bottom: 15px;"></td>
+   					<tr>
+        				<td class="section-line-gry-plus" style="padding-bottom: 15px;"></td>
     				</tr>
 				
 			</thead>
@@ -209,6 +212,8 @@
         </div>
     </div>
 	</div>
+	</div>
+	</div>
     <div class="button-container">
         <button class="temp-save">
             <span class="loading-icon"></span> 임시 저장
@@ -217,7 +222,8 @@
             이력서 저장
         </button>
     </div>
-	</div>
+	
 	</form>
+	<%@ include file="/WEB-INF/view/common/footer.jsp" %>
 </body>
 </html>

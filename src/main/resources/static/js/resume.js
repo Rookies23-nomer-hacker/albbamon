@@ -1,7 +1,13 @@
 
 document.addEventListener("DOMContentLoaded", function () {
 	if(duplicated==("이미 이력서가 있습니다.")){
-			alert("이미 이력서가 있습니다.")
+			alert(duplicated)
+	}
+	if(duplicated==("이력서 작성 완료!")){
+		alert(duplicated)
+	}
+	if(deleted==("삭제완료")){
+		alert("이력서 삭제 완료!");
 	}
 	
 
@@ -74,6 +80,8 @@ document.addEventListener("DOMContentLoaded", function () {
         deleteBtn.style.display = "flex";
         deleteBtn.style.alignItems = "center";  // 수직 중앙 정렬
         deleteBtn.style.justifyContent = "center";  // 수평 중앙 정렬
+		deleteBtn.addEventListener("click", function() {
+				    window.location.href = base_url+"/api/resume/delete";});
 
         // 버튼을 컨테이너에 추가
         buttonContainer.appendChild(editBtn);

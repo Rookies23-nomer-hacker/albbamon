@@ -1,5 +1,6 @@
 package com.albbamon.domain.user.controller;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -20,7 +21,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
 public class register {
-
+    @Value("${api.base-url}")
+    private String apiBaseUrl;
+    
 	@GetMapping("/api/user")
 	public String reg() {
 		return "/user/register";
@@ -33,7 +36,7 @@ private final RestTemplate restTemplate = new RestTemplate();
 		ObjectMapper om = new ObjectMapper();
 		RestTemplate rt = new RestTemplate();
 		//API 요청 URL
-		String apiUrl = "http://localhost:8083/api/user";
+		String apiUrl = apiBaseUrl+ "/api/user";
 		
 		//HTTP 헤더 설정
 		HttpHeaders headers = new HttpHeaders();
