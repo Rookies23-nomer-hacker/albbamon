@@ -39,7 +39,7 @@ public class recruitment_write {
                                     HttpServletRequest request,
                                     Model model) {
         HttpSession session = request.getSession();
-        Long userId = (Long) session.getAttribute("userid");
+        Long userId = Long.valueOf((String) session.getAttribute("userid"));
         if(userId == null) {
             model.addAttribute("NotLogin", 1);
             return "user/login";

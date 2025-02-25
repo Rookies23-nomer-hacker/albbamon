@@ -1,14 +1,16 @@
 package com.albbamon.domain.recruitment.dto.request;
 
+import lombok.Getter;
 import lombok.Setter;
 
+@Getter
 @Setter
 public class CreateRecruitmentRequestDto {
-    private Long userId;
-    private String title;
-    private String contents;
-    private Integer wage;
-    private String dueDate;
+    Long userId;
+    String title;
+    String contents;
+    Integer wage;
+    String dueDate;
 
     public CreateRecruitmentRequestDto(String title, String contents, Integer wage, String dueDate) {
         this.title = title;
