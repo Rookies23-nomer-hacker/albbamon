@@ -10,7 +10,6 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/view/common/header.jsp" %>
-<main>
     <div class="recruitment-container">
         <h2 class="title">나의 채용 공고</h2>
         <div class="card">
@@ -39,7 +38,8 @@
             <button class="btn-primary" onclick="location.href='/recruitment/write'">채용 공고 등록</button>
         </div>
     </div>
-</main>
+<div class="footer">
 <%@ include file="/WEB-INF/view/common/footer.jsp" %>
+</div>
 </body>
 </html>
