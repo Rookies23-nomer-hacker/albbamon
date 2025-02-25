@@ -33,7 +33,7 @@ public class recruitment_apply_list {
     }
 
     @GetMapping("/recruitment/{recruitmentId}/apply")
-    public String applyList(Model model, @PathVariable final Long recruitmentId) {
+    public String applyList(Model model, @PathVariable("recruitmentId") final Long recruitmentId) {
         List<Map<String, String>> applys = new ArrayList<>();
 
         try {
