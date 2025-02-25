@@ -41,6 +41,7 @@ public class User extends BaseTimeEntity {
     @Builder.Default
     private Boolean pwCheck = false;
 
+    @Column(name="ceo_num")
     private String ceoNum;
 
     private String company;

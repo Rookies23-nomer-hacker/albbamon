@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,12 +32,33 @@
 	            <li><a href="/payment/payment" class="nav-link px-2 text-black" style="color: black; font-weight: bold;">아이템 구매</a></li>
 	        </ul>
 
-	        <div class="d-flex">
-	            <button type="button" class="btn btn-outline-light me-2" onclick="location.href='<%= request.getContextPath() %>/api/user/sign-in'">로그인</button>
-	            <button type="button" class="btn btn-warning me-2" onclick="location.href='<%= request.getContextPath() %>/api/user'">회원가입</button>
-	            <button type="button" class="btn me-2" style="background-color: white; color: black; border: 1px solid #ccc;" onclick="location.href='<%= request.getContextPath() %>/api/resume'">이력서 관리</button>
-	            <button type="button" class="btn me-2" style="background-color: white; color: black; border: 1px solid #ccc;">공고 등록</button>
-	        </div>
+			<div class="d-flex">
+			    <!-- 로그인된 상태에서 '로그인' 버튼 숨기고, '로그아웃' 버튼 표시 -->
+			    <c:if test="${empty sessionScope.email}">
+			        <button type="button" class="btn btn-outline-light me-2" onclick="location.href='<%= request.getContextPath() %>/api/user/sign-in'">로그인</button>
+					<!-- 회원가입 버튼 -->
+					<button type="button" class="btn btn-warning me-2" onclick="location.href='<%= request.getContextPath() %>/api/user'">회원가입</button>
+				</c:if>
+			    
+			    <c:if test="${not empty sessionScope.email}">
+			        <!-- 로그인한 이메일 출력 -->
+					<p class="me-2">
+					    ${sessionScope.email}님이 로그인 하였습니다.
+					    <c:if test="${not empty sessionScope.ceoNum}">
+					        <!-- ceo_num이 존재하면 '사장님'으로 구분 -->
+					        <span>(사장님)</span>
+							<button type="button" class="btn me-2" style="background-color: white; color: black; border: 1px solid #ccc;">공고 등록</button>
+					    </c:if>
+					</p>
+			        <!-- 로그아웃 버튼 -->
+			        <button type="button" class="btn btn-outline-danger me-2" style="background-color: white; color: black; border: 1px solid #ccc;" onclick="location.href='<%= request.getContextPath() %>/api/user/log-out'">로그아웃</button>
+			    </c:if>
+			    
+			    <c:if test="${not empty sessionScope.email}">
+			        <button type="button" class="btn me-2" style="background-color: white; color: black; border: 1px solid #ccc;" onclick="location.href='<%= request.getContextPath() %>/api/resume'">이력서 관리</button>
+			    </c:if>
+			</div>
+
 	    </div>
 	</div>
 </header>
