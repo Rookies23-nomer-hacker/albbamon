@@ -52,7 +52,6 @@
     background: white;
     border: 1px solid #ff501b;
 }
-
 /* 라디오 버튼 컨테이너 */
 .custom-auth-methods {
     display: grid;

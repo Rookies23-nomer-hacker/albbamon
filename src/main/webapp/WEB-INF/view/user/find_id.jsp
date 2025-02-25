@@ -22,8 +22,6 @@
 <main class="custom-war">
 <span class="custom-title">아이디 찾기</span>
     <div class="custom-container">
-        
-
         <!-- 탭 메뉴 -->
         <div class="custom-tab-menu">
             <button id="personal-tab" class="custom-tab-btn active" onclick="showTab('PERSONAL')">개인회원</button>

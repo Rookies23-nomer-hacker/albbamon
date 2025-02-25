@@ -28,7 +28,7 @@ import com.albbamon.domain.user.dto.response.UserFindResponseDto;
 public class UserFindController {
     @GetMapping("/api/user/find-id")
     public String reg() {
-        return "/user/find_id"; // 📌 여기에 해당 HTML 파일이 있어야 함
+        return "/user/find_id"; // 
     }
     //
     @Value("${api.base-url}")

@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter
-@Setter//
+@Setter
 public class UserFindResponseDto {
     private String email;
     private String type;

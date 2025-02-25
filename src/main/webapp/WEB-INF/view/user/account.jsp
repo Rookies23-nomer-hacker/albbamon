@@ -10,7 +10,6 @@
 <body>
     <div class="container">
         <h2><%= request.getAttribute("name") %>님의 알바몬 회원정보</h2>
-
         <h3>회원 정보</h3>
         <div class="info-box">
             <p><strong>이름:</strong> <%= request.getAttribute("name") %></p>

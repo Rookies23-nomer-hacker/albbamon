@@ -6,7 +6,7 @@ public class UserInfoRequestDto {
     public UserInfoRequestDto(Long userId) {
         this.userId = userId;
     }
-
+//
     public Long getUserId() {
         return userId;
     }

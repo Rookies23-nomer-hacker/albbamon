@@ -20,7 +20,7 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 public class UserWithdrawController {
 
-    @Value("${api.base-url}") // ✅ API 서버 URL 설정
+    @Value("${api.base-url}") // 
     private String apiBaseUrl;
 
     private final RestTemplate restTemplate = new RestTemplate(new JdkClientHttpRequestFactory());

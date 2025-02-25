@@ -6,7 +6,7 @@ public class UserWithdrawRequestDto {
     public UserWithdrawRequestDto(Long userId) {
         this.userId = userId;
     }
-
+//
     public Long getUserId() {
         return userId;
     }

@@ -14,7 +14,6 @@
 </head>
 
 <body>
-
     <%@ include file="/WEB-INF/view/common/header.jsp"%>
 
     <main class="custom-war">

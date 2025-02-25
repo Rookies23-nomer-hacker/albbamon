@@ -12,7 +12,7 @@ public record GetUserInfoResponseDto(
         String ceoNum,
         String company,
         String profileImg,
-        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")  // ✅ 날짜 포맷 지정
+        @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")  // 
         LocalDateTime lastModifiedData  // ✅ 추가
 ) {
 }

@@ -35,7 +35,7 @@ public class UserAccountController {
         HttpSession session = request.getSession(false);
         if (session == null || session.getAttribute("userid") == null) {
             model.addAttribute("error", "로그인이 필요합니다.");
-            return "/user/account"; // 로그인 페이지 또는 오류 페이지로 이동
+            return "/user/account"; // 로그인 페이지 또는 오류 
         }
 
         Object userIdObj = session.getAttribute("userid");
