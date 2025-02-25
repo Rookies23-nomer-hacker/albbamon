@@ -39,9 +39,21 @@ document.addEventListener("DOMContentLoaded", function () {
         // 실제 데이터 행 추가
         let newRow = tableBody.insertRow();
 
-        let cell1 = newRow.insertCell(0);
-        cell1.innerHTML = resumePersonal + "<br><span style='color: gray; font-size: 14px; margin-left: 22px;'>" + resumeWork_place_region + "</span><br><span style='color: gray; font-size: 14px; margin-left: 9px;'>" + resumeIntroduction + "</span>";
-        cell1.style.textAlign = "center";
+		let cell1 = newRow.insertCell(0);
+		cell1.innerHTML = `
+		    <a href="${base_url}/api/resume/view?resumeId=${resumeId}" style="text-decoration: none; color: inherit;">
+		        ${resumePersonal}
+		    </a>
+		    <br>
+		    <span style="color: gray; font-size: 14px; margin-left: 22px;">
+		        ${resumeWork_place_region}
+		    </span>
+		    <br>
+		    <span style="color: gray; font-size: 14px; margin-left: 9px;">
+		        ${resumeIntroduction}
+		    </span>
+		`;
+		cell1.style.textAlign = "center";
 
         let cell2 = newRow.insertCell(1);
         cell2.textContent = "2024-02-20";

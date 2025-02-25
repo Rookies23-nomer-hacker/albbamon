@@ -183,7 +183,7 @@ public class resume_writeController {
 		String introduction = resume_write.getIntroduction();
 		LocalDateTime create_date = LocalDateTime.now();
 		String portfoliodata = file_data.getPortfolioData();
-		String portfolioname = resume_write.getPortfolioName();
+		String portfolioname = resume_write.getPortfolioname();
 		try {
 			if (session != null) {
 				String session_user=(String) session.getAttribute("userid");

@@ -10,7 +10,6 @@ public class File_data {
     public void setPortfolioData(String portfolioData) {
         this.portfolioData =portfolioData;
     }
-  
 	
 	public String toString() {
 	    return "Resume_write_DTO{" +

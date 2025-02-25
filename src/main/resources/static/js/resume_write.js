@@ -77,7 +77,7 @@
 		            // Hidden input에 파일 이름 저장 (폼 전송 시 사용)
 		            const hiddenInput_name = document.createElement("input");
 		            hiddenInput_name.type = "hidden";
-		            hiddenInput_name.name = "portfolioName";
+		            hiddenInput_name.name = "portfolioname";
 		            hiddenInput_name.value = file.name;
 		            document.getElementById("resumeForm").appendChild(hiddenInput_name);
 		        };

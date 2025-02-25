@@ -92,18 +92,18 @@
         <div class="profile-container">
             <div class="profile-photo"></div>
             <div class="profile-info">
-                <p><strong>이름:</strong> 홍길동</p>
+                <p><strong>이름:</strong> ${user.name}</p>
                 <p><strong>나이:</strong> 25세 (1999년생)</p>
                 <p><strong>주소:</strong> 서울특별시 강남구</p>
-                <p><strong>이메일:</strong> example@email.com</p>
-                <p><strong>휴대폰 번호:</strong> 010-1234-5678</p>
+                <p><strong>이메일:</strong> ${user.email}</p>
+                <p><strong>휴대폰 번호:</strong> ${user.phone}</p>
             </div>
         </div>
 
         <div class="section">
             <h2>학력</h2>
             <div class="resume-item">
-                <div class="resume-header">대학교 (4년제) 졸업</div>
+                <div class="resume-header">${resume.school} ${resume.status}</div>
                 <div class="resume-content">서울대학교 컴퓨터공학과 (2015 - 2019)</div>
             </div>
         </div>
@@ -111,31 +111,47 @@
         <div class="section">
             <h2>경력</h2>
             <div class="resume-item">
-                <div class="resume-header">소프트웨어 엔지니어</div>
-                <div class="resume-content">ABC 테크놀로지 (2019 - 2023)</div>
+                <div class="resume-header">${resume.personal}</div>
+                <!--  <div class="resume-content">ABC 테크놀로지 (2019 - 2023)</div>-->
             </div>
         </div>
 
         <div class="section">
             <h2>희망 근무 조건</h2>
             <div class="resume-item">
-                <div class="resume-content">희망 근무지: 동대입구<br>희망 업직종: IT<br>근무형태: 알바<br>근무기간: 1년 이상<br>근무일시: 주5일</div>
+                <div class="resume-content">희망 근무지: ${resume.work_place_region}<br>희망 업직종: ${resume.industry_occupation}<br>근무형태: ${resume.employmentType}<br>근무기간: ${resume.working_period}<br>근무일시: ${resume.working_day}</div>
             </div>
         </div>
       
         <div class="section">
             <h2>자기소개</h2>
             <div class="resume-item">
-                <div class="resume-content">다양한 프로젝트 경험을 보유한 개발자로서, 적극적인 문제 해결 능력을 가지고 있습니다.</div>
+                <div class="resume-content">${resume.introduction}</div>
             </div>
         </div>
 
-        <div class="section">
-            <h2>포트폴리오</h2>
-            <div class="resume-item">
-                <div class="resume-header">이력서</div>
-                <div class="resume-content">파일 없음</div>
-            </div>
+    <div class="section">
+    <h2>포트폴리오</h2>
+    <div class="resume-item">
+        <div class="resume-content">
+            <c:choose>
+                <c:when test="${empty resume.portfolioname}">
+                    파일 없음
+                </c:when>
+                <c:otherwise>
+                    <a href="${api_url}/api/resume/download?fileName=${resume.portfolioname}"
+                       style="text-decoration: none; color: inherit; display: flex; align-items: center;"
+                       download>
+                        <img src="https://cdn-icons-png.flaticon.com/512/2991/2991108.png"
+                             alt="파일 아이콘" width="20" height="20" style="margin-right: 5px;">
+                        <span>${resume.portfolioname}</span>
+                    </a>
+                </c:otherwise>
+            </c:choose>
+        </div>
+    </div>
+</div>
+
         </div>
     </div>
     <div class="footer">
