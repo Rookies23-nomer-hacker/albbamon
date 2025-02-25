@@ -7,5 +7,6 @@ import lombok.Setter;
 @Setter//
 public class UserFindResponseDto {
     private String email;
+    private String type;
     private boolean success;
 }
