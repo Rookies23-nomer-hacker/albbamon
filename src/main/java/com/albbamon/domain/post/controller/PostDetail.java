@@ -18,6 +18,8 @@ import org.springframework.web.client.RestTemplate;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 public class PostDetail {
 
@@ -32,7 +34,7 @@ public class PostDetail {
     }
 
     @GetMapping("/api/post/{postId}")
-    public String getPostById(@PathVariable("postId") int postId, Model model) {
+    public String getPostById(@PathVariable("postId") int postId, Model model, HttpSession session) {
         String url = apiBaseUrl + "/api/post/" + postId;
         ResponseEntity<String> response = null;
 
@@ -56,17 +58,24 @@ public class PostDetail {
                 String file = postNode.path("file").asText();
                 String createDate = postNode.path("createDate").asText();
                 String userName = postNode.path("userName").asText();
+                String userId = postNode.path("userId").asText(); // 작성자 ID 추출
 
                 // 모델에 데이터 추가
                 Map<String, String> post = new HashMap<>();
-                post.put("postId", String.valueOf(postId));  // postId로 수정
+                post.put("postId", String.valueOf(postId));  
                 post.put("title", title);
                 post.put("contents", contents);
                 post.put("file", file);
                 post.put("userName", userName);
+                post.put("userId", userId); // 작성자 ID 추가
                 post.put("createDate", createDate.substring(0,10) + ' ' + createDate.substring(11, 16));
 
                 model.addAttribute("post", post);
+
+                // 세션에서 사용자 ID 가져오기 (for 비교)
+                Object sessionUserId = session.getAttribute("userid");
+                System.out.println("세션 UserID: " + sessionUserId);
+                model.addAttribute("sessionUserId", sessionUserId);
             } else {
                 System.out.println("API 호출 실패: " + response.getStatusCode());
                 model.addAttribute("error", "게시글을 불러오는 데 실패했습니다.");
