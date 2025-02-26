@@ -25,6 +25,9 @@
             <div class="section-text section-bold section-margin-top">시급
                 <div>${recruitment.wage}</div>
             </div>
+            <div class="section-text section-bold section-margin-top">공고 등록일
+                <div>${recruitment.createDate}</div>
+            </div>
             <div class="section-text section-bold section-margin-top">마감 기한
                 <div>${recruitment.dueDate}</div>
             </div>

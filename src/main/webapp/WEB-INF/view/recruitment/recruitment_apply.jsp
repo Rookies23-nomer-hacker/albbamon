@@ -16,8 +16,8 @@
         <div>
             <h3 class="section-margin-top2">지원 공고 확인</h3>
             <div class="section-line"></div>
-            <div class="section-text section-bold section-margin-top">근무 회사명
-                <div>${recruitment.userName}</div>
+            <div class="section-text section-bold section-margin-top">기업명
+                <div>${recruitment.company}</div>
             </div>
             <div class="section-text section-bold section-margin-top">공고 제목
                 <div>${recruitment.title}</div>
@@ -38,6 +38,12 @@
             <div class="section-text section-bold section-margin-top">전화번호
                 <div>${user.phone}</div>
             </div>
+        </div>
+        <div>
+            <label class="terms-item">
+                <input type="checkbox">
+                <span class="bold-text">지원 정보를 확인하였습니다</span>
+            </label>
         </div>
         <div class="button-container">
             <button class="btn-primary" onclick="location.href='/recruitment/${recruitment.id}/apply'">지원하기</button>
