@@ -11,14 +11,13 @@
 	<style>
 	    /* 전체 페이지 배경 이미지 설정 */
 	    body {
-	        background-image: url('/img/bg2.PNG');
 	        background-size: cover;  /* 이미지가 화면에 꽉 차게 조정 */
 	        background-position: center; /* 배경 이미지가 화면의 중앙에 위치 */
 	        background-attachment: fixed; /* 스크롤 시 배경이 고정됨 */
 	    }
 	</style>
 </head>
-<body>
+<body style="background-color: #f1f3f5;">
 
     <%@ include file="/WEB-INF/view/common/header.jsp" %>
 
@@ -26,7 +25,7 @@
         <div class="row mb-4">
             <div class="col-md-6">
                 <div class="card">
-                    <img src="https://file2.jobkorea.co.kr/Event/Event_Main_View.asp?FN=PC_Img_afshqoxq19132900.jpg" class="card-img-top" style="width: 100%; height: 600px; object-fit: cover;" alt="광고1 이미지">
+                    <img src="/img/albbamonAd.png" class="card-img-top" style="width: 100%; height: 100%; object-fit: contain;" alt="광고1 이미지">
                     <div class="card-body">
                         <h5 class="card-title">광고 문의</h5>
                         <p class="card-text">albbamon1@albbamon.com</p>
@@ -36,7 +35,7 @@
             </div>
             <div class="col-md-6">
                 <div class="card">
-                    <img src="/img/ad.PNG" class="card-img-top" alt="광고2" style="width: 100%; height: 600px; object-fit: cover;">
+					<img src="/img/ad.PNG" class="card-img-top" style="width: 100%; height: 100%; object-fit: contain;" alt="광고2 이미지">
                     <div class="card-body">
                         <h5 class="card-title">일하는 모든 이를 세상의 모든 일을 RESPECT - 알바몬</h5>
                         <p class="card-text">알바는 알바몬.</p>

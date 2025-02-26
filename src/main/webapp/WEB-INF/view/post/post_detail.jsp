@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
@@ -32,8 +32,8 @@
             display: flex;
             justify-content: center;
             align-items: flex-start;
-            padding-top: 120px; /* 헤더와 겹치지 않도록 설정 */
-            padding-bottom: 40px; /* 푸터와 겹치지 않도록 설정 */
+            padding-top: 120px;
+            padding-bottom: 40px;
         }
 
         .join-container {
@@ -100,14 +100,19 @@
             z-index: 10;
         }
 
-        .menu-options a {
+        .menu-options a, .menu-options button {
             display: block;
             padding: 10px;
             text-decoration: none;
             color: #333;
+            background: none;
+            border: none;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
         }
 
-        .menu-options a:hover {
+        .menu-options a:hover, .menu-options button:hover {
             background-color: #f0f0f0;
         }
 
@@ -128,13 +133,14 @@
             text-align: left;
         }
     </style>
+
     <script>
         function toggleMenu() {
             const menu = document.getElementById('menuOptions');
             menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
         }
 
-        // 클릭 외부 영역 클릭 시 메뉴 닫기
+        // 외부 클릭 시 메뉴 닫기
         document.addEventListener('click', function(event) {
             const menu = document.getElementById('menuOptions');
             const button = document.getElementById('menuButton');
@@ -142,8 +148,34 @@
                 menu.style.display = 'none';
             }
         });
+
+        // ✅ 게시글 삭제 함수
+        function deletePost(postId) {
+		    if (confirm("정말 삭제하시겠습니까?")) {
+		        fetch(`/api/post/delete/${postId}`, {  // ✅ 절대 경로 사용
+		            method: "DELETE",
+		            headers: {
+		                "Content-Type": "application/json"
+		            }
+		        })
+		        .then(response => response.text().then(text => ({ status: response.status, body: text }))) // ✅ 응답을 문자열로 처리
+		        .then(({ status, body }) => {
+		            if (status === 200) {  // ✅ 응답 상태 코드가 200이면 성공
+		                alert("게시글이 삭제되었습니다.");
+		                window.location.href = "/api/post";  // ✅ 게시글 목록으로 이동
+		            } else {
+		                alert("삭제에 실패했습니다: " + body);
+		            }
+		        })
+		        .catch(error => {
+		            console.error("삭제 중 오류 발생:", error);
+		            alert("삭제 요청 중 오류가 발생했습니다.");
+		        });
+		    }
+		}
     </script>
 </head>
+
 <body>
     <div class="header-wrapper">
         <%@ include file="/WEB-INF/view/common/header.jsp" %>
@@ -160,20 +192,32 @@
                         <c:out value="${post.userName}" default="익명"/> | <c:out value="${post.createDate}" default="날짜 없음"/>
                     </div>
                 </div>
+
+                <!-- 📌 메뉴 버튼 -->
                 <div class="post-menu">
                     <button id="menuButton" class="menu-button" onclick="toggleMenu()">⋯</button>
                     <div class="menu-options" id="menuOptions">
-                        <a href="#">신고하기</a>
-                        <a href="#">차단하기</a>
+                        <%-- ✅ 세션 사용자와 작성자 비교 --%>
+                        <c:choose>
+                            <c:when test="${sessionUserId == post.userId}">
+                                <a href="/api/post/update/${post.postId}">수정하기</a>
+                                <button onclick="deletePost(${post.postId})">삭제하기</button>
+                            </c:when>
+                            <c:otherwise>
+                                <a href="#">신고하기</a>
+                                <a href="#">차단하기</a>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
                 </div>
             </div>
+
             <div class="post-content">
                 <p><c:out value="${post.contents}" default="내용이 없습니다."/></p>
             </div>
         </div>
     </div>
 
-<%@ include file="/WEB-INF/view/common/footer.jsp" %>
+    <%@ include file="/WEB-INF/view/common/footer.jsp" %>
 </body>
 </html>

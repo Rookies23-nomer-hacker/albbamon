@@ -55,10 +55,7 @@ public class apply_list {
             HttpEntity<String> httpEntity = new HttpEntity<>(body, headers);
             RestTemplate restTemplate = new RestTemplate(new JdkClientHttpRequestFactory());
         	ResponseEntity<String> responseEntity = restTemplate.exchange(apiBaseUrl + "/api/apply", HttpMethod.GET, httpEntity, String.class);
-
             JsonNode applies = objectMapper.readTree(responseEntity.getBody()).path("data").path("applyList");
-            System.out.println(applyList.toString());
-
 
             for(JsonNode apply: applies) {
                 String id = apply.path("applyId").asText();
@@ -69,16 +66,13 @@ public class apply_list {
                 String status = apply.path("status").asText();
 
                 switch (status) {
-                    case "PASSED": {
+                    case "PASSED" -> {
                         status = "합격";
-                        break;
                     }
-                    case "FAILED": {
+                    case "FAILED" -> {
                         status = "불합격";
-                        break;
                     }
-                    default:
-                        status = "대기중";
+                    default -> status = "대기중";
                 }
 
                 Map<String, String> a = new HashMap<>();
@@ -90,13 +84,12 @@ public class apply_list {
                 a.put("status", status);
                 applyList.add(a);
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         model.addAttribute("applyList", applyList);
 
-        return "apply_list/apply_list";
+        return "apply/apply_list";
     }
 }

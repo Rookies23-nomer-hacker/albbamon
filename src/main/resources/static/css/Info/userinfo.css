@@ -1,0 +1,35 @@
+.custom-war {
+    display: flex;
+    flex-direction: column; /* 세로 정렬 */
+    align-items: center; /* 가로 중앙 정렬 */
+    justify-content: center; /* 세로 중앙 정렬 */
+    min-height: 80vh; /* 화면 높이에 맞게 조정 */
+    width: 100%; /* 전체 너비 */
+    margin: 0 auto; /* 가운데 정렬 */
+}
+
+.custom-container {
+    width: 500px;
+    background: white;
+    padding: 40px 32px 60px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    border: 2px solid #ff501b;
+}
+/* 버튼 스타일 */
+.custom-edit-btn {
+    width: 20%;
+    margin-top: 45px;
+    padding: 12px;
+    background-color: #ff501b;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.custom-edit-btn:hover {
+    background-color: #e64a19;
+}

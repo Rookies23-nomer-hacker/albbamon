@@ -11,44 +11,56 @@
 <body>
 <%@ include file="/WEB-INF/view/common/header.jsp" %>
 <main>
-    <div class="recruitment-container">
-        <h2>지원하기</h2>
-        <div>
-            <h3 class="section-margin-top2">지원 공고 확인</h3>
-            <div class="section-line"></div>
-            <div class="section-text section-bold section-margin-top">기업명
-                <div>${recruitment.company}</div>
-            </div>
-            <div class="section-text section-bold section-margin-top">공고 제목
-                <div>${recruitment.title}</div>
-            </div>
-            <div class="section-text section-bold section-margin-top">시급
-                <div>${recruitment.wage}</div>
-            </div>
+    
+        <h2 class="apply-title">지원하기</h2>
+		<div class="apply-container">
+        <!-- 지원 공고 확인 -->
+        <div class="sub-label">
+        <span class="section-margin-top2">지원 공고 확인</span>
         </div>
-        <div>
-            <h3 class="section-margin-top2">지원 정보 확인</h3>
-            <div class="section-line"></div>
-            <div class="section-text section-bold section-margin-top">이름
-                <div>${user.name}</div>
-            </div>
-            <div class="section-text section-bold section-margin-top">이메일
-                <div>${user.email}</div>
-            </div>
-            <div class="section-text section-bold section-margin-top">전화번호
-                <div>${user.phone}</div>
-            </div>
+        <div class="section-line"></div>
+
+        <div class="apply-row">
+            <span class="apply-label">기업명</span>
+            <span class="apply-data">${recruitment.company}</span>
         </div>
-        <div>
-            <label class="terms-item">
-                <input type="checkbox">
-                <span class="bold-text">지원 정보를 확인하였습니다</span>
-            </label>
+        <div class="apply-row">
+            <span class="apply-label">공고 제목</span>
+            <span class="apply-data">${recruitment.title}</span>
         </div>
-        <div class="button-container">
-            <button class="btn-primary" onclick="location.href='/recruitment/${recruitment.id}/apply_list'">지원하기</button>
+        <div class="apply-row">
+            <span class="apply-label">시급</span>
+            <span class="apply-data">${recruitment.wage}</span>
         </div>
-    </div>
+
+        <!-- 지원 정보 확인 -->
+        <div class="sub-label">
+        <span class="section-margin-top2">지원 정보 확인</span>
+        </div>
+        <div class="section-line"></div>
+
+        <div class="apply-row">
+            <span class="apply-label">이름</span>
+            <span class="apply-data">${user.name}</span>
+        </div>
+        <div class="apply-row">
+            <span class="apply-label">이메일</span>
+            <span class="apply-data">${user.email}</span>
+        </div>
+        <div class="apply-row">
+            <span class="apply-label">전화번호</span>
+            <span class="apply-data">${user.phone}</span>
+        </div>
+		    
+        <!-- 체크박스 -->
+        <div class="apply-checkbox">
+            <input type="checkbox" id="confirm-check">
+            <label for="confirm-check">&nbsp;지원 정보를 확인하였습니다</label>
+        </div>
+		</div>
+        <!-- 지원하기 버튼 -->
+        <button class="apply-btn" onclick="location.href='/recruitment/${recruitment.id}/apply'">지원하기</button>
+
 </main>
 <%@ include file="/WEB-INF/view/common/footer.jsp" %>
 </body>
