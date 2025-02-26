@@ -25,7 +25,13 @@ import org.springframework.ui.Model;
 @Controller
 public class UserChangePwController {
 	@GetMapping("/api/user/change-pw")
-	public String test() {
+	public String viewChangePw(HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		//세션없는 사용자는 메인페이지로 이동
+		if (session == null || session.getAttribute("userid") == null) {
+			System.out.println("asdf");
+			return "redirect:/";
+		}
 		return "/user/changepw";
 	}
 	 //@Value("http://localhost:60085")
@@ -62,15 +68,15 @@ public class UserChangePwController {
         }
         System.out.println("testet"+userId);
         
-//	    //새 비밀번호와 새 비밀번호 확인 일치 여부 검증하는 부분.
-//	    if (!newpasswd.equals(newpasswdcheck)) {
-//	        model.addAttribute("error", "새 비밀번호와 확인 비밀번호가 일치하지 않습니다.");
-//	        System.out.println("일치하지 않습니다.");
-//	        return "/user/changepw"; // 비밀번호 변경 페이지로 다시 이동
-//	    }
-//	    //비밀번호 보안 정책 부분 취약하게 할시 삭제
+	    //새 비밀번호와 새 비밀번호 확인 일치 여부 검증하는 부분.
+	    if (!newpasswd.equals(newpasswdcheck)) {
+	        model.addAttribute("error", "새 비밀번호와 확인 비밀번호가 일치하지 않습니다.");
+	        return "user/changepw"; // 비밀번호 변경 페이지로 다시 이동
+	    }
+	    //비밀번호 보안 정책 부분 취약하게 할시 삭제
 //	    if (!isValidPassword(newpasswd)) {
 //	        model.addAttribute("error", "비밀번호는 8~16자의 영문 대소문자, 숫자, 특수문자를 포함해야 합니다.");
+//	        System.out.println("취약합니다.");
 //	        return "/user/changepw";
 //	    }
 	    

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:set var="contextPath" value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}"/>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -176,7 +178,7 @@ input:not(:last-child) {
 </form>
 
         <div class="links">
-            <a href="#">아이디 찾기</a> | <a href="#">비밀번호 찾기</a> | <a href="/api/user/join" style="color: #ff6600; font-weight: bold;">회원가입</a>
+            <a href="${contextPath}/api/user/find-id">아이디 찾기</a> | <a href="${contextPath}/api/user/find-pw">비밀번호 찾기</a> | <a href="${contextPath}/api/user/join" style="color: #ff6600; font-weight: bold;">회원가입</a>
         </div>
     </div>
     </div>

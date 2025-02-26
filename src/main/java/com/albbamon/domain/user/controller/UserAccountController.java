@@ -79,7 +79,6 @@ public class UserAccountController {
                 model.addAttribute("phone", recruitmentList.path("phone").asText());
                 model.addAttribute("ceoNum", recruitmentList.path("ceoNum").asText());
                 model.addAttribute("company", recruitmentList.path("company").asText());
-                model.addAttribute("profileImg", recruitmentList.path("profileImg").asText());
                 
                 JsonNode lastModifiedDateNode = recruitmentList.path("lastModifiedDate");
                 if (!lastModifiedDateNode.isMissingNode() && !lastModifiedDateNode.isNull()) {

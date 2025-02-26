@@ -29,7 +29,7 @@
             <p><strong>이메일:</strong> <%= request.getAttribute("email") %></p>
             <c:if test="${not empty sessionScope.ceoNum}">
             <p><strong>사업자등록번호:</strong> ${ sessionScope.ceoNum}</p>
-            <p><strong>회사명:</strong> ${ sessionScope.company}</p>
+            <p><strong>회사명:</strong> <%= request.getAttribute("company") %></p>
             </c:if>
             
             <button class="custom-edit-btn">수정</button>
@@ -44,7 +44,7 @@
         <h3>회원 탈퇴</h3>
         <div class="custom-delete-box">
             <p>회원 탈퇴를 원하시면 아래 버튼을 클릭하세요.</p>
-            <button class="custom-delete-btn" onclick="location.href='${contextPath}/api/user/withdraw'">탈퇴</button>
+            <button class="custom-edit-btn" onclick="location.href='${contextPath}/api/user/withdraw'">탈퇴</button>
         </div>
     </div>
 </main>

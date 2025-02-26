@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<c:set var="contextPath" value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}"/>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -12,7 +13,14 @@
 <link rel="stylesheet" href="/css/find_id/common.css">
 <!-- jQuery 라이브러리 추가 (CDN 사용) -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+<script type="text/javascript">
+        window.onload = function() {
+            var errorMessage = "${error}";
+            if (errorMessage && errorMessage !== "null") {
+                alert(errorMessage);
+            }
+        };
+    </script>
 </head>
 <body>
 	<%@ include file="/WEB-INF/view/common/header.jsp"%>
@@ -57,7 +65,7 @@
 						</div>
 					</div>
 					<div class="btn-box">
-						<button type="submit" class="cancel">취소</button>
+						<button type="button" class="cancel" onclick="window.history.back();">취소</button>
 						<button type="submit" class="submit-btn-pw">수정완료</button>
 					</div>
 				</form>				
