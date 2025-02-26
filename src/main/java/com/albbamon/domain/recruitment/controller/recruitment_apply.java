@@ -36,7 +36,7 @@ public class recruitment_apply {
     }
 
     @GetMapping("/recruitment/{recruitmentId}/apply-info")
-    public String applyInfo(@PathVariable final Long recruitmentId,
+    public String applyInfo(@PathVariable("recruitmentId") Long recruitmentId,
                             HttpServletRequest request,
                             Model model) {
         HttpSession session = request.getSession();
@@ -102,7 +102,7 @@ public class recruitment_apply {
     }
 
     @GetMapping("/recruitment/{recruitmentId}/apply")
-    public String createApply(@PathVariable final Long recruitmentId,
+    public String createApply(@PathVariable("recruitmentId") final Long recruitmentId,
                               HttpServletRequest request,
                               Model model) {
         HttpSession session = request.getSession();

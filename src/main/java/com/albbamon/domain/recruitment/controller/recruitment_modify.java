@@ -38,7 +38,7 @@ public class recruitment_modify {
     }
 
     @GetMapping("/recruitment/{recruitmentId}")
-    public String getRecruitment(@PathVariable final Long recruitmentId, Model model) {
+    public String getRecruitment(@PathVariable("recruitmentId") Long recruitmentId, Model model) {
         Map<String, String> recruitment = new HashMap<>();
 
         try {
