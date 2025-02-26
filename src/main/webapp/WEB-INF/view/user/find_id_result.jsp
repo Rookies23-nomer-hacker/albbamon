@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<c:set var="contextPath" value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}"/>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,9 +49,9 @@
                     <!-- 버튼 -->
                     <div class="custom-button-container">
                         <button class="custom-btn-secondary"
-                            onclick="location.href='/api/user/find-pw'">비밀번호 찾기</button>
+                            onclick="location.href='${contextPath}/api/user/find-pw'">비밀번호 찾기</button>
                         <button class="custom-btn-primary"
-                            onclick="location.href='/api/user/sign-in'">로그인</button>
+                            onclick="location.href='${contextPath}/api/user/sign-in'">로그인</button>
                     </div>
                 </div>
             </div>

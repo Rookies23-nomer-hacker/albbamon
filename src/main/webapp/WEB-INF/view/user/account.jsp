@@ -1,4 +1,6 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<c:set var="contextPath" value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}"/>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -36,13 +38,13 @@
         <h3>비밀번호 변경</h3>
         <div class="custom-password-box">
             <p>비밀번호를 주기적으로 변경하여 소중한 개인정보를 안전하게 보호하세요. (6개월마다 알림)</p>
-            <button class="custom-edit-btn" onclick="location.href='/api/user/change-pw'">변경</button>
+            <button class="custom-edit-btn" onclick="location.href='${contextPath}/api/user/change-pw'">변경</button>
         </div>
 
         <h3>회원 탈퇴</h3>
         <div class="custom-delete-box">
             <p>회원 탈퇴를 원하시면 아래 버튼을 클릭하세요.</p>
-            <button class="custom-delete-btn" onclick="location.href='<%= request.getContextPath() %>/api/user/withdraw'">탈퇴</button>
+            <button class="custom-delete-btn" onclick="location.href='${contextPath}/api/user/withdraw'">탈퇴</button>
         </div>
     </div>
 </main>
