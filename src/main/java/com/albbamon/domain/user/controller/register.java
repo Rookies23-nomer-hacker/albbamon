@@ -66,7 +66,8 @@ private final RestTemplate restTemplate = new RestTemplate();
 		
 		// 응답 상태 확인 후 로그인 페이지로 리다이렉트
         if (response.getStatusCode() == HttpStatus.OK) {
-            return "redirect:/user/login";
+        	System.out.println("회원가입성ㄱ오");
+            return "redirect:/api/user/sign-in";
         } else {
             return "redirect:/user/register?error";
         }

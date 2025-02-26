@@ -73,10 +73,20 @@ public class resume_viewController {
 		Resume_write profileData = response.getBody();
 		String imgurl = profileData.getResume_imgurl()+profileData.getResume_img_name();
 		Resume_write_profile userData = response2.getBody();
+		String name_org = profileData.getPortfolioname();
+		String name="";
+		
+		if(name_org!=null) {
+			int dotIndex = name_org.lastIndexOf(".");
+	        if (dotIndex != -1) {
+	            name =  name_org.substring(0, dotIndex) + name_org.substring(dotIndex, name_org.length()).split("_")[0];
+	        }
+		}
 		
 		
 		if(profileData!=null) {
 			model.addAttribute("resume", profileData);
+			model.addAttribute("file",name);
 			model.addAttribute("img",imgurl);
 			model.addAttribute("user", userData);
 			model.addAttribute("api_url",apiBaseUrl);
