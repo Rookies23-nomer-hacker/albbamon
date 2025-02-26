@@ -97,7 +97,10 @@ public class PostController {
 
         try {
             // 📌 CreatePostRequestDto 객체를 JSON으로 변환
+        	System.out.println("================================ "+ userId);
+        	createPostRequestDto.setUserid(userId);
             String body = objectMapper.writeValueAsString(createPostRequestDto);
+            System.out.println("~~~~~~~~~~~~~~~~~~~~ " + body);
 
             // 요청 엔티티 생성
             HttpEntity<String> requestEntity = new HttpEntity<>(body, headers);

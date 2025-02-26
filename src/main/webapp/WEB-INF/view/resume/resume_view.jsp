@@ -45,11 +45,19 @@
         }
 
         .profile-photo {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background-color: #ddd;
+            width: 150px; /* 원 크기 지정 */
+    		height: 150px; /* 원 크기 지정 */
+    		border-radius: 50%; /* 원형 이미지 */
+    		overflow: hidden; /* 넘치는 부분 숨기기 */
+    		display: flex;
+    		justify-content: center;
+    		align-items: center;
         }
+        .profile-photo img {
+    		width: 100%; /* 부모 요소 크기에 맞게 조정 */
+    		height: 100%; /* 부모 요소 크기에 맞게 조정 */
+    		object-fit: cover; /* 이미지를 잘라서 꽉 차게 맞춤 */
+		}
 
         .profile-info {
             font-size: 14px;
@@ -88,9 +96,9 @@
 <%@ include file="/WEB-INF/view/common/header.jsp" %>
     <div class="resume-container">
         <h1>이력서 조회</h1>
-        
+        <br>
         <div class="profile-container">
-            <div class="profile-photo"></div>
+            <div class="profile-photo"><img src=${img} alt="프로필 이미지"></div>
             <div class="profile-info">
                 <p><strong>이름:</strong> ${user.name}</p>
                 <p><strong>나이:</strong> 25세 (1999년생)</p>
