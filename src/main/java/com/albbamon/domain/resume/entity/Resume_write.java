@@ -62,6 +62,11 @@ public class Resume_write {
 	
 	@Column(name = "portfoliourl")
 	private String portfoliourl;
-
+	
+	@Column(name = "resume_imgurl")
+	private String resume_imgurl;
+	
+	@Column(name = "resume_imgname")
+	private String resume_img_name;
 	
 }

@@ -85,6 +85,45 @@
 		        reader.readAsDataURL(file); // 파일 읽기
 		    }
 		}
+		function imgupload() {
+
+				    const fileInput = document.getElementById('imgInput');
+				    if (!fileInput) {
+				        alert("파일 입력 요소를 찾을 수 없습니다."); // 예외 처리
+				        return;
+				    }
+				    fileInput.click(); // 숨겨진 파일 선택창을 클릭하도록 유도
+				}
+				function handleImgUpload(event) {
+				    const file = event.target.files[0]; // 사용자가 선택한 파일 가져오기
+				    if (file) {
+						document.querySelectorAll("input[name='resume_img_data'], input[name='resume_img_name']").forEach(input => input.remove());
+				        const reader = new FileReader();
+				        reader.onload = function (e) {
+				            // 전체 data URL을 이미지 미리보기로 표시
+				            document.getElementById('previewImage').src = e.target.result;
+
+				            // Base64 데이터 추출 (hidden input 전송용)
+				            const file_base64 = e.target.result.split(',')[1];
+
+				            // Hidden input에 Base64 데이터 저장 (폼 전송 시 사용)
+				            const hiddenInput_data = document.createElement("input");
+				            hiddenInput_data.type = "hidden";
+				            hiddenInput_data.name = "resume_img_data";
+				            hiddenInput_data.value = file_base64;
+				            document.getElementById("resumeForm").appendChild(hiddenInput_data);
+
+				            // Hidden input에 파일 이름 저장 (폼 전송 시 사용)
+				            const hiddenInput_name = document.createElement("input");
+				            hiddenInput_name.type = "hidden";
+				            hiddenInput_name.name = "resume_img_name";
+				            hiddenInput_name.value = file.name;
+				            document.getElementById("resumeForm").appendChild(hiddenInput_name);
+				        };
+
+				        reader.readAsDataURL(file); // 파일 읽기
+				    }
+				}
 
 document.addEventListener("DOMContentLoaded", function () {
 	document.getElementById("resumeForm").addEventListener("submit", function (event) {
@@ -102,7 +141,14 @@ document.addEventListener("DOMContentLoaded", function () {
 		const introduction = document.querySelector("textarea[name='introduction']")
 		    ? document.querySelector("textarea[name='introduction']").value 
 		    : null;
-		
+			
+		const profileImg = document.getElementById("previewImage").src;
+		const defaultProfileImg = "https://contents.albamon.kr/monimg/msa/assets/images/icon_profile_male80.svg"; // 기본 이미지 URL
+		if (profileImg === defaultProfileImg) {
+			alert("프로필 사진을 등록해주세요!");
+			event.preventDefault();
+			return;
+		}
 
 		if (!school||!status||!personal||!work_place_region||!work_place_city||!industry_occupation||!employmentType||!working_period||!working_day||!introduction) {
 			alert("이력서를 제대로 입력해주세요!"); 

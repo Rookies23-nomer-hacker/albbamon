@@ -14,7 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
-
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.albbamon.domain.resume.entity.Resume_write;
 import com.albbamon.domain.resume.entity.Resume_write_profile;
@@ -30,6 +30,7 @@ import jakarta.servlet.http.HttpSession;
 public class resume_viewController {
 	
 	String jsondata;
+	String jsondata2;
 	
 	@Value("${api.base-url}")
     private String apiBaseUrl;
@@ -70,11 +71,13 @@ public class resume_viewController {
 		ResponseEntity<Resume_write_profile> response2 = restTemplate.exchange(apiBaseUrl+"/api/resume/profile", HttpMethod.POST,requestEntity, Resume_write_profile.class);
 		
 		Resume_write profileData = response.getBody();
+		String imgurl = profileData.getResume_imgurl()+profileData.getResume_img_name();
 		Resume_write_profile userData = response2.getBody();
 		
 		
 		if(profileData!=null) {
 			model.addAttribute("resume", profileData);
+			model.addAttribute("img",imgurl);
 			model.addAttribute("user", userData);
 			model.addAttribute("api_url",apiBaseUrl);
 			return "resume/resume_view";
