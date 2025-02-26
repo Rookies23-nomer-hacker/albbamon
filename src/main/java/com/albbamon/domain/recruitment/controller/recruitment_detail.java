@@ -32,7 +32,7 @@ public class recruitment_detail {
     }
 
     @GetMapping("/recruitment/list/{recruitmentId}")
-    public String getRecruitment(@PathVariable final Long recruitmentId, Model model) {
+    public String getRecruitment(@PathVariable("recruitmentId") Long recruitmentId, Model model) {
         Map<String, String> recruitment = new HashMap<>();
 
         try {
@@ -41,17 +41,21 @@ public class recruitment_detail {
 
             Long id = recruitmentInfo.path("id").asLong();
             String title = recruitmentInfo.path("title").asText();
+            LocalDateTime createDate = LocalDateTime.parse(recruitmentInfo.path("createDate").asText());
             LocalDateTime dueDate = LocalDateTime.parse(recruitmentInfo.path("dueDate").asText());
             String contents = recruitmentInfo.path("contents").asText();
             Integer wage = recruitmentInfo.path("wage").asInt();
             String userName = recruitmentInfo.path("userName").asText();
+            String company = recruitmentInfo.path("company").asText();
 
             recruitment.put("id", String.valueOf(id));
             recruitment.put("title", title);
+            recruitment.put("createDate", createDate.format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 HH:mm")));
             recruitment.put("dueDate", dueDate.format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 HH:mm")));
             recruitment.put("contents", contents);
             recruitment.put("wage", String.valueOf(wage));
             recruitment.put("userName", userName);
+            recruitment.put("company", company);
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }

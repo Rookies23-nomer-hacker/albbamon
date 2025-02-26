@@ -12,26 +12,36 @@
 <%@ include file="/WEB-INF/view/common/header.jsp" %>
 <main>
     <div class="recruitment-container">
-        <h2>채용 공고 상세</h2>
-        <div>
-            <h3 class="section-margin-top2">모집 내용</h3>
+        <h2 class="apply-title">채용 공고 상세</h2>
+        <div class="apply-container">
+        <div class="sub-label">
+            <span class="section-margin-top2">모집 내용</span>
+            </div>
+            
             <div class="section-line"></div>
-            <div class="section-text section-bold section-margin-top">공고 제목
-                <div>${recruitment.title}</div>
+            
+            <div class="apply-row">
+            <span class="apply-label">공고 제목</span>
+                <span class="apply-data">${recruitment.title}</span>
             </div>
-            <div class="section-text section-bold section-margin-top">공고 내용
-                <div>${recruitment.contents}</div>
+            <div class="apply-row">
+            <span class="apply-label">공고 내용</span>
+                <span class="apply-data">${recruitment.contents}</span>
             </div>
-            <div class="section-text section-bold section-margin-top">시급
-                <div>${recruitment.wage}</div>
+            <div class="apply-row">
+            <span class="apply-label">시급</span>
+                <span class="apply-data">${recruitment.wage}</span>
             </div>
-            <div class="section-text section-bold section-margin-top">마감 기한
-                <div>${recruitment.dueDate}</div>
+            <div class="apply-row">
+            <span class="apply-label">공고 등록일</span>
+                <span class="apply-data">${recruitment.createDate}</span>
+            </div>
+            <div class="apply-row">
+            <span class="apply-label">마감 기한</span>
+                <span class="apply-data">${recruitment.dueDate}</span>
             </div>
         </div>
-        <div class="button-container">
-            <button class="btn-primary" onclick="location.href='/recruitment/${recruitment.id}/apply-info'">지원하기</button>
-        </div>
+            <button class="apply-btn" onclick="location.href='/recruitment/${recruitment.id}/apply-info'">지원하기</button>
     </div>
 </main>
 <%@ include file="/WEB-INF/view/common/footer.jsp" %>

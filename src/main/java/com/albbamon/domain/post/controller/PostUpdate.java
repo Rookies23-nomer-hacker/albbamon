@@ -1,5 +1,7 @@
 package com.albbamon.domain.post.controller;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -10,14 +12,13 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.albbamon.domain.post.dto.request.CreatePostRequestDto;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -40,64 +41,75 @@ public class PostUpdate {
     }
 
     // 📌 글 수정 페이지 이동
-    @GetMapping("/api/post/update")
-    public String writePage(HttpSession session, Model model) {
-        // 세션에서 userid 가져오기
+    @GetMapping("/api/post/update/{postId}")
+    public String writePage(@PathVariable("postId") Long postId, HttpSession session, Model model) {
+        // ✅ 세션에서 userid 가져오기
         Object userIdObj = session.getAttribute("userid");
 
         if (userIdObj == null) {
-            System.out.println("세션에서 userid를 찾을 수 없습니다.");
+            System.out.println("❌ 세션에서 userid를 찾을 수 없습니다. 로그인 페이지로 이동");
             return "redirect:/api/user/sign-in";
         }
 
-        Long userid = null;
-
         try {
-            // userIdObj가 JSON 형식인지 확인
-            String userJson = userIdObj.toString();
-            if (userJson.contains("data")) {
-                // JSON 파싱
-                ObjectMapper objectMapper = new ObjectMapper();
-                JsonNode jsonNode = objectMapper.readTree(userJson);
-                JsonNode dataNode = jsonNode.path("data");
+            // ✅ 게시글 정보 불러오기
+            String getUrl = apiBaseUrl + "/api/post/" + postId;
+            ResponseEntity<String> getResponse = restTemplate.exchange(getUrl, HttpMethod.GET, null, String.class);
 
-                if (!dataNode.isMissingNode() && !dataNode.isNull()) {
-                    userid = dataNode.asLong();
-                    System.out.println("파싱된 userid: " + userid);
-                } else {
-                    System.out.println("JSON 응답에서 userid를 찾을 수 없습니다.");
-                    return "redirect:/api/user/sign-in";
-                }
+            if (getResponse.getStatusCode() == HttpStatus.OK) {
+                ObjectMapper mapper = new ObjectMapper();
+                JsonNode rootNode = mapper.readTree(getResponse.getBody());
+                JsonNode postNode = rootNode.path("data");
+
+                // ✅ ObjectNode를 Map으로 변환
+                Map<String, Object> postMap = mapper.convertValue(postNode, Map.class);
+                model.addAttribute("post", postMap);  // Map으로 전달
             } else {
-                // JSON이 아닌 경우 Long으로 변환 시도
-                userid = Long.parseLong(userIdObj.toString());
+                System.out.println("❌ 게시글 정보를 불러오지 못했습니다: " + getResponse.getStatusCode());
+                return "redirect:/api/post";
             }
 
         } catch (Exception e) {
-            System.out.println("세션의 userid가 올바르지 않습니다: " + userIdObj);
-            e.printStackTrace();
-            return "redirect:/api/user/sign-in";
+            System.out.println("❌ 게시글 정보를 불러오는 중 오류 발생: " + e.getMessage());
+            return "redirect:/api/post";
         }
 
-        System.out.println("글쓰기 페이지 - 로그인된 사용자 ID: " + userid);
-        return "post/post_write";  // 글쓰기 페이지로 이동
+        System.out.println("✅ 글 수정 페이지 이동 - 게시글 ID: " + postId);
+        return "post/post_update";  // ✅ 뷰 템플릿 렌더링
     }
 
 
     // 📌 글 수정 처리
     @PostMapping("/api/post/update/{postId:\\d+}")
-    public String updatePost(@SessionAttribute(name = "SESSION_NAME") Long userId,
+    public String updatePost(HttpSession session,  
                              @PathVariable("postId") Long postId,
                              @ModelAttribute CreatePostRequestDto createPostRequestDto,
-                             @RequestParam(value = "file", required = false) MultipartFile file,
+                             @RequestParam(value = "file", required = false) String file,
                              Model model) {
 
         ObjectMapper objectMapper = new ObjectMapper();
         HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);  // JSON으로 전송
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        // ✅ 세션에서 userId 가져오기
+        Object userIdObj = session.getAttribute("userid");
+        Long userId = null;
+
+        if (userIdObj instanceof String) {
+            userId = Long.parseLong((String) userIdObj);  // ✅ String → Long 변환
+        } else if (userIdObj instanceof Long) {
+            userId = (Long) userIdObj;  // ✅ 이미 Long이면 그대로 사용
+        }
+
+        if (userId == null) {
+            System.out.println("❌ 세션에서 userId를 찾을 수 없습니다. 로그인 필요");
+            return "redirect:/api/user/sign-in";  
+        }
+
+        System.out.println("✅ 수정 요청 - 로그인된 사용자 ID: " + userId);
 
         try {
-            // 게시글 소유자 검증
+            // ✅ 게시글 소유자 검증
             String getUrl = apiBaseUrl + "/api/post/" + postId;
             ResponseEntity<String> getResponse = restTemplate.exchange(getUrl, HttpMethod.GET, null, String.class);
 
@@ -110,30 +122,36 @@ public class PostUpdate {
                     model.addAttribute("error", "수정 권한이 없습니다.");
                     return "error/unauthorized";
                 }
-            }
-
-            // 파일 정보 출력
-            if (file != null && !file.isEmpty()) {
-                System.out.println("Uploaded File Name: " + file.getOriginalFilename());
-                System.out.println("File Size: " + file.getSize());
-                // 파일 처리 로직 추가 (예: 파일 저장 또는 별도 API 전송)
             } else {
-                System.out.println("No file uploaded.");
+                System.out.println("게시글 소유자 검증 실패: " + getResponse.getStatusCode());
+                model.addAttribute("error", "게시글을 찾을 수 없습니다.");
+                return "error/notfound";
             }
 
-            // JSON 변환
+            // ✅ userId를 DTO에 추가
+            createPostRequestDto.setUserid(userId);
+
+            // ✅ 파일 정보 처리
+            if (file != null && !file.isEmpty()) {
+                createPostRequestDto.setFile(file);
+                System.out.println("파일 수정됨: " + file);
+            } else {
+                createPostRequestDto.setFile(null);
+                System.out.println("파일 없음");
+            }
+
+            // ✅ JSON 변환
             String body = objectMapper.writeValueAsString(createPostRequestDto);
             System.out.println("수정 데이터 (body): " + body);
 
+            // ✅ PUT 요청 전송
             HttpEntity<String> requestEntity = new HttpEntity<>(body, headers);
-
-            // PUT 요청
-            ResponseEntity<String> response = restTemplate.exchange(apiBaseUrl + "/api/post/" + postId, HttpMethod.PUT, requestEntity, String.class);
+            ResponseEntity<String> response = restTemplate.exchange(apiBaseUrl + "/api/post/update/" + postId, HttpMethod.POST, requestEntity, String.class);
 
             if (response.getStatusCode() == HttpStatus.OK) {
-                System.out.println("글이 성공적으로 수정되었습니다.");
+                System.out.println("✅ 글이 성공적으로 수정되었습니다.");
             } else {
-                System.out.println("글 수정 실패: " + response.getStatusCode());
+                System.out.println("❌ 글 수정 실패: " + response.getStatusCode());
                 model.addAttribute("error", "글 수정 실패: " + response.getStatusCode());
                 return "error/failed";
             }
@@ -148,7 +166,64 @@ public class PostUpdate {
             return "error/failed";
         }
 
-        // 글 수정 후 게시글 목록으로 이동
-        return "redirect:/api/post";
+        System.out.println("🚀 수정 완료, /api/post로 리다이렉트합니다.");
+        return "redirect:/api/post";  // ✅ 글 수정 후 목록으로 이동
     }
+    
+    @DeleteMapping("/api/post/delete/{postId}")
+    public ResponseEntity<String> deletePost(@PathVariable("postId") Long postId, HttpSession session) {
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+
+            // ✅ 세션에서 userId 가져오기
+            Object userIdObj = session.getAttribute("userid");
+            Long userId = null;
+
+            if (userIdObj instanceof String) {
+                userId = Long.parseLong((String) userIdObj);  // ✅ String → Long 변환
+            } else if (userIdObj instanceof Long) {
+                userId = (Long) userIdObj;  // ✅ 이미 Long이면 그대로 사용
+            }
+
+            if (userId == null) {
+                System.out.println("❌ 세션에서 userId를 찾을 수 없습니다. 로그인 필요");
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그인이 필요합니다.");
+            }
+
+            System.out.println("✅ 삭제 요청 - 로그인된 사용자 ID: " + userId + ", Post ID: " + postId);
+
+            // ✅ JSON 변환 (API에 userId 포함)
+            String requestBody = objectMapper.writeValueAsString(Map.of("userId", userId));
+
+            // ✅ DELETE 요청 보내기
+            HttpEntity<String> requestEntity = new HttpEntity<>(requestBody, headers);
+            ResponseEntity<String> response = restTemplate.exchange(
+                    apiBaseUrl + "/api/post/delete/" + postId,
+                    HttpMethod.DELETE,
+                    requestEntity,
+                    String.class
+            );
+
+            if (response.getStatusCode() == HttpStatus.OK) {
+                System.out.println("✅ 게시글 삭제 성공 - Post ID: " + postId);
+                return ResponseEntity.ok("삭제 성공");
+            } else {
+                System.out.println("❌ 게시글 삭제 실패 - Status: " + response.getStatusCode());
+                return ResponseEntity.status(response.getStatusCode()).body("삭제 실패");
+            }
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("JSON 변환 오류 발생");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("서버 오류 발생");
+        }
+    }
+
+
+
+
+
 }

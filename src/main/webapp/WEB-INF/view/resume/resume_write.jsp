@@ -18,9 +18,10 @@
 		<h2 class="section-title">이력서 작성</h2>
 		<div class="profile-box">
 		<div class="profile">
-    <button type="button" onclick="alert('클릭')">
-        <img src="https://contents.albamon.kr/monimg/msa/assets/images/icon_profile_male80.svg" alt="프로필 이미지">
+    <button type="button">
+        <img id="previewImage" src="https://contents.albamon.kr/monimg/msa/assets/images/icon_profile_male80.svg" alt="프로필 이미지" onclick="imgupload()">
     </button>
+    	<input type="file" id="imgInput" style="display: none;" onchange="handleImgUpload(event)">
     	<div class="profile-info">
         	<div class="profile-details">
             	<span class="profile-name" style="margin-bottom: 3px;">${profile.name}</span>

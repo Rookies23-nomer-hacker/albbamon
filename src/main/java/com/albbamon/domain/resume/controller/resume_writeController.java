@@ -164,7 +164,8 @@ public class resume_writeController {
 		
 		ObjectMapper objectMapper = new ObjectMapper();
 		objectMapper.registerModule(new JavaTimeModule()); // JavaTimeModule 등록
-	    objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS); // ISO-8601 포맷 사용
+		objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS); // ISO-8601 포맷 사용
+
 	    
 		Map<String, Object> data = new HashMap<>();
 		HttpSession session = request.getSession(false);
@@ -184,6 +185,8 @@ public class resume_writeController {
 		LocalDateTime create_date = LocalDateTime.now();
 		String portfoliodata = file_data.getPortfolioData();
 		String portfolioname = resume_write.getPortfolioname();
+		String resume_img_data = file_data.getResume_img_data();
+		String resume_img_name = resume_write.getResume_img_name();
 		try {
 			if (session != null) {
 				String session_user=(String) session.getAttribute("userid");
@@ -203,6 +206,8 @@ public class resume_writeController {
 				data.put("create_date", create_date);
 				data.put("portfolioData", portfoliodata);
 				data.put("portfolioName",portfolioname);
+				data.put("resume_img_data",resume_img_data);
+				data.put("resume_img_name", resume_img_name);
 				jsondata = objectMapper.writeValueAsString(data);
 				// API 서버로 JSON 데이터 전송
 				RestTemplate restTemplate = new RestTemplate();

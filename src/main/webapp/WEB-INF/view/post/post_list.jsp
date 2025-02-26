@@ -131,8 +131,10 @@
                 <option>작성일 순</option>
                 <option>조회수 순</option>
             </select>
-            <input type="text" placeholder="제목+본문 검색">
-            <button>검색</button>
+            <form action="/api/post/search" method="get">
+		    <input type="text" name="keyword" placeholder="검색어를 입력하세요">
+		    <button type="submit">검색</button>
+			</form>
         </div>
 
         <!-- 공지사항 -->

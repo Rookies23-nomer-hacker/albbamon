@@ -76,7 +76,7 @@
 
     <main class="container2">
         <!-- 수정된 폼: enctype 추가 및 action 경로 확인 -->
-        <form id="editForm" action="${pageContext.request.contextPath}/api/post/update/${post.postId}" method="POST" enctype="multipart/form-data">
+        <form id="editForm" action="${pageContext.request.contextPath}/api/post/update/${post.postId}" method="POST">
             <h2>게시글 수정</h2>
 
             <!-- 제목 -->
@@ -97,10 +97,12 @@
             </div>
 
             <!-- 버튼 -->
-            <div class="buttons">
-                <button type="button" onclick="window.history.back();">취소</button>
-                <button type="submit">수정하기</button>
-            </div>
+            <!-- 버튼 -->
+			<div class="buttons">
+    			<button type="button" onclick="window.history.back();">취소</button>
+    			<button type="submit" onclick="location.href='${pageContext.request.contextPath}/api/post';">수정하기</button>
+			</div>
+
         </form>
     </main>
 
