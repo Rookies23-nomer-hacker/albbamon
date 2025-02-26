@@ -12,7 +12,7 @@
 <main class="custom-war">
 <span class="custom-title"><h2><%= request.getAttribute("name") %>님의<br>알바몬 회원정보</h2></span>
     <div class="custom-container">
-        
+     
         <h3>회원 정보</h3>
         <div class="custom-info-box">
             <p><strong>이름:</strong> <%= request.getAttribute("name") %></p>

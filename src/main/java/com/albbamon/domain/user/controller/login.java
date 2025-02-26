@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import com.albbamon.domain.user.dto.request.LoginRequestDto;
+import com.albbamon.domain.user.dto.response.LoginResponseDto;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -49,25 +50,19 @@ public class login {
         ResponseEntity<String> response = restTemplate.postForEntity(apiUrl, requestEntity, String.class);
 
         // ✅ 응답 로그 출력 (디버깅용)
-        System.out.println("API 응답: " + response);
+        System.out.println("API 응답: " + response.getBody());
 
         HttpSession session = request.getSession(false); // 기존 세션 유지
         if (session == null) {
             session = request.getSession(); // 새 세션 생성 (필요할 때만)
         }
         if (response.getStatusCode() == HttpStatus.OK && response.getBody() != null) {
-            String responseBody = response.getBody();
-            JsonNode jsonResponse = om.readTree(responseBody);
-        	String ceoNum = jsonResponse.path("ceoNum").asText();  // ceoNum 값 추출
-            System.out.println("ceoNum from response: " + ceoNum);
-        	
-            session.setAttribute("userid", response.getBody());
+            LoginResponseDto userDto = om.readValue(response.getBody(), LoginResponseDto.class);
+            session.setAttribute("userid", String.valueOf(userDto.getUserId()));
             System.out.println(session.getAttribute("userid"));
-            session.setAttribute("email", loginDto.getEmail());
-            session.setAttribute("ceonum", loginDto.getCeoNum());
-            System.out.println(session.getAttribute("ceonum"));
-            session.setAttribute("ceoNum", ceoNum);
-            System.out.println(loginDto.getCeoNum());
+            session.setAttribute("email", userDto.getEmail());
+            session.setAttribute("ceoNum", userDto.getCeoNum());
+            System.out.println("123::::::::::::"+ session.getAttribute("ceoNum"));
 
             return "redirect:/"; // 메인으로 redirect
         } else {
