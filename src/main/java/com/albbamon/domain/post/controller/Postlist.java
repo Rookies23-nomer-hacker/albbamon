@@ -17,6 +17,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import jakarta.servlet.http.HttpSession;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class Postlist {
@@ -96,6 +97,36 @@ public class Postlist {
         model.addAttribute("posts", posts);
 
         // post_list.jsp로 이동
+        return "post/post_list";
+    }
+    
+    @GetMapping("/api/post/search")
+    public String searchPosts(@RequestParam("keyword") String keyword, Model model, HttpSession session) {
+        String url = apiBaseUrl + "/api/post/search?keyword=" + keyword;
+        ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
+
+        List<Map<String, String>> posts = new ArrayList<>();
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode postList = mapper.readTree(response.getBody());
+
+            for (JsonNode postNode : postList) {
+                Map<String, String> post = new HashMap<>();
+                post.put("id", String.valueOf(postNode.path("postId").asInt()));
+                post.put("title", postNode.path("title").asText());
+                post.put("contents", postNode.path("contents").asText());
+                post.put("userName", postNode.path("userName").asText());
+                post.put("createDate", postNode.path("createDate").asText());
+
+                posts.add(post);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        model.addAttribute("posts", posts);
+        model.addAttribute("isLoggedIn", session.getAttribute("userid") != null);
+
         return "post/post_list";
     }
 }
