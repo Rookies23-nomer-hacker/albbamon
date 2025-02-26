@@ -30,7 +30,13 @@ public class recruitment_write {
     }
 
     @GetMapping("/recruitment/write")
-    public String wrtie() {
+    public String wrtie(HttpServletRequest request, Model model) {
+        HttpSession session = request.getSession();
+        Long userId = Long.valueOf((String) session.getAttribute("userid"));
+        if(userId == null) {
+            model.addAttribute("NotLogin", 1);
+            return "user/login";
+        }
         return "recruitment/recruitment_write";
     }
 
