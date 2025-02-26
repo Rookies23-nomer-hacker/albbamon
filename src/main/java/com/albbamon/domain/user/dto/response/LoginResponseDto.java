@@ -15,4 +15,5 @@ public class LoginResponseDto {
     private String name;
     private String ceoNum;
     private String company;
+    private String item;
 }

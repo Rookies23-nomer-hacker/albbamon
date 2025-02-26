@@ -39,7 +39,7 @@ public class recruitment_list {
         
         try {
         	ResponseEntity<String> responseEntity = restTemplate.getForEntity(apiBaseUrl + "/api/recruitment/list", String.class);
-        	ResponseEntity<String> responseBuyerEntity = restTemplate.getForEntity(apiBaseUrl + "/api/payment/findUserId", String.class);
+        	//ResponseEntity<String> responseBuyerEntity = restTemplate.getForEntity(apiBaseUrl + "/api/payment/findUserId", String.class);
         	
             JsonNode rootNode = objectMapper.readTree(responseEntity.getBody());
             JsonNode recruitmentList = rootNode.path("data").path("recruitmentList");
@@ -65,12 +65,12 @@ public class recruitment_list {
             
             
             // 아이템 구매자 user id
-            JsonNode rootNode2 = objectMapper.readTree(responseBuyerEntity.getBody());
-            
+            //JsonNode rootNode2 = objectMapper.readTree(responseBuyerEntity.getBody());
+            /*
             for (JsonNode buyerId : rootNode2) {  // buyerId는 직접 반복문을 사용
                 buyerIds.add(buyerId.asLong());
             }
-            
+            */
         } catch (Exception e) {
             e.printStackTrace();
         }

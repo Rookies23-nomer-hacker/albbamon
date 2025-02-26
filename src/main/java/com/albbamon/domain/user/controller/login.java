@@ -62,7 +62,8 @@ public class login {
             System.out.println(session.getAttribute("userid"));
             session.setAttribute("email", userDto.getEmail());
             session.setAttribute("ceoNum", userDto.getCeoNum());
-            System.out.println("123::::::::::::"+ session.getAttribute("ceoNum"));
+            session.setAttribute("item", userDto.getItem());
+            System.out.println("123::::::::::::"+ session.getAttribute("ceoNum") + "and " + session.getAttribute("item"));
 
             return "redirect:/"; // 메인으로 redirect
         } else {
