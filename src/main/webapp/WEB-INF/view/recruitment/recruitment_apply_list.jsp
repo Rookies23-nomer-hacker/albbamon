@@ -53,7 +53,7 @@
 					        <td>${apply.applyStatus}</td>
 					        <td>
 					            <div class="form-check form-switch d-flex justify-content-center">
-					                <!-- apply.id를 사용하여 버튼에 대한 클릭 이벤트 설정 -->
+					                <!-- apply_list.id를 사용하여 버튼에 대한 클릭 이벤트 설정 -->
 									<button class="btn-primary" onclick="updateStatus(${apply.id}, 'PASSED')">합격</button>
 									<button class="btn-primary" onclick="updateStatus(${apply.id}, 'FAILED')">불합격</button>
 					            </div>

@@ -33,7 +33,7 @@
             </div>
         </div>
         <div class="button-container">
-            <button class="btn-primary" onclick="location.href='/recruitment/${recruitment.id}/apply-info'">지원하기</button>
+            <button class="btn-primary" onclick="location.href='/recruitment/${recruitment.id}/apply_list-info'">지원하기</button>
         </div>
     </div>
 </main>
