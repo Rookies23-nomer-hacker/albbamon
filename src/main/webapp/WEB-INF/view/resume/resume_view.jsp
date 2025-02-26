@@ -152,7 +152,7 @@
                        download>
                         <img src="https://cdn-icons-png.flaticon.com/512/2991/2991108.png"
                              alt="파일 아이콘" width="20" height="20" style="margin-right: 5px;">
-                        <span>${resume.portfolioname}</span>
+                        <span>${file}</span>
                     </a>
                 </c:otherwise>
             </c:choose>
