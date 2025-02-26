@@ -36,7 +36,6 @@ public class UserFindController {
     
     private final RestTemplate restTemplate = new RestTemplate();
     
-    //private final String apiUrl = "http://localhost:8083/api/user/find-id"; // ✅ API 서버 URL
     
     @GetMapping("/find-id")
     public String findUserId(

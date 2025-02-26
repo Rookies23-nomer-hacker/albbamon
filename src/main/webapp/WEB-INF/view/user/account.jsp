@@ -9,8 +9,14 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/view/common/header.jsp"%>
+<c:if test="${not empty alertMessage}">
+    <script>
+        alert("${alertMessage}");
+        window.location.href = "/"; // ✅ 메인 페이지로 이동
+    </script>
+</c:if>
 <main class="custom-war">
-<span class="custom-title"><h2><%= request.getAttribute("name") %>님의<br>알바몬 회원정보</h2></span>
+<span class="custom-title"><%= request.getAttribute("name") %>님의<br>알바몬 회원정보</span>
     <div class="custom-container">
      
         <h3>회원 정보</h3>
@@ -19,6 +25,11 @@
             <p><strong>최근 수정일:</strong> <%= request.getAttribute("lastModifiedDate") %></p>
             <p><strong>연락처:</strong> <%= request.getAttribute("phone") %></p>
             <p><strong>이메일:</strong> <%= request.getAttribute("email") %></p>
+            <c:if test="${not empty sessionScope.ceoNum}">
+            <p><strong>사업자등록번호:</strong> ${ sessionScope.ceoNum}</p>
+            <p><strong>회사명:</strong> ${ sessionScope.company}</p>
+            </c:if>
+            
             <button class="custom-edit-btn">수정</button>
         </div>
 
@@ -31,11 +42,12 @@
         <h3>회원 탈퇴</h3>
         <div class="custom-delete-box">
             <p>회원 탈퇴를 원하시면 아래 버튼을 클릭하세요.</p>
-            <button class="custom-delete-btn">탈퇴</button>
+            <button class="custom-delete-btn" onclick="location.href='<%= request.getContextPath() %>/api/user/withdraw'">탈퇴</button>
         </div>
     </div>
 </main>
 <%@ include file="/WEB-INF/view/common/footer.jsp"%>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
