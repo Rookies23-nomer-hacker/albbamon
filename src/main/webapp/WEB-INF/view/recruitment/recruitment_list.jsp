@@ -20,7 +20,7 @@
                     <th>제목</th>
                     <th>시급</th>
                     <th>마감 기한</th>
-                    <th>작성자</th>
+                    <th>기업명</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -30,7 +30,7 @@
                       			<td style="color: red;">★${recruitment.title}★</td>
 					            <td style="color: red;">${recruitment.wage}</td>
 					            <td style="color: red;">${recruitment.dueDate}</td>
-					            <td style="color: red;">${recruitment.userName}</td>
+					            <td style="color: red;">${recruitment.company}</td>
 					        </tr>
 					    </c:if>
 					    <c:if test="${!buyerIds.contains(recruitment.id)}">
@@ -38,7 +38,7 @@
                       <td>${recruitment.title}</td>
 					            <td>${recruitment.wage}</td>
 					            <td>${recruitment.dueDate}</td>
-					            <td>${recruitment.userName}</td>
+					            <td>${recruitment.company}</td>
 					        </tr>
 					    </c:if>
 					</c:forEach>
