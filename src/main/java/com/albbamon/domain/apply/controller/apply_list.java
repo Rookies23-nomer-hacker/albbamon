@@ -39,11 +39,11 @@ public class apply_list {
     public String applyList(HttpServletRequest request,
                             Model model) {
         HttpSession session = request.getSession();
-        Long userId = Long.valueOf((String) session.getAttribute("userid"));
-        if(userId == null) {
+        if(session.getAttribute("userid") == null) {
             model.addAttribute("NotLogin", 1);
             return "user/login";
         }
+        Long userId = Long.valueOf((String) session.getAttribute("userid"));
 
         List<Map<String, String>> applyList = new ArrayList<>();
 

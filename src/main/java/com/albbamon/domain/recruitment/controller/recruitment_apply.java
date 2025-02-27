@@ -41,7 +41,7 @@ public class recruitment_apply {
     public String applyInfo(@PathVariable("recruitmentId") Long recruitmentId,
                             HttpServletRequest request,
                             Model model) {
-        HttpSession session = request.getSession();    
+        HttpSession session = request.getSession();
         if(session.getAttribute("userid") == null) {
             model.addAttribute("NotLogin", 1);
             return "user/login";
@@ -113,7 +113,6 @@ public class recruitment_apply {
         model.addAttribute("user", user);
         model.addAttribute("resumeExists", resumeExists);
         model.addAttribute("isApplied", isApplied);
-        model.addAttribute("success", false);
 
         return "recruitment/recruitment_apply";
     }
@@ -129,7 +128,6 @@ public class recruitment_apply {
         }
         Long userId = Long.valueOf((String) session.getAttribute("userid"));
 
-        boolean success = false;
         try {
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
@@ -137,14 +135,12 @@ public class recruitment_apply {
             body = objectMapper.writeValueAsString(requestDto);
             HttpEntity<String> requestEntity = new HttpEntity<>(body, headers);
             restTemplate.postForEntity(apiBaseUrl + "/api/recruitment/" + recruitmentId + "/apply", requestEntity, String.class);
-            success = true;
+            model.addAttribute("applySuccess", true);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
-            success = false;
+            model.addAttribute("applySuccess", false);
         }
 
-        model.addAttribute("success", success);
-
-        return "redirect:/recruitment/list";
+        return "apply/apply_list";
     }
 }
