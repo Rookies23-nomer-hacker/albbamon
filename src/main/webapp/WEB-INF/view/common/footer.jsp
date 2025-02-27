@@ -17,7 +17,7 @@
 <!-- Your Content Above -->
 
 <!-- Footer -->
-<footer class="py-5 bg-dark text-white mt-5">
+<footer class="py-5 bg-dark text-white mt-5" style=" height: 500px;">
   <div class="container">
     <div class="row">
       <div class="col-md-4">
