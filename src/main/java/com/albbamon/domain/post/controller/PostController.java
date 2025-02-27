@@ -105,11 +105,13 @@ public class PostController {
             } else {
                 System.out.println("❌ 게시글 등록 실패: " + response.getStatusCode());
                 model.addAttribute("error", "게시글 등록 실패: " + response.getStatusCode());
+                model.addAttribute("apiBaseUrl", apiBaseUrl);
                 return "post/post_write";
             }
         } catch (JsonProcessingException e) {
             e.printStackTrace();
             model.addAttribute("error", "게시글 등록 중 오류가 발생했습니다.");
+            model.addAttribute("apiBaseUrl", apiBaseUrl);
             return "post/post_write";
         }
     }

@@ -165,7 +165,7 @@ input:not(:last-child) {
             <div class="tab" id="business-tab">기업회원</div>
         </div>
         
-<form action="/api/user/sign-in" method="post">
+<form action="${contextPath}/api/user/sign-in" method="post">
     <input type="hidden" name="userType" id="userType" value="personal">
 
     <div id="personal-form">

@@ -9,8 +9,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- CSS 파일 연결 -->
-<link rel="stylesheet" href="/css/find_id/change-pw.css">
-<link rel="stylesheet" href="/css/find_id/common.css">
+<link rel="stylesheet" href="${contextPath}/css/find_id/change-pw.css">
+<link rel="stylesheet" href="${contextPath}/css/find_id/common.css">
 <!-- jQuery 라이브러리 추가 (CDN 사용) -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
