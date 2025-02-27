@@ -1,15 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath" value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}"/>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>알바몬</title>
-    <link rel="stylesheet" href="style.css">
+
 </head>
 
 <style>
-    /* 기본 스타일 초기화 */
     * {
         margin: 0;
         padding: 0;
@@ -39,13 +40,6 @@
         width: 100%;
     }
 
-    .search-with-autocomplete__form button {
-        background: none;
-        border: none;
-        cursor: pointer;
-    }
-
-    /* 네비게이션 메뉴 스타일 */
     .nav-container {
         display: flex;
         justify-content: flex-start;
@@ -55,21 +49,6 @@
         padding: 10px 30px;
     }
 
-    /* 유저 정보 스타일 */
-    .user-info {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-
-    .user-info button2 {
-        padding: 8px 12px;
-        border: 1px solid #ddd;
-        background: #f3f3f3;
-        cursor: pointer;
-    }
-
-    /* 메인 컨텐츠 스타일 */
     .container2 {
         width: 80%;
         max-width: 800px;
@@ -125,30 +104,61 @@
     <%@ include file="/WEB-INF/view/common/header.jsp" %>
 
     <main class="container2">
-        <form id="writeForm" action="/api/post" method="POST">
+        <form id="writeForm" enctype="multipart/form-data">
             <h2>알바경험담 작성</h2>
 
-            <!-- 제목 입력 -->
             <label for="title">제목</label>
             <input type="text" id="title" name="title" placeholder="제목을 입력해 주세요." required>
 
-            <!-- 내용 입력 -->
             <label for="contents">내용</label>
             <textarea id="contents" name="contents" placeholder="내용을 입력하세요." required></textarea>
 
-<!--             이미지 업로드
             <label for="file">이미지 (선택)</label>
-            <input type="file" id="file" name="file"> -->
+            <input type="file" id="file" name="file">
 
-            <!-- 버튼 영역 -->
             <div class="buttons">
-                <!-- 취소 버튼: 이전 페이지로 이동 -->
                 <button type="button" onclick="window.history.back();">취소</button>
-                <!-- 등록 버튼 -->
-                <button type="submit">등록</button>
+                <button type="submit" id="submit" data-user-id="${sessionScope.userid}">등록</button>
             </div>
         </form>
     </main>
+
+    <script>
+        document.getElementById("writeForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            submitForm();
+        });
+
+        function submitForm() {
+            var form = document.getElementById("writeForm");
+            var apiBaseUrl = ${apiBaseUrl};
+            var formData = new FormData(form);  // ✅ form 요소로부터 직접 FormData 생성
+            var userId = document.getElementById('submit').getAttribute('data-user-id');
+            formData.append("userId", userId); // 예시값, 실제 로그인된 사용자 ID를 사용해야 함.
+
+            fetch(`${apiBaseUrl}/api/post/write`, {
+                method: "POST",
+                body: formData,  // ✅ multipart/form-data 자동 설정됨
+                credentials: "include"  // ✅ CORS 해결을 위해 추가
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("서버 응답 오류");
+                }
+                return response.json();
+            })
+            .then(result => {
+                console.log("✅ 게시글 등록 성공:", result);
+                alert("게시글이 성공적으로 등록되었습니다!");
+                window.location.href = `${apiBaseUrl}/post`;  // ✅ 등록 후 게시글 목록으로 이동
+            })
+            .catch(error => {
+                console.error("❌ 게시글 등록 실패:", error);
+                alert("게시글 등록에 실패했습니다. 다시 시도해주세요.");
+            });
+        }
+    </script>
+
 
     <%@ include file="/WEB-INF/view/common/footer.jsp" %>
 </body>

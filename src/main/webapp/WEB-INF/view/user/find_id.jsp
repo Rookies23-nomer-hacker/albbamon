@@ -12,8 +12,8 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- 커스텀 CSS -->
-<link rel="stylesheet" href="/css/find_id/find-id.css">
-<link rel="stylesheet" href="/css/find_id/common.css">
+<link rel="stylesheet" href="${contextPath}/css/find_id/find-id.css">
+<link rel="stylesheet" href="${contextPath}/css/find_id/common.css">
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
