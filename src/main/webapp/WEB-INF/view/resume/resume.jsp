@@ -13,13 +13,13 @@
 </head>
 <body>
 	<script src="<%= request.getContextPath() %>/js/resume.js"></script>
-	<script>let resumePersonal = "${resume.personal}";
-    	let resumeWork_place_region = "${resume.work_place_region}";
-        let resumeIntroduction = "${resume.industry_occupation}";
-        let duplicated = "${duplicated}";
-        let base_url = "${contextPath}";
-        let deleted = "${delete}"
-        let resumeId = "${resume.resume_id}";</script>
+	<script>var resumePersonal = "${resume.personal}";
+    	var resumeWork_place_region = "${resume.work_place_region}";
+        var resumeIntroduction = "${resume.industry_occupation}";
+        var duplicated = "${duplicated}";
+        var base_url = "${contextPath}";
+        var deleted = "${delete}"
+        var resumeId = "${resume.resume_id}";</script>
 	<div class="section" style="margin-left: 7%;">
 	<div class="orange-form-resume">
 		<div class="section-line" style="width: 100%; margin-top: 30px;"></div>
