@@ -12,7 +12,7 @@
 <body>
 <%@ include file="/WEB-INF/view/common/header.jsp" %>
 <main>
-    <div class="recruitment-container">
+    <div class="">
         <h2 class="title">지원서 목록</h2>
         <div class="card">
             <table class="recruitment-table">
@@ -55,7 +55,7 @@
 					        <td>
 					            <div class="form-check form-switch d-flex justify-content-center">
 					                <!-- apply.id를 사용하여 버튼에 대한 클릭 이벤트 설정 -->
-									<button class="btnbtn-danger mx-2" onclick="updateStatus(${apply.id}, 'PASSED')">합격</button>
+									<button class="btnbtn-danger mx-2"onclick="updateStatus(${apply.id}, 'PASSED')">합격</button>
 									<button class="btn btn-danger mx-2" onclick="updateStatus(${apply.id}, 'FAILED')">불합격</button>
 					            </div>
 					        </td>

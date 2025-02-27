@@ -83,9 +83,21 @@ public class resume_viewController {
 		
 		if(name_org!=null) {
 			int dotIndex = name_org.lastIndexOf(".");
-	        if (dotIndex != -1) {
-	            name =  name_org.substring(0, dotIndex) + name_org.substring(dotIndex, name_org.length()).split("_")[0];
-	        }
+			if (dotIndex != -1) {
+		        // 확장자를 제외한 파일명 부분 추출
+		        String nameWithoutExt = name_org.substring(0, dotIndex);
+		        String extension = name_org.substring(dotIndex); // 확장자 포함
+
+		        // 정규식을 사용하여 "_YYYYMMDD_HHmmss" 형식의 패턴을 제거
+		        nameWithoutExt = nameWithoutExt.replaceAll("_\\d{14}$", "");
+
+
+		        // 최종 파일명 조합
+		        name = nameWithoutExt + extension;
+		    } else {
+		        // 확장자가 없는 경우 정규식 적용
+		    	name = name_org.replaceAll("_\\d{14}$", "");
+		    }
 		}
 		
 		

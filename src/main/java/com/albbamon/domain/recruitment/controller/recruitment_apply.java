@@ -41,7 +41,7 @@ public class recruitment_apply {
     public String applyInfo(@PathVariable("recruitmentId") Long recruitmentId,
                             HttpServletRequest request,
                             Model model) {
-        HttpSession session = request.getSession();    
+        HttpSession session = request.getSession();
         if(session.getAttribute("userid") == null) {
             model.addAttribute("NotLogin", 1);
             return "user/login";

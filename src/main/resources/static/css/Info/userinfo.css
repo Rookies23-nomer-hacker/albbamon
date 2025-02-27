@@ -9,30 +9,31 @@
 }
 
 .custom-container {
-    width: 500px;
+    width: 40%;
     background: white;
     padding: 40px 32px 60px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     text-align: left;
-    border: 2px solid #ff501b;
+    border: 2px solid #ff6600;
 }
 /* 버튼 스타일 */
 .custom-edit-btn {
     width: 20%;
-    margin-top: 15px;
+    margin-top: 10px;
     margin-bottom: 15px;
     padding: 12px;
-    background-color: #ff501b;
+    background-color: #ff6600;
     border: none;
     color: white;
     font-size: 16px;
     border-radius: 4px;
     cursor: pointer;
+
 }
 
 .custom-edit-btn:hover {
-    background-color: #e64a19;
+    background-color: #ff6600;
 }
 .custom-title {
 	font-weight: 700;

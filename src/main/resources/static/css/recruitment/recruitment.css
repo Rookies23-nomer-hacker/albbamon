@@ -28,7 +28,7 @@ body {
 .card {
     margin-top: 20px;
     width: 100%;
-    overflow-x: auto;
+
 }
 
 .recruitment-table {
@@ -219,4 +219,5 @@ body {
     font-weight: bold;
     margin-bottom: 20px;
 }
+
 
