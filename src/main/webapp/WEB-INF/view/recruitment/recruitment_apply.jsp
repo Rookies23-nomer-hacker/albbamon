@@ -69,6 +69,7 @@
     function createApply() {
         let resumeExists = ${resumeExists};
         let isApplied = ${isApplied};
+        console.log(resumeExists);
 
         if(!resumeExists) {
             alert('작성된 이력서가 없습니다. 지원을 위해 이력서를 작성해주세요');
