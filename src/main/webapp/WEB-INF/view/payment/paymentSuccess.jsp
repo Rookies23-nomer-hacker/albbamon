@@ -10,7 +10,7 @@
     <div class="container">
         <h2 class="mt-5">결제 완료!</h2>
         <p>결제가 성공적으로 완료되었습니다.</p>
-        <a href="../main/main.jsp" class="btn btn-primary">메인으로 이동</a>
+        <a href="/" class="btn btn-primary">메인으로 이동</a>
     </div>
 </body>
 </html>

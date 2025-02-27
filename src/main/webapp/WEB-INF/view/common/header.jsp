@@ -41,21 +41,21 @@
                     <button type="button" class="btn btn-dark ms-2" style="border-radius: 30px; font-size: 15px;" onclick="location.href='<%= request.getContextPath() %>/api/user/join'">회원가입</button>
                 </c:if>
 
-                <c:if test="${not empty sessionScope.email}">
+                <c:if test="${not empty sessionScope.email}"> 
                     <p class="mb-2 mb-md-0" style="font-size: 20px; font-weight: bold;">
                         ${sessionScope.email}
                         <c:if test="${not empty sessionScope.ceoNum}">
-							<c:if test="${empty sessionScope.item}">
+							<c:if test="${sessionScope.item != 'Y'}">
 							    <span style="font-size: 20px; font-weight: bold;">(사장님)</span>
 							</c:if>
-							<c:if test="${not empty sessionScope.item}">
+							<c:if test="${sessionScope.item == 'Y'}">
 							    <span style="font-size: 20px; font-weight: bold;">(유료 사장님)</span>
 							</c:if>
                         </c:if>
                     </p>
                     <button type="button" class="btn btn-warning ms-2" style="border-radius: 30px; font-size: 15px;" onclick="location.href='<%= request.getContextPath() %>/api/user/log-out'">로그아웃</button>
                     <button type="button" class="btn btn-dark ms-2" style="border-radius: 30px; font-size: 15px;" onclick="location.href='<%= request.getContextPath() %>/api/resume'">이력서 관리</button>
-                    <button type="button" class="btn btn-light ms-2" style="border-radius: 30px; font-size: 15px;" onclick="location.href='<%= request.getContextPath() %>/api/user/account'">회원 정보</button>
+					<button type="button" class="btn btn-light ms-2" style="border-radius: 30px; font-size: 15px;" onclick="location.href='<%= request.getContextPath() %>/api/user/account'">회원 정보</button>
                 </c:if>
             </div>
         </div>

@@ -2,6 +2,10 @@ package com.albbamon.domain.recruitment.controller;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
@@ -33,13 +37,11 @@ public class recruitment_list {
     }
 
     @GetMapping("/recruitment/list")
-    public String list(Model model) {
+    public String list(Model model, HttpServletRequest request) {
         List<Map<String, String>> recruitments = new ArrayList<>();
-        List<Long> buyerIds = new ArrayList<>();
         
         try {
         	ResponseEntity<String> responseEntity = restTemplate.getForEntity(apiBaseUrl + "/api/recruitment/list", String.class);
-        	//ResponseEntity<String> responseBuyerEntity = restTemplate.getForEntity(apiBaseUrl + "/api/payment/findUserId", String.class);
         	
             JsonNode rootNode = objectMapper.readTree(responseEntity.getBody());
             JsonNode recruitmentList = rootNode.path("data").path("recruitmentList");
@@ -52,6 +54,7 @@ public class recruitment_list {
                 String contents = recruitment.path("content").asText();
                 Integer wage = recruitment.path("wage").asInt();
                 String userName = recruitment.path("userName").asText();
+                String item = recruitment.path("item").asText();
 
                 Map<String, String> r = new HashMap<>();
                 r.put("id", String.valueOf(id));
@@ -60,26 +63,15 @@ public class recruitment_list {
                 r.put("contents", contents);
                 r.put("wage", String.valueOf(wage));
                 r.put("userName", userName);
+                r.put("item", item);
                 recruitments.add(r);
             }
             
-            
-            // 아이템 구매자 user id
-            //JsonNode rootNode2 = objectMapper.readTree(responseBuyerEntity.getBody());
-            /*
-            for (JsonNode buyerId : rootNode2) {  // buyerId는 직접 반복문을 사용
-                buyerIds.add(buyerId.asLong());
-            }
-            */
         } catch (Exception e) {
             e.printStackTrace();
         }
         model.addAttribute("recruitmentList", recruitments);  // List 객체 전달
         
-        // 아이템 구매자 user id. long -> string으로 
-        List<String> buyerIdsString = buyerIds.stream().map(String::valueOf).collect(Collectors.toList());
-        model.addAttribute("buyerIds", buyerIdsString);
-
         return "recruitment/recruitment_list";
     }
 }

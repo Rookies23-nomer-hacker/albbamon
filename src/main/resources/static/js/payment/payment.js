@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // 결제 버튼 클릭 이벤트 핸들러 설정
     document.getElementById('payment').onclick = function() {
-        var item = 'y'; // 결제 성공 시 item 값은 'y'
+        var item = 'Y'; // 결제 성공 시 item 값은 'Y'
         var userId = document.getElementById('payment').getAttribute('data-user-id');
 		console.log(userId);
 		
@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function() {
             pay_method: "card", // 결제 방식
             merchant_uid: makeMerchantUid, // 상점 고유 주문번호
             name: "포트원 테스트", // 상품명
-            amount: 15000000, // 결제 금액
+            amount: 1500000, // 결제 금액
             item: item,
         }, function (rsp) { // 결제 응답 처리
             if (rsp.success) { // 결제 성공 시
@@ -30,13 +30,14 @@ document.addEventListener("DOMContentLoaded", function() {
                 // 결제 성공 후 DB에 결제 정보 저장 요청
                 savePayment(item, userId);
                 alert('결제 완료!');
-                window.location.reload(); // 페이지 새로고침
+                window.location.href="/payment/success";
             } else { // 결제 실패 시
                 item = 'fail'; // 결제 실패 시 item 값을 'fail'로 설정
                 console.log(`결제 실패: ${rsp.error_msg}`); // 실패 메시지 출력
                 // 결제 실패 후 DB에 결제 정보 저장 요청
                 savePayment(item, userId);
                 alert(`결제 실패: ${rsp.error_msg}`);
+				window.location.href="/payment/fail";
             }
         });
     };
@@ -56,12 +57,5 @@ document.addEventListener("DOMContentLoaded", function() {
 	        body: JSON.stringify(paymentData)
 	    })
 		.then(response => response.json())  // 응답을 JSON으로 변환
-		.then(data => {
-		    if (data && data.message === "결제 정보가 성공적으로 저장되었습니다.") {
-		        console.log('결제 정보 저장 성공:', data);
-		        alert('결제 완료!');
-		        window.location.href = "/";  // 페이지 이동
-		    }
-		})
 	}
 });
