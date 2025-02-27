@@ -41,7 +41,7 @@ public class recruitment_apply {
     public String applyInfo(@PathVariable("recruitmentId") Long recruitmentId,
                             HttpServletRequest request,
                             Model model) {
-        HttpSession session = request.getSession();        
+        HttpSession session = request.getSession();    
         if(session.getAttribute("userid") == null) {
             model.addAttribute("NotLogin", 1);
             return "user/login";
@@ -50,6 +50,8 @@ public class recruitment_apply {
 
         Map<String, String> recruitment = new HashMap<>();
         Map<String, String> user = new HashMap<>();
+        boolean resumeExists = true;
+        boolean isApplied = false;
 
         try {
             // recruitment
@@ -95,13 +97,23 @@ public class recruitment_apply {
             user.put("name", name);
             user.put("email", email);
             user.put("phone", phone);
+
+            // isApplied
+            try {
+                isApplied = userRestTemplate.exchange(apiBaseUrl + "/api/recruitment/" + recruitmentId + "/apply/check", HttpMethod.GET, requestEntity, Boolean.class).getBody();
+            } catch (Exception e) {
+                resumeExists = false;
+            }
+
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
 
         model.addAttribute("recruitment", recruitment);
         model.addAttribute("user", user);
-        model.addAttribute("isApplied", true);
+        model.addAttribute("resumeExists", resumeExists);
+        model.addAttribute("isApplied", isApplied);
+        model.addAttribute("success", false);
 
         return "recruitment/recruitment_apply";
     }
@@ -111,12 +123,13 @@ public class recruitment_apply {
                               HttpServletRequest request,
                               Model model) {
         HttpSession session = request.getSession();
-        Long userId = Long.valueOf((String) session.getAttribute("userid"));
-        if(userId == null) {
+        if(session.getAttribute("userid") == null) {
             model.addAttribute("NotLogin", 1);
             return "user/login";
         }
+        Long userId = Long.valueOf((String) session.getAttribute("userid"));
 
+        boolean success = false;
         try {
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
@@ -124,9 +137,13 @@ public class recruitment_apply {
             body = objectMapper.writeValueAsString(requestDto);
             HttpEntity<String> requestEntity = new HttpEntity<>(body, headers);
             restTemplate.postForEntity(apiBaseUrl + "/api/recruitment/" + recruitmentId + "/apply", requestEntity, String.class);
+            success = true;
         } catch (JsonProcessingException e) {
             e.printStackTrace();
+            success = false;
         }
+
+        model.addAttribute("success", success);
 
         return "redirect:/recruitment/list";
     }
