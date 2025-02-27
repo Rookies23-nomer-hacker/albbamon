@@ -131,7 +131,8 @@
 
         function submitForm() {
             var form = document.getElementById("writeForm");
-            var apiBaseUrl = ${apiBaseUrl};
+            var apiBaseUrl = "${apiBaseUrl}";
+            alert(apiBaseUrl);
             var formData = new FormData(form);  // ✅ form 요소로부터 직접 FormData 생성
             var userId = document.getElementById('submit').getAttribute('data-user-id');
             formData.append("userId", userId); // 예시값, 실제 로그인된 사용자 ID를 사용해야 함.
@@ -150,7 +151,7 @@
             .then(result => {
                 console.log("✅ 게시글 등록 성공:", result);
                 alert("게시글이 성공적으로 등록되었습니다!");
-                window.location.href = `${apiBaseUrl}/post`;  // ✅ 등록 후 게시글 목록으로 이동
+                window.location.href = `${contextPath}/api/post`;  // ✅ 등록 후 게시글 목록으로 이동
             })
             .catch(error => {
                 console.error("❌ 게시글 등록 실패:", error);

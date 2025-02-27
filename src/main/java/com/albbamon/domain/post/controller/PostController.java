@@ -45,7 +45,7 @@ public class PostController {
             System.out.println("❌ 세션의 userid 없음 → 로그인 페이지로 이동");
             return "redirect:/api/user/sign-in";
         }
-
+        model.addAttribute("apiBaseUrl", apiBaseUrl);
         System.out.println("✅ 로그인된 사용자 ID: " + userIdObj);
         return "post/post_write";
     }

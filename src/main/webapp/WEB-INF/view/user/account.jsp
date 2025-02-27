@@ -14,7 +14,7 @@
 <c:if test="${not empty alertMessage}">
     <script>
         alert("${alertMessage}");
-        window.location.href = "/"; // ✅ 메인 페이지로 이동
+        window.location.href = `${contextPath}/`; // ✅ 메인 페이지로 이동
     </script>
 </c:if>
 <main class="custom-war">
