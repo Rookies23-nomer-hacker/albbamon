@@ -25,10 +25,10 @@
                     <div class="custom-tab-menu">
                         <button id="personal-tab"
                             class="custom-tab-button ${activeTab eq 'per' ? 'active' : ''}"
-                            onclick="location.href='/api/user/find-id'">개인회원</button>
+                            onclick="location.href='${contextPath}/api/user/find-id'">개인회원</button>
                         <button id="corporation-tab"
                             class="custom-tab-button ${activeTab eq 'cor' ? 'active' : ''}"
-                            onclick="location.href='/api/user/find-id'">기업회원</button>
+                            onclick="location.href='${contextPath}/api/user/find-id'">기업회원</button>
                     </div>
 
                     <!-- 결과 메시지 -->

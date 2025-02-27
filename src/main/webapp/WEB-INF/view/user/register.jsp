@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:set var="contextPath" value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}"/>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -151,7 +153,7 @@
     <!-- 회원가입 폼 -->
     <div class="register-container">
         <h1>통합 개인 회원가입</h1>
-        <form action="/api/user" method="post">
+        <form action="${contextPath}/api/user" method="post">
     <div class="terms-container">
 
     <label class="terms-item">
@@ -207,7 +209,7 @@
         </form>
 
         <div class="links">
-            <a href="/api/user/sign-in">이미 계정이 있으신가요? 로그인</a>
+            <a href="${contextPath}/api/user/sign-in">이미 계정이 있으신가요? 로그인</a>
         </div>
     </div>
     <div class="bottom-wrapper">
