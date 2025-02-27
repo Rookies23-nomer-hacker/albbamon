@@ -27,7 +27,7 @@
                 <div class="card">
                     <img src="/img/albbamonAd.png" class="card-img-top" style="width: 100%; height: 100%; object-fit: contain;" alt="광고1 이미지">
                     <div class="card-body">
-                        <h5 class="card-title">광고 문의</h5>
+                        <h5 class="card-title" style="font-weight: bold;">광고 문의</h5>
                         <p class="card-text">albbamon1@albbamon.com</p>
 						<a href="mailto:albbamon1@albbamon.com?subject=광고 문의&body=이메일을 통해 문의 내용을 작성해주세요." class="btn btn-primary">이메일 문의</a>
                     </div>
@@ -35,9 +35,9 @@
             </div>
             <div class="col-md-6">
                 <div class="card">
-					<img src="/img/ad.PNG" class="card-img-top" style="width: 100%; height: 100%; object-fit: contain;" alt="광고2 이미지">
+					<img src="/img/byoun.jpg" class="card-img-top" style="width: 100%; height: 100%; object-fit: contain;" alt="광고2 이미지">
                     <div class="card-body">
-                        <h5 class="card-title">일하는 모든 이를 세상의 모든 일을 RESPECT - 알바몬</h5>
+                        <h5 class="card-title" style="font-weight: bold;">일하는 모든 이를 세상의 모든 일을 RESPECT - 알바몬</h5>
                         <p class="card-text">알바는 알바몬.</p>
                         <a href="https://www.albamon.com" class="btn btn-primary">알바몬 바로가기</a>
                     </div>
@@ -50,8 +50,8 @@
 		    <div class="col-md-6">
 		        <div class="card shadow-lg border-0 rounded-3">
 		            <div class="card-header text-white" style="background-color: #ff6600; border: 5px;">
-		                <h5 class="m-0">공고 리스트</h5>
-						<p class="card-text">다양한 채용 공고를 확인하고 지원해 보세요.<a href="${contextPath}/recruitment/list" class="btn btn-light text-dark border-2 border-dark fw-bold float-end">전체보기</a></p>
+		                <h5 class="m-0" style="font-weight: bold; color: #000000;">공고 리스트</h5>
+						<p class="card-text" style="color: #000000;">다양한 채용 공고를 확인하고 지원해 보세요.<a href="${contextPath}/recruitment/list" class="btn btn-light text-dark border-2 border-dark fw-bold float-end">전체보기</a></p>
 		            </div>
 		            <div class="card-body">
 		                <table class="table table-hover">
@@ -86,8 +86,8 @@
 		    <div class="col-md-6">
 		        <div class="card shadow-lg border-0 rounded-3">
 		            <div class="card-header text-white" style="background-color: #ff6600; border: 5px;">
-		                <h5 class="m-0">커뮤니티 게시글</h5>
-						<p class="card-text">알빠몬 커뮤니티에 다양한 게시글을 확인해 보세요.<a href="${contextPath}/api/post" class="btn btn-light text-dark border-2 border-dark fw-bold float-end">전체보기</a></p>
+		                <h5 class="m-0" style="font-weight: bold; color: #000000;">커뮤니티 게시글</h5>
+						<p class="card-text" style="color: #000000;">알빠몬 커뮤니티에 다양한 게시글을 확인해 보세요.<a href="${contextPath}/api/post" class="btn btn-light text-dark border-2 border-dark fw-bold float-end">전체보기</a></p>
 		            </div>
 		            <div class="card-body">
 		                <table class="table table-hover">
