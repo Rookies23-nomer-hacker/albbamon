@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath" value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}"/>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +12,7 @@
     <div class="container">
         <h2 class="mt-5">결제 완료!</h2>
         <p>결제가 성공적으로 완료되었습니다.</p>
-        <a href="/" class="btn btn-primary">메인으로 이동</a>
+        <a href="${contextPath}/" class="btn btn-primary">메인으로 이동</a>
     </div>
 </body>
 </html>

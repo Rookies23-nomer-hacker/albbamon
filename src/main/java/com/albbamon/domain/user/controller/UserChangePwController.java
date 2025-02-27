@@ -34,7 +34,7 @@ public class UserChangePwController {
 		}
 		return "/user/changepw";
 	}
-	 //@Value("http://localhost:60085")
+	 //@Value("http://192.168.0.242:60085")
     @Value("${api.base-url}")
     private String apiBaseUrl;
 	@PostMapping("/change-pw")

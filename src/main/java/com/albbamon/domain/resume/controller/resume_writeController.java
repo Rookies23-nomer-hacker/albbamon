@@ -47,9 +47,12 @@ public class resume_writeController {
 	
 	private final RestTemplate restTemplate;
 	
+	
     public resume_writeController(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
+    
+    
     
     @GetMapping("/api/resume")
     public String resume(Model model,HttpServletRequest request){
@@ -169,7 +172,6 @@ public class resume_writeController {
 	    
 		Map<String, Object> data = new HashMap<>();
 		HttpSession session = request.getSession(false);
-		
 		
 		
 		String school = resume_write.getSchool();

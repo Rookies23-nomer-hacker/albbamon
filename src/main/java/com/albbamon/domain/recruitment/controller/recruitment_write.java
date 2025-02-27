@@ -37,6 +37,7 @@ public class recruitment_write {
             model.addAttribute("NotLogin", 1);
             return "user/login";
         }
+        model.addAttribute("apiBaseUrl", apiBaseUrl);
         return "recruitment/recruitment_write";
     }
 

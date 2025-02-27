@@ -1,12 +1,13 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath" value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}"/> 
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>채용 공고 상세</title>
-    <link rel="stylesheet" href="/css/recruitment/recruitment.css">
+    <link rel="stylesheet" href="${contextPath}/css/recruitment/recruitment.css">
 </head>
 <body>
 <%@ include file="/WEB-INF/view/common/header.jsp" %>
@@ -41,7 +42,7 @@
                 <span class="apply-data">${recruitment.dueDate}</span>
             </div>
         </div>
-            <button class="apply-btn" onclick="location.href='/recruitment/${recruitment.id}/apply-info'">지원하기</button>
+            <button class="apply-btn" onclick="location.href='${contextPath}/recruitment/${recruitment.id}/apply-info'">지원하기</button>
     </div>
 </main>
 <%@ include file="/WEB-INF/view/common/footer.jsp" %>

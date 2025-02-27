@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <title>지원서 목록</title>
-    <link rel="stylesheet" href="/css/recruitment/recruitment.css">
+    <link rel="stylesheet" href="${contextPath}/css/recruitment/recruitment.css">
 </head>
 <body>
 <%@ include file="/WEB-INF/view/common/header.jsp" %>
@@ -74,13 +74,13 @@
 <script>
 	function updateStatus(applyId, status) {
 	    const recruitmentId = ${recruitmentId};  // 서버에서 전달된 recruitmentId를 JavaScript로 사용
-
+		var apiBaseUrl = ${apiBaseUrl};
 	    const requestData = {
 	        status: status  // 상태 값만 서버로 보내기
 	    };
 
 	    // API 호출 (POST 요청)
-	    fetch(`http://localhost:60085/api/recruitment/${recruitmentId}/apply/`+applyId+`/status`, {
+	    fetch(`${apiBaseUrl}/api/recruitment/${recruitmentId}/apply/`+applyId+`/status`, {
 	        method: 'POST',
 	        headers: {
 	            'Content-Type': 'application/json'

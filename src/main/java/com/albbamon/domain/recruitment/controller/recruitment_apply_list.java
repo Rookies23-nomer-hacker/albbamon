@@ -81,7 +81,7 @@ public class recruitment_apply_list {
             e.printStackTrace();
         }
         model.addAttribute("applyList", applys);  // List 객체 전달
-
+        model.addAttribute("apiBaseUrl", apiBaseUrl);
         return "recruitment/recruitment_apply_list";
     }
 }

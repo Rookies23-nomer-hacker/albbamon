@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath" value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}"/> 
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>채용 공고 등록</title>
-    <link rel="stylesheet" href="/css/recruitment/recruitment.css">
+    <link rel="stylesheet" href="${contextPath}/css/recruitment/recruitment.css">
 </head>
 <body>
 <%@ include file="/WEB-INF/view/common/header.jsp" %>
@@ -55,7 +57,8 @@
 	    var dueDate = document.getElementById('dueDate').value;
 	    var fileInput = document.getElementById('file');
 	    var userId = '6'; // 세션에서 사용자 ID를 가져옵니다. 예시로 '6' 설정
-
+	    var apiBaseUrl = "${apiBaseUrl}";
+	    
 	    if (!userId) {
 	        alert("로그인한 사용자만 공고를 작성할 수 있습니다.");
 	        return;
@@ -81,7 +84,7 @@
 	}
 
 	function sendToServer(formData) {
-	    fetch('http://localhost:60085/api/recruitment', {
+	    fetch(`${apiBaseUrl}/api/recruitment`, {
 	        method: 'POST',
 	        body: formData, // FormData 객체 전송
 	    })
