@@ -108,8 +108,7 @@ public class recruitment_apply {
         model.addAttribute("user", user);
         model.addAttribute("resumeExists", resumeExists);
         model.addAttribute("isApplied", isApplied);
-
-        System.out.println("*********************888 " + resumeExists + " " + isApplied);
+        model.addAttribute("success", false);
 
         return "recruitment/recruitment_apply";
     }
@@ -125,6 +124,7 @@ public class recruitment_apply {
         }
         Long userId = Long.valueOf((String) session.getAttribute("userid"));
 
+        boolean success = false;
         try {
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
@@ -132,9 +132,13 @@ public class recruitment_apply {
             body = objectMapper.writeValueAsString(requestDto);
             HttpEntity<String> requestEntity = new HttpEntity<>(body, headers);
             restTemplate.postForEntity(apiBaseUrl + "/api/recruitment/" + recruitmentId + "/apply", requestEntity, String.class);
+            success = true;
         } catch (JsonProcessingException e) {
             e.printStackTrace();
+            success = false;
         }
+
+        model.addAttribute("success", success);
 
         return "redirect:/recruitment/list";
     }

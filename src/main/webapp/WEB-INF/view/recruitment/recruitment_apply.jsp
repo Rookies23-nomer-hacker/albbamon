@@ -9,19 +9,6 @@
     <link rel="stylesheet" href="/css/recruitment/recruitment.css">
 </head>
 
-<script>
-    let resumeExists = ${resumeExists};
-    let isApplied = ${isApplied};
-
-    if(!resumeExists) {
-        alert('작성된 이력서가 없습니다. 지원을 위해 이력서를 작성해주세요');
-        location.href='/api/resume'
-    }
-    else if(isApplied) {
-        alert('이미 지원이 완료된 공고입니다');
-    }
-</script>
-
 <body>
 <%@ include file="/WEB-INF/view/common/header.jsp" %>
 <main>
@@ -80,12 +67,16 @@
 
 <script>
     function createApply() {
-        console.log(${isApplied});
-        console.log(${NotLogin});
-        if(${isApplied}) {
-            alert("이미 지원한 공고입니다");
+        let resumeExists = ${resumeExists};
+        let isApplied = ${isApplied};
+
+        if(!resumeExists) {
+            alert('작성된 이력서가 없습니다. 지원을 위해 이력서를 작성해주세요');
+            location.href='/api/resume'
+        } else if(isApplied) {
+            alert('이미 지원이 완료된 공고입니다');
         } else {
-            window.location.href="/recruitment/${recruitment.id}/apply";
+            location.href="/recruitment/${recruitment.id}/apply";
         }
     }
 </script>
