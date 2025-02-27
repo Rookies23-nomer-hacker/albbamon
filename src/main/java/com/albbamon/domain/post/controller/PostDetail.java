@@ -33,7 +33,7 @@ public class PostDetail {
         this.restTemplate = restTemplate;
     }
 
-    @GetMapping("/api/post/{postId}")
+    @GetMapping("/api/post/{postId:\\d+}")
     public String getPostById(@PathVariable("postId") int postId, Model model, HttpSession session) {
         String url = apiBaseUrl + "/api/post/" + postId;
         ResponseEntity<String> response = null;
