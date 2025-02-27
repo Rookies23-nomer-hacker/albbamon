@@ -90,7 +90,7 @@
             <!-- 버튼 -->
             <div class="buttons">
                 <button type="button" onclick="window.history.back();">취소</button>
-                <button type="submit" onclick="location.href=/api/post">수정하기</button>
+                <button type="submit" onclick=>수정하기</button>
             </div>
         </form>
     </main>
