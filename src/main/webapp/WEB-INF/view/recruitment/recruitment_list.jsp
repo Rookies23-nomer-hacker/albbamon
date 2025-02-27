@@ -12,14 +12,14 @@
 <%@ include file="/WEB-INF/view/common/header.jsp" %>
 <main>
     <div class="recruitment-container">
-        <h2 class="title">채용 공고 목록</h2>
+        <h2 class="title" style="font-weight: bold;">채용 공고 목록</h2>
         <div class="card">
             <table class="recruitment-table">
                 <thead>
                 <tr>
                     <th>기업명</th>
                     <th>제목</th>
-                    <th>급여</th>
+                    <th>시급</th>
                     <th>등록일</th>
                 </tr>
                 </thead>
