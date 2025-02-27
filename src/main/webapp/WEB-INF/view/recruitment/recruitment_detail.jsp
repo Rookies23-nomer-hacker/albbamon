@@ -41,6 +41,9 @@
             <span class="apply-label">마감 기한</span>
                 <span class="apply-data">${recruitment.dueDate}</span>
             </div>
+			<div class="apply-row">
+				<img src="${apiBaseUrl}${recruitment.file.substring(recruitment.file.indexOf('/uploads/recruitment/'))}" alt="이미지" class="img-fluid" style="max-width: 100%; height: auto;"/>
+			</div>
         </div>
             <button class="apply-btn" onclick="location.href='${contextPath}/recruitment/${recruitment.id}/apply-info'">지원하기</button>
     </div>

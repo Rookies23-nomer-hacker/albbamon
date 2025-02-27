@@ -47,6 +47,7 @@ public class recruitment_detail {
             Integer wage = recruitmentInfo.path("wage").asInt();
             String userName = recruitmentInfo.path("userName").asText();
             String company = recruitmentInfo.path("company").asText();
+            String file = recruitmentInfo.path("file").asText();
 
             recruitment.put("id", String.valueOf(id));
             recruitment.put("title", title);
@@ -56,10 +57,12 @@ public class recruitment_detail {
             recruitment.put("wage", String.valueOf(wage));
             recruitment.put("userName", userName);
             recruitment.put("company", company);
+            recruitment.put("file", file);
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
-
+        
+        model.addAttribute("apiBaseUrl", apiBaseUrl);
         model.addAttribute("recruitment", recruitment);
 
         return "recruitment/recruitment_detail";
