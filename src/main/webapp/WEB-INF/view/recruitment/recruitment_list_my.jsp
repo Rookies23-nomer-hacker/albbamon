@@ -29,7 +29,7 @@
                         <td><a href="${contextPath}/recruitment/${recruitment.id}">${recruitment.title}</a></td>
                         <td>${recruitment.wage}</td>
                         <td>${recruitment.dueDate}</td>
-                        <td><button class="btn-primary" onclick="location.href='${contextPath}/recruitment/${recruitment.id}/apply_list'">지원서 보기</button></td>
+                        <td><button class="btn-primary" onclick="location.href='${contextPath}/recruitment/list/${recruitment.id}/apply'">지원서 보기</button></td>
                     </tr>
                 </c:forEach>
                 </tbody>
