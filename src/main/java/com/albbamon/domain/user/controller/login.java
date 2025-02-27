@@ -51,11 +51,16 @@ public class login {
 
         // ✅ 응답 로그 출력 (디버깅용)
         System.out.println("API 응답: " + response.getBody());
-
+        if (response.getBody() == null) {
+        	model.addAttribute("error", "이메일 또는 비밀번호가 잘못되었습니다.");
+            
+            return "/user/login"; // 로그인 페이지로 다시 이동
+        }
         HttpSession session = request.getSession(false); // 기존 세션 유지
         if (session == null) {
             session = request.getSession(); // 새 세션 생성 (필요할 때만)
         }
+        System.out.println(response.getBody());
         if (response.getStatusCode() == HttpStatus.OK && response.getBody() != null) {
             LoginResponseDto userDto = om.readValue(response.getBody(), LoginResponseDto.class);
             session.setAttribute("userid", String.valueOf(userDto.getUserId()));
@@ -66,10 +71,8 @@ public class login {
             System.out.println("123::::::::::::"+ session.getAttribute("ceoNum") + "and " + session.getAttribute("item"));
 
             return "redirect:/"; // 메인으로 redirect
-        } else {
-            model.addAttribute("error", "이메일 또는 비밀번호가 잘못되었습니다.");
-            return "api/user/sign-in"; // 로그인 페이지로 다시 이동
         }
+        return "redirect:/";
     }
     @GetMapping("/api/user/log-out")
     public String logout(HttpServletRequest request,HttpServletResponse response) {

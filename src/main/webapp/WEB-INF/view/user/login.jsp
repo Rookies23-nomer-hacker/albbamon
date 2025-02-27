@@ -138,10 +138,15 @@ input:not(:last-child) {
 	}
 
     </style>
-<<<<<<< HEAD
-=======
+    <script>
+        window.onload = function() {
+            var errorMessage = "${error}";
+            if (errorMessage && errorMessage !== "null") {
+                alert(errorMessage);
+            }
+        };
+    </script>
     <script>let NotLogin = "${NotLogin}"; if(NotLogin==1){alert('로그인 해주세요.');}</script>
->>>>>>> branch 'main' of https://github.com/Rookies23-nomer-hacker/albbamon.git
 </head>
 <body>
 
