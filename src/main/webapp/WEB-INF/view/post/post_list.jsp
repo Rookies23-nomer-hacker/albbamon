@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath" value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -131,17 +131,17 @@
                 <option>작성일 순</option>
                 <option>조회수 순</option>
             </select>
-            <form action="/api/post/search" method="get">
+            <form action="${contextPath}/api/post/search" method="get">
 		    <input type="text" name="keyword" placeholder="검색어를 입력하세요">
 		    <button type="submit">검색</button>
 			</form>
        	<c:choose>
             <%-- 로그인한 사용자에게만 글쓰기 버튼 표시 --%>
             <c:when test="${isLoggedIn}">
-                <button onclick="location.href='/api/post/write'" style="background-color: #000000;">글쓰기</button>
+                <button onclick="location.href='${contextPath}/api/post/write'" style="background-color: #000000;">글쓰기</button>
             </c:when>
             <c:otherwise>
-                <button onclick="alert('로그인이 필요합니다.'); location.href='/api/user/sign-in';">글쓰기</button>
+                <button onclick="alert('로그인이 필요합니다.'); location.href='${contextPath}/api/user/sign-in';">글쓰기</button>
             </c:otherwise>
         </c:choose>
         </div>
@@ -159,7 +159,7 @@
                 <c:forEach var="post" items="${posts}" varStatus="status">
                     <li class="post-item">
                         <!-- 게시글 제목 -->
-                        <a href="/api/post/${post.id}" class="post-title">${post.title}</a>
+                        <a href="${contextPath}/api/post/${post.id}" class="post-title">${post.title}</a>
 
                         <!-- 게시글 내용 미리보기 (100자 제한) -->
                         <p>${fn:substring(post.contents, 0, 100)}...</p>

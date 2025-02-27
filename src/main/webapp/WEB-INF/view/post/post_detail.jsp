@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath" value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -200,7 +200,7 @@
                         <%-- ✅ 세션 사용자와 작성자 비교 --%>
                         <c:choose>
                             <c:when test="${sessionUserId == post.userId}">
-                                <a href="/api/post/update/${post.postId}">수정하기</a>
+                                <a href="${contextPath}/api/post/update/${post.postId}">수정하기</a>
                                 <button onclick="deletePost(${post.postId})">삭제하기</button>
                             </c:when>
                             <c:otherwise>
