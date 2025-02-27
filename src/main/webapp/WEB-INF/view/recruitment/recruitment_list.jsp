@@ -17,28 +17,28 @@
             <table class="recruitment-table">
                 <thead>
                 <tr>
-                    <th>제목</th>
-                    <th>시급</th>
-                    <th>마감 기한</th>
                     <th>기업명</th>
+                    <th>제목</th>
+                    <th>급여</th>
+                    <th>등록일</th>
                 </tr>
                 </thead>
                 <tbody>
 					<c:forEach var="recruitment" items="${recruitmentList}">
 					    <c:if test="${recruitment.item == 'Y'}">
 					        <tr onclick="location.href='/recruitment/list/${recruitment.id}';" class="blinking-text" style="cursor:pointer;">
+                                <td style="color: red;">${recruitment.company}</td>
                       			<td style="color: red;">★${recruitment.title}★</td>
 					            <td style="color: red;">${recruitment.wage}</td>
-					            <td style="color: red;">${recruitment.dueDate}</td>
-					            <td style="color: red;">${recruitment.company}</td>
+					            <td style="color: red;">${recruitment.createDate}</td>
 					        </tr>
 					    </c:if>
 					    <c:if test="${recruitment.item != 'Y'}">
 					        <tr onclick="location.href='/recruitment/list/${recruitment.id}';" style="cursor:pointer;">
+                                <td>${recruitment.company}</td>
                       			<td>${recruitment.title}</td>
 					            <td>${recruitment.wage}</td>
-					            <td>${recruitment.dueDate}</td>
-					            <td>${recruitment.company}</td>
+                                <td>${recruitment.createDate}</td>
 					        </tr>
 					    </c:if>
 					</c:forEach>

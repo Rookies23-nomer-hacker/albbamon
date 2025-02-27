@@ -3,9 +3,6 @@ package com.albbamon.domain.recruitment.controller;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
@@ -20,7 +17,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @Controller
 public class recruitment_list {
@@ -28,7 +24,6 @@ public class recruitment_list {
     private final ObjectMapper objectMapper;
     @Value("${api.base-url}")
     private String apiBaseUrl;
-    String body;
 
     @Autowired
     public recruitment_list(RestTemplate restTemplate, ObjectMapper objectMapper) {
@@ -37,39 +32,42 @@ public class recruitment_list {
     }
 
     @GetMapping("/recruitment/list")
-    public String list(Model model, HttpServletRequest request) {
+    public String list(Model model) {
         List<Map<String, String>> recruitments = new ArrayList<>();
         
         try {
         	ResponseEntity<String> responseEntity = restTemplate.getForEntity(apiBaseUrl + "/api/recruitment/list", String.class);
-        	
-            JsonNode rootNode = objectMapper.readTree(responseEntity.getBody());
-            JsonNode recruitmentList = rootNode.path("data").path("recruitmentList");
-
+            JsonNode recruitmentList = objectMapper.readTree(responseEntity.getBody()).path("data").path("recruitmentList");
 
             for(JsonNode recruitment: recruitmentList) {
                 Integer id = recruitment.path("id").asInt();
                 String title = recruitment.path("title").asText();
+                LocalDateTime createDate = LocalDateTime.parse(recruitment.path("createDate").asText());
                 LocalDateTime dueDate = LocalDateTime.parse(recruitment.path("dueDate").asText());
                 String contents = recruitment.path("content").asText();
                 Integer wage = recruitment.path("wage").asInt();
                 String userName = recruitment.path("userName").asText();
+                String company = recruitment.path("company").asText();
+                String file = recruitment.path("file").asText();
                 String item = recruitment.path("item").asText();
 
                 Map<String, String> r = new HashMap<>();
                 r.put("id", String.valueOf(id));
                 r.put("title", title);
+                r.put("createDate", createDate.format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 HH:mm")));
                 r.put("dueDate", dueDate.format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 HH:mm")));
                 r.put("contents", contents);
                 r.put("wage", String.valueOf(wage));
                 r.put("userName", userName);
+                r.put("company", company);
+                r.put("file", file);
                 r.put("item", item);
                 recruitments.add(r);
             }
-            
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         model.addAttribute("recruitmentList", recruitments);  // List 객체 전달
         
         return "recruitment/recruitment_list";
