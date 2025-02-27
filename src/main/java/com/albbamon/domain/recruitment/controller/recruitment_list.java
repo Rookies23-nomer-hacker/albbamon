@@ -11,11 +11,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.client.RestTemplate;
 
+import java.text.NumberFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 @Controller
@@ -52,12 +54,16 @@ public class recruitment_list {
                 String item = recruitment.path("item").asText();
 
                 Map<String, String> r = new HashMap<>();
+                
+                NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.US); // 천 단위 구분 쉼표 추가
+
+                String formattedWage = numberFormat.format(wage); // ✅ 3자리마다 쉼표 추가
                 r.put("id", String.valueOf(id));
                 r.put("title", title);
                 r.put("createDate", createDate.format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 HH:mm")));
                 r.put("dueDate", dueDate.format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 HH:mm")));
                 r.put("contents", contents);
-                r.put("wage", String.valueOf(wage));
+                r.put("wage", formattedWage);
                 r.put("userName", userName);
                 r.put("company", company);
                 r.put("file", file);
