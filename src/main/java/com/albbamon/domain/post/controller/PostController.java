@@ -35,7 +35,7 @@ public class PostController {
         this.objectMapper = objectMapper;
     }
 
-    // 📌 글쓰기 페이지 이동
+    // 📌 글쓰기 페이지 이동//
     @GetMapping("/api/post/write")
     public String writePage(HttpSession session, Model model) {
         System.out.println("📌 글쓰기 페이지 이동 - 현재 세션 ID: " + session.getId());  // ✅ 세션 ID 확인
@@ -45,7 +45,7 @@ public class PostController {
             System.out.println("❌ 세션의 userid 없음 → 로그인 페이지로 이동");
             return "redirect:/api/user/sign-in";
         }
-
+        model.addAttribute("apiBaseUrl", apiBaseUrl);
         System.out.println("✅ 로그인된 사용자 ID: " + userIdObj);
         return "post/post_write";
     }

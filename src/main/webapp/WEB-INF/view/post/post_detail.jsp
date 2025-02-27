@@ -149,10 +149,10 @@
             }
         });
 
-        // ✅ 게시글 삭제 함수
+        // ✅ 게시글 삭제 함수//
         function deletePost(postId) {
 		    if (confirm("정말 삭제하시겠습니까?")) {
-		        fetch(`/api/post/delete/${postId}`, {  // ✅ 절대 경로 사용
+		        fetch(`${contextPath}/api/post/delete/${postId}`, {  // ✅ 절대 경로 사용
 		            method: "DELETE",
 		            headers: {
 		                "Content-Type": "application/json"
@@ -162,7 +162,7 @@
 		        .then(({ status, body }) => {
 		            if (status === 200) {  // ✅ 응답 상태 코드가 200이면 성공
 		                alert("게시글이 삭제되었습니다.");
-		                window.location.href = "/api/post";  // ✅ 게시글 목록으로 이동
+		                window.location.href = `${contextPath}/api/post`;  // ✅ 게시글 목록으로 이동
 		            } else {
 		                alert("삭제에 실패했습니다: " + body);
 		            }
