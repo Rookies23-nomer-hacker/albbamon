@@ -191,6 +191,7 @@
                     <div class="post-meta">
                         <c:out value="${post.userName}" default="익명"/> | <c:out value="${post.createDate}" default="날짜 없음"/>
                     </div>
+                    
                 </div>
 
                 <!-- 📌 메뉴 버튼 -->
@@ -215,6 +216,10 @@
             <div class="post-content">
                 <p><c:out value="${post.contents}" default="내용이 없습니다."/></p>
             </div>
+            <div class="post-img">
+							<img src="${apiBaseUrl}${post.file}" alt="이미지" class="img-fluid" style="max-width: 100%; height: auto;"/>                    
+						                  
+                    </div>
         </div>
     </div>
 

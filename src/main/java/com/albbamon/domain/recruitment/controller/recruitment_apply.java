@@ -93,7 +93,6 @@ public class recruitment_apply {
             String name = userInfo.path("name").asText();
             String email = userInfo.path("email").asText();
             String phone = userInfo.path("phone").asText();
-            System.out.println("이거ㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓ:" + name);
 
             user.put("name", name);
             user.put("email", email);

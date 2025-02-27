@@ -71,6 +71,7 @@ public class PostDetail {
                 post.put("createDate", createDate.substring(0,10) + ' ' + createDate.substring(11, 16));
 
                 model.addAttribute("post", post);
+                model.addAttribute("apiBaseUrl", apiBaseUrl);
 
                 // 세션에서 사용자 ID 가져오기 (for 비교)
                 Object sessionUserId = session.getAttribute("userid");
