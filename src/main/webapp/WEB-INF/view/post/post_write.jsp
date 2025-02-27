@@ -140,7 +140,7 @@
             fetch(`${apiBaseUrl}/api/post/write`, {
                 method: "POST",
                 body: formData,  // ✅ multipart/form-data 자동 설정됨
-                credentials: "include"  // ✅ CORS 해결을 위해 추가
+                credentials: "include"  // ✅ CORS 해결을 위해 추가//
             })
             .then(response => {
                 if (!response.ok) {

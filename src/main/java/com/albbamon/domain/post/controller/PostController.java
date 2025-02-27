@@ -35,7 +35,7 @@ public class PostController {
         this.objectMapper = objectMapper;
     }
 
-    // 📌 글쓰기 페이지 이동
+    // 📌 글쓰기 페이지 이동//
     @GetMapping("/api/post/write")
     public String writePage(HttpSession session, Model model) {
         System.out.println("📌 글쓰기 페이지 이동 - 현재 세션 ID: " + session.getId());  // ✅ 세션 ID 확인

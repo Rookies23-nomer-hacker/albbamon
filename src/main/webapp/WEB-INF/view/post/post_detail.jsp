@@ -149,7 +149,7 @@
             }
         });
 
-        // ✅ 게시글 삭제 함수
+        // ✅ 게시글 삭제 함수//
         function deletePost(postId) {
 		    if (confirm("정말 삭제하시겠습니까?")) {
 		        fetch(`${contextPath}/api/post/delete/${postId}`, {  // ✅ 절대 경로 사용
