@@ -40,14 +40,16 @@ public class recruitment_apply {
                             HttpServletRequest request,
                             Model model) {
         HttpSession session = request.getSession();
-        Long userId = Long.valueOf((String) session.getAttribute("userid"));
-        if(userId == null) {
+        if(session.getAttribute("userid") == null) {
             model.addAttribute("NotLogin", 1);
             return "user/login";
         }
+        Long userId = Long.valueOf((String) session.getAttribute("userid"));
 
         Map<String, String> recruitment = new HashMap<>();
         Map<String, String> user = new HashMap<>();
+        boolean resumeExists = true;
+        boolean isApplied = false;
 
         try {
             // recruitment
@@ -87,16 +89,27 @@ public class recruitment_apply {
             String email = userInfo.path("email").asText();
             String phone = userInfo.path("phone").asText();
 
-            user.put("id", name);
+            user.put("name", name);
             user.put("email", email);
             user.put("phone", phone);
+
+            // isApplied
+            try {
+                isApplied = userRestTemplate.exchange(apiBaseUrl + "/api/recruitment/" + recruitmentId + "/apply/check", HttpMethod.GET, requestEntity, Boolean.class).getBody();
+            } catch (Exception e) {
+                resumeExists = false;
+            }
+
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
 
         model.addAttribute("recruitment", recruitment);
         model.addAttribute("user", user);
-        model.addAttribute("isApplied", true);
+        model.addAttribute("resumeExists", resumeExists);
+        model.addAttribute("isApplied", isApplied);
+
+        System.out.println("*********************888 " + resumeExists + " " + isApplied);
 
         return "recruitment/recruitment_apply";
     }
@@ -106,11 +119,11 @@ public class recruitment_apply {
                               HttpServletRequest request,
                               Model model) {
         HttpSession session = request.getSession();
-        Long userId = Long.valueOf((String) session.getAttribute("userid"));
-        if(userId == null) {
+        if(session.getAttribute("userid") == null) {
             model.addAttribute("NotLogin", 1);
             return "user/login";
         }
+        Long userId = Long.valueOf((String) session.getAttribute("userid"));
 
         try {
             HttpHeaders headers = new HttpHeaders();

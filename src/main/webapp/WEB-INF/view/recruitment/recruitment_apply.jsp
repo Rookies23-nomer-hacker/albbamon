@@ -8,6 +8,20 @@
     <title>지원하기</title>
     <link rel="stylesheet" href="/css/recruitment/recruitment.css">
 </head>
+
+<script>
+    let resumeExists = ${resumeExists};
+    let isApplied = ${isApplied};
+
+    if(!resumeExists) {
+        alert('작성된 이력서가 없습니다. 지원을 위해 이력서를 작성해주세요');
+        location.href='/api/resume'
+    }
+    else if(isApplied) {
+        alert('이미 지원이 완료된 공고입니다');
+    }
+</script>
+
 <body>
 <%@ include file="/WEB-INF/view/common/header.jsp" %>
 <main>
@@ -59,9 +73,21 @@
         </div>
 		</div>
         <!-- 지원하기 버튼 -->
-        <button class="apply-btn" onclick="location.href='/recruitment/${recruitment.id}/apply'">지원하기</button>
+        <button class="apply-btn" onclick="createApply(${recruitment.id})">지원하기</button>
 
 </main>
 <%@ include file="/WEB-INF/view/common/footer.jsp" %>
+
+<script>
+    function createApply() {
+        console.log(${isApplied});
+        console.log(${NotLogin});
+        if(${isApplied}) {
+            alert("이미 지원한 공고입니다");
+        } else {
+            window.location.href="/recruitment/${recruitment.id}/apply";
+        }
+    }
+</script>
 </body>
 </html>
