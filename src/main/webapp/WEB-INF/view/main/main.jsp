@@ -51,7 +51,7 @@
 		        <div class="card shadow-lg border-0 rounded-3">
 		            <div class="card-header text-white" style="background-color: #ff6600; border: 5px;">
 		                <h5 class="m-0">공고 리스트</h5>
-						<p class="card-text">다양한 채용 공고를 확인하고 지원해 보세요.<a href="/recruitment/list" class="btn btn-light text-dark border-2 border-dark fw-bold float-end">전체보기</a></p>
+						<p class="card-text">다양한 채용 공고를 확인하고 지원해 보세요.<a href="${contextPath}/recruitment/list" class="btn btn-light text-dark border-2 border-dark fw-bold float-end">전체보기</a></p>
 		            </div>
 		            <div class="card-body">
 		                <table class="table table-hover">
@@ -67,7 +67,7 @@
 		                            <c:if test="${recruitmentList.indexOf(recruitment) < 5}">
 		                                <tr>
 		                                    <td style="max-width: 200px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
-		                                        <a href="/recruitment/${recruitment.id}/apply" class="text-decoration-none text-body">
+		                                        <a href="${contextPath}/recruitment/${recruitment.id}/apply" class="text-decoration-none text-body">
 		                                            ${recruitment.title}
 		                                        </a>
 		                                    </td>
@@ -87,7 +87,7 @@
 		        <div class="card shadow-lg border-0 rounded-3">
 		            <div class="card-header text-white" style="background-color: #ff6600; border: 5px;">
 		                <h5 class="m-0">커뮤니티 게시글</h5>
-						<p class="card-text">알빠몬 커뮤니티에 다양한 게시글을 확인해 보세요.<a href="/api/post" class="btn btn-light text-dark border-2 border-dark fw-bold float-end">전체보기</a></p>
+						<p class="card-text">알빠몬 커뮤니티에 다양한 게시글을 확인해 보세요.<a href="${contextPath}/api/post" class="btn btn-light text-dark border-2 border-dark fw-bold float-end">전체보기</a></p>
 		            </div>
 		            <div class="card-body">
 		                <table class="table table-hover">
@@ -102,7 +102,7 @@
 		                            <c:if test="${posts.indexOf(post) < 5}">
 		                                <tr>
 		                                    <td style="max-width: 200px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
-		                                        <a href="/api/post/${post.postId}" class="text-decoration-none text-body">
+		                                        <a href="${contextPath}/api/post/${post.postId}" class="text-decoration-none text-body">
 		                                            ${post.title}
 		                                        </a>
 		                                    </td>

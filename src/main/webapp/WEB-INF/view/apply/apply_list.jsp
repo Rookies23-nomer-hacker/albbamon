@@ -1,12 +1,13 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:set var="contextPath" value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}"/>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>지원 현황</title>
-    <link rel="stylesheet" href="/css/recruitment/recruitment.css">
+    <link rel="stylesheet" href="${contextPath}/css/recruitment/recruitment.css">
 </head>
 <body>
 <%@ include file="/WEB-INF/view/common/header.jsp" %>
