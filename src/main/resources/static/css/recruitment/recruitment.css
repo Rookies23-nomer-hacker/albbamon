@@ -70,7 +70,7 @@ body {
 }
 
 .btn-primary {
-    background-color: #007bff;
+    background-color: #ff6600;
     color: white;
     padding: 12px 30px;
     border: none;
@@ -218,6 +218,60 @@ body {
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 20px;
+}
+
+/* 지원서 목록 컨테이너 */
+.apply-list-container {
+    width: 100%;
+    max-width: 1600px;  /* 테이블 최대 너비 제한 */
+    margin: 0 auto;
+    overflow: hidden; /* 가로 스크롤 제거 */
+}
+
+/* 테이블 스타일 */
+.recruitment-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed; /* 컬럼 크기 균등 분배 */
+}
+
+/* 테이블 컬럼 스타일 */
+.recruitment-table th, 
+.recruitment-table td {
+    padding: 8px 10px;
+    font-size: 14px;
+    text-align: center;
+    border: 1px solid #ddd;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* 불합격/합격 버튼 컬럼을 항상 보이도록 고정 */
+.recruitment-table th:last-child, 
+.recruitment-table td:last-child {
+    width: 120px; /* 버튼 컬럼 너비 조정 */
+}
+
+/* 버튼 스타일 */
+.pass-btn, .fail-btn {
+    width: 50px; /* 버튼 크기 줄이기 */
+    padding: 8px;
+    font-size: 12px;
+    text-align: center;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 1500px) {
+    .apply-list-container {
+        overflow-x: auto;
+    }
+
+    .recruitment-table th, 
+    .recruitment-table td {
+        padding: 6px;
+        font-size: 12px;
+    }
 }
 
 

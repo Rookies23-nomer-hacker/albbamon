@@ -13,26 +13,26 @@
 <%@ include file="/WEB-INF/view/common/header.jsp" %>
 <main>
     <div class="">
-        <h2 class="title">지원서 목록</h2>
-        <div class="card">
+        <h2 class="title" style="font-weight: bold; margin-top: 40px;">지원서 목록</h2>
+        <div class="apply-list-container" style="margin-top: 60px;">
             <table class="recruitment-table">
                 <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>지원자명</th>
-                    <th>학력</th>
-                    <th>학력 상태</th>
-                    <th>Personal</th>
-                    <th>근무 지역</th>
-                    <th>근무 도시</th>
-                    <th>산업/직무</th>
-                    <th>고용 형태</th>
-                    <th>근무 기간</th>
-                    <th>근무 일자</th>
-                    <th>포트폴리오</th>
+                    <th style="width: 50px;">ID</th>
+                    <th style="width: 80px;">지원자명</th>
+                    <th style="width: 70px;">학력</th>
+                    <th style="width: 100px;">학력 상태</th>
+                    <th style="width: 80px;">Personal</th>
+                    <th style="width: 100px;">근무 지역</th>
+                    <th style="width: 100px;">근무 도시</th>
+                    <th style="width: 100px;">산업/직무</th>
+                    <th style="width: 100px;">고용 형태</th>
+                    <th style="width: 100px;">근무 기간</th>
+                    <th style="width: 100px;">근무 일자</th>
+                    <th style="width: 500px;">포트폴리오</th>
                     <th>등록일</th>
-                    <th>지원 상태</th>
-					<th>불합격/합격</th>
+                    <th style="width: 100px;">지원 상태</th>
+					<th style="width: 200px;">합격/불합격</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -49,14 +49,52 @@
 					        <td>${apply.employmentType}</td>
 					        <td>${apply.workingPeriod}</td>
 					        <td>${apply.workingDay}</td>
-					        <td>${apply.portfoliourl}</td>
+					        <td>
+					        	<a href="${api_url}/api/resume/download?fileName=${apply.portfolioname}"
+			                       style="text-decoration: none; color: inherit; display: flex; align-items: center;"
+			                       download>
+			                        <img src="https://cdn-icons-png.flaticon.com/512/2991/2991108.png"
+			                             alt="파일 아이콘" width="20" height="20" style="margin-right: 5px;">
+			                        <span>${apply.portfolioname}</span>
+			                    </a>
+					        
+					        </td>
+					        <td>
+					        	<a href="${api_url}/api/resume/download?fileName=${apply.resume_imgname}"
+			                       style="text-decoration: none; color: inherit; display: flex; align-items: center;"
+			                       download>
+			                        <img src="https://cdn-icons-png.flaticon.com/512/2991/2991108.png"
+			                             alt="파일 아이콘" width="20" height="20" style="margin-right: 5px;">
+			                        <span>${apply.resume_imgname}</span>
+			                    </a>
+					        
+					        </td>
 					        <td>${apply.createDate}</td>
 					        <td>${apply.applyStatus}</td>
 					        <td>
-					            <div class="form-check form-switch d-flex justify-content-center">
+					            <div>
 					                <!-- apply.id를 사용하여 버튼에 대한 클릭 이벤트 설정 -->
-									<button class="btnbtn-danger mx-2"onclick="updateStatus(${apply.id}, 'PASSED')">합격</button>
-									<button class="btn btn-danger mx-2" onclick="updateStatus(${apply.id}, 'FAILED')">불합격</button>
+									<button class="" 
+									style="background-color: #ffffff;  /* 흰색 배경 */color: #28a745;  /* 녹색 글씨 */border: 2px solid #28a745; /* 초록색 테두리 */
+										padding: 8px 15px;
+										font-size: 14px;
+									    font-weight: bold;
+									    border-radius: 5px;
+									    cursor: pointer;
+									    text-align: center;
+								    	transition: all 0.3s ease-in-out;
+								    "onclick="updateStatus(${apply.id}, 'PASSED')">합격</button>
+									<button class="" style="background-color: #ffffff;  /* 흰색 배경 */
+									    color: #D33342;  /* 녹색 글씨 */
+									    border: 2px solid #D33342; /* 초록색 테두리 */
+									    padding: 8px 15px;
+									    font-size: 14px;
+									    font-weight: bold;
+									    border-radius: 5px;
+									    cursor: pointer;
+									    text-align: center;
+									    transition: all 0.3s ease-in-out;
+								    "onclick="updateStatus(${apply.id}, 'FAILED')">불합격</button>
 					            </div>
 					        </td>
 					    </tr>
@@ -64,7 +102,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="button-container">
+        <div class="button-container" style="margin-top: 60px;">
             <button class="btn-primary" onclick="location.href='${contextPath}/recruitment/write'">채용 공고 등록</button>
         </div>
     </div>
