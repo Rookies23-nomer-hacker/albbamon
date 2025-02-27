@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath" value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}"/>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -11,7 +13,8 @@
 
     <!-- 포트원 SDK 라이브러리 추가 -->
     <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
-    <script src="/js/payment/payment.js"></script>
+    <script src="${contextPath}/js/payment/payment.js"></script>
+    <script> var apiBaseUrl = "${apiBaseUrl}"; var base_url = "${contextPath}";</script>
 
 </head>
 <body>

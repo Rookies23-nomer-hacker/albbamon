@@ -9,13 +9,11 @@ document.addEventListener("DOMContentLoaded", function() {
     var seconds = today.getSeconds(); // 초
     var milliseconds = today.getMilliseconds();
     var makeMerchantUid = `${hours}${minutes}${seconds}${milliseconds}`; // 고유한 주문번호 생성
-
     // 결제 버튼 클릭 이벤트 핸들러 설정
     document.getElementById('payment').onclick = function() {
         var item = 'Y'; // 결제 성공 시 item 값은 'Y'
         var userId = document.getElementById('payment').getAttribute('data-user-id');
 		console.log(userId);
-		
         // 결제창 호출
         IMP.request_pay({
             pg: "kakaopay.TC0ONETIME", // 결제 PG사
@@ -30,14 +28,14 @@ document.addEventListener("DOMContentLoaded", function() {
                 // 결제 성공 후 DB에 결제 정보 저장 요청
                 savePayment(item, userId);
                 alert('결제 완료!');
-                window.location.href="/payment/success";
+                window.location.href=`${base_url}/payment/success`;
             } else { // 결제 실패 시
                 item = 'fail'; // 결제 실패 시 item 값을 'fail'로 설정
                 console.log(`결제 실패: ${rsp.error_msg}`); // 실패 메시지 출력
                 // 결제 실패 후 DB에 결제 정보 저장 요청
                 savePayment(item, userId);
                 alert(`결제 실패: ${rsp.error_msg}`);
-				window.location.href="/payment/fail";
+				window.location.href=`${base_url}/payment/fail`;
             }
         });
     };
@@ -48,8 +46,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	        item: item,
 	        userId: userId
 	    };
-
-	    fetch('http://localhost:60085/api/payment/updateUserPayStatus', {
+	    fetch(`${apiBaseUrl}/api/payment/updateUserPayStatus`, {
 	        method: 'POST',
 	        headers: {
 	            'Content-Type': 'application/json'

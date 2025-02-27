@@ -1,16 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath" value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}"/>         
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>채용 공고 수정</title>
-    <link rel="stylesheet" href="/css/recruitment/recruitment.css">
+    <link rel="stylesheet" href="${contextPath}/css/recruitment/recruitment.css">
 </head>
 <body>
 <%@ include file="/WEB-INF/view/common/header.jsp" %>
 <main>
-    <form id="recruitmentForm" action="/recruitment/${recruitment.id}/modify", method="POST">
+    <form id="recruitmentForm" action="${contextPath}/recruitment/${recruitment.id}/modify" method="POST">
         <div class="recruitment-container">
             <h2>채용 공고 수정</h2>
             <div>

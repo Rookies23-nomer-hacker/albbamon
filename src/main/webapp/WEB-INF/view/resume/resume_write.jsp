@@ -8,7 +8,7 @@
 <%@ include file="/WEB-INF/view/common/header.jsp" %>
 	<meta charset="UTF-8">
 	<title>이력서 작성</title>
-	<link rel="stylesheet" href="/css/resume/resume.css">
+	<link rel="stylesheet" href="${contextPath}/css/resume/resume.css">
 </head>
 <body>
 	<script src="${contextPath}/js/resume_write.js"></script>

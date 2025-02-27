@@ -7,14 +7,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= request.getAttribute("userName") %>님의 알바몬 회원정보</title>
-    <link rel="stylesheet" type="text/css" href="/css/Info/userinfo.css">
+    <link rel="stylesheet" type="text/css" href="${contextPath}/css/Info/userinfo.css">
 </head>
 <body>
 <%@ include file="/WEB-INF/view/common/header.jsp"%>
 <c:if test="${not empty alertMessage}">
     <script>
         alert("${alertMessage}");
-        window.location.href = "/"; // ✅ 메인 페이지로 이동
+        window.location.href = `${contextPath}/`; //// ✅ 메인 페이지로 이동
     </script>
 </c:if>
 <main class="custom-war">

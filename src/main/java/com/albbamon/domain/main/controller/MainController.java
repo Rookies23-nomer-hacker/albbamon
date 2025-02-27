@@ -1,11 +1,13 @@
 package com.albbamon.domain.main.controller;
 
+import java.text.NumberFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +36,7 @@ public class MainController {
     private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper;
     
-    //@Value("http://localhost:60085")
+    //@Value("http://192.168.0.242:60085")
     @Value("${api.base-url}")
     private String apiBaseUrl;
 
@@ -71,11 +73,14 @@ public class MainController {
                 String userName = recruitment.path("userName").asText();
 
                 Map<String, String> r = new HashMap<>();
+                NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.US); // 천 단위 구분 쉼표 추가
+
+                String formattedWage = numberFormat.format(wage); // ✅ 3자리마다 쉼표 추가
                 r.put("id", String.valueOf(id));
                 r.put("title", title);
                 r.put("dueDate", dueDate.format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 HH:mm")));
                 r.put("contents", contents);
-                r.put("wage", String.valueOf(wage));
+                r.put("wage", formattedWage);
                 r.put("userName", userName);
                 recruitments.add(r);
             }

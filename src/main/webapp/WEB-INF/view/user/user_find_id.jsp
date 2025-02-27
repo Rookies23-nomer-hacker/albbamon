@@ -34,7 +34,7 @@
 						<label class="radio_label"><input type="radio"name="find-method" value="ipin" ><span class="radio_text">아이핀(i-pin)으로 찾기</span></label>
 					</div>
 					
-<form action="/find-id" method="POST">
+<form action="${contextPath}/find-id" method="POST">
 					<div id="contact-form">
 						<div class="text-box">
 							<span class="text">회원정보에 등록된 연락처로 아이디를 찾을 수 있습니다.</span>
@@ -57,7 +57,7 @@
 					</div>
 					<button type="submit" class="submit-btn">다음</button>
 				</form>
-					<form action="/find-id" method="POST">
+					<form action="${contextPath}/find-id" method="POST">
 					<div id="email-form">
 						<div class="text-box">
 							<span class="text">회원정보에 등록된 이메일로 아이디를 찾을 수 있습니다.</span>
@@ -90,7 +90,7 @@
 			</div>
 			<!-- 기업회원 입력 폼 -->
 			<div id="CORPORATION">
-				<form action="/find-id" method="POST">
+				<form action="${contextPath}/find-id" method="POST">
 					<!-- 인증 방법 선택 (연락처, 이메일, 본인인증 등) -->
 					<div class="auth-methods">
 						<label class="radio_label"><input type="radio"name="find-method" value="contact" checked><span class="radio_text">사업자등록번호로 찾기</span></label>

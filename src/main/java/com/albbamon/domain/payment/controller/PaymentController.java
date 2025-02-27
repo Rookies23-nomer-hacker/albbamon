@@ -2,6 +2,7 @@ package com.albbamon.domain.payment.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,12 +16,16 @@ import lombok.RequiredArgsConstructor;
 @Controller
 @RequestMapping("/payment")
 public class PaymentController {
+	
+	@Value("${api.base-url}")
+    private String apiBaseUrl;
 
 	private static final Logger logger = LoggerFactory.getLogger(PaymentController.class);
 	
     // 결제 페이지로 이동하는 메서드
     @GetMapping("/payment")
     public String getPaymentPage(Model model) {
+    	model.addAttribute("apiBaseUrl",apiBaseUrl);
         return "payment/payment";  // JSP 파일을 반환합니다. paymentPage.jsp
     }
 
