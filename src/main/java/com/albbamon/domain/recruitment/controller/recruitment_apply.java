@@ -41,12 +41,12 @@ public class recruitment_apply {
     public String applyInfo(@PathVariable("recruitmentId") Long recruitmentId,
                             HttpServletRequest request,
                             Model model) {
-        HttpSession session = request.getSession();
-        Long userId = Long.valueOf((String) session.getAttribute("userid"));
-        if(userId == null) {
+        HttpSession session = request.getSession();        
+        if(session.getAttribute("userid") == null) {
             model.addAttribute("NotLogin", 1);
             return "user/login";
         }
+        Long userId = Long.valueOf((String) session.getAttribute("userid"));
 
         Map<String, String> recruitment = new HashMap<>();
         Map<String, String> user = new HashMap<>();
@@ -91,7 +91,6 @@ public class recruitment_apply {
             String name = userInfo.path("name").asText();
             String email = userInfo.path("email").asText();
             String phone = userInfo.path("phone").asText();
-            System.out.println("이거ㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓㅓ:" + name);
 
             user.put("name", name);
             user.put("email", email);
