@@ -35,10 +35,12 @@
 		        <span class="text-danger">*</span>
 		        <input type="datetime-local" class="form-control" id="dueDate" name="dueDate" value="${recruitment.dueDate}" />
 		    </div>
+		    <!-- 
 		    <div class="form-group">
 		    	<label for="file" style="margin-top: 30px;" >파일</label>
 		    	<input type="file" class="form-control-file" id="file" name="file">
-		    </div>
+		    </div> 
+		    -->
 		</div>
            <div class="form-group text-center">
                <button class="btn btn-lg" style="color: #ffffff; background-color: #ff6600; margin-top: 40px;" type="submit">

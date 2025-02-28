@@ -5,6 +5,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<script>
+		window.onload = function() {
+		    var successMessage = "${successMessage}";
+		    if (successMessage && successMessage !== "null") {
+		        alert(successMessage);
+		    }
+		};
+	</script>
     <meta charset="UTF-8">
     <title>나의 채용 공고</title>
     <link rel="stylesheet" href="${contextPath}/css/recruitment/recruitment.css">

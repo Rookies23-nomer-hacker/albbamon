@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -71,7 +72,8 @@ public class recruitment_modify {
     public String updateRecruitment(@ModelAttribute("updateRecruitmentRequestDto") UpdateRecruitmentRequestDto updateRecruitmentRequestDto,
                                     @PathVariable("recruitmentId") final Long recruitmentId,
                                     HttpServletRequest request,
-                                    Model model) {
+                                    Model model,
+                                    RedirectAttributes redirectAttributes) {
         HttpSession session = request.getSession();
         if(session.getAttribute("userid") == null) {
             model.addAttribute("NotLogin", 1);
@@ -86,6 +88,7 @@ public class recruitment_modify {
             body = objectMapper.writeValueAsString(updateRecruitmentRequestDto);
             HttpEntity<String> requestEntity = new HttpEntity<>(body, headers);
             restTemplate.postForEntity(apiBaseUrl + "/api/recruitment/" + recruitmentId , requestEntity, String.class);
+            redirectAttributes.addFlashAttribute("successMessage", "공고가 성공적으로 수정되었습니다!");
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
