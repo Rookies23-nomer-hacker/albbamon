@@ -7,7 +7,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>알바몬</title>
-
 </head>
 
 <style>
@@ -49,15 +48,33 @@
         padding: 10px 30px;
     }
 
-    .container2 {
+    /* 주황색 테두리 스타일 */
+    .container-wrapper {
         width: 80%;
         max-width: 800px;
-        margin: 20px auto;
-        padding: 20px;
+        margin: 50px auto 10px;
+        padding: 30px 20px;
+        border: 2px solid #ff4500;
+        border-radius: 10px;
+        background-color: white;
+        position: relative; /* 제목을 테두리 밖으로 빼기 위해 설정 */
     }
 
-    h2 {
-        margin-bottom: 20px;
+    /* 제목을 테두리 밖으로 이동 */
+    .title-container {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: -10px;
+        width: 80%;
+        max-width: 800px;
+        margin: 0 auto 10px;
+        text-align: left;
+    }
+
+    /* 입력 폼 스타일 */
+    .container2 {
+        width: 100%;
+        margin: 0 auto;
     }
 
     label {
@@ -78,10 +95,20 @@
         height: 150px;
     }
 
-    .buttons {
+    /* 버튼 부분 테두리에서 분리 */
+    .button-wrapper {
+        width: 80%;
+        max-width: 800px;
+        margin: 0 auto;
         display: flex;
         justify-content: space-between;
-        margin-top: 20px;
+        margin-top: 10px;
+    }
+
+    .buttons {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
     }
 
     .buttons button {
@@ -103,63 +130,73 @@
 <body>
     <%@ include file="/WEB-INF/view/common/header.jsp" %>
 
-    <main class="container2">
-        <form id="writeForm" enctype="multipart/form-data">
-            <h2>알바경험담 작성</h2>
+    <!-- 제목을 테두리 밖으로 배치 -->
+    <div class="title-container">
+        <h2>알바경험담 작성</h2>
+    </div>
 
-            <label for="title">제목</label>
-            <input type="text" id="title" name="title" placeholder="제목을 입력해 주세요." required>
+    <main class="container-wrapper">
+        <div class="container2">
+            <form id="writeForm" enctype="multipart/form-data">
+                <label for="title">제목</label>
+                <input type="text" id="title" name="title" placeholder="제목을 입력해 주세요." required>
 
-            <label for="contents">내용</label>
-            <textarea id="contents" name="contents" placeholder="내용을 입력하세요." required></textarea>
+                <label for="contents">내용</label>
+                <textarea id="contents" name="contents" placeholder="내용을 입력하세요." required></textarea>
 
-            <label for="file">이미지 (선택)</label>
-            <input type="file" id="file" name="file">
-
-            <div class="buttons">
-                <button type="button" onclick="window.history.back();">취소</button>
-                <button type="submit" id="submit" data-user-id="${sessionScope.userid}">등록</button>
-            </div>
-        </form>
+                <label for="file">이미지 (선택)</label>
+                <input type="file" id="file" name="file">
+            </form>
+        </div>
     </main>
 
-    <script>
-        document.getElementById("writeForm").addEventListener("submit", function(event) {
-            event.preventDefault();
-            submitForm();
+    <!-- 버튼을 테두리 밖으로 배치 -->
+    <div class="button-wrapper">
+    <div class="buttons">
+        <button type="button" onclick="window.history.back();">취소</button>
+        <button type="button" id="submit" data-user-id="${sessionScope.userid}">등록</button>
+    </div>
+</div>
+
+<script>
+    document.getElementById("submit").addEventListener("click", function() {
+        document.getElementById("writeForm").dispatchEvent(new Event("submit", { cancelable: true }));
+    });
+
+    document.getElementById("writeForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+        submitForm();
+    });
+
+    function submitForm() {
+        var form = document.getElementById("writeForm");
+        var apiBaseUrl = "${apiBaseUrl}";
+        var formData = new FormData(form);
+        var userId = document.getElementById('submit').getAttribute('data-user-id');
+        formData.append("userId", userId);
+
+        fetch(`${apiBaseUrl}/api/post/write`, {
+            method: "POST",
+            body: formData,
+            credentials: "include"
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("서버 응답 오류");
+            }
+            return response.json();
+        })
+        .then(result => {
+            console.log("✅ 게시글 등록 성공:", result);
+            alert("게시글이 성공적으로 등록되었습니다!");
+            window.location.href = `${contextPath}/api/post`;
+        })
+        .catch(error => {
+            console.error("❌ 게시글 등록 실패:", error);
+            alert("게시글 등록에 실패했습니다. 다시 시도해주세요.");
         });
-
-        function submitForm() {
-            var form = document.getElementById("writeForm");
-            var apiBaseUrl = "${apiBaseUrl}";
-            alert(apiBaseUrl);
-            var formData = new FormData(form);  // ✅ form 요소로부터 직접 FormData 생성
-            var userId = document.getElementById('submit').getAttribute('data-user-id');
-            formData.append("userId", userId); // 예시값, 실제 로그인된 사용자 ID를 사용해야 함.
-
-            fetch(`${apiBaseUrl}/api/post/write`, {
-                method: "POST",
-                body: formData,  // ✅ multipart/form-data 자동 설정됨
-                credentials: "include"  // ✅ CORS 해결을 위해 추가//
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("서버 응답 오류");
-                }
-                return response.json();
-            })
-            .then(result => {
-                console.log("✅ 게시글 등록 성공:", result);
-                alert("게시글이 성공적으로 등록되었습니다!");
-                window.location.href = `${contextPath}/api/post`;  // ✅ 등록 후 게시글 목록으로 이동
-            })
-            .catch(error => {
-                console.error("❌ 게시글 등록 실패:", error);
-                alert("게시글 등록에 실패했습니다. 다시 시도해주세요.");
-            });
-        }
-    </script>
-
+    }
+</script>
 
     <%@ include file="/WEB-INF/view/common/footer.jsp" %>
 </body>

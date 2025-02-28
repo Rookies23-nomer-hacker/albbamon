@@ -24,15 +24,25 @@
         color: black;
     }
 
-    .container2 {
+    /* 주황색 테두리 스타일 추가 */
+    .container-wrapper {
         width: 80%;
         max-width: 800px;
-        margin: 20px auto;
-        padding: 20px;
+        margin: 50px auto;
+        padding: 30px 20px;
+        border: 2px solid #ff4500;
+        border-radius: 10px;
+        background-color: white;
     }
 
-    h2 {
-        margin-bottom: 20px;
+    /* 제목을 테두리 시작점과 정렬 */
+    .title-container {
+        font-size: 24px;
+        font-weight: bold;
+        width: 80%;
+        max-width: 800px;
+        margin: 0 auto 10px;
+        text-align: left;
     }
 
     label {
@@ -46,16 +56,27 @@
         padding: 10px;
         margin-top: 5px;
         border: 1px solid #ddd;
+        border-radius: 5px;
     }
 
     textarea {
         height: 150px;
     }
 
-    .buttons {
+    /* 버튼 부분 테두리에서 분리 */
+    .button-wrapper {
+        width: 80%;
+        max-width: 800px;
+        margin: 0 auto;
         display: flex;
         justify-content: space-between;
-        margin-top: 20px;
+        margin-top: 10px;
+    }
+
+    .buttons {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
     }
 
     .buttons button {
@@ -64,18 +85,27 @@
         color: white;
         border: none;
         cursor: pointer;
+        padding: 10px;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    .buttons button:hover {
+        background: #e03d00;
     }
 </style>
 
 <body>
     <%@ include file="/WEB-INF/view/common/header.jsp" %>
 
-    <main class="container2">
-        <!-- 수정된 폼: enctype 제거 (파일 전송 없음), action 경로 확인 -->
-        <form id="editForm" action="${contextPath}/api/post/update/${post.postId}" method="POST">
-        
-            <h2>게시글 수정</h2>
+    <!-- 제목을 테두리 시작점과 정렬 -->
+    <div class="title-container">
+        <h2>게시글 수정</h2>
+    </div>
 
+    <!-- 주황색 테두리 추가 -->
+    <main class="container-wrapper">
+        <form id="editForm" action="${contextPath}/api/post/update/${post.postId}" method="POST">
             <!-- 유저 ID를 숨겨서 전송 -->
             <input type="hidden" id="userId" name="userId" value="${sessionScope.loggedInUserId}">
 
@@ -86,14 +116,22 @@
             <!-- 내용 -->
             <label for="contents">내용</label>
             <textarea id="contents" name="contents" placeholder="내용을 입력하세요." required>${post.contents}</textarea>
-
-            <!-- 버튼 -->
-            <div class="buttons">
-                <button type="button" onclick="window.history.back();">취소</button>
-                <button type="submit" onclick=>수정하기</button>
-            </div>
         </form>
     </main>
+
+    <!-- 버튼을 테두리 밖으로 배치 -->
+    <div class="button-wrapper">
+        <div class="buttons">
+            <button type="button" onclick="window.history.back();">취소</button>
+            <button type="submit" id="updateSubmit">수정하기</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("updateSubmit").addEventListener("click", function() {
+            document.getElementById("editForm").submit();
+        });
+    </script>
 
     <%@ include file="/WEB-INF/view/common/footer.jsp" %>
 </body>

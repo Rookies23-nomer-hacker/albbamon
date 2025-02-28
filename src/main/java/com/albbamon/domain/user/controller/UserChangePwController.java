@@ -34,7 +34,7 @@ public class UserChangePwController {
 		}
 		return "/user/changepw";
 	}
-	 //@Value("http://192.168.0.242:60085")
+
     @Value("${api.base-url}")
     private String apiBaseUrl;
 	@PostMapping("/change-pw")
@@ -44,18 +44,16 @@ public class UserChangePwController {
 	        @RequestParam("newpasswdcheck") String newpasswdcheck,
 	        HttpServletRequest request,
 	        Model model) {
-	    System.out.println("📌 현재 비밀번호: " + passwd);
-	    System.out.println("📌 새 비밀번호: " + newpasswd);
-	    System.out.println("📌 새 비밀번호 확인: " + newpasswdcheck);
+
 	    HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
   
         
-	    HttpSession session = request.getSession(false); // 기존 세션 유지
+	    HttpSession session = request.getSession(false);
         if (session == null) {
             session = request.getSession(); // 새 세션 생성 (필요할 때만)
         }
-        System.out.println(session.getAttribute("userid"));
+
         Object userIdObj = session.getAttribute("userid");
         Long userId = null;
 
@@ -66,7 +64,6 @@ public class UserChangePwController {
         } else {
             throw new IllegalArgumentException("세션에서 올바른 userId를 찾을 수 없습니다.");
         }
-        System.out.println("testet"+userId);
         
 	    //새 비밀번호와 새 비밀번호 확인 일치 여부 검증하는 부분.
 	    if (!newpasswd.equals(newpasswdcheck)) {
@@ -81,36 +78,32 @@ public class UserChangePwController {
 //	    }
 	    
 	    String apiUrl = apiBaseUrl + "/api/user/change-pw";
-	    System.out.println("testet"+userId);
-	 // ✅ ChangePwRequestDto 객체 생성
+
 	    ChangePwRequestDto requestDto = new ChangePwRequestDto(userId, passwd, newpasswd);
 
-
-	    // ✅ 요청 객체 생성
 	    HttpEntity<ChangePwRequestDto> requestEntity = new HttpEntity<>(requestDto, headers);
 	    RestTemplate restTemplate = new RestTemplate();
 	    
 	    try {
-	    	System.out.println("testet"+userId);
+
 	        ResponseEntity<ChangePwResponseDto> response = restTemplate.exchange(
 	                apiUrl,
 	                HttpMethod.POST,
 	                requestEntity,
 	                ChangePwResponseDto.class
 	        );
-
-	        if (response.getStatusCode() == HttpStatus.OK && response.getBody() != null) {
-	            model.addAttribute("success", response.getBody().getMessage());
-	            return "change-pw-success"; // ✅ 성공 시 결과 페이지
+	        
+	        if (response.getStatusCode() == HttpStatus.OK && response.getBody().getMessage() == "비밀번호 변경 성공!") {
+	        	model.addAttribute("error", response.getBody().getMessage());
+	            return "user/changepw";
 	        } else {
-	            model.addAttribute("error", "비밀번호 변경 실패: " + response.getBody().getMessage());
+	            model.addAttribute("error",response.getBody().getMessage());
 	        }
 	    } catch (Exception e) {
 	        model.addAttribute("error", "서버와의 통신 중 오류가 발생했습니다.");
 	        System.err.println("❌ API 요청 중 오류 발생: " + e.getMessage());
 	    }
-
-	    return "password-change-result";  // 결과를 보여줄 JSP 페이지
+	    return "user/changepw";
 	}
 	//비밀번호 보안 정책 검증 메서드
 	private boolean isValidPassword(String password) {
