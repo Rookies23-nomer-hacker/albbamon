@@ -29,7 +29,7 @@
                     <th style="width: 100px;">고용 형태</th>
                     <th style="width: 100px;">근무 기간</th>
                     <th style="width: 100px;">근무 일자</th>
-                    <th style="width: 500px;">포트폴리오</th>
+                    <th style="width: 200px;">포트폴리오</th>
                     <th>등록일</th>
                     <th style="width: 100px;">지원 상태</th>
 					<th style="width: 200px;">합격/불합격</th>
@@ -59,7 +59,7 @@
 			                    </a>
 					        
 					        </td>
-					        <td>
+<%-- 					        <td>
 					        	<a href="${api_url}/api/resume/download?fileName=${apply.resume_imgname}"
 			                       style="text-decoration: none; color: inherit; display: flex; align-items: center;"
 			                       download>
@@ -68,7 +68,7 @@
 			                        <span>${apply.resume_imgname}</span>
 			                    </a>
 					        
-					        </td>
+					        </td> --%>
 					        <td>${apply.createDate}</td>
 					        <td>${apply.applyStatus}</td>
 					        <td>

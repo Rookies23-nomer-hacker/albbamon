@@ -42,7 +42,7 @@
             <!-- 로그인된 상태에서 '로그인' 버튼 숨기고, '로그아웃' 버튼 표시 -->
             <div class="d-flex flex-column flex-md-row align-items-center">
                 <c:if test="${empty sessionScope.email}">
-                    <button type="button" class="btn btn-warning mb-2 mb-md-0" style="background-color: #FF6600; border-color: #FF6600 !important; stroke: #FF6600 !important; outline: none !important; color: #FFFFFF; border-radius: 30px; font-size: 17px;" onclick="location.href='${contextPath}/api/user/sign-in'">로그인</button>
+                    <button type="button" class="btn mb-2 mb-md-0" style="background-color: #FF6600; border-color: #FF6600 !important; stroke: #FF6600 !important; outline: none !important; color: #FFFFFF; border-radius: 30px; font-size: 17px;" onclick="location.href='${contextPath}/api/user/sign-in'">로그인</button>
                     <button type="button" class="btn btn-dark ms-2" style="border-radius: 30px; font-size: 15px; font-size: 17px" onclick="location.href='${contextPath}/api/user/join'">회원가입</button>
                 </c:if>
 
@@ -59,7 +59,7 @@
                         </c:if>
                     </p>
                     
-                    <button type="button" class="btn btn-warning ms-2" style=" background-color: #FF6600; color: #FFFFFF; border-radius: 30px; font-size: 15px;" onclick="location.href='${contextPath}/api/user/log-out'">로그아웃</button>
+                    <button type="button" class="btn ms-2" style=" background-color: #FF6600; color: #FFFFFF; border-radius: 30px; font-size: 15px;" onclick="location.href='${contextPath}/api/user/log-out'">로그아웃</button>
                     <button type="button" class="btn btn-dark ms-2" style="border-radius: 30px; font-size: 15px;" onclick="location.href='${contextPath}/api/user/account'">마이 페이지</button>
                 </c:if>
             </div>

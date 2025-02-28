@@ -17,10 +17,10 @@
             <table class="recruitment-table">
                 <thead>
                 <tr>
-                    <th>제목</th>
-                    <th>시급</th>
-                    <th>마감 기한</th>
-                    <th>지원서 목록</th>
+                    <th style="width: 25%;">제목</th>
+                    <th style="width: 20%;">시급</th>
+                    <th style="width: 25%;">마감 기한</th>
+                    <th style="width: 30%;">지원서 목록</th>
                 </tr>
                 </thead>
                 <tbody>

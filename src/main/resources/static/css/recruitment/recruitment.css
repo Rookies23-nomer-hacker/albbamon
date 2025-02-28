@@ -27,7 +27,8 @@ body {
 
 .card {
     margin-top: 20px;
-    width: 100%;
+    width: 80%;
+    margin-left: 11%;
 
 }
 
@@ -81,7 +82,7 @@ body {
 }
 
 .btn-primary:hover {
-    background-color: #0056b3;
+    background-color: #ff6600;
 }
 
 /* 반응형 디자인 */
