@@ -16,7 +16,7 @@
 
 <main class="container mt-5">
     <h2 class="text-center">채용 공고 등록</h2>
-    <form id="recruitmentForm" enctype="multipart/form-data" onsubmit="event.preventDefault(); submitForm();">
+    <form id="recruitmentForm" enctype="multipart/form-data" onsubmit="event.preventDefault();">
         <div class="card p-4">
             <h3 class="mb-4">모집 내용</h3>
             
@@ -51,7 +51,7 @@
             </div>
 
             <div class="form-group text-center">
-                <button type="submit" class="btn btn-primary btn-lg" id="submit" data-user-id="${sessionScope.userid}">공고 저장</button>
+                <button class="btn btn-primary btn-lg" onclick="submitForm()">공고 저장</button>
             </div>
         </div>
     </form>
@@ -63,52 +63,54 @@
 
 <script>
     function submitForm() {
-        var form = document.getElementById('recruitmentForm');
-        var title = document.getElementById('title').value;
-        var contents = document.getElementById('contents').value;
-        var wage = document.getElementById('wage').value;
-        var dueDate = document.getElementById('dueDate').value;
-        var fileInput = document.getElementById('file');
-        var userId = document.getElementById('submit').getAttribute('data-user-id');
-        var apiBaseUrl = "${apiBaseUrl}";
-        
-        if (!userId) {
+        console.log(${sessionScope.userid})
+        if (!${sessionScope.userid}) {
             alert("로그인한 사용자만 공고를 작성할 수 있습니다.");
             return;
         }
 
-        // FormData 객체 생성 (파일과 텍스트 데이터를 함께 전송)
-        var formData = new FormData();
-        formData.append("title", title);
-        formData.append("contents", contents);
-        formData.append("wage", wage);
-        formData.append("dueDate", dueDate);  // 날짜는 '2025-04-20T00:00:00' 형식으로 서버에 전송됨.
-        formData.append("userId", userId);
+        const formData = new FormData();
 
-        // 파일이 있으면 FormData에 추가
+        // requestDto
+        const requestDto = {
+            "title": document.getElementById('title').value,
+            "contents": document.getElementById('contents').value,
+            "wage": document.getElementById('wage').value,
+            "dueDate": document.getElementById('dueDate').value,
+            "userId": ${sessionScope.userid}
+        };
+        const blob = new Blob([JSON.stringify(requestDto)], {
+            type: 'application/json',
+        });
+        formData.append('requestDto', blob);
+
+        // file
+        var fileInput = document.getElementById('file');
         if (fileInput.files.length > 0) {
-            formData.append("file", fileInput.files[0]); // 파일을 FormData에 추가
+            formData.append("file", fileInput.files[0]);
         }
 
-        // 서버로 FormData 전송
         sendToServer(formData);
     }
 
     function sendToServer(formData) {
         fetch(`${apiBaseUrl}/api/recruitment`, {
             method: 'POST',
-            body: formData, // FormData 객체 전송
+            body: formData
         })
-        .then(response => response.json()) // 응답을 JSON 형식으로 처리
-        .then(result => {
-            console.log('공고 등록 성공:', result);
-			window.location.href=`${base_url}/recruitment/list`;
-        })
-        .catch(error => {
-            console.error('공고 등록 실패:', error);
-        });
+            .then(response => response.json())
+            .then(result => {
+                console.log('공고 등록 성공:', result);
+                alert('공고가 성공적으로 등록되었습니다.');
+                window.location.href = `${base_url}/recruitment/list`;
+            })
+            .catch(error => {
+                console.error('공고 등록 실패:', error);
+                alert('공고 등록에 실패했습니다.');
+            });
     }
 </script>
+
 
 <%@ include file="/WEB-INF/view/common/footer.jsp" %>
 </body>
