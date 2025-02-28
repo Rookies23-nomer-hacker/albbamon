@@ -11,12 +11,17 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/view/common/header.jsp"%>
-<c:if test="${not empty alertMessage}">
     <script>
-        alert("${alertMessage}");
-        window.location.href = `${contextPath}/`; //// ✅ 메인 페이지로 이동
+    window.onload = function() {
+        var errorMessage = "${error}";
+        if (errorMessage && errorMessage !== "null") {
+            alert(errorMessage);
+            window.location.href = `${contextPath}/`; //// ✅ 메인 페이지로 이동
+        }
+    };
+        
     </script>
-</c:if>
+
 <main class="custom-war">
 <span class="custom-title"><%= request.getAttribute("name") %>님의 알바몬 회원정보</span>
     <div class="custom-container">
