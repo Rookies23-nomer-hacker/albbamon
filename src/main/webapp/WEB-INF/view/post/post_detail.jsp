@@ -6,7 +6,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>게시글 보기</title>
+    <title>알바경험담 보기</title>
     <style>
         /* 헤더 스타일 */
         .header-wrapper {

@@ -6,7 +6,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= request.getAttribute("userName") %>님의 알바몬 회원정보</title>
+   <%--  <title><%= request.getAttribute("userName") %>님의 알바몬 회원정보</title> --%>
+   <title>알바몬 회원정보</title>
     <link rel="stylesheet" type="text/css" href="${contextPath}/css/Info/userinfo.css">
 </head>
 <body>

@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>지원하기</title>
+    <title>공고 지원하기</title>
     <link rel="stylesheet" href="/css/recruitment/recruitment.css">
 </head>
 
