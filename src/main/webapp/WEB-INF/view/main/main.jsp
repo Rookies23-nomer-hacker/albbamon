@@ -17,7 +17,7 @@
 	    }
 	</style>
 </head>
-<body style="background-color: #f1f3f5;">
+<body style="background-color: #ffffff;">
 
     <%@ include file="/WEB-INF/view/common/header.jsp" %>
 

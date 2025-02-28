@@ -124,9 +124,9 @@
         font-size: 16px;
     }
 
-    .buttons button:hover {
+/*     .buttons button:hover {
         background: #e03d00;
-    }
+    } */
 </style>
 
 <body>
@@ -134,7 +134,7 @@
 
     <!-- 제목을 테두리 밖으로 배치 -->
     <div class="title-container">
-        <h2 style="font-weight: bold;">알바경험담 작성</h2>
+        <h2 style="font-weight: bold; margin-top: 40px;">알바경험담 작성</h2>
     </div>
 
     <main class="container-wrapper">

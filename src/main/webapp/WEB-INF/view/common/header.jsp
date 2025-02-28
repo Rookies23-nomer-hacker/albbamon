@@ -18,7 +18,9 @@
 </head>
 <body>
 
-<header class="p-3" style="background-color: #FFFFFF; color: white;">
+<header class="" style="padding: 1rem !important;
+    margin-top: 20px;
+    margin-bottom: 20px;background-color: #FFFFFF; color: white;">
     <div class="container-fluid">
         <div class="d-flex justify-content-between align-items-center">
             <a href="/">
@@ -70,6 +72,7 @@
 <!-- Bootstrap JS and Popper.js CDN -->
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
-
+<div style="border-bottom: 3px solid #eee;">
+</div>
 </body>
 </html>
