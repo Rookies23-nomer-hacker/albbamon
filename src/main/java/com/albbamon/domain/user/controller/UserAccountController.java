@@ -33,6 +33,7 @@ public class UserAccountController {
     public String getUserAccount(HttpServletRequest request, Model model) {
 
         HttpSession session = request.getSession(false);
+        System.out.println(session.getAttribute("userid"));
         if (session == null || session.getAttribute("userid") == null) {
             model.addAttribute("error", "로그인이 필요합니다.");
             return "/user/account"; // 로그인 페이지 또는 오류 

@@ -18,11 +18,14 @@
 </head>
 <body>
 
-<header class="p-3" style="background-color: #FFFFFF; color: white;">
+<header class="" style="padding: 1rem !important;
+    margin-top: 20px;
+    margin-bottom: 20px;background-color: #FFFFFF; color: white;">
     <div class="container-fluid">
         <div class="d-flex justify-content-between align-items-center">
-            <a href="/">
-                <img src="/img/albbamonlog.png" alt="Albbamon Logo" style="max-width: 100%; height: auto;">
+            <a href="/"><!-- 
+	               <img src="/img/winter.jpg" alt="Albbamon Logo" style="max-width: 20%; height: auto;"> -->
+                <img src="/img/albbamonlog.png" alt="Albbamon Logo" style="max-width: 80%; height: auto;">
             </a>
 
             <ul class="nav mb-2 justify-content-center mb-md-0 d-flex flex-wrap">
@@ -37,6 +40,11 @@
 	                	</c:if>
 					</c:if>
 				</c:if>
+				<c:if test="${empty sessionScope.ceoNum}">
+					<c:if test="${not empty sessionScope.email}">
+						<li><a href="${contextPath}/api/resume/write" class="nav-link px-2 text-black" style="font-weight: bold; font-size: 20px; margin-left: 55px;">이력서 작성</a></li>
+					</c:if>
+				</c:if>
             </ul>
 
             <!-- 로그인된 상태에서 '로그인' 버튼 숨기고, '로그아웃' 버튼 표시 -->
@@ -48,7 +56,8 @@
 
                 <c:if test="${not empty sessionScope.email}"> 
                     <p class="mb-2 mb-md-0" style="color: #000000; font-size: 20px; font-weight: bold;">
-                       ${fn:substringBefore(sessionScope.email, '@')}
+                       ${fn:substringBefore(sessionScope.email, '@')} 
+                       <c:if test="${empty sessionScope.ceoNum}">(User)</c:if>
                         <c:if test="${not empty sessionScope.ceoNum}">
 							<c:if test="${sessionScope.item != 'Y'}">
 							    <span style="font-size: 20px; font-weight: bold;">(CEO)</span>
@@ -70,6 +79,7 @@
 <!-- Bootstrap JS and Popper.js CDN -->
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
-
+<div style="border-bottom: 3px solid #eee;">
+</div>
 </body>
 </html>

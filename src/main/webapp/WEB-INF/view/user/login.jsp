@@ -12,7 +12,6 @@
 /* 헤더 스타일 */
 .header-wrapper {
     width: 100%;
-    position: fixed;
     top: 0;
     left: 0;
     z-index: 1000;
@@ -23,7 +22,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 150px; /* 헤더 높이만큼 여백 추가 */
+    margin-top: 80px; /* 헤더 높이만큼 여백 추가 */
     margin-bottom: 110px;
 }
 
