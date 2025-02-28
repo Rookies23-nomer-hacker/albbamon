@@ -42,7 +42,7 @@ public class recruitment_write {
     }
 
     @PostMapping("/api/recruitment")
-    public String createRecruitment(@ModelAttribute CreateRecruitmentRequestDto createRecruitmentRequestDto,
+    public String createRecruitment(@ModelAttribute("createRecruitmentRequestDto") CreateRecruitmentRequestDto createRecruitmentRequestDto,
                                     HttpServletRequest request,
                                     Model model) {
         HttpSession session = request.getSession();

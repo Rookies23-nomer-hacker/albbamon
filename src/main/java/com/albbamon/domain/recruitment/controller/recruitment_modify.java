@@ -68,8 +68,8 @@ public class recruitment_modify {
     }
 
     @PostMapping("/recruitment/{recruitmentId}/modify")
-    public String updateRecruitment(@ModelAttribute UpdateRecruitmentRequestDto updateRecruitmentRequestDto,
-                                    @PathVariable final Long recruitmentId,
+    public String updateRecruitment(@ModelAttribute("updateRecruitmentRequestDto") UpdateRecruitmentRequestDto updateRecruitmentRequestDto,
+                                    @PathVariable("recruitmentId") final Long recruitmentId,
                                     HttpServletRequest request,
                                     Model model) {
         HttpSession session = request.getSession();
