@@ -74,27 +74,8 @@
 					        <td>
 					            <div>
 					                <!-- apply.id를 사용하여 버튼에 대한 클릭 이벤트 설정 -->
-									<button class="" 
-									style="background-color: #ffffff;  /* 흰색 배경 */color: #28a745;  /* 녹색 글씨 */border: 2px solid #28a745; /* 초록색 테두리 */
-										padding: 8px 15px;
-										font-size: 14px;
-									    font-weight: bold;
-									    border-radius: 5px;
-									    cursor: pointer;
-									    text-align: center;
-								    	transition: all 0.3s ease-in-out;
-								    "onclick="updateStatus(${apply.id}, 'PASSED')">합격</button>
-									<button class="" style="background-color: #ffffff;  /* 흰색 배경 */
-									    color: #D33342;  /* 녹색 글씨 */
-									    border: 2px solid #D33342; /* 초록색 테두리 */
-									    padding: 8px 15px;
-									    font-size: 14px;
-									    font-weight: bold;
-									    border-radius: 5px;
-									    cursor: pointer;
-									    text-align: center;
-									    transition: all 0.3s ease-in-out;
-								    "onclick="updateStatus(${apply.id}, 'FAILED')">불합격</button>
+									<button class="apply-pass-btn" onclick="updateStatus(${apply.id}, 'PASSED')">합격</button>
+									<button class="apply-fail-btn" onclick="updateStatus(${apply.id}, 'FAILED')">불합격</button>
 					            </div>
 					        </td>
 					    </tr>
@@ -109,33 +90,36 @@
 </main>
 <%@ include file="/WEB-INF/view/common/footer.jsp" %>
 
-<script>
-	function updateStatus(applyId, status) {
-	    const recruitmentId = ${recruitmentId};  // 서버에서 전달된 recruitmentId를 JavaScript로 사용
-		var apiBaseUrl = ${apiBaseUrl};
-	    const requestData = {
-	        status: status  // 상태 값만 서버로 보내기
-	    };
+<script defer>
+	document.addEventListener("DOMContentLoaded", function () {
+		function updateStatus(applyId, status) {
+			const requestData = {
+				status: status
+			};
 
-	    // API 호출 (POST 요청)
-	    fetch(`${apiBaseUrl}/api/recruitment/${recruitmentId}/apply/`+applyId+`/status`, {
-	        method: 'POST',
-	        headers: {
-	            'Content-Type': 'application/json'
-	        },
-	        body: JSON.stringify(requestData)  // status 값이 동적으로 전달됨
-	    })
-	    .then(response => response.json())  // JSON으로 응답 처리
-	    .then(data => {
-	        alert(data.message);  // 서버에서 전달한 메시지 출력
-	    })
-	    .catch(error => {
-	        console.error('Error:', error);
-	        alert('오류가 발생했습니다.');
-	    });
-	}
+			fetch(`${apiBaseUrl}/api/recruitment/${recruitmentId}/apply/` + applyId + `/status`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(requestData)
+			})
+					.then(response => response.json())
+					.then(data => {
+						alert(data.message);
+						location.reload();
+					})
+					.catch(error => {
+						console.error('Error:', error);
+						alert('오류가 발생했습니다.');
+					});
+		}
 
+		// updateStatus를 전역 객체로 설정
+		window.updateStatus = updateStatus;
+	});
 </script>
+
 
 </body>
 </html>
