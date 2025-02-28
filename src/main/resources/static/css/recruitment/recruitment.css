@@ -262,6 +262,32 @@ body {
     text-align: center;
 }
 
+.apply-pass-btn {
+    background-color: #ffffff;
+    color: #28a745;
+    border: 2px solid #28a745;
+    padding: 8px 15px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+}
+
+.apply-fail-btn {
+    background-color: #ffffff;
+    color: #D33342;
+    border: 2px solid #D33342;
+    padding: 8px 15px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+}
+
 /* 반응형 디자인 */
 @media (max-width: 1500px) {
     .apply-list-container {
