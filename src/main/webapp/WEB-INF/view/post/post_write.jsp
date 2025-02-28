@@ -152,48 +152,51 @@
 
     <!-- 버튼을 테두리 밖으로 배치 -->
     <div class="button-wrapper">
-        <div class="buttons">
-            <button type="button" onclick="window.history.back();">취소</button>
-            <button type="submit" id="submit" data-user-id="${sessionScope.userid}">등록</button>
-        </div>
+    <div class="buttons">
+        <button type="button" onclick="window.history.back();">취소</button>
+        <button type="button" id="submit" data-user-id="${sessionScope.userid}">등록</button>
     </div>
+</div>
 
-    <script>
-        document.getElementById("writeForm").addEventListener("submit", function(event) {
-            event.preventDefault();
-            submitForm();
+<script>
+    document.getElementById("submit").addEventListener("click", function() {
+        document.getElementById("writeForm").dispatchEvent(new Event("submit", { cancelable: true }));
+    });
+
+    document.getElementById("writeForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+        submitForm();
+    });
+
+    function submitForm() {
+        var form = document.getElementById("writeForm");
+        var apiBaseUrl = "${apiBaseUrl}";
+        var formData = new FormData(form);
+        var userId = document.getElementById('submit').getAttribute('data-user-id');
+        formData.append("userId", userId);
+
+        fetch(`${apiBaseUrl}/api/post/write`, {
+            method: "POST",
+            body: formData,
+            credentials: "include"
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("서버 응답 오류");
+            }
+            return response.json();
+        })
+        .then(result => {
+            console.log("✅ 게시글 등록 성공:", result);
+            alert("게시글이 성공적으로 등록되었습니다!");
+            window.location.href = `${contextPath}/api/post`;
+        })
+        .catch(error => {
+            console.error("❌ 게시글 등록 실패:", error);
+            alert("게시글 등록에 실패했습니다. 다시 시도해주세요.");
         });
-
-        function submitForm() {
-            var form = document.getElementById("writeForm");
-            var apiBaseUrl = "${apiBaseUrl}";
-            alert(apiBaseUrl);
-            var formData = new FormData(form);
-            var userId = document.getElementById('submit').getAttribute('data-user-id');
-            formData.append("userId", userId);
-
-            fetch(`${apiBaseUrl}/api/post/write`, {
-                method: "POST",
-                body: formData,
-                credentials: "include"
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error("서버 응답 오류");
-                }
-                return response.json();
-            })
-            .then(result => {
-                console.log("✅ 게시글 등록 성공:", result);
-                alert("게시글이 성공적으로 등록되었습니다!");
-                window.location.href = `${contextPath}/api/post`;
-            })
-            .catch(error => {
-                console.error("❌ 게시글 등록 실패:", error);
-                alert("게시글 등록에 실패했습니다. 다시 시도해주세요.");
-            });
-        }
-    </script>
+    }
+</script>
 
     <%@ include file="/WEB-INF/view/common/footer.jsp" %>
 </body>
