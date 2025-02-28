@@ -44,8 +44,13 @@
 			<div class="apply-row">
 				<img src="${apiBaseUrl}${recruitment.file}" alt="이미지" class="img-fluid" style="max-width: 100%; height: auto;"/>
 			</div>
+		
+			
         </div>
-            <button class="apply-btn" onclick="location.href='${contextPath}/recruitment/${recruitment.id}/apply-info'">지원하기</button>
+				<c:if test="${empty sessionScope.ceoNum}">
+					<button class="apply-btn" onclick="location.href='${contextPath}/recruitment/${recruitment.id}/apply-info'">지원하기</button>
+				</c:if>
+            
     </div>
 </main>
 <%@ include file="/WEB-INF/view/common/footer.jsp" %>
