@@ -16,4 +16,6 @@ public class LoginResponseDto {
     private String ceoNum;
     private String company;
     private String item;
+    private Integer pwChkNum;
+    Boolean pwCheck;
 }
