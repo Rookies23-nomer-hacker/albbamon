@@ -76,6 +76,7 @@ public class PostDetail {
                 // 세션에서 사용자 ID 가져오기 (for 비교)
                 Object sessionUserId = session.getAttribute("userid");
                 System.out.println("세션 UserID: " + sessionUserId);
+                System.out.println("유저 Name : " + userName);
                 model.addAttribute("sessionUserId", sessionUserId);
             } else {
                 System.out.println("API 호출 실패: " + response.getStatusCode());
