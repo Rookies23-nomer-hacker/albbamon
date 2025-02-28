@@ -141,13 +141,13 @@
         <div class="container2">
             <form id="writeForm" enctype="multipart/form-data">
                 <label for="title">제목</label>
-                <input type="text" id="title" name="title" placeholder="제목을 입력해 주세요." required>
+                <input type="text" id="title" name="title" placeholder="제목을 입력해 주세요." style="background-color: #F1F3F5" required>
 
                 <label for="contents">내용</label>
-                <textarea id="contents" name="contents" placeholder="내용을 입력하세요." required></textarea>
+                <textarea id="contents" name="contents" placeholder="내용을 입력하세요." style="background-color: #F1F3F5" required></textarea>
 
                 <label for="file">이미지 (선택)</label>
-                <input type="file" id="file" name="file">
+                <input type="file" id="file" name="file" style="background-color: #F1F3F5">
             </form>
         </div>
     </main>
