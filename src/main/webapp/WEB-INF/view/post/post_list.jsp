@@ -121,7 +121,7 @@
     <div class="container">
         <!-- 헤더 영역 -->
         <div class="board-header" style="margin-top: 30px;">
-            <h2>알바경험담</h2>
+            <h2 style="font-weight: bold;">알바경험담</h2>
  
         </div>
 
@@ -133,7 +133,7 @@
             </select>
             <form action="${contextPath}/api/post/search" method="get">
 		    <input type="text" name="keyword" placeholder="검색어를 입력하세요">
-		    <button type="submit">검색</button>
+		    <button type="submit" style="background-color: #ff6600;">검색</button>
 			</form>
        	<c:choose>
             <%-- 로그인한 사용자에게만 글쓰기 버튼 표시 --%>

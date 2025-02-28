@@ -25,7 +25,7 @@
     .search-with-autocomplete__form {
         display: flex;
         align-items: center;
-        border: 2px solid #ff4500;
+        border: 2px solid #ff6600;
         border-radius: 20px;
         padding: 5px 15px;
         width: 400px;
@@ -50,11 +50,12 @@
 
     /* 주황색 테두리 스타일 */
     .container-wrapper {
+    	margin-top: 10px;
         width: 80%;
         max-width: 800px;
         margin: 50px auto 10px;
         padding: 30px 20px;
-        border: 2px solid #ff4500;
+        border: 2px solid #ff6600;
         border-radius: 10px;
         background-color: white;
         position: relative; /* 제목을 테두리 밖으로 빼기 위해 설정 */
@@ -64,7 +65,7 @@
     .title-container {
         font-size: 24px;
         font-weight: bold;
-        margin-bottom: -10px;
+        margin-bottom: -30px;
         width: 80%;
         max-width: 800px;
         margin: 0 auto 10px;
@@ -112,8 +113,9 @@
     }
 
     .buttons button {
+    	margin-top: 20px;
         width: 48%;
-        background: #ff4500;
+        background: #ff6600;
         color: white;
         border: none;
         cursor: pointer;
@@ -132,7 +134,7 @@
 
     <!-- 제목을 테두리 밖으로 배치 -->
     <div class="title-container">
-        <h2>알바경험담 작성</h2>
+        <h2 style="font-weight: bold;">알바경험담 작성</h2>
     </div>
 
     <main class="container-wrapper">
