@@ -1,9 +1,12 @@
 package com.albbamon.domain.resume.controller;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -16,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.albbamon.domain.post.entity.Post;
+import com.albbamon.domain.resume.dto.ResumeListDto;
 import com.albbamon.domain.resume.entity.Resume_write;
 import com.albbamon.domain.resume.entity.Resume_write_profile;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -109,7 +114,22 @@ public class resume_viewController {
 	    
 	    
 	}
-
+	
+	// 인재 정보. 이력서 전체 조회
+	@GetMapping("/api/resume/all")
+	public String getAllResumes(Model model, HttpServletRequest request) {
+		
+        ResponseEntity<List<ResumeListDto>> response = restTemplate.exchange(
+        		apiBaseUrl+"/api/resume/all",
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<ResumeListDto>>() {}
+        );
+        
+        model.addAttribute("resumes", response.getBody());
+	    
+	    return "resume/resume_list";  // 결과를 보여줄 JSP 페이지
+	}
 }
 
 

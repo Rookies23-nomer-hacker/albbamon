@@ -5,13 +5,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="/WEB-INF/view/common/header.jsp" %>
 	<meta charset="UTF-8">
 	<title>이력서 작성</title>
 	<link rel="stylesheet" href="${contextPath}/css/resume/resume.css">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+	<%@ include file="/WEB-INF/view/common/header.jsp" %>
 	<script src="<%= request.getContextPath() %>/js/resume.js"></script>
 	<script>var resumePersonal = "${resume.personal}";
     	var resumeWork_place_region = "${resume.work_place_region}";

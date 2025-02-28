@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>이력서 조회</title>
     <style>
-        body {
+        main {
             font-family: Arial, sans-serif;
             background-color: #f8f8f8;
             margin: 0;
@@ -27,6 +27,7 @@
             width: 800px;
             border: 2px solid #ff6600;
             margin-top: 50px;
+            margin-left: 28%;
         }
 
         h1, h2 {
@@ -94,10 +95,11 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/view/common/header.jsp" %>
+<div class="main">
     <div class="resume-container">
         <h1>이력서 조회</h1>
         <br>
-        <div class="profile-container">
+        <div class="profile-container"><div class="profile-photo"><img src=${img} alt="프로필 이미지"></div>
             <div class="profile-photo"><img src=${img} alt="프로필 이미지"></div>
             <div class="profile-info">
                 <p><strong>이름:</strong> ${user.name}</p>
