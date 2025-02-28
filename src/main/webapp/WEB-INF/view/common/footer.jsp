@@ -22,7 +22,7 @@
     <div class="row">
       <div class="col-md-4">
         <h5>About</h5>
-        <p>노멀해컥가 만들었어요.</p>
+        <p>No Mercy to Hacker</p>
       </div>
       <div class="col-md-4">
         <h5>Quick Links</h5>

@@ -88,7 +88,7 @@
         </div>
 
         <!-- 주어진 HTML을 부트스트랩 스타일로 변환 -->
-        <div class="card mt-4">
+        <div class="card mt-4" style="width: 854.70px; margin-left: 17%;">
             <div class="card-body">
                 <div class="d-flex justify-content-between mb-3">
                     <!-- 인기 태그 -->

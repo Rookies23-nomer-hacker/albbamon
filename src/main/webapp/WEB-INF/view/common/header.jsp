@@ -40,6 +40,11 @@
 	                	</c:if>
 					</c:if>
 				</c:if>
+				<c:if test="${empty sessionScope.ceoNum}">
+					<c:if test="${not empty sessionScope.email}">
+						<li><a href="${contextPath}/api/resume/write" class="nav-link px-2 text-black" style="font-weight: bold; font-size: 20px; margin-left: 55px;">이력서 작성</a></li>
+					</c:if>
+				</c:if>
             </ul>
 
             <!-- 로그인된 상태에서 '로그인' 버튼 숨기고, '로그아웃' 버튼 표시 -->
@@ -51,7 +56,8 @@
 
                 <c:if test="${not empty sessionScope.email}"> 
                     <p class="mb-2 mb-md-0" style="color: #000000; font-size: 20px; font-weight: bold;">
-                       ${fn:substringBefore(sessionScope.email, '@')}
+                       ${fn:substringBefore(sessionScope.email, '@')} 
+                       <c:if test="${empty sessionScope.ceoNum}">(User)</c:if>
                         <c:if test="${not empty sessionScope.ceoNum}">
 							<c:if test="${sessionScope.item != 'Y'}">
 							    <span style="font-size: 20px; font-weight: bold;">(CEO)</span>
