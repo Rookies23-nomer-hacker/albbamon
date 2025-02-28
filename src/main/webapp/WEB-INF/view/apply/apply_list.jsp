@@ -9,6 +9,13 @@
     <title>지원 현황</title>
     <link rel="stylesheet" href="${contextPath}/css/recruitment/recruitment.css">
 </head>
+<script>
+    let applySuccess = ${applySuccess};
+    if(applySuccess) {
+        alert("지원이 완료되었습니다")
+        location.href='/apply/list'
+    }
+</script>
 <body>
 <%@ include file="/WEB-INF/view/common/header.jsp" %>
 <main>

@@ -33,11 +33,11 @@ public class recruitment_list_my {
     @GetMapping("/recruitment/list/my")
     public String myList(Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
-        Long userId = Long.valueOf((String) session.getAttribute("userid"));
-        if(userId == null) {
+        if(session.getAttribute("userid") == null) {
             model.addAttribute("NotLogin", 1);
             return "user/login";
         }
+        Long userId = Long.valueOf((String) session.getAttribute("userid"));
 
         List<Map<String, String>> recruitments = new ArrayList<>();
 
