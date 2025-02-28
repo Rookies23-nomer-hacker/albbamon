@@ -23,8 +23,9 @@
     margin-bottom: 20px;background-color: #FFFFFF; color: white;">
     <div class="container-fluid">
         <div class="d-flex justify-content-between align-items-center">
-            <a href="/">
-                <img src="/img/albbamonlog.png" alt="Albbamon Logo" style="max-width: 100%; height: auto;">
+            <a href="/"><!-- 
+	               <img src="/img/winter.jpg" alt="Albbamon Logo" style="max-width: 20%; height: auto;"> -->
+                <img src="/img/albbamonlog.png" alt="Albbamon Logo" style="max-width: 80%; height: auto;">
             </a>
 
             <ul class="nav mb-2 justify-content-center mb-md-0 d-flex flex-wrap">

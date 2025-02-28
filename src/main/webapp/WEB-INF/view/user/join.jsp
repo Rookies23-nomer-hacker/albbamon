@@ -12,12 +12,11 @@
             /* 헤더 스타일 */
        .header-wrapper {
             width: 100%;
-            position: fixed;
             top: 0;
             left: 0;
             z-index: 1000;
         }
-        body {
+/*         body {
             font-family: Arial, sans-serif;
             display: flex;
             justify-content: center;
@@ -27,7 +26,14 @@
             flex-direction: column;
             margin: 0;
             padding: 0;
-        }
+        } */
+        .main {
+        	display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+            }
         .join-container {
             background: white;
             padding: 40px;
@@ -39,8 +45,9 @@
             flex-direction: column;
             align-items: center;
             border: 2px solid #ff6600;
-            margin-top: 180px; /* 헤더와 겹치지 않도록 설정 */
+            margin-top: 80px; /* 헤더와 겹치지 않도록 설정 */
             margin-bottom: 50px;
+            
         }
         .logo {
             width: 100%;
@@ -112,7 +119,7 @@
     <div class="header-wrapper">
         <%@ include file="/WEB-INF/view/common/header.jsp" %>
     </div>
-    
+    <div class="main">
     <div class="join-container">
         <div class="logo">
             <h1>albbamon</h1>
@@ -131,6 +138,7 @@
                 <p style="font-size: 12px; color: #888; margin-top: 10px;">* 알바를 채용하시는 개인사업자, 사업체 직원 포함</p>
             </div>
         </div>
+    </div>
     </div>
         <div class="bottom-wrapper">
     	<%@ include file="/WEB-INF/view/common/footer.jsp" %>
