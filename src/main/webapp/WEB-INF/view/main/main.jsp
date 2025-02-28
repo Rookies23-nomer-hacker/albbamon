@@ -67,7 +67,7 @@
 		                            <c:if test="${recruitmentList.indexOf(recruitment) < 5}">
 		                                <tr>
 		                                    <td style="max-width: 200px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
-		                                        <a href="${contextPath}/recruitment/${recruitment.id}/apply" class="text-decoration-none text-body">
+		                                        <a href="${contextPath}/recruitment/list/${recruitment.id}" class="text-decoration-none text-body">
 		                                            ${recruitment.title}
 		                                        </a>
 		                                    </td>
