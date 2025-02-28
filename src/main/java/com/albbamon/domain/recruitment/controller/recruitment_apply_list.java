@@ -54,7 +54,10 @@ public class recruitment_apply_list {
                 String employmentType = apply.path("employmentType").asText();
                 String workingPeriod = apply.path("workingPeriod").asText();
                 String workingDay = apply.path("workingDay").asText();
+                String portfolioname = apply.path("portfolioname") != null ? apply.path("portfolioname").asText() : "없음";
                 String portfoliourl = apply.path("portfoliourl") != null ? apply.path("portfoliourl").asText() : "없음";
+                String resume_imgurl = apply.path("resume_imgurl") != null ? apply.path("resume_imgurl").asText() : "없음";
+                String resume_imgname = apply.path("resume_imgname") != null ? apply.path("resume_imgname").asText() : "없음";
                 LocalDateTime createDate = LocalDateTime.parse(apply.path("createDate").asText());
                 String applyStatus = apply.path("applyStatus").asText();
 
@@ -70,6 +73,7 @@ public class recruitment_apply_list {
                 a.put("employmentType", employmentType);
                 a.put("workingPeriod", workingPeriod);
                 a.put("workingDay", workingDay);
+                a.put("portfolioname", portfolioname);
                 a.put("portfoliourl", portfoliourl);
                 a.put("createDate", createDate.format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 HH:mm")));
                 a.put("applyStatus", applyStatus);
