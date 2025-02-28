@@ -18,6 +18,11 @@
             var errorMessage = "${error}";
             if (errorMessage && errorMessage !== "null") {
                 alert(errorMessage);
+                if (errorMessage === "비밀번호 변경 성공!") {
+                    window.location.href = "${contextPath}/";
+                } else {
+                    window.location.href = "${contextPath}/api/user/change-pw";
+                }
             }
         };
     </script>
@@ -29,7 +34,7 @@
 		<div class="">
 			<div class="custom-container">
 						
-			<form action="/change-pw" method="POST">
+			<form action="${contextPath}/change-pw" method="POST">
 						<div id="contact-form">
 						<div class="change-pw-box">
 							<ul>
