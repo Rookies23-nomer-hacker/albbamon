@@ -91,28 +91,33 @@
 <%@ include file="/WEB-INF/view/common/footer.jsp" %>
 
 <script defer>
-	function updateStatus(applyId, status) {
-		const requestDto = {
-			"status": status
+	document.addEventListener("DOMContentLoaded", function () {
+		function updateStatus(applyId, status) {
+			const requestData = {
+				status: status
+			};
+
+			fetch(`${apiBaseUrl}/api/recruitment/${recruitmentId}/apply/` + applyId + `/status`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(requestData)
+			})
+					.then(response => response.json())
+					.then(data => {
+						alert(data.message);
+						location.reload();
+					})
+					.catch(error => {
+						console.error('Error:', error);
+						alert('오류가 발생했습니다.');
+					});
 		}
 
-		fetch(`${apiBaseUrl}/api/recruitment/${recruitmentId}/apply/` + applyId + `/status`, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify(requestDto)
-		})
-		.then(response => response.json())
-		.then(data => {
-			alert(data.message);
-			location.reload();  // 성공 시 페이지 새로고침
-		})
-		.catch(error => {
-			console.error('Error:', error);
-			alert('오류가 발생했습니다.');
-		});
-	}
+		// updateStatus를 전역 객체로 설정
+		window.updateStatus = updateStatus;
+	});
 </script>
 
 
