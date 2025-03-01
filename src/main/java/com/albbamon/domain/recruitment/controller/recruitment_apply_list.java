@@ -77,6 +77,7 @@ public class recruitment_apply_list {
                 a.put("portfoliourl", portfoliourl);
                 a.put("createDate", createDate.format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 HH:mm")));
                 a.put("applyStatus", applyStatus);
+                a.put("apiUrl", apiBaseUrl);
 
                 applys.add(a);
             }
