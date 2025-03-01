@@ -99,7 +99,7 @@
     <div class="resume-container">
         <h1>이력서 조회</h1>
         <br>
-        <div class="profile-container"><div class="profile-photo"><img src=${img} alt="프로필 이미지"></div>
+        <div class="profile-container">
             <div class="profile-photo"><img src=${img} alt="프로필 이미지"></div>
             <div class="profile-info">
                 <p><strong>이름:</strong> ${user.name}</p>
