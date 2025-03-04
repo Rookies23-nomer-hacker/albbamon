@@ -49,6 +49,9 @@ dependencies {
 	implementation 'org.springframework:spring-context:6.2.2'
     implementation 'org.springframework:spring-beans:6.2.2'
     implementation 'org.springframework:spring-core:6.2.2' // spring-core도 추가
+    
+    // health check
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
 
 	runtimeOnly 'com.mysql:mysql-connector-j'
 

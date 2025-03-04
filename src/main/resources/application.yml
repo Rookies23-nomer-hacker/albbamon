@@ -37,7 +37,13 @@ spring:
       max-request-size: 10MB
 
 api:
-  base-url: http://58.127.241.84:60085
+  base-url: http://localhost:60085
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
 
 #  http:
 #    encoding:
