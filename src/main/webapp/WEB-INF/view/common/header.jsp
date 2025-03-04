@@ -9,6 +9,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Header</title>
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="${pageContext.request.contextPath}/favicon.ico" type="image/x-icon">
     
     <!-- Bootstrap CSS CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -18,14 +20,14 @@
 </head>
 <body>
 
-<header class="" style="padding: 1rem !important;
-    margin-top: 20px;
-    margin-bottom: 20px;background-color: #FFFFFF; color: white;">
+<header class="" style="padding: 0.5rem !important;
+    margin-top: 15px;
+    margin-bottom: 15px;background-color: #FFFFFF; color: white;">
     <div class="container-fluid">
         <div class="d-flex justify-content-between align-items-center">
             <a href="/"><!-- 
 	               <img src="/img/winter.jpg" alt="Albbamon Logo" style="max-width: 20%; height: auto;"> -->
-                <img src="/img/albbamonlog.png" alt="Albbamon Logo" style="max-width: 80%; height: auto;">
+                <img src="/img/albbamonlog.png" alt="Albbamon Logo" style="max-width: 70%; height: auto;">
             </a>
 
             <ul class="nav mb-2 justify-content-center mb-md-0 d-flex flex-wrap">
@@ -50,8 +52,8 @@
             <!-- 로그인된 상태에서 '로그인' 버튼 숨기고, '로그아웃' 버튼 표시 -->
             <div class="d-flex flex-column flex-md-row align-items-center">
                 <c:if test="${empty sessionScope.email}">
-                    <button type="button" class="btn mb-2 mb-md-0" style="background-color: #FF6600; border-color: #FF6600 !important; stroke: #FF6600 !important; outline: none !important; color: #FFFFFF; border-radius: 30px; font-size: 17px;" onclick="location.href='${contextPath}/api/user/sign-in'">로그인</button>
-                    <button type="button" class="btn btn-dark ms-2" style="border-radius: 30px; font-size: 15px; font-size: 17px" onclick="location.href='${contextPath}/api/user/join'">회원가입</button>
+                    <button type="button" class="btn mb-2 mb-md-0" style="background-color: #FF6600; border-color: #FF6600 !important; stroke: #FF6600 !important; outline: none !important; color: #FFFFFF; border-radius: 10px; font-size: 17px;" onclick="location.href='${contextPath}/api/user/sign-in'">로그인</button>
+                    <button type="button" class="btn btn-dark ms-2" style="border-radius: 10px; font-size: 15px; font-size: 17px" onclick="location.href='${contextPath}/api/user/join'">회원가입</button>
                 </c:if>
 
                 <c:if test="${not empty sessionScope.email}"> 

@@ -15,6 +15,15 @@
 	        background-position: center;
 	        background-attachment: fixed;
 	    }
+        .text-btn {
+            text-decoration: none;
+            color: #6c757d;
+        }
+        .text-btn:hover {
+            text-decoration: none;
+            color: #ff6600;
+            font-weight: bold;
+        }
 	</style>
 </head>
 <body style="background-color: #ffffff;">
@@ -23,23 +32,23 @@
 
     <main class="container my-5">
         <div class="row mb-4">
-            <div class="col-md-6">
+            <div class="col-md-6" style="width: 50%">
                 <div class="card">
-                    <img src="${contextPath}/img/albbamonAd.png" class="card-img-top" style="width: 100%; height: 100%; object-fit: contain;" alt="광고1 이미지">
+                    <img src="${contextPath}/img/albbamonAd.png" class="card-img-top" style="width: 100%; height: 80%; object-fit: contain;" alt="광고1 이미지">
                     <div class="card-body">
                         <h5 class="card-title" style="font-weight: bold;">광고 문의</h5>
                         <p class="card-text">albbamon1@albbamon.com</p>
-						<a href="mailto:albbamon1@albbamon.com?subject=광고 문의&body=이메일을 통해 문의 내용을 작성해주세요." class="btn btn-light text-dark border-2 border-dark fw-bold float-end">이메일 문의</a>
+						<a href="mailto:albbamon1@albbamon.com?subject=광고 문의&body=이메일을 통해 문의 내용을 작성해주세요." class="float-end text-btn">이메일 문의 〉</a>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6" style="width: 50%">
                 <div class="card">
-					<img src="${contextPath}/img/byoun.jpg" class="card-img-top" style="width: 100%; height: 100%; object-fit: contain;" alt="광고2 이미지">
+					<img src="${contextPath}/img/byoun.jpg" class="card-img-top" style="width: 100%; height: 80%; object-fit: contain;" alt="광고2 이미지">
                     <div class="card-body">
                         <h5 class="card-title" style="font-weight: bold;">일하는 모든 이를 세상의 모든 일을 RESPECT - 알바몬</h5>
                         <p class="card-text">알바는 알바몬.</p>
-                        <a href="https://www.albamon.com" class="btn btn-light text-dark border-2 border-dark fw-bold float-end">알바몬 바로가기</a>
+                        <a href="https://www.albamon.com" class="float-end text-btn">알바몬 바로가기 〉</a>
                     </div>
                 </div>
             </div>
@@ -48,25 +57,22 @@
         <div class="row mb-4">
             <div class="col-md-12">
                 <div class="card shadow-lg border-0 rounded-3">
-                    <div class="card-header text-white" style="background-color: #F1F3F5; border: 5px;">
-                        <h5 class="m-0" style="font-weight: bold; color: #000000;">공고 리스트</h5>
-                        <p class="card-text" style="color: #000000;">다양한 채용 공고를 확인하고 지원해 보세요.
-                            <a href="${contextPath}/recruitment/list" class="btn btn-light text-dark border-2 border-dark fw-bold float-end">전체보기</a>
-                        </p>
-                    </div>
                     <div class="card-body">
                         <div class="row row-cols-1 row-cols-md-4 g-4">
                             <c:forEach var="recruitment" items="${recruitmentList}" varStatus="status">
                                 <div class="col">
-                                    <div class="card h-100 shadow-sm border-0">
+                                    <div class="card h-100 shadow border-0">
                                         <div class="card-body">
+                                            <p class="card-text" style="color: #555555; font-weight: bold;">${recruitment.company}</p>
                                             <h5 class="card-title">
-                                                <a href="${contextPath}/recruitment/list/${recruitment.id}" class="text-decoration-none text-dark">
+                                                <a href="${contextPath}/recruitment/list/${recruitment.id}" class="text-decoration-none" style="color: black; font-size: 18px; font-weight: bold">
                                                     ${recruitment.title}
                                                 </a>
                                             </h5>
-                                            <p class="card-text">${recruitment.company}</p>
-                                            <p class="text-muted">시급: ${recruitment.wage}원</p>
+                                            <p class="text-muted">
+                                                <span style="color: #FF6600; font-weight: bold">시급</span>
+                                                <span style="color: #5a6268; font-weight: bold">${recruitment.wage}</span>원
+                                            </p>
                                         </div>
                                         <div class="card-footer text-end">
                                             <small class="text-muted">~ ${recruitment.dueDate}</small>

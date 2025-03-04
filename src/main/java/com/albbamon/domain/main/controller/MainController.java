@@ -59,10 +59,9 @@ public class MainController {
                 Integer id = recruitment.path("id").asInt();
                 String title = recruitment.path("title").asText();
                 LocalDateTime dueDate = LocalDateTime.parse(recruitment.path("dueDate").asText());
-                LocalDateTime createDate = LocalDateTime.parse(recruitment.path("createDate").asText());
                 String contents = recruitment.path("content").asText();
                 Integer wage = recruitment.path("wage").asInt();
-                String userName = recruitment.path("userName").asText();
+                String company = recruitment.path("company").asText();
 
                 Map<String, String> r = new HashMap<>();
                 NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.US);
@@ -73,8 +72,8 @@ public class MainController {
                 r.put("dueDate", dueDate.format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 HH:mm")));
                 r.put("contents", contents);
                 r.put("wage", formattedWage);
-                r.put("userName", userName);
-                r.put("createDate", createDate.format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 HH:mm")));
+                r.put("company", company);
+                r.put("dueDate", dueDate.format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 HH:mm")));
                 recruitments.add(r);
             }
 
