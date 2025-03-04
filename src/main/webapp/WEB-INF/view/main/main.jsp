@@ -11,9 +11,9 @@
 	<style>
 	    /* 전체 페이지 배경 이미지 설정 */
 	    body {
-	        background-size: cover;  /* 이미지가 화면에 꽉 차게 조정 */
-	        background-position: center; /* 배경 이미지가 화면의 중앙에 위치 */
-	        background-attachment: fixed; /* 스크롤 시 배경이 고정됨 */
+	        background-size: cover;
+	        background-position: center;
+	        background-attachment: fixed;
 	    }
 	</style>
 </head>
@@ -45,111 +45,42 @@
             </div>
         </div>
 
-		<div class="row mb-4">
-		    <!-- 공고 리스트 테이블 -->
-		    <div class="col-md-6">
-		        <div class="card shadow-lg border-0 rounded-3">
-		            <div class="card-header text-white" style="background-color: #F1F3F5; border: 5px;">
-		                <h5 class="m-0" style="font-weight: bold; color: #000000;">공고 리스트</h5>
-						<p class="card-text" style="color: #000000;">다양한 채용 공고를 확인하고 지원해 보세요.<a href="${contextPath}/recruitment/list" class="btn btn-light text-dark border-2 border-dark fw-bold float-end" style="">전체보기</a></p>
-		            </div>
-		            <div class="card-body">
-		                <table class="table table-hover">
-		                    <thead class="table-light">
-		                        <tr>
-		                            <th scope="col" style="width: 40%;">공고 제목</th>
-		                            <th scope="col" style="width: 15%;">시급</th>
-		                            <th scope="col" style="width: 45%;">공고일</th>
-		                        </tr>
-		                    </thead>
-		                    <tbody>
-		                        <c:forEach var="recruitment" items="${recruitmentList}">
-		                            <c:if test="${recruitmentList.indexOf(recruitment) < 5}">
-		                                <tr>
-		                                    <td style="max-width: 200px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
-		                                        <a href="${contextPath}/recruitment/list/${recruitment.id}" class="text-decoration-none text-body">
-		                                            ${recruitment.title}
-		                                        </a>
-		                                    </td>
-		                                    <td>${recruitment.wage}</td>
-		                                    <td>${recruitment.dueDate}</td>
-		                                </tr>
-		                            </c:if>
-		                        </c:forEach>
-		                    </tbody>
-		                </table>
-		            </div>
-		        </div>
-		    </div>
-
-		    <!-- 커뮤니티 게시글 테이블 -->
-		    <div class="col-md-6">
-		        <div class="card shadow-lg border-0 rounded-3">
-		            <div class="card-header text-white" style="background-color: #F1F3F5; border: 5px;">
-		                <h5 class="m-0" style="font-weight: bold; color: #000000;">커뮤니티 게시글</h5>
-						<p class="card-text" style="color: #000000;">알빠몬 커뮤니티에 다양한 게시글을 확인해 보세요.<a href="${contextPath}/api/post" class="btn btn-light text-dark border-2 border-dark fw-bold float-end">전체보기</a></p>
-		            </div>
-		            <div class="card-body">
-		                <table class="table table-hover">
-		                    <thead class="table-light">
-		                        <tr>
-		                            <th scope="col" style="width: 60%;">제목</th>
-		                            <th scope="col" style="width: 40%;">게시일</th>
-		                        </tr>
-		                    </thead>
-		                    <tbody>
-		                        <c:forEach var="post" items="${posts}">
-		                            <c:if test="${posts.indexOf(post) < 5}">
-		                                <tr>
-		                                    <td style="max-width: 200px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
-		                                        <a href="${contextPath}/api/post/${post.postId}" class="text-decoration-none text-body">
-		                                            ${post.title}
-		                                        </a>
-		                                    </td>
-		                                    <td>${post.createDate}</td>
-		                                </tr>
-		                            </c:if>
-		                        </c:forEach>
-		                    </tbody>
-		                </table>
-		            </div>
-		        </div>
-		    </div>
-		</div>
-
-<%--        <div class="row">--%>
-<%--            <div class="col-md-8">--%>
-<%--                <h3 class="pb-4 mb-4 fst-italic border-bottom">From the Firehose</h3>--%>
-
-<%--                <article class="blog-post">--%>
-<%--                    <h2 class="display-5 link-body-emphasis mb-1">Sample blog post</h2>--%>
-<%--                    <p class="blog-post-meta">January 1, 2021 by <a href="#">Mark</a></p>--%>
-<%--                    <p>Content goes here...</p>--%>
-<%--                </article>--%>
-<%--            </div>--%>
-
-<%--             <div class="col-md-4">
-                <div class="position-sticky" style="top: 2rem;">
-                    <div class="p-4 mb-3 bg-body-tertiary rounded">
-                        <%@ include file="/WEB-INF/view/common/calendar.jsp" %>
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <div class="card shadow-lg border-0 rounded-3">
+                    <div class="card-header text-white" style="background-color: #F1F3F5; border: 5px;">
+                        <h5 class="m-0" style="font-weight: bold; color: #000000;">공고 리스트</h5>
+                        <p class="card-text" style="color: #000000;">다양한 채용 공고를 확인하고 지원해 보세요.
+                            <a href="${contextPath}/recruitment/list" class="btn btn-light text-dark border-2 border-dark fw-bold float-end">전체보기</a>
+                        </p>
                     </div>
-                    <div>
-                        <h4 class="fst-italic">스크랩 공고</h4>
-                        <ul class="list-unstyled">
-                            <li><a href="#">편의점 알바 구합니다.</a></li>
-                            <li><a href="#">스크랩 알바</a></li>
-                        </ul>
-                    </div>
-
-                    <div class="p-4">
-                        <h4 class="fst-italic"></h4>
-                        <ol class="list-unstyled mb-0">
-                            <li><a href="#">개인정보보호 Tip</a></li>
-                            <li><a href="#">문의/제안/신고</a></li>
-                        </ol>
+                    <div class="card-body">
+                        <div class="row row-cols-1 row-cols-md-4 g-4">
+                            <c:forEach var="recruitment" items="${recruitmentList}" varStatus="status">
+                                <div class="col">
+                                    <div class="card h-100 shadow-sm border-0">
+                                        <div class="card-body">
+                                            <h5 class="card-title">
+                                                <a href="${contextPath}/recruitment/list/${recruitment.id}" class="text-decoration-none text-dark">
+                                                    ${recruitment.title}
+                                                </a>
+                                            </h5>
+                                            <p class="card-text">${recruitment.company}</p>
+                                            <p class="text-muted">시급: ${recruitment.wage}원</p>
+                                        </div>
+                                        <div class="card-footer text-end">
+                                            <small class="text-muted">등록일: ${recruitment.createDate}</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <c:if test="${(status.index + 1) % 4 == 0}">
+                                    </div><div class="row row-cols-1 row-cols-md-4 g-4">
+                                </c:if>
+                            </c:forEach>
+                        </div>
                     </div>
                 </div>
-            </div> --%>
+            </div>
         </div>
     </main>
 

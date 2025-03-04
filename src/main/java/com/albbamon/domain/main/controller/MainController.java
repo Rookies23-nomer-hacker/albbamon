@@ -59,6 +59,8 @@ public class MainController {
                 Integer id = recruitment.path("id").asInt();
                 String title = recruitment.path("title").asText();
                 LocalDateTime dueDate = LocalDateTime.parse(recruitment.path("dueDate").asText());
+                LocalDateTime createDate = LocalDateTime.parse(recruitment.path("createDate").asText());
+
                 String contents = recruitment.path("content").asText();
                 Integer wage = recruitment.path("wage").asInt();
                 String userName = recruitment.path("userName").asText();
@@ -73,6 +75,7 @@ public class MainController {
                 r.put("contents", contents);
                 r.put("wage", formattedWage);
                 r.put("userName", userName);
+                r.put("createDate", createDate.toString());
                 recruitments.add(r);
             }
 
