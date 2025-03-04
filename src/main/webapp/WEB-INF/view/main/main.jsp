@@ -34,9 +34,9 @@
         <div class="row mb-4">
             <div class="col-md-6" style="width: 50%">
                 <div class="card">
-                    <img src="${contextPath}/img/albbamonAd.png" class="card-img-top" style="width: 100%; height: 80%; object-fit: contain;" alt="광고1 이미지">
+                    <img src="${contextPath}/img/albbamonAd.png" class="card-img-top" style="width: 100%; height: 75%; object-fit: contain;" alt="광고1 이미지">
                     <div class="card-body">
-                        <h5 class="card-title" style="font-weight: bold;">광고 문의</h5>
+                        <h5 class="card-title" style="font-weight: bold; color: black;">광고 문의</h5>
                         <p class="card-text">albbamon1@albbamon.com</p>
 						<a href="mailto:albbamon1@albbamon.com?subject=광고 문의&body=이메일을 통해 문의 내용을 작성해주세요." class="float-end text-btn">이메일 문의 〉</a>
                     </div>
@@ -44,9 +44,9 @@
             </div>
             <div class="col-md-6" style="width: 50%">
                 <div class="card">
-					<img src="${contextPath}/img/byoun.jpg" class="card-img-top" style="width: 100%; height: 80%; object-fit: contain;" alt="광고2 이미지">
+					<img src="${contextPath}/img/byoun.jpg" class="card-img-top" style="width: 100%; height: 75%; object-fit: contain;" alt="광고2 이미지">
                     <div class="card-body">
-                        <h5 class="card-title" style="font-weight: bold;">일하는 모든 이를 세상의 모든 일을 RESPECT - 알바몬</h5>
+                        <h5 class="card-title" style="font-weight: bold; color: black;">일하는 모든 이를 세상의 모든 일을 RESPECT - 알바몬</h5>
                         <p class="card-text">알바는 알바몬.</p>
                         <a href="https://www.albamon.com" class="float-end text-btn">알바몬 바로가기 〉</a>
                     </div>
@@ -57,13 +57,13 @@
         <div class="row mb-4">
             <div class="col-md-12">
                 <div class="card shadow-lg border-0 rounded-3">
-                    <div class="card-body">
+                    <div class="card-body" style="min-height: 250px;">
                         <div class="row row-cols-1 row-cols-md-4 g-4">
                             <c:forEach var="recruitment" items="${recruitmentList}" varStatus="status">
-                                <div class="col">
+                                <div class="col" style="padding: 10px">
                                     <div class="card h-100 shadow border-0">
                                         <div class="card-body">
-                                            <p class="card-text" style="color: #555555; font-weight: bold;">${recruitment.company}</p>
+                                            <p class="card-text" style="color: #6A6A6A; font-weight: bold;">${recruitment.company}</p>
                                             <h5 class="card-title">
                                                 <a href="${contextPath}/recruitment/list/${recruitment.id}" class="text-decoration-none" style="color: black; font-size: 18px; font-weight: bold">
                                                     ${recruitment.title}
