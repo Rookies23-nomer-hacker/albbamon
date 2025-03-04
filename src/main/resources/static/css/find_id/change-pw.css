@@ -1,4 +1,6 @@
-
+* {
+    font-family: "Noto Sans KR", sans-serif;
+}
 /* 입력 필드 스타일 */
 .custom-input-group {
     display: flex;

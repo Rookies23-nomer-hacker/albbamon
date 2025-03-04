@@ -1,3 +1,6 @@
+* {
+    font-family: "Noto Sans KR", sans-serif;
+}
 /* 탭 메뉴 스타일 */
 .custom-tab-menu {
     display: flex;

@@ -13,6 +13,7 @@
 <style>
     /* 기본 스타일 초기화 */
     * {
+        font-family: "Noto Sans KR", sans-serif;
         margin: 0;
         padding: 0;
         box-sizing: border-box;

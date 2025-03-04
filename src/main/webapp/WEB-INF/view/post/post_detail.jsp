@@ -8,6 +8,10 @@
     <meta charset="UTF-8">
     <title>알바경험담 보기</title>
     <style>
+        * {
+            font-family: "Noto Sans KR", sans-serif;
+        }
+
         /* 헤더 스타일 */
         .header-wrapper {
             width: 100%;

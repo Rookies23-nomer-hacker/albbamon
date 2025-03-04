@@ -9,7 +9,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>albbamon 회원가입</title>
     <style>
-            /* 헤더 스타일 */
+        /* 헤더 스타일 */
+        * {
+            font-family: "Noto Sans KR", sans-serif;
+        }
        .header-wrapper {
             width: 100%;
             top: 0;

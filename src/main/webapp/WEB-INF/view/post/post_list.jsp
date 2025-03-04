@@ -9,6 +9,9 @@
     <title>알바경험담</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
+        * {
+            font-family: "Noto Sans KR", sans-serif;
+        }
         body {
             font-family: Arial, sans-serif;
             background-color: #f9f9f9;
@@ -148,9 +151,9 @@
 <body>
     <%@ include file="/WEB-INF/view/common/header.jsp" %>
 
-    <div class="container">
+    <div class="container" style="width: 60%;">
         <!-- 헤더 영역 -->
-        <div class="board-header" style="margin-top: 30px;">
+        <div class="board-header" style="margin-top: 50px;">
             <h3 style="font-weight: bold;">알바경험담</h3>
         </div>
 

@@ -1,4 +1,7 @@
 /* 아이디 찾기 결과 페이지 스타일 */
+* {
+    font-family: "Noto Sans KR", sans-serif;
+}
 .custom-war {
     display: flex;
     flex-direction: column; /* 세로 정렬 */

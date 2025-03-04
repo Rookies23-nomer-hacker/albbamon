@@ -8,22 +8,48 @@
     <meta charset="UTF-8">
     <title>채용 정보</title>
     <link rel="stylesheet" href="${contextPath}/css/recruitment/recruitment.css">
+	<style>
+		*{
+			font-family: "Noto Sans KR", sans-serif;
+		}
+		.recruitment-table2 {
+			width: 100%;
+			border-collapse: collapse;
+			margin: 20px 0 20px 0;
+		}
+
+		.recruitment-table2 th {
+			color: black;
+			font-size: 17px;
+			font-weight: bolder;
+			padding: 16px;
+			text-align: center;
+			border-top: 1px solid black;
+			border-bottom: 1px solid black;
+		}
+
+		.recruitment-table2 td {
+			padding: 20px;
+			text-align: center;
+			border-bottom: 1px solid #ddd;
+		}
+	</style>
 </head>
 <body>
 <%@ include file="/WEB-INF/view/common/header.jsp" %>
 <main>
-	<div class="container" style="width: 70%;">
-		<div class="board-header" style="margin-top: 30px;">
-			<h3 style="font-weight: bold;">채용 정보</h3>
+	<div class="container" style="width: 60%;">
+		<div class="board-header" style="margin-top: 50px;">
+			<h3 style="font-weight: bold;">지금 등록된 알바속보</h3>
 		</div>
         <div class="custom-pagination">
-            <table class="recruitment-table">
+            <table class="recruitment-table2">
                 <thead>
                 <tr>
                     <th style="width: 20%;">기업명</th>
-                    <th style="width: 30%;">제목</th>
-                    <th style="width: 20%;">시급</th>
-                    <th style="width: 30%;">등록일</th>
+                    <th style="width: 50%;">제목</th>
+                    <th style="width: 10%;">시급</th>
+                    <th style="width: 20%;">등록일</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -38,10 +64,10 @@
 					    </c:if>
 					    <c:if test="${recruitment.item != 'Y'}">
 					        <tr onclick="location.href='${contextPath}/recruitment/list/${recruitment.id}';" style="cursor:pointer;">
-                                <td style="width: 20%;">${recruitment.company}</td>
-                      			<td style="width: 30%;">${recruitment.title}</td>
-					            <td style="width: 20%;">${recruitment.wage}</td>
-                                <td style="width: 30%;">${recruitment.createDate}</td>
+                                <td>${recruitment.company}</td>
+                      			<td style="color: black; font-weight: normal;">${recruitment.title}</td>
+					            <td>${recruitment.wage}원</td>
+                                <td>${recruitment.createDate}</td>
 					        </tr>
 					    </c:if>
 					</c:forEach>

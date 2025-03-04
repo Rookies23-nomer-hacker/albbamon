@@ -8,13 +8,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>결제 성공</title>
     <style>
-    .container {
-  	    display: flex;
-    	flex-direction: column;
-    	align-items: center;
-    	margin-top: 80px; /* 헤더 높이만큼 여백 추가 */
-    	margin-bottom: 110px;
-    }
+        * {
+            font-family: "Noto Sans KR", sans-serif;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 80px; /* 헤더 높이만큼 여백 추가 */
+            margin-bottom: 110px;
+        }
     
     </style>
 </head>

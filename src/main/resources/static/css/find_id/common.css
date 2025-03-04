@@ -1,4 +1,6 @@
-<!---->
+* {
+    font-family: "Noto Sans KR", sans-serif;
+}
 .custom-war {
     display: flex;
     flex-direction: column; /* 세로 정렬 */

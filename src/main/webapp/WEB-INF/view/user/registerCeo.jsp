@@ -9,6 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>통합 개인 회원가입</title>
     <style>
+        * {
+            font-family: "Noto Sans KR", sans-serif;
+        }
         /* 헤더 스타일 */
         .header-wrapper {
             width: 100%;

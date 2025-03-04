@@ -8,8 +8,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>알빠몬 | 세상의 모든 알바</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
 	<style>
-	    /* 전체 페이지 배경 이미지 설정 */
+        * {
+            font-family: "Noto Sans KR", sans-serif;
+        }
 	    body {
 	        background-size: cover;
 	        background-position: center;

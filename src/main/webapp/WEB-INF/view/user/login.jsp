@@ -10,6 +10,9 @@
     <title>albbamon 로그인</title>
     <style>
 /* 헤더 스타일 */
+* {
+    font-family: "Noto Sans KR", sans-serif;
+}
 .header-wrapper {
     width: 100%;
     top: 0;
