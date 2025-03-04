@@ -54,7 +54,7 @@
                             <a href="${contextPath}/recruitment/list" class="btn btn-light text-dark border-2 border-dark fw-bold float-end">전체보기</a>
                         </p>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body" style="height: 550px;">
                         <div class="row row-cols-1 row-cols-md-4 g-4">
                             <c:forEach var="recruitment" items="${recruitmentList}" varStatus="status">
                                 <div class="col">
