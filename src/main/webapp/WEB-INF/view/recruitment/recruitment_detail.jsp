@@ -18,9 +18,9 @@
         <div class="sub-label">
             <span class="section-margin-top2">모집 내용</span>
             </div>
-            
+
             <div class="section-line"></div>
-            
+
             <div class="apply-row">
             <span class="apply-label">공고 제목</span>
                 <span class="apply-data">${recruitment.title}</span>
@@ -42,7 +42,9 @@
                 <span class="apply-data">${recruitment.dueDate}</span>
             </div>
 			<div class="apply-row">
-				<img src="${recruitment.file}" alt="이미지" class="img-fluid" style="max-width: 100%; height: auto;"/>
+                <c:if test="${recruitment.file != 'null'}">
+                    <img src="${recruitment.file}" alt="이미지" class="img-fluid" style="max-width: 100%; height: auto;"/>
+                </c:if>
 			</div>
 		
 			

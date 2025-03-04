@@ -42,21 +42,41 @@ public class Postlist {
         // ✅ API 요청 시 `size` 포함하도록 수정
         String url = apiBaseUrl + "/api/post/list?page=" + page + "&size=" + size;
         ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
+<<<<<<< HEAD
 
         System.out.println("++++ API 응답: " + response.getBody());
 
+=======
+>>>>>>> branch 'main' of https://github.com/Rookies23-nomer-hacker/albbamon.git
         List<Map<String, String>> posts = new ArrayList<>();
         int totalPages = 1;
         int currentPage = page;
 
         try {
             ObjectMapper mapper = new ObjectMapper();
+<<<<<<< HEAD
             JsonNode root = mapper.readTree(response.getBody());
+=======
+            JsonNode postList = mapper.readTree(response.getBody()).path("data").path("postList");
+>>>>>>> branch 'main' of https://github.com/Rookies23-nomer-hacker/albbamon.git
 
+<<<<<<< HEAD
             // ✅ postList에서 게시글 리스트 추출
             JsonNode postList = root.path("data").path("postList");
 
+=======
+>>>>>>> branch 'main' of https://github.com/Rookies23-nomer-hacker/albbamon.git
             for (JsonNode postNode : postList) {
+<<<<<<< HEAD
+=======
+                int id = postNode.path("postId").asInt();
+                String idStr = String.valueOf(id);
+                String title = postNode.path("title").asText();
+                String contents = postNode.path("contents").asText();
+                String createDate = postNode.path("createDate").asText();
+                String userName = postNode.path("userName").asText();
+
+>>>>>>> branch 'main' of https://github.com/Rookies23-nomer-hacker/albbamon.git
                 Map<String, String> post = new HashMap<>();
                 post.put("id", String.valueOf(postNode.path("postId").asInt()));
                 post.put("title", postNode.path("title").asText());
@@ -73,16 +93,31 @@ public class Postlist {
         } catch (Exception e) {
             e.printStackTrace();
         }
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> branch 'main' of https://github.com/Rookies23-nomer-hacker/albbamon.git
         Object userId = session.getAttribute("userid");
+<<<<<<< HEAD
         // ✅ 페이징 그룹 계산 (10개씩)
         int groupSize = 10;
         int currentGroup = (currentPage - 1) / groupSize;
         int startPage = currentGroup * groupSize + 1;
         int endPage = Math.min(startPage + groupSize - 1, totalPages);
+=======
+        if (userId != null) {
+            model.addAttribute("isLoggedIn", true);
+        } else {
+            model.addAttribute("isLoggedIn", false);
+        }
+>>>>>>> branch 'main' of https://github.com/Rookies23-nomer-hacker/albbamon.git
 
+<<<<<<< HEAD
         // ✅ Model에 값 전달
         model.addAttribute("isLoggedIn", session.getAttribute("userid") != null);
+=======
+>>>>>>> branch 'main' of https://github.com/Rookies23-nomer-hacker/albbamon.git
         model.addAttribute("posts", posts);
         model.addAttribute("currentPage", currentPage);
         model.addAttribute("totalPages", totalPages);
@@ -90,9 +125,12 @@ public class Postlist {
         model.addAttribute("endPage", endPage);
         model.addAttribute("groupSize", groupSize);
 
+<<<<<<< HEAD
         // ✅ 디버깅 로그 출력
         System.out.println("Pagination: startPage=" + startPage + ", endPage=" + endPage + ", currentPage=" + currentPage);
 
+=======
+>>>>>>> branch 'main' of https://github.com/Rookies23-nomer-hacker/albbamon.git
         return "post/post_list";
     }
    

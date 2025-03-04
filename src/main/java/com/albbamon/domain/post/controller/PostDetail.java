@@ -42,10 +42,6 @@ public class PostDetail {
             // GET 요청 수행
             response = restTemplate.exchange(url, HttpMethod.GET, null, String.class);
 
-            // 전체 JSON 응답 출력
-            System.out.println("++++++ Post Detail Response ++++++");
-            System.out.println(response.getBody());
-
             if (response.getStatusCode() == HttpStatus.OK) {
                 // JSON 파싱
                 ObjectMapper mapper = new ObjectMapper();
@@ -75,19 +71,14 @@ public class PostDetail {
 
                 // 세션에서 사용자 ID 가져오기 (for 비교)
                 Object sessionUserId = session.getAttribute("userid");
-                System.out.println("세션 UserID: " + sessionUserId);
-                System.out.println("유저 Name : " + userName);
                 model.addAttribute("sessionUserId", sessionUserId);
             } else {
-                System.out.println("API 호출 실패: " + response.getStatusCode());
                 model.addAttribute("error", "게시글을 불러오는 데 실패했습니다.");
             }
 
         } catch (HttpClientErrorException e) {
-            System.err.println("HTTP 에러 발생: " + e.getStatusCode() + " - " + e.getResponseBodyAsString());
             model.addAttribute("error", "요청 중 오류가 발생했습니다. (" + e.getStatusCode() + ")");
         } catch (Exception e) {
-            System.err.println("기타 에러: " + e.getMessage());
             model.addAttribute("error", "알 수 없는 오류가 발생했습니다.");
         }
 
