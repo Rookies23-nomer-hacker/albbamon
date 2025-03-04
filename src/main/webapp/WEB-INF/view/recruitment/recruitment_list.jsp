@@ -6,15 +6,17 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>채용 공고 목록</title>
+    <title>채용 정보</title>
     <link rel="stylesheet" href="${contextPath}/css/recruitment/recruitment.css">
 </head>
 <body>
 <%@ include file="/WEB-INF/view/common/header.jsp" %>
 <main>
-    <div class="recruitment-container">
-        <h2 class="title" style="font-weight: bold;">채용 공고 목록</h2>
-        <div class="card">
+	<div class="container" style="width: 70%;">
+		<div class="board-header" style="margin-top: 30px;">
+			<h3 style="font-weight: bold;">채용 정보</h3>
+		</div>
+        <div class="custom-pagination">
             <table class="recruitment-table">
                 <thead>
                 <tr>

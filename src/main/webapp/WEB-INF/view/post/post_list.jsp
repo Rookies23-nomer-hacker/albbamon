@@ -22,9 +22,10 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-top: 20px;
             margin-bottom: 20px;
         }
-        .board-header h2 {
+        .board-header h3 {
             margin: 0;
             color: #333;
         }
@@ -150,7 +151,7 @@
     <div class="container">
         <!-- 헤더 영역 -->
         <div class="board-header" style="margin-top: 30px;">
-            <h2 style="font-weight: bold;">알바경험담</h2>
+            <h3 style="font-weight: bold;">알바경험담</h3>
         </div>
 
         <!-- 검색 바 -->

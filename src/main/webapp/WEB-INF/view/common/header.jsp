@@ -29,8 +29,8 @@
             </a>
 
             <ul class="nav mb-2 justify-content-center mb-md-0 d-flex flex-wrap">
-                <li><a href="${contextPath}/recruitment/list" class="nav-link px-2 text-black" style="font-weight: bold; font-size: 20px; margin-left: -100px;">채용공고</a></li>
-                <li><a href="${contextPath}/api/post?page=1&size=10" class="nav-link px-2 text-black" style="font-weight: bold; font-size: 20px; margin-left: 55px;">커뮤니티</a></li>
+                <li><a href="${contextPath}/recruitment/list" class="nav-link px-2 text-black" style="font-weight: bold; font-size: 20px; margin-left: -100px;">채용정보</a></li>
+                <li><a href="${contextPath}/api/post?page=1&size=10" class="nav-link px-2 text-black" style="font-weight: bold; font-size: 20px; margin-left: 55px;">알바토크</a></li>
                 <li><a href="${contextPath}/api/resume/all" class="nav-link px-2 text-black" style="font-weight: bold; font-size: 20px; margin-left: 55px;">인재정보</a></li>
 				<c:if test="${not empty sessionScope.ceoNum}">
 				    <c:if test="${not empty sessionScope.email}">
