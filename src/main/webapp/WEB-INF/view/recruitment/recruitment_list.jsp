@@ -8,32 +8,6 @@
     <meta charset="UTF-8">
     <title>채용 정보</title>
     <link rel="stylesheet" href="${contextPath}/css/recruitment/recruitment.css">
-	<style>
-		*{
-			font-family: "Noto Sans KR", sans-serif;
-		}
-		.recruitment-table2 {
-			width: 100%;
-			border-collapse: collapse;
-			margin: 20px 0 20px 0;
-		}
-
-		.recruitment-table2 th {
-			color: black;
-			font-size: 17px;
-			font-weight: bolder;
-			padding: 16px;
-			text-align: center;
-			border-top: 1px solid black;
-			border-bottom: 1px solid black;
-		}
-
-		.recruitment-table2 td {
-			padding: 20px;
-			text-align: center;
-			border-bottom: 1px solid #ddd;
-		}
-	</style>
 </head>
 <body>
 <%@ include file="/WEB-INF/view/common/header.jsp" %>

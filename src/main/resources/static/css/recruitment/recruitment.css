@@ -35,23 +35,27 @@ body {
 
 }
 
+*{
+    font-family: "Noto Sans KR", sans-serif;
+}
 .recruitment-table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 20px;
+    margin: 20px 0 20px 0;
 }
 
 .recruitment-table th {
     color: black;
-    font-weight: bold;
-    padding: 12px 15px;
+    font-size: 17px;
+    font-weight: bolder;
+    padding: 16px;
     text-align: center;
     border-top: 1px solid black;
     border-bottom: 1px solid black;
 }
 
 .recruitment-table td {
-    padding: 12px 15px;
+    padding: 20px;
     text-align: center;
     border-bottom: 1px solid #ddd;
 }
