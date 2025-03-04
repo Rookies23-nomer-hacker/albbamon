@@ -117,16 +117,16 @@
 		    </div>
 		</div>
 
-        <div class="row">
-            <div class="col-md-8">
-                <h3 class="pb-4 mb-4 fst-italic border-bottom">From the Firehose</h3>
+<%--        <div class="row">--%>
+<%--            <div class="col-md-8">--%>
+<%--                <h3 class="pb-4 mb-4 fst-italic border-bottom">From the Firehose</h3>--%>
 
-                <article class="blog-post">
-                    <h2 class="display-5 link-body-emphasis mb-1">Sample blog post</h2>
-                    <p class="blog-post-meta">January 1, 2021 by <a href="#">Mark</a></p>
-                    <p>Content goes here...</p>
-                </article>
-            </div>
+<%--                <article class="blog-post">--%>
+<%--                    <h2 class="display-5 link-body-emphasis mb-1">Sample blog post</h2>--%>
+<%--                    <p class="blog-post-meta">January 1, 2021 by <a href="#">Mark</a></p>--%>
+<%--                    <p>Content goes here...</p>--%>
+<%--                </article>--%>
+<%--            </div>--%>
 
 <%--             <div class="col-md-4">
                 <div class="position-sticky" style="top: 2rem;">
