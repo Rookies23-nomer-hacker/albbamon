@@ -17,7 +17,7 @@
 			<h3 style="font-weight: bold;">지금 등록된 알바속보</h3>
 		</div>
         <div class="custom-pagination">
-            <table class="recruitment-table2">
+            <table class="recruitment-table">
                 <thead>
                 <tr>
                     <th style="width: 20%;">기업명</th>
