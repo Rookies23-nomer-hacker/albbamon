@@ -42,7 +42,9 @@
                 <span class="apply-data">${recruitment.dueDate}</span>
             </div>
 			<div class="apply-row">
-				<img src="${recruitment.file}" alt="이미지" class="img-fluid" style="max-width: 100%; height: auto;"/>
+                <c:if test="${recruitment.file != 'null'}">
+                    <img src="${recruitment.file}" alt="이미지" class="img-fluid" style="max-width: 100%; height: auto;"/>
+                </c:if>
 			</div>
 		
 			
