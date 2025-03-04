@@ -75,23 +75,26 @@ public class Postlist {
         }
 
         Object userId = session.getAttribute("userid");
-        // ✅ 페이징 그룹 계산 (10개씩)
+
         int groupSize = 10;
-        int currentGroup = (currentPage - 1) / groupSize;
+        int currentGroup = (page - 1) / groupSize;
         int startPage = currentGroup * groupSize + 1;
         int endPage = Math.min(startPage + groupSize - 1, totalPages);
+        
 
-        // ✅ Model에 값 전달
+        int nextGroupPage = Math.min(endPage + 1, totalPages);
+        int prevGroupPage = Math.max(startPage - groupSize, 1);
+
         model.addAttribute("isLoggedIn", session.getAttribute("userid") != null);
         model.addAttribute("posts", posts);
-        model.addAttribute("currentPage", currentPage);
         model.addAttribute("totalPages", totalPages);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("pageSize", size);
         model.addAttribute("startPage", startPage);
         model.addAttribute("endPage", endPage);
+        model.addAttribute("nextGroupPage", nextGroupPage);
+        model.addAttribute("prevGroupPage", prevGroupPage);
         model.addAttribute("groupSize", groupSize);
-
-        // ✅ 디버깅 로그 출력
-        System.out.println("Pagination: startPage=" + startPage + ", endPage=" + endPage + ", currentPage=" + currentPage);
 
         return "post/post_list";
     }

@@ -47,8 +47,8 @@ public class recruitment_list {
         System.out.println("++++ API 응답: " + responseEntity.getBody());
 
         List<Map<String, String>> recruitments = new ArrayList<>();
+        int groupSize = 10; // 한 그룹에 표시할 페이지 개수
         int totalPages = 1;
-        int currentPage = page;
 
         try {
             JsonNode root = objectMapper.readTree(responseEntity.getBody());
@@ -86,7 +86,7 @@ public class recruitment_list {
                 recruitments.add(r);
             }
 
-            // ✅ 페이징 정보 API 응답에서 직접 가져오기
+
             JsonNode pageInfo = root.path("data").path("pageInfo");
             totalPages = pageInfo.path("totalPages").asInt();
 
@@ -94,72 +94,24 @@ public class recruitment_list {
             e.printStackTrace();
         }
 
-     // ✅ 페이징 그룹 계산 (10개씩)
-        int groupSize = 10;
-        int currentGroup = (currentPage - 1) / groupSize;
+        int currentGroup = (page - 1) / groupSize;
         int startPage = currentGroup * groupSize + 1;
         int endPage = Math.min(startPage + groupSize - 1, totalPages);
+        
 
-        // ✅ Model에 값 전달
+        int nextGroupPage = Math.min(endPage + 1, totalPages);
+        int prevGroupPage = Math.max(startPage - groupSize, 1);
+
+
         model.addAttribute("recruitmentList", recruitments);
         model.addAttribute("totalPages", totalPages);
-        model.addAttribute("currentPage", currentPage);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("pageSize", size);
         model.addAttribute("startPage", startPage);
         model.addAttribute("endPage", endPage);
+        model.addAttribute("nextGroupPage", nextGroupPage);
+        model.addAttribute("prevGroupPage", prevGroupPage);
         model.addAttribute("groupSize", groupSize);
-        model.addAttribute("pageSize", size);
-
-        // ✅ 디버깅 로그 출력
-        System.out.println("Pagination: startPage=" + startPage + ", endPage=" + endPage + ", currentPage=" + currentPage + ", pageSize=" + size);
-
         return "recruitment/recruitment_list";
     }
-
-
-
-//    @GetMapping("/recruitment/list")
-//    public String list(Model model) {
-//        List<Map<String, String>> recruitments = new ArrayList<>();
-//        	
-//        try {
-//        	ResponseEntity<String> responseEntity = restTemplate.getForEntity(apiBaseUrl + "/api/recruitment/list", String.class);
-//            JsonNode recruitmentList = objectMapper.readTree(responseEntity.getBody()).path("data").path("recruitmentList");
-//            System.out.println(recruitmentList);
-//            for(JsonNode recruitment: recruitmentList) {
-//                Integer id = recruitment.path("id").asInt();
-//                String title = recruitment.path("title").asText();
-//                LocalDateTime createDate = LocalDateTime.parse(recruitment.path("createDate").asText());
-//                LocalDateTime dueDate = LocalDateTime.parse(recruitment.path("dueDate").asText());
-//                String contents = recruitment.path("content").asText();
-//                Integer wage = recruitment.path("wage").asInt();
-//                String userName = recruitment.path("userName").asText();
-//                String company = recruitment.path("company").asText();
-//                String file = recruitment.path("file").asText();
-//                String item = recruitment.path("item").asText();
-//
-//                Map<String, String> r = new HashMap<>();
-//                
-//                NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.US); // 천 단위 구분 쉼표 추가
-//
-//                String formattedWage = numberFormat.format(wage); // ✅ 3자리마다 쉼표 추가
-//                r.put("id", String.valueOf(id));
-//                r.put("title", title);
-//                r.put("createDate", createDate.format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 HH:mm")));
-//                r.put("dueDate", dueDate.format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 HH:mm")));
-//                r.put("contents", contents);
-//                r.put("wage", formattedWage);
-//                r.put("userName", userName);
-//                r.put("company", company);
-//                r.put("file", file);
-//                r.put("item", item);
-//                recruitments.add(r);
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//        model.addAttribute("recruitmentList", recruitments);  // List 객체 전달
-//        
-//        return "recruitment/recruitment_list";
-//    }
 }

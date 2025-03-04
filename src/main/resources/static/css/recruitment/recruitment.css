@@ -324,7 +324,7 @@ body {
         font-size: 12px;
     }
 }
-/* 페이징 스타일 */
+/* 페이지네이션 스타일 */
 .custom-pagination {
     display: flex;
     justify-content: center;

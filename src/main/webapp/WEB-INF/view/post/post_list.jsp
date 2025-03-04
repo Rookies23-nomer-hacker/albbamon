@@ -98,7 +98,7 @@
             text-align: center;
             margin-top: auto;
         }
-        /* 페이징 스타일 */
+        /* 페이지네이션 스타일 */
 		.custom-pagination-paging {
 		    display: flex;
 		    justify-content: center;
@@ -135,7 +135,12 @@
 		    color: white;
 		    border: 1px solid #ff6600;
 		}
-
+		
+		/* 비활성화 버튼 (숨김 처리) */
+		.custom-page-button.disabled {
+		    visibility: hidden; /* 🔹 버튼 크기를 유지하면서 숨김 */
+		    pointer-events: none; /* 🔹 클릭 방지 */
+		}
 
     </style>
 </head>
@@ -197,44 +202,27 @@
                 </c:if>
             </ul>
 
+			<!-- 페이징 UI -->
 			<div class="custom-pagination-paging">
 			    <c:if test="${not empty totalPages and totalPages > 1}">
 			
-			        <!-- 🔹 처음으로 버튼 (첫 페이지 아닐 때만 표시) -->
-			        <c:if test="${currentPage > 1}">
-			            <a href="?page=1&size=${not empty pageSize ? pageSize : 10}" class="custom-page-button">
-			                &laquo;
-			            </a>
-			        </c:if>
+			        <!--이전 그룹 이동 버튼 -->
+			        <a href="?page=${prevGroupPage}&size=${pageSize}" class="custom-page-button ${startPage > 1 ? '' : 'disabled'}">&lt;&lt;</a>
 			
-			        <!-- 🔹 이전 그룹 이동 버튼 -->
-			        <c:if test="${startPage > 1}">
-			            <a href="?page=${startPage - 1}&size=${not empty pageSize ? pageSize : 10}" class="custom-page-button">
-			                &lt;
-			            </a>
-			        </c:if>
+			        <!--이전 페이지 버튼 -->
+			        <a href="?page=${currentPage - 1}&size=${pageSize}" class="custom-page-button ${currentPage > 1 ? '' : 'disabled'}">&lt;</a>
 			
-			        <!-- 🔹 현재 그룹의 페이지 번호만 표시 (10개 단위) -->
+			        <!--현재 그룹의 페이지 번호 (최대 10개만 표시) -->
 			        <c:forEach var="i" begin="${startPage}" end="${endPage}">
-			            <a href="?page=${i}&size=${not empty pageSize ? pageSize : 10}"
-			               class="custom-page-button ${i == currentPage ? 'active' : ''}">
-			                ${i}
-			            </a>
+			            <a href="?page=${i}&size=${pageSize}" class="custom-page-button ${i == currentPage ? 'active' : ''}">${i}</a>
 			        </c:forEach>
 			
-			        <!-- 🔹 다음 그룹 이동 버튼 -->
-			        <c:if test="${endPage < totalPages}">
-			            <a href="?page=${endPage + 1}&size=${not empty pageSize ? pageSize : 10}" class="custom-page-button">
-			                &gt;
-			            </a>
-			        </c:if>
+			        <!--다음 페이지 버튼 -->
+			        <a href="?page=${currentPage + 1}&size=${pageSize}" class="custom-page-button ${currentPage < totalPages ? '' : 'disabled'}">&gt;</a>
 			
-			        <!-- 🔹 끝으로 버튼 (마지막 페이지 아닐 때만 표시) -->
-			        <c:if test="${currentPage < totalPages}">
-			            <a href="?page=${totalPages}&size=${not empty pageSize ? pageSize : 10}" class="custom-page-button">
-			                &raquo;
-			            </a>
-			        </c:if>
+			        <!--다음 그룹 이동 버튼 -->
+			        <a href="?page=${nextGroupPage}&size=${pageSize}" class="custom-page-button ${endPage < totalPages ? '' : 'disabled'}">&gt;&gt;</a>
+			
 			    </c:if>
 			</div>
         </div>

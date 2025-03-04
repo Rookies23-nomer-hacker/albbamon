@@ -45,43 +45,33 @@
 					</c:forEach>
                 </tbody>
             </table>
-            <!-- 페이징 UI -->
-			<div class="custom-pagination">
-			    <c:if test="${not empty totalPages and totalPages > 1}">
-			
-			        <!-- 🔹 처음으로 버튼 -->
-			        <c:if test="${currentPage > 1}">
-			            <a href="?page=1&size=${pageSize}" class="custom-page-button">&laquo;</a>
-			        </c:if>
-			
-			        <!-- 🔹 이전 그룹 이동 버튼 -->
-			        <c:if test="${startPage > 1}">
-			            <a href="?page=${startPage - 1}&size=${pageSize}" class="custom-page-button">&lt;</a>
-			        </c:if>
-			
-			        <!-- 🔹 현재 그룹의 페이지 번호 (10개씩) -->
-			        <c:forEach var="i" begin="${startPage}" end="${endPage}">
-			            <a href="?page=${i}&size=${pageSize}"
-			               class="custom-page-button ${i == currentPage ? 'active' : ''}">
-			                ${i}
-			            </a>
-			        </c:forEach>
-			
-			        <!-- 🔹 다음 그룹 이동 버튼 -->
-			        <c:if test="${endPage < totalPages}">
-			            <a href="?page=${endPage + 1}&size=${pageSize}" class="custom-page-button">&gt;</a>
-			        </c:if>
-			
-			        <!-- 🔹 끝으로 버튼 -->
-			        <c:if test="${currentPage < totalPages}">
-			            <a href="?page=${totalPages}&size=${pageSize}" class="custom-page-button">&raquo;</a>
-			        </c:if>
-			
-			    </c:if>
-			</div>
+            
 
         </div>
-        
+        <!-- 페이징 UI -->
+		<div class="custom-pagination">
+		    <c:if test="${not empty totalPages and totalPages > 1}">
+		
+		        <!--이전 그룹 이동 버튼 -->
+		        <a href="?page=${prevGroupPage}&size=${pageSize}" class="custom-page-button ${startPage > 1 ? '' : 'disabled'}">&lt;&lt;</a>
+		
+		        <!--이전 페이지 버튼 -->
+		        <a href="?page=${currentPage - 1}&size=${pageSize}" class="custom-page-button ${currentPage > 1 ? '' : 'disabled'}">&lt;</a>
+		
+		        <!--현재 그룹의 페이지 번호 (최대 10개만 표시) -->
+		        <c:forEach var="i" begin="${startPage}" end="${endPage}">
+		            <a href="?page=${i}&size=${pageSize}" class="custom-page-button ${i == currentPage ? 'active' : ''}">${i}</a>
+		        </c:forEach>
+		
+		        <!--다음 페이지 버튼 -->
+		        <a href="?page=${currentPage + 1}&size=${pageSize}" class="custom-page-button ${currentPage < totalPages ? '' : 'disabled'}">&gt;</a>
+		
+		        <!--다음 그룹 이동 버튼 -->
+		        <a href="?page=${nextGroupPage}&size=${pageSize}" class="custom-page-button ${endPage < totalPages ? '' : 'disabled'}">&gt;&gt;</a>
+		
+		    </c:if>
+		</div>
+
     </div>
 </main>
 <%@ include file="/WEB-INF/view/common/footer.jsp" %>
