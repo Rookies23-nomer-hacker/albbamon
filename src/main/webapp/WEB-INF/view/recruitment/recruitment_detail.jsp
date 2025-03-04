@@ -18,9 +18,9 @@
         <div class="sub-label">
             <span class="section-margin-top2">모집 내용</span>
             </div>
-            
+
             <div class="section-line"></div>
-            
+
             <div class="apply-row">
             <span class="apply-label">공고 제목</span>
                 <span class="apply-data">${recruitment.title}</span>
