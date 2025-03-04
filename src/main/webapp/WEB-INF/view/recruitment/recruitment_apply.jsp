@@ -13,7 +13,7 @@
 <%@ include file="/WEB-INF/view/common/header.jsp" %>
 <main>
     
-        <h2 class="apply-title">지원하기</h2>
+        <h2 class="apply-title2">지원하기</h2>
 		<div class="apply-container">
         <!-- 지원 공고 확인 -->
         <div class="sub-label">
@@ -60,7 +60,7 @@
         </div>
 		</div>
         <!-- 지원하기 버튼 -->
-        <button class="apply-btn" onclick="createApply(${recruitment.id})">지원하기</button>
+        <button class="apply-btn2" onclick="createApply(${recruitment.id})">지원하기</button>
 
 </main>
 <%@ include file="/WEB-INF/view/common/footer.jsp" %>

@@ -136,7 +136,8 @@ body {
 
 /* 지원하기 컨테이너 */
 .apply-container {
-    width: 600px;
+    width: 900px;
+    height: 30%;
     margin-left: 20px;
     margin: auto;
     padding: 30px;
@@ -151,7 +152,15 @@ body {
 .apply-title {
     font-size: 28px;
     font-weight: bold;
-    margin-left: 32.5%;
+    margin-left: 23%;
+    margin-top: 2%;
+}
+
+/* 제목 스타일 */
+.apply-title2 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-left: 23.5%;
     margin-top: 2%;
 }
 
@@ -197,7 +206,7 @@ body {
 /* 지원하기 버튼 */
 .apply-btn {
     width: 10%;
-    margin-left:58%;
+    margin-left:67.3%;
     margin-top: 20px;
     background: #ff6600;
     color: white;
@@ -209,6 +218,22 @@ body {
     cursor: pointer;
     text-align: center;
 }
+
+.apply-btn2 {
+    width: 10%;
+    margin-left:66.6%;
+    margin-top: 20px;
+    background: #ff6600;
+    color: white;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
 
 .apply-btn:hover {
     background: #e55a00;

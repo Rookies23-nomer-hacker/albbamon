@@ -128,7 +128,7 @@ public class resume_viewController {
         
         model.addAttribute("resumes", response.getBody());
 	    
-	    return "resume/resume_list";  // 결과를 보여줄 JSP 페이지
+	    return "/resume/resume_list";  // 결과를 보여줄 JSP 페이지
 	}
 }
 
