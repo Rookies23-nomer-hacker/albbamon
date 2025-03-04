@@ -17,6 +17,18 @@
 
     <!-- Optional: For additional icon support (like Bootstrap icons) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+    <style>
+        .user-status {
+            font-size: 15px;
+            font-weight: normal;
+            color: #007bff;
+            border: 1px solid #007bff;
+            border-radius: 30px;
+            margin-right: 10px;
+            padding: 2px 10px 2px 10px;
+        }
+    </style>
 </head>
 <body>
 
@@ -57,21 +69,23 @@
                 </c:if>
 
                 <c:if test="${not empty sessionScope.email}"> 
-                    <p class="mb-2 mb-md-0" style="color: #000000; font-size: 20px; font-weight: bold;">
-                       ${fn:substringBefore(sessionScope.email, '@')} 
-                       <c:if test="${empty sessionScope.ceoNum}">(User)</c:if>
-                        <c:if test="${not empty sessionScope.ceoNum}">
-							<c:if test="${sessionScope.item != 'Y'}">
-							    <span style="font-size: 20px; font-weight: bold;">(CEO)</span>
-							</c:if>
-							<c:if test="${sessionScope.item == 'Y'}">
-							    <span style="font-size: 20px; font-weight: bold;">(Premium)</span>
-							</c:if>
+                    <p class="mb-2 mb-md-0" style="color: #000000; font-size: 20px; font-weight: bold; margin-right: 10px">
+                        <c:if test="${empty sessionScope.ceoNum}">
+                            <span class="user-status">개인</span>
                         </c:if>
+                        <c:if test="${not empty sessionScope.ceoNum}">
+                            <c:if test="${sessionScope.item != 'Y'}">
+                                <span class="user-status">기업</span>
+                            </c:if>
+                            <c:if test="${sessionScope.item == 'Y'}">
+                                <span class="user-status">프리미엄</span>
+                            </c:if>
+                        </c:if>
+                       ${fn:substringBefore(sessionScope.email, '@')}님
                     </p>
                     
-                    <button type="button" class="btn ms-2" style=" background-color: #FF6600; color: #FFFFFF; border-radius: 30px; font-size: 15px;" onclick="location.href='${contextPath}/api/user/log-out'">로그아웃</button>
-                    <button type="button" class="btn btn-dark ms-2" style="border-radius: 30px; font-size: 15px;" onclick="location.href='${contextPath}/api/user/account'">마이 페이지</button>
+                    <button type="button" class="btn ms-2" style=" background-color: #FF6600; color: #FFFFFF; border-radius: 10px; font-size: 15px;" onclick="location.href='${contextPath}/api/user/log-out'">로그아웃</button>
+                    <button type="button" class="btn btn-dark ms-2" style="border-radius: 10px; font-size: 15px;" onclick="location.href='${contextPath}/api/user/account'">마이 페이지</button>
                 </c:if>
             </div>
         </div>
