@@ -216,9 +216,8 @@
                 <p><c:out value="${post.contents}" default="내용이 없습니다."/></p>
             </div>
             <div class="post-img">
-							<img src="${apiBaseUrl}${post.file}" alt="이미지" class="img-fluid" style="max-width: 100%; height: auto;"/>                    
-						                  
-                    </div>
+				<img src="${post.file}" alt="이미지" class="img-fluid" style="max-width: 100%; height: auto;"/>                    			                  
+			</div>
         </div>
     </div>
 

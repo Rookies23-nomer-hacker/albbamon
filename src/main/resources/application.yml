@@ -39,6 +39,19 @@ spring:
 api:
   base-url: http://192.168.0.242:60085
 
+# health check
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+# error
+  error:
+    include-exception: true
+    include-message: always
+    include-binding-errors: always
+    include-stacktrace: always
 
 #  http:
 #    encoding:

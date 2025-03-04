@@ -18,28 +18,28 @@
             <table class="recruitment-table">
                 <thead>
                 <tr>
-                    <th>기업명</th>
-                    <th>제목</th>
-                    <th>시급</th>
-                    <th>등록일</th>
+                    <th style="width: 20%;">기업명</th>
+                    <th style="width: 30%;">제목</th>
+                    <th style="width: 20%;">시급</th>
+                    <th style="width: 30%;">등록일</th>
                 </tr>
                 </thead>
                 <tbody>
 					<c:forEach var="recruitment" items="${recruitmentList}">
 					    <c:if test="${recruitment.item == 'Y'}">
 					        <tr onclick="location.href='${contextPath}/recruitment/list/${recruitment.id}';" class="blinking-text" style="cursor:pointer;">
-                                <td style="color: red;">${recruitment.company}</td>
-                      			<td style="color: red;">★${recruitment.title}★</td>
-					            <td style="color: red;">${recruitment.wage}</td>
-					            <td style="color: red;">${recruitment.createDate}</td>
+                                <td style="color: red; width: 20%;">${recruitment.company}</td>
+                      			<td style="color: red; width: 30%;">★${recruitment.title}★</td>
+					            <td style="color: red; width: 20%;">${recruitment.wage}</td>
+					            <td style="color: red; width: 30%;">${recruitment.createDate}</td>
 					        </tr>
 					    </c:if>
 					    <c:if test="${recruitment.item != 'Y'}">
 					        <tr onclick="location.href='${contextPath}/recruitment/list/${recruitment.id}';" style="cursor:pointer;">
-                                <td>${recruitment.company}</td>
-                      			<td>${recruitment.title}</td>
-					            <td>${recruitment.wage}</td>
-                                <td>${recruitment.createDate}</td>
+                                <td style="width: 20%;">${recruitment.company}</td>
+                      			<td style="width: 30%;">${recruitment.title}</td>
+					            <td style="width: 20%;">${recruitment.wage}</td>
+                                <td style="width: 30%;">${recruitment.createDate}</td>
 					        </tr>
 					    </c:if>
 					</c:forEach>

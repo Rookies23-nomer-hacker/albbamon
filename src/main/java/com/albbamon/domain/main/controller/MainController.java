@@ -12,18 +12,13 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.client.RestTemplate;
 
-import com.albbamon.config.ApiProperties;
-import com.albbamon.domain.main.entity.Main;
 import com.albbamon.domain.post.entity.Post;
-import com.albbamon.domain.recruitment.dto.response.GetRecruitmentResponseDto;
-import com.albbamon.domain.user.entity.User;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -35,8 +30,6 @@ public class MainController {
 	
     private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper;
-    
-    //@Value("http://192.168.0.242:60085")
     @Value("${api.base-url}")
     private String apiBaseUrl;
 
@@ -53,14 +46,12 @@ public class MainController {
         if (session != null) {
             ceoNum = (String) session.getAttribute("ceoNum");
         }
-        
-        String url = apiBaseUrl + "/api/post/list";
-        List<Post> posts = Arrays.asList(restTemplate.getForObject(url, Post[].class));
+
+        List<Map<String, String>> posts = new ArrayList<>();
         List<Map<String, String>> recruitments = new ArrayList<>();
         
         try {
         	ResponseEntity<String> responseEntity = restTemplate.getForEntity(apiBaseUrl + "/api/recruitment/list", String.class);
-        	
             JsonNode rootNode = objectMapper.readTree(responseEntity.getBody());
             JsonNode recruitmentList = rootNode.path("data").path("recruitmentList");
 
@@ -73,9 +64,9 @@ public class MainController {
                 String userName = recruitment.path("userName").asText();
 
                 Map<String, String> r = new HashMap<>();
-                NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.US); // 천 단위 구분 쉼표 추가
+                NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.US);
 
-                String formattedWage = numberFormat.format(wage); // ✅ 3자리마다 쉼표 추가
+                String formattedWage = numberFormat.format(wage);
                 r.put("id", String.valueOf(id));
                 r.put("title", title);
                 r.put("dueDate", dueDate.format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 HH:mm")));
@@ -83,6 +74,26 @@ public class MainController {
                 r.put("wage", formattedWage);
                 r.put("userName", userName);
                 recruitments.add(r);
+            }
+
+            ResponseEntity<String> postResponseEntity = restTemplate.getForEntity(apiBaseUrl + "/api/post/list", String.class);
+            JsonNode postList = objectMapper.readTree(postResponseEntity.getBody()).path("data").path("postList");
+
+            for (JsonNode postNode : postList) {
+                int id = postNode.path("postId").asInt();
+                String idStr = String.valueOf(id);
+                String title = postNode.path("title").asText();
+                String contents = postNode.path("contents").asText();
+                String createDate = postNode.path("createDate").asText();
+                String userName = postNode.path("userName").asText();
+
+                Map<String, String> post = new HashMap<>();
+                post.put("id", idStr);
+                post.put("title", title);
+                post.put("contents", contents);
+                post.put("userName", userName);
+                post.put("createDate", createDate);
+                posts.add(post);
             }
             
         } catch (Exception e) {

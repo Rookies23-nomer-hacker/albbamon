@@ -50,12 +50,12 @@
 					        <td>${apply.workingPeriod}</td>
 					        <td>${apply.workingDay}</td>
 					        <td>
-					        	<a href="${api_url}/api/resume/download?fileName=${apply.portfolioname}"
+					        	<a href="${apply.apiUrl}/api/resume/download?fileName=${apply.portfolioname}"
 			                       style="text-decoration: none; color: inherit; display: flex; align-items: center;"
 			                       download>
 			                        <img src="https://cdn-icons-png.flaticon.com/512/2991/2991108.png"
 			                             alt="파일 아이콘" width="20" height="20" style="margin-right: 5px;">
-			                        <span>${apply.portfolioname}</span>
+			                        <span>${fn:substring(apply.portfolioname, 0, fn:indexOf(apply.portfolioname, '.') - 15)}${fn:substring(apply.portfolioname, fn:indexOf(apply.portfolioname, '.'), fn:length(apply.portfolioname))}</span>
 			                    </a>
 					        
 					        </td>
