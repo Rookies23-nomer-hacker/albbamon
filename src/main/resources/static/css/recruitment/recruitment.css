@@ -299,5 +299,50 @@ body {
         font-size: 12px;
     }
 }
+/* 페이징 스타일 */
+.custom-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+/* 기본 버튼 스타일 */
+.custom-page-button {
+    display: inline-block;
+    margin: 5px;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #333;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    min-width: 30px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+/* 버튼 호버 효과 */
+.custom-page-button:hover {
+    background-color: #f0f0f0;
+}
+
+/* 현재 페이지 (활성화) */
+.custom-page-button.active {
+    background-color: #ff6600;
+    color: white;
+    border: 1px solid #ff6600;
+}
+
+/* 비활성화 버튼 (숨김 처리) */
+.custom-page-button.disabled {
+    visibility: hidden; /* 🔹 버튼 크기를 유지하면서 숨김 */
+    pointer-events: none; /* 🔹 클릭 방지 */
+}
+
+
 
 
