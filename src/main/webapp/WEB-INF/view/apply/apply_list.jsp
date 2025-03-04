@@ -19,9 +19,11 @@
 <body>
 <%@ include file="/WEB-INF/view/common/header.jsp" %>
 <main>
-    <div class="recruitment-container">
-        <h2 class="title">지원 현황</h2>
-        <div class="card">
+    <div class="container" style="width: 60%;">
+        <div class="board-header" style="margin-top: 50px;">
+            <h3 style="font-weight: bold;">지원 현황</h3>
+        </div>
+        <div class="custom-pagination" style="margin-top: 60px;">
             <table class="recruitment-table">
                 <thead>
                 <tr>
