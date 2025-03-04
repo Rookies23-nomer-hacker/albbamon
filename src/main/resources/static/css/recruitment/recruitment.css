@@ -192,10 +192,10 @@ body {
 .apply-checkbox {
     display: flex;
     align-items: center;
-    margin-left:32.5%;
+    justify-content: center;
     margin-top: 30px;
     align-items: center;
-    font-size: 14px;
+    font-size: 15px;
 }
 
 /* 지원하기 버튼 */
