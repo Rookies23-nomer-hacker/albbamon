@@ -28,10 +28,10 @@
 					<c:forEach var="recruitment" items="${recruitmentList}">
 					    <c:if test="${recruitment.item == 'Y'}">
 					        <tr onclick="location.href='${contextPath}/recruitment/list/${recruitment.id}';" class="blinking-text" style="cursor:pointer;">
-                                <td style="color: red; width: 20%;">${recruitment.company}</td>
-                      			<td style="color: red; width: 30%;">★${recruitment.title}★</td>
-					            <td style="color: red; width: 20%;">${recruitment.wage}</td>
-					            <td style="color: red; width: 30%;">${recruitment.createDate}</td>
+                                <td style="background-color: #fff8f6; color: #ff6600;">${recruitment.company}</td>
+                      			<td style="background-color: #fff8f6; color: #ff6600;">★${recruitment.title}★</td>
+					            <td style="background-color: #fff8f6; color: #ff6600;">${recruitment.wage}</td>
+					            <td style="background-color: #fff8f6; color: #ff6600;">${recruitment.createDate}</td>
 					        </tr>
 					    </c:if>
 					    <c:if test="${recruitment.item != 'Y'}">

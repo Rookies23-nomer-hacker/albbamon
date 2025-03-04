@@ -51,7 +51,7 @@ public class MainController {
         List<Map<String, String>> recruitments = new ArrayList<>();
         
         try {
-        	ResponseEntity<String> responseEntity = restTemplate.getForEntity(apiBaseUrl + "/api/recruitment/list", String.class);
+        	ResponseEntity<String> responseEntity = restTemplate.getForEntity(apiBaseUrl + "/api/recruitment/list?size=12", String.class);
             JsonNode rootNode = objectMapper.readTree(responseEntity.getBody());
             JsonNode recruitmentList = rootNode.path("data").path("recruitmentList");
 
@@ -60,7 +60,6 @@ public class MainController {
                 String title = recruitment.path("title").asText();
                 LocalDateTime dueDate = LocalDateTime.parse(recruitment.path("dueDate").asText());
                 LocalDateTime createDate = LocalDateTime.parse(recruitment.path("createDate").asText());
-
                 String contents = recruitment.path("content").asText();
                 Integer wage = recruitment.path("wage").asInt();
                 String userName = recruitment.path("userName").asText();
@@ -75,7 +74,7 @@ public class MainController {
                 r.put("contents", contents);
                 r.put("wage", formattedWage);
                 r.put("userName", userName);
-                r.put("createDate", createDate.toString());
+                r.put("createDate", createDate.format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 HH:mm")));
                 recruitments.add(r);
             }
 
@@ -87,15 +86,15 @@ public class MainController {
                 String idStr = String.valueOf(id);
                 String title = postNode.path("title").asText();
                 String contents = postNode.path("contents").asText();
-                String createDate = postNode.path("createDate").asText();
+                LocalDateTime createDate = LocalDateTime.parse(postNode.path("createDate").asText());
                 String userName = postNode.path("userName").asText();
 
                 Map<String, String> post = new HashMap<>();
                 post.put("id", idStr);
                 post.put("title", title);
                 post.put("contents", contents);
+                post.put("createDate", createDate.format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 HH:mm")));
                 post.put("userName", userName);
-                post.put("createDate", createDate);
                 posts.add(post);
             }
             

@@ -69,7 +69,7 @@
                                             <p class="text-muted">시급: ${recruitment.wage}원</p>
                                         </div>
                                         <div class="card-footer text-end">
-                                            <small class="text-muted">등록일: ${recruitment.createDate}</small>
+                                            <small class="text-muted">~ ${recruitment.dueDate}</small>
                                         </div>
                                     </div>
                                 </div>
