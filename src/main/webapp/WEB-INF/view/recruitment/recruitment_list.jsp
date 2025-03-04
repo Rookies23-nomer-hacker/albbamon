@@ -58,14 +58,14 @@
 					        <tr onclick="location.href='${contextPath}/recruitment/list/${recruitment.id}';" class="blinking-text" style="cursor:pointer;">
                                 <td style="background-color: #fff8f6; color: #ff6600;">${recruitment.company}</td>
                       			<td style="background-color: #fff8f6; color: #ff6600;">★${recruitment.title}★</td>
-					            <td style="background-color: #fff8f6; color: #ff6600;">${recruitment.wage}</td>
+					            <td style="background-color: #fff8f6; color: #ff6600;">${recruitment.wage}원</td>
 					            <td style="background-color: #fff8f6; color: #ff6600;">${recruitment.createDate}</td>
 					        </tr>
 					    </c:if>
 					    <c:if test="${recruitment.item != 'Y'}">
 					        <tr onclick="location.href='${contextPath}/recruitment/list/${recruitment.id}';" style="cursor:pointer;">
                                 <td>${recruitment.company}</td>
-                      			<td style="color: black; font-weight: normal;">${recruitment.title}</td>
+                      			<td style="color: black;">${recruitment.title}</td>
 					            <td>${recruitment.wage}원</td>
                                 <td>${recruitment.createDate}</td>
 					        </tr>

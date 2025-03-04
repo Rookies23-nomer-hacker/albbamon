@@ -16,6 +16,12 @@
     <script src="${contextPath}/js/payment/payment.js"></script>
     <script> var apiBaseUrl = "${apiBaseUrl}"; var base_url = "${contextPath}";</script>
 
+    <style>
+        * {
+            font-family: "Noto Sans KR", sans-serif;
+        }
+    </style>
+
 </head>
 <body>
     <%@ include file="/WEB-INF/view/common/header.jsp" %>
