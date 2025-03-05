@@ -65,7 +65,7 @@
                     <div class="card-body" style="min-height: 250px;">
                         <div class="row row-cols-1 row-cols-md-4 g-4">
                             <c:forEach var="recruitment" items="${recruitmentList}" varStatus="status">
-                                <div class="col" style="padding: 10px">
+                                <div class="col" style="padding: 10px; margin-bottom:20px;">
                                     <div class="card h-100 shadow border-0">
                                         <div class="card-body">
                                             <p class="card-text" style="color: #6A6A6A; font-weight: bold;">${recruitment.company}</p>
