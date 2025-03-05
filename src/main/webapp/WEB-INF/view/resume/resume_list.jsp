@@ -61,56 +61,53 @@
 
             <div class="col-md-4 mb-4">
                 <div class="card h-100 border-primary bg-light" style="border-color:#ff501b !important;">
-                    <a href="${portfolioUrl}" class="text-decoration-none text-dark" target="_blank">
-                        <div class="card-body">
-                            <!-- 프로필 사진 및 기본 정보 -->
-                            <div class="d-flex align-items-center">
-                                <img src="${profileImg}" class="rounded-circle me-3" style="width: 56px; height: 56px;" alt="Profile"
-                                    title="${resumeImgName}">
-                                <div>
-                                    <p class="m-0 text-muted">${personalName}</p>
-                                    <h5 class="m-0">${personalName}</h5>
-                                </div>
-                            </div>
-
-                            <!-- 위치 및 산업 정보 -->
-                            <div class="mt-3 text-muted">
-                                <i class="bi bi-geo-alt"></i> ${location}
-                            </div>
-                            <div class="mt-1 text-muted">
-                                <i class="bi bi-briefcase"></i> ${industry}
-                            </div>
-
-                            <!-- 추가 정보 (학교, 고용 형태, 근무 요일) -->
-                            <div class="mt-2">
-                                <span class="badge bg-primary">${schoolInfo}</span>
-                                <span class="badge bg-primary">${employmentTypeInfo}</span>
-                                <span class="badge bg-secondary">${workingDay}</span>
-                            </div>
-
-                            <!-- 자기소개 및 근무 기간 -->
-                            <div class="mt-3 text-muted">
-                                <span>${intro}</span>
-                                <span class="ms-3">${workingPeriod}</span>
-                            </div>
-
-                            <!-- 포트폴리오 링크 -->
-                            <div class="mt-3" style="border-color:#ff501b !important;">
-                                <a href="${portfolioUrl}" target="_blank" class="btn btn-outline-primary btn-sm ${portfolioUrl == '#' ? 'disabled' : ''}" style="border-color:#ff501b !important; color: #ff501b !important;"
-                                onmouseover="this.style.backgroundColor='#ff501b'; this.style.color='white';" 
-   onmouseout="this.style.backgroundColor='white'; this.style.color='#ff501b';">
-                                    포트폴리오 보기 (${portfolioName})
-                                </a>
-                            </div>
-
-                            <!-- 이력서 개별 조회 -->
-                            <div class="mt-3">
-                                <a href="/api/resume/view?resumeId=${resumeId}" class="btn btn-outline-secondary btn-sm">
-                                    이력서 상세 보기
-                                </a>
+                    <div class="card-body">
+                        <!-- 프로필 사진 및 기본 정보 -->
+                        <div class="d-flex align-items-center">
+                            <img src="${profileImg}" class="rounded-circle me-3" style="width: 56px; height: 56px;" alt="Profile"
+                                title="${resumeImgName}">
+                            <div>
+                                <p class="m-0 text-muted">${personalName}</p>
+                                <h5 class="m-0">${personalName}</h5>
                             </div>
                         </div>
-                    </a>
+
+                        <!-- 위치 및 산업 정보 -->
+                        <div class="mt-3 text-muted">
+                            <i class="bi bi-geo-alt"></i> ${location}
+                        </div>
+                        <div class="mt-1 text-muted">
+                            <i class="bi bi-briefcase"></i> ${industry}
+                        </div>
+
+                        <!-- 추가 정보 (학교, 고용 형태, 근무 요일) -->
+                        <div class="mt-2">
+                            <span class="badge bg-primary">${schoolInfo}</span>
+                            <span class="badge bg-primary">${employmentTypeInfo}</span>
+                            <span class="badge bg-secondary">${workingDay}</span>
+                        </div>
+
+                        <!-- 자기소개 및 근무 기간 -->
+                        <div class="mt-3 text-muted">
+                            <span>${intro}</span>
+                            <span class="ms-3">${workingPeriod}</span>
+                        </div>
+
+                        <!-- 포트폴리오 링크 -->
+                        <div class="mt-3" style="border-color:#ff501b !important;">
+                            <a href="${portfolioUrl}" target="_blank" class="btn btn-outline-primary btn-sm ${portfolioUrl == '#' ? 'disabled' : ''}" style="border-color:#ff501b !important; color: #ff501b !important;"
+                            onmouseover="this.style.backgroundColor='#ff501b'; this.style.color='white';" onmouseout="this.style.backgroundColor='white'; this.style.color='#ff501b';">
+                                포트폴리오 보기 (${portfolioName})
+                            </a>
+                        </div>
+
+                        <!-- 이력서 개별 조회 -->
+                        <div class="mt-3">
+                            <a href="/api/resume/view?resumeId=${resumeId}" class="btn btn-outline-secondary btn-sm">
+                                이력서 상세 보기
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </c:forEach>
