@@ -37,7 +37,7 @@
 			<form action="${contextPath}/change-pw" method="POST">
 						<div id="contact-form">
 						<div class="change-pw-box">
-							<ul>
+							<ul style="text-align: left;">
 								<li><span class="change-pw-content">개인정보를 안전하게 보호하기 위해 비밀번호를 주기적(6개월)으로 변경해 주세요.</span></li>
 								<li><span class="change-pw-content">비밀번호는 8~16자의 영문 대소문자,숫자,특수문자를 조합하여 사용할 수 있습니다.</span></li>
 							</ul>
