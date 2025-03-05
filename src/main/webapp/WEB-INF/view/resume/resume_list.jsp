@@ -8,9 +8,24 @@
     <title>스페셜 인재</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        * {
-            font-family: "Noto Sans KR", sans-serif;
+        .btn-primary {
+            background-color: #FF6600 !important; /* 버튼 배경 색상 */
+            border-color: #FF6600 !important;
+            border-radius: 10px !important;
         }
+
+        .btn-primary:hover {
+            background-color: #ff501b !important;
+            border-color: #e55a00 !important;
+        }
+        .badge.bg-primary {
+        	--bs-bg-opacity: 1;
+    		background-color: #FF6600 !important;
+        }
+        .border-primary {
+		    border-color: #ff501b !important; /* 원하는 색상 코드 */
+		}
+
     </style>
 </head>
 <body>
@@ -45,7 +60,7 @@
             <c:set var="resumeImgName" value="${empty resume.resume_img_name ? '' : resume.resume_img_name}" />
 
             <div class="col-md-4 mb-4">
-                <div class="card h-100 border-primary bg-light">
+                <div class="card h-100 border-primary bg-light" style="border-color:#ff501b !important;">
                     <a href="${portfolioUrl}" class="text-decoration-none text-dark" target="_blank">
                         <div class="card-body">
                             <!-- 프로필 사진 및 기본 정보 -->
@@ -80,8 +95,10 @@
                             </div>
 
                             <!-- 포트폴리오 링크 -->
-                            <div class="mt-3">
-                                <a href="${portfolioUrl}" target="_blank" class="btn btn-outline-primary btn-sm ${portfolioUrl == '#' ? 'disabled' : ''}">
+                            <div class="mt-3" style="border-color:#ff501b !important;">
+                                <a href="${portfolioUrl}" target="_blank" class="btn btn-outline-primary btn-sm ${portfolioUrl == '#' ? 'disabled' : ''}" style="border-color:#ff501b !important; color: #ff501b !important;"
+                                onmouseover="this.style.backgroundColor='#ff501b'; this.style.color='white';" 
+   onmouseout="this.style.backgroundColor='white'; this.style.color='#ff501b';">
                                     포트폴리오 보기 (${portfolioName})
                                 </a>
                             </div>
