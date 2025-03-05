@@ -7,6 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>이력서 조회</title>
     <style>
+        * {
+            font-family: "Noto Sans KR", sans-serif;
+        }
         main {
             font-family: Arial, sans-serif;
             background-color: #f8f8f8;
@@ -62,10 +65,11 @@
 
         .profile-info {
             font-size: 14px;
+            margin-left: 20px;
         }
 
         .section {
-            margin-bottom: 20px;
+            padding: 20px;
         }
 
         .resume-item {
@@ -97,7 +101,7 @@
 <%@ include file="/WEB-INF/view/common/header.jsp" %>
 <div class="main">
     <div class="resume-container">
-        <h1>이력서 조회</h1>
+        <h3 style="font-weight: bold">이력서 조회</h3>
         <br>
         <div class="profile-container">
             <div class="profile-photo"><img src=${img} alt="프로필 이미지"></div>
@@ -111,7 +115,7 @@
         </div>
 
         <div class="section">
-            <h2>학력</h2>
+            <h4>학력</h4>
             <div class="resume-item">
                 <div class="resume-header">${resume.school} ${resume.status}</div>
                 <div class="resume-content">서울대학교 컴퓨터공학과 (2015 - 2019)</div>
@@ -119,7 +123,7 @@
         </div>
 
         <div class="section">
-            <h2>경력</h2>
+            <h4>경력</h4>
             <div class="resume-item">
                 <div class="resume-header">${resume.personal}</div>
                 <!--  <div class="resume-content">ABC 테크놀로지 (2019 - 2023)</div>-->
@@ -127,21 +131,21 @@
         </div>
 
         <div class="section">
-            <h2>희망 근무 조건</h2>
+            <h4>희망 근무 조건</h4>
             <div class="resume-item">
                 <div class="resume-content">희망 근무지: ${resume.work_place_region}<br>희망 업직종: ${resume.industry_occupation}<br>근무형태: ${resume.employmentType}<br>근무기간: ${resume.working_period}<br>근무일시: ${resume.working_day}</div>
             </div>
         </div>
       
         <div class="section">
-            <h2>자기소개</h2>
+            <h4>자기소개</h4>
             <div class="resume-item">
                 <div class="resume-content">${resume.introduction}</div>
             </div>
         </div>
 
     <div class="section">
-    <h2>포트폴리오</h2>
+    <h4>포트폴리오</h4>
     <div class="resume-item">
         <div class="resume-content">
             <c:choose>

@@ -8,6 +8,9 @@
     <title>스페셜 인재</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
+        * {
+            font-family: "Noto Sans KR", sans-serif;
+        }
         .btn-primary {
             background-color: #FF6600 !important; /* 버튼 배경 색상 */
             border-color: #FF6600 !important;
@@ -45,7 +48,14 @@
     <!-- 이력서 목록 -->
     <div class="row">
         <c:forEach var="resume" items="${resumes}">
-            <c:set var="profileImg" value="${empty resume.resume_imgurl ? 'https://example.com/default-profile-img.jpg' : resume.resume_imgurl}" />
+            <c:choose>
+                <c:when test="${empty resume.resume_imgurl}">
+                    <c:set var="profileImg" value="${contextPath}/img/profile.png"/>
+                </c:when>
+                <c:otherwise>
+                    <c:set var="profileImg" value="${resume.resume_imgurl}${resume.resume_img_name}"/>
+                </c:otherwise>
+            </c:choose>
             <c:set var="resumeId" value="${resume.resume_id}" />
             <c:set var="personalName" value="${empty resume.personal ? '이름 없음' : resume.personal}" />
             <c:set var="location" value="${empty resume.work_place_region ? '위치 정보 없음' : resume.work_place_region}, ${empty resume.work_place_city ? '위치 정보 없음' : resume.work_place_city}" />
@@ -61,7 +71,7 @@
 
             <div class="col-md-4 mb-4">
                 <div class="card h-100 border-primary bg-light" style="border-color:#ff501b !important;">
-                    <div class="card-body">
+                    <div class="card-body" style="padding: 30px">
                         <!-- 프로필 사진 및 기본 정보 -->
                         <div class="d-flex align-items-center">
                             <img src="${profileImg}" class="rounded-circle me-3" style="width: 56px; height: 56px;" alt="Profile"
@@ -95,9 +105,9 @@
 
                         <!-- 포트폴리오 링크 -->
                         <div class="mt-3" style="border-color:#ff501b !important;">
-                            <a href="${portfolioUrl}" target="_blank" class="btn btn-outline-primary btn-sm ${portfolioUrl == '#' ? 'disabled' : ''}" style="border-color:#ff501b !important; color: #ff501b !important;"
+                            <a href="${portfolioUrl}${portfolioName}" target="_blank" class="btn btn-outline-primary btn-sm ${portfolioUrl == '#' ? 'disabled' : ''}" style="border-color:#ff501b !important; color: #ff501b !important;"
                             onmouseover="this.style.backgroundColor='#ff501b'; this.style.color='white';" onmouseout="this.style.backgroundColor='white'; this.style.color='#ff501b';">
-                                포트폴리오 보기 (${portfolioName})
+                                포트폴리오 보기 (${fn:substring(portfolioName, 0, fn:indexOf(portfolioName, '.') - 15)}${fn:substring(portfolioName, fn:indexOf(portfolioName, '.'), fn:length(portfolioName))})
                             </a>
                         </div>
 

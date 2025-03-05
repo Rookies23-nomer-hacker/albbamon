@@ -8,8 +8,12 @@
 	<title>이력서 작성</title>
 <%@ include file="/WEB-INF/view/common/header.jsp" %>
 	<meta charset="UTF-8">
-
 	<link rel="stylesheet" href="${contextPath}/css/resume/resume.css">
+	<style>
+		* {
+			font-family: "Noto Sans KR", sans-serif;
+		}
+	</style>
 </head>
 <body>
 	<script src="${contextPath}/js/resume_write.js"></script>

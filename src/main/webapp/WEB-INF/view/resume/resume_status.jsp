@@ -7,6 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>지원현황</title>
     <style>
+        * {
+            font-family: "Noto Sans KR", sans-serif;
+        }
         body {
             font-family: Arial, sans-serif;
             display: flex;
