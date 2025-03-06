@@ -44,7 +44,7 @@
 		<div align="center" class="empty-portfolio" id="emptyMessage" style="margin-left: 0%;">등록된 이력서가 없습니다.</div>
 		</div>
 		<div class="center-container">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
-		<button id="portfolio" type="button" class="save" style="margin-left: 20%;" onclick="location.href=base_url + '/api/resume/write'">이력서 작성</button>
+		<button id="portfolio" type="button" class="save" style="margin-left: 20%;" onclick="location.href=base_url + '/resume/write'">이력서 작성</button>
 		<input type="file" id="fileInput" style="display: none;" onchange="handleFileUpload(event)">
 		</div>
 		<div class="center-container">

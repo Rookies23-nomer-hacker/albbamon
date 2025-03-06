@@ -25,10 +25,10 @@
                     <div class="custom-tab-menu">
                         <button id="personal-tab"
                             class="custom-tab-button ${activeTab eq 'per' ? 'active' : ''}"
-                            onclick="location.href='${contextPath}/api/user/find-id'">개인회원</button>
+                            onclick="location.href='${contextPath}/user/find-id'">개인회원</button>
                         <button id="corporation-tab"
                             class="custom-tab-button ${activeTab eq 'cor' ? 'active' : ''}"
-                            onclick="location.href='${contextPath}/api/user/find-id'">기업회원</button>
+                            onclick="location.href='${contextPath}/user/find-id'">기업회원</button>
                     </div>
 
                     <!-- 결과 메시지 -->
@@ -49,9 +49,9 @@
                     <!-- 버튼 -->
                     <div class="custom-button-container">
                         <button class="custom-btn-secondary"
-                            onclick="location.href='${contextPath}/api/user/find-pw'">비밀번호 찾기</button>
+                            onclick="location.href='${contextPath}/user/find-pw'">비밀번호 찾기</button>
                         <button class="custom-btn-primary"
-                            onclick="location.href='${contextPath}/api/user/sign-in'">로그인</button>
+                            onclick="location.href='${contextPath}/user/sign-in'">로그인</button>
                     </div>
                 </div>
             </div>

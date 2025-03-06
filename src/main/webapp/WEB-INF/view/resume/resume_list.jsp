@@ -39,7 +39,7 @@
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2 class="fw-bold">스페셜 인재</h2>
         <button type="button" class="btn btn-primary">
-			<a href="/api/resume/write" class="btn btn-primary">
+			<a href="/resume/write" class="btn btn-primary">
 				이력서 올리기
 			</a><i class="bi bi-arrow-right"></i>
 		</button>
@@ -113,7 +113,7 @@
 
                         <!-- 이력서 개별 조회 -->
                         <div class="mt-3">
-                            <a href="/api/resume/view?resumeId=${resumeId}" class="btn btn-outline-secondary btn-sm">
+                            <a href="/resume/view?resumeId=${resumeId}" class="btn btn-outline-secondary btn-sm">
                                 이력서 상세 보기
                             </a>
                         </div>

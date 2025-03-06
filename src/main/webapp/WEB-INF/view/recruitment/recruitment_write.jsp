@@ -8,7 +8,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>채용 공고 등록</title>
-<!--     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> -->
     <link rel="stylesheet" href="${contextPath}/css/recruitment/recruitment.css">
 </head>
 <body>
@@ -19,32 +18,27 @@
     <form id="recruitmentForm" enctype="multipart/form-data" onsubmit="event.preventDefault();">
         <div class="card p-4">
             <h3 class="mb-4" style="font-weight: bold;">모집 내용</h3>
-            
-            <!-- 공고 제목 -->
+
             <div class="form-group">
                 <label for="title">공고 제목 <span class="text-danger">*</span></label>
                 <input type="text" class="form-control" id="title" name="title" placeholder="공고 제목을 입력하세요" style="background-color: #F1F3F5"required>
             </div>
 
-            <!-- 공고 내용 -->
             <div class="form-group">
                 <label for="contents" style="margin-top: 30px;">공고 내용 <span class="text-danger">*</span></label>
                 <textarea class="form-control" id="contents" name="contents" rows="5" placeholder="공고 내용을 입력하세요" style="background-color: #F1F3F5" required></textarea>
             </div>
 
-            <!-- 시급 -->
             <div class="form-group">
                 <label for="wage" style="margin-top: 30px;">시급 <span class="text-danger">*</span></label>
                 <input type="number" class="form-control" id="wage" name="wage" placeholder="시급을 입력하세요" style="background-color: #F1F3F5" required>
             </div>
 
-            <!-- 마감 기한 -->
             <div class="form-group">
                 <label for="dueDate" style="margin-top: 30px;">마감 기한 <span class="text-danger">*</span></label>
                 <input type="datetime-local" class="form-control" id="dueDate" name="dueDate" style="background-color: #F1F3F5" required>
             </div>
 
-            <!-- 파일 업로드 -->
             <div class="form-group">
                 <label for="file" style="margin-top: 30px;">파일</label>
                 <input type="file" class="form-control-file" id="file" name="file" required>

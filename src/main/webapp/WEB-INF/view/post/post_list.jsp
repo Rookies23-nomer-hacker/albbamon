@@ -163,16 +163,16 @@
                 <option>작성일 순</option>
                 <option>조회수 순</option>
             </select>
-            <form action="${contextPath}/api/post/search" method="get">
+            <form action="${contextPath}/post/search" method="get">
                 <input type="text" name="keyword" placeholder="검색어를 입력하세요">
                 <button type="submit" style="background-color: #ff6600;">검색</button>
             </form>
             <c:choose>
                 <c:when test="${isLoggedIn}">
-                    <button onclick="location.href='${contextPath}/api/post/write'" style="background-color: #000000;">글쓰기</button>
+                    <button onclick="location.href='${contextPath}/post/write'" style="background-color: #000000;">글쓰기</button>
                 </c:when>
                 <c:otherwise>
-                    <button onclick="alert('로그인이 필요합니다.'); location.href='${contextPath}/api/user/sign-in';">글쓰기</button>
+                    <button onclick="alert('로그인이 필요합니다.'); location.href='${contextPath}/user/sign-in';">글쓰기</button>
                 </c:otherwise>
             </c:choose>
         </div>
@@ -191,7 +191,7 @@
                 <c:if test="${not empty posts}">
                     <c:forEach var="post" items="${posts}">
                         <li class="post-item">
-                            <a href="${contextPath}/api/post/${post.id}" class="post-title">${post.title}</a>
+                            <a href="${contextPath}/post/${post.id}" class="post-title">${post.title}</a>
                             <p>${fn:substring(post.contents, 0, 100)}...</p>
                             <div class="post-meta">
                                 작성자: ${post.userName} | 작성일: ${post.createDate}

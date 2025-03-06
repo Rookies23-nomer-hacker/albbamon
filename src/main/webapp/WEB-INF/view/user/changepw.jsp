@@ -21,7 +21,7 @@
                 if (errorMessage === "비밀번호 변경 성공!") {
                     window.location.href = "${contextPath}/";
                 } else {
-                    window.location.href = "${contextPath}/api/user/change-pw";
+                    window.location.href = "${contextPath}/user/change-pw";
                 }
             }
         };

@@ -131,13 +131,13 @@
             <div class="section">
                 <h2 style="color: #ff6600;">개인 회원</h2>
                 <p>이력서를 등록하고 알바를 찾아보세요</p>
-                <button class="signup-btn personal-btn" onclick="location.href='${contextPath}/api/user'">통합 개인 회원가입</button>
+                <button class="signup-btn personal-btn" onclick="location.href='${contextPath}/user'">통합 개인 회원가입</button>
                 <p style="font-size: 12px; color: #888; margin-top: 10px;"></p>
             </div>
             <div class="section">
                 <h2 style="color: #333;">기업 회원</h2>
                 <p>공고를 등록하고 인재를 찾아보세요</p>
-                <button class="signup-btn business-btn" onclick="location.href='${contextPath}/api/user/ceo'">통합 기업 회원가입</button>
+                <button class="signup-btn business-btn" onclick="location.href='${contextPath}/user/ceo'">통합 기업 회원가입</button>
                 <p style="font-size: 12px; color: #888; margin-top: 10px;">* 알바를 채용하시는 개인사업자, 사업체 직원 포함</p>
             </div>
         </div>

@@ -29,7 +29,7 @@
                 <tbody>
 					<c:forEach var="recruitment" items="${recruitmentList}">
 					    <c:if test="${recruitment.item == 'Y'}">
-					        <tr onclick="location.href='${contextPath}/recruitment/list/${recruitment.id}';" class="blinking-text" style="cursor:pointer;">
+					        <tr onclick="location.href='${contextPath}/recruitment/${recruitment.id}';" class="blinking-text" style="cursor:pointer;">
                                 <td style="background-color: #fff8f6; color: #ff6600;">${recruitment.company}</td>
                       			<td style="background-color: #fff8f6; color: #ff6600;">★${recruitment.title}★</td>
 					            <td style="background-color: #fff8f6; color: #ff6600;">${recruitment.wage}원</td>
@@ -37,7 +37,7 @@
 					        </tr>
 					    </c:if>
 					    <c:if test="${recruitment.item != 'Y'}">
-					        <tr onclick="location.href='${contextPath}/recruitment/list/${recruitment.id}';" style="cursor:pointer;">
+					        <tr onclick="location.href='${contextPath}/recruitment/${recruitment.id}';" style="cursor:pointer;">
                                 <td>${recruitment.company}</td>
                       			<td style="color: black;">${recruitment.title}</td>
 					            <td>${recruitment.wage}원</td>

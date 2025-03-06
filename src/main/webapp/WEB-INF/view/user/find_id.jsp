@@ -101,7 +101,7 @@
 <c:if test="${not empty errorMsg}">
     <script>
         alert("${errorMsg}");
-        location.href = "/api/user/find-id";  // 다시 돌아갈 URL
+        location.href = "/user/find-id";  // 다시 돌아갈 URL
     </script>
 </c:if>
 

@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.client.RestTemplate;
 
 import com.albbamon.domain.user.dto.request.UserInfoRequestDto;
-import com.albbamon.domain.user.dto.response.GetUserInfoResponseDto;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -29,11 +28,9 @@ public class UserAccountController {
     private final RestTemplate restTemplate = new RestTemplate(new JdkClientHttpRequestFactory());
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    @GetMapping("/api/user/account")
+    @GetMapping("/user/account")
     public String getUserAccount(HttpServletRequest request, Model model) {
-
         HttpSession session = request.getSession(false);
-        System.out.println(session.getAttribute("userid"));
         if (session == null || session.getAttribute("userid") == null) {
             model.addAttribute("error", "로그인이 필요합니다.");
             return "/user/account"; // 로그인 페이지 또는 오류 
@@ -53,7 +50,6 @@ public class UserAccountController {
 
         // API 요청 URL
         String apiUrl = apiBaseUrl + "/api/user";
-        System.out.println(apiUrl);
         try {
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
@@ -63,17 +59,15 @@ public class UserAccountController {
 
             ResponseEntity<String> response = restTemplate.exchange(
                     apiUrl,
-                    HttpMethod.GET,  // GET -> POST 변경
+                    HttpMethod.GET,
                     requestEntity,
                     String.class
             );
             
             JsonNode rootNode = objectMapper.readTree(response.getBody());
             JsonNode recruitmentList = rootNode.path("data").path("userInfo");
-            
-            System.out.println("asdf "+recruitmentList);
-            if (response.getBody() != null && response.getBody() != null) {
 
+            if (response.getBody() != null && response.getBody() != null) {
                 model.addAttribute("id", recruitmentList.path("id").asText());
                 model.addAttribute("name", recruitmentList.path("name").asText());
                 model.addAttribute("email", recruitmentList.path("email").asText());
@@ -95,6 +89,6 @@ public class UserAccountController {
             model.addAttribute("error", "회원 정보를 불러오는 중 오류가 발생했습니다.");
         }
 
-        return "/user/account"; // JSP 페이지
+        return "/user/account";
     }
 }

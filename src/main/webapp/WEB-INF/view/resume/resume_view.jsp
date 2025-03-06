@@ -104,7 +104,7 @@
         <h3 style="font-weight: bold">이력서 조회</h3>
         <br>
         <div class="profile-container">
-            <div class="profile-photo"><img src=${img} alt="프로필 이미지"></div>
+            <div class="profile-photo"><img src=${img} alt="프로필이미지"></div>
             <div class="profile-info">
                 <p><strong>이름:</strong> ${user.name}</p>
                 <p><strong>나이:</strong> 25세 (1999년생)</p>
@@ -153,7 +153,7 @@
                     파일 없음
                 </c:when>
                 <c:otherwise>
-                    <a href="${api_url}/api/resume/download?fileName=${resume.portfolioname}"
+                    <a href="${api_url}/resume/download?fileName=${resume.portfolioname}"
                        style="text-decoration: none; color: inherit; display: flex; align-items: center;"
                        download>
                         <img src="https://cdn-icons-png.flaticon.com/512/2991/2991108.png"

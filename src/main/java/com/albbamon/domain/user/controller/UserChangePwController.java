@@ -15,7 +15,6 @@ import org.springframework.web.client.RestTemplate;
 
 import com.albbamon.domain.user.dto.request.ChangePwRequestDto;
 import com.albbamon.domain.user.dto.response.ChangePwResponseDto;
-import com.albbamon.domain.user.entity.User;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -24,31 +23,27 @@ import org.springframework.ui.Model;
 
 @Controller
 public class UserChangePwController {
-	@GetMapping("/api/user/change-pw")
+	@Value("${api.base-url}")
+	private String apiBaseUrl;
+
+	@GetMapping("/user/change-pw")
 	public String viewChangePw(HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
-		//세션없는 사용자는 메인페이지로 이동
 		if (session == null || session.getAttribute("userid") == null) {
-			System.out.println("asdf");
 			return "redirect:/";
 		}
 		return "/user/changepw";
 	}
 
-    @Value("${api.base-url}")
-    private String apiBaseUrl;
 	@PostMapping("/change-pw")
-	public String changePassword(
-	        @RequestParam("passwd") String passwd,
-	        @RequestParam("newpasswd") String newpasswd,
-	        @RequestParam("newpasswdcheck") String newpasswdcheck,
-	        HttpServletRequest request,
-	        Model model) {
-
+	public String changePassword(@RequestParam("passwd") String passwd,
+								 @RequestParam("newpasswd") String newpasswd,
+								 @RequestParam("newpasswdcheck") String newpasswdcheck,
+								 HttpServletRequest request,
+								 Model model) {
 	    HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-  
-        
+
 	    HttpSession session = request.getSession(false);
         if (session == null) {
             session = request.getSession(); // 새 세션 생성 (필요할 때만)
@@ -78,14 +73,10 @@ public class UserChangePwController {
 //	    }
 	    
 	    String apiUrl = apiBaseUrl + "/api/user/change-pw";
-
 	    ChangePwRequestDto requestDto = new ChangePwRequestDto(userId, passwd, newpasswd);
-
 	    HttpEntity<ChangePwRequestDto> requestEntity = new HttpEntity<>(requestDto, headers);
 	    RestTemplate restTemplate = new RestTemplate();
-	    
 	    try {
-
 	        ResponseEntity<ChangePwResponseDto> response = restTemplate.exchange(
 	                apiUrl,
 	                HttpMethod.POST,
@@ -101,10 +92,10 @@ public class UserChangePwController {
 	        }
 	    } catch (Exception e) {
 	        model.addAttribute("error", "서버와의 통신 중 오류가 발생했습니다.");
-	        System.err.println("❌ API 요청 중 오류 발생: " + e.getMessage());
 	    }
 	    return "user/changepw";
 	}
+
 	//비밀번호 보안 정책 검증 메서드
 	private boolean isValidPassword(String password) {
 	    String passwordPattern = "^(?=.*[a-zA-Z])(?=.*\\d)(?=.*[!@#$%^&*()_+{}:;<>,.?/~`]).{8,16}$";

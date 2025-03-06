@@ -21,17 +21,17 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 public class UserWithdrawController {
 
-    @Value("${api.base-url}") // 
+    @Value("${api.base-url}")
     private String apiBaseUrl;
 
     private final RestTemplate restTemplate = new RestTemplate(new JdkClientHttpRequestFactory());
 
-    @GetMapping("/api/user/withdraw")
+    @GetMapping("/user/withdraw")
     public String withdrawUser(HttpServletRequest request, RedirectAttributes redirectAttributes, Model model) {
         HttpSession session = request.getSession(false);
         if (session == null || session.getAttribute("userid") == null) {
             model.addAttribute("error", "로그인이 필요합니다.");
-            return "redirect:/login"; //로그인 페이지로 이동
+            return "redirect:/login";
         }
         Object userIdObj = session.getAttribute("userid");
         Long userId = null;
@@ -43,10 +43,8 @@ public class UserWithdrawController {
             model.addAttribute("error", "올바른 사용자 ID를 찾을 수 없습니다.");
             return "/user/account";
         }
-        System.out.println("📌 회원 탈퇴 API 요청: " + userId);
-        //API 서버의 회원 탈퇴 URL 설정
+
         String apiUrl = apiBaseUrl + "/api/user/withdraw";
-        System.out.println("📌 회원 탈퇴 API 요청: " + apiUrl);
 
         try {
             HttpHeaders headers = new HttpHeaders();
@@ -62,11 +60,10 @@ public class UserWithdrawController {
                 String.class
             );
 
-            //성공적으로 탈퇴 처리된 경우
             if (response.getStatusCode().is2xxSuccessful()) {
                 session.invalidate(); //세션 삭제
                 redirectAttributes.addFlashAttribute("alertMessage", "회원 탈퇴가 완료되었습니다.");
-                return "redirect:/api/user/account"; //메인 페이지로 이동
+                return "redirect:/user/account"; //메인 페이지로 이동
             } else {
                 model.addAttribute("error", "회원 탈퇴에 실패했습니다.");
             }

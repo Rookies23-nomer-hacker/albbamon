@@ -167,7 +167,7 @@ input:not(:last-child) {
             <div class="tab" id="business-tab">기업회원</div>
         </div>
         
-<form action="${contextPath}/api/user/sign-in" method="post">
+<form action="${contextPath}/user/sign-in" method="post">
     <input type="hidden" name="userType" id="userType" value="personal">
 
     <div id="personal-form">
@@ -185,7 +185,7 @@ input:not(:last-child) {
 </form>
 
         <div class="links">
-            <a href="${contextPath}/api/user/find-id">아이디 찾기</a> | <a href="${contextPath}/api/user/find-pw">비밀번호 찾기</a> | <a href="${contextPath}/api/user/join" style="color: #ff6600; font-weight: bold;">회원가입</a>
+            <a href="${contextPath}/user/find-id">아이디 찾기</a> | <a href="${contextPath}/user/find-pw">비밀번호 찾기</a> | <a href="${contextPath}/user/join" style="color: #ff6600; font-weight: bold;">회원가입</a>
         </div>
     </div>
     </div>

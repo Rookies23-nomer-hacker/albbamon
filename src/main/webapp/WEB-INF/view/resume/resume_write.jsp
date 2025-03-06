@@ -17,7 +17,7 @@
 </head>
 <body>
 	<script src="${contextPath}/js/resume_write.js"></script>
-	<form id="resumeForm" action="/api/resume/write" method="POST">
+	<form id="resumeForm" action="/resume/write" method="POST">
 	<div class="section">
 	<div class="orange-form">
 		<h2 class="section-title">이력서 작성</h2>

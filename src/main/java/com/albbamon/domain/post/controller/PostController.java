@@ -35,25 +35,22 @@ public class PostController {
         this.objectMapper = objectMapper;
     }
 
-    // 📌 글쓰기 페이지 이동//
-    @GetMapping("/api/post/write")
+    @GetMapping("/post/write")
     public String writePage(HttpSession session, Model model) {
         Object userIdObj = session.getAttribute("userid");
         if (userIdObj == null) {
-            return "redirect:/api/user/sign-in";
+            return "redirect:/user/sign-in";
         }
         model.addAttribute("apiBaseUrl", apiBaseUrl);
         return "post/post_write";
     }
 
-
-    // 📌 글쓰기 처리 (파일 제외)
-    @PostMapping("/api/post")
+    @PostMapping("/post")
     public String createPost(@ModelAttribute CreatePostRequestDto createPostRequestDto,
                              HttpSession session, Model model) {
         Object userIdObj = session.getAttribute("userid");
         if (userIdObj == null) {
-            return "redirect:/api/user/sign-in";
+            return "redirect:/user/sign-in";
         }
 
         Long userId;
@@ -66,7 +63,7 @@ public class PostController {
                 throw new NumberFormatException("userid가 올바른 타입이 아님");
             }
         } catch (NumberFormatException e) {
-            return "redirect:/api/user/sign-in";
+            return "redirect:/user/sign-in";
         }
 
         HttpHeaders headers = new HttpHeaders();
@@ -81,7 +78,7 @@ public class PostController {
             ResponseEntity<String> response = restTemplate.postForEntity(apiBaseUrl + "/api/post/write", requestEntity, String.class);
 
             if (response.getStatusCode() == HttpStatus.CREATED || response.getStatusCode() == HttpStatus.OK) {
-                return "redirect:/api/post";
+                return "redirect:/post";
             } else {
                 model.addAttribute("error", "게시글 등록 실패: " + response.getStatusCode());
                 model.addAttribute("apiBaseUrl", apiBaseUrl);

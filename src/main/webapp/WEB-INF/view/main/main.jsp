@@ -70,7 +70,7 @@
                                         <div class="card-body">
                                             <p class="card-text" style="color: #6A6A6A; font-weight: bold;">${recruitment.company}</p>
                                             <h5 class="card-title">
-                                                <a href="${contextPath}/recruitment/list/${recruitment.id}" class="text-decoration-none" style="color: black; font-size: 18px; font-weight: bold">
+                                                <a href="${contextPath}/recruitment/${recruitment.id}" class="text-decoration-none" style="color: black; font-size: 18px; font-weight: bold">
                                                     ${recruitment.title}
                                                 </a>
                                             </h5>

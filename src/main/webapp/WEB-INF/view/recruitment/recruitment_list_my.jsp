@@ -34,10 +34,10 @@
                 <tbody>
                 <c:forEach var="recruitment" items="${recruitmentList}">
                     <tr>
-                        <td><a href="${contextPath}/recruitment/${recruitment.id}">${recruitment.title}</a></td>
+                        <td><a href="${contextPath}/recruitment/${recruitment.id}/modify">${recruitment.title}</a></td>
                         <td>${recruitment.wage}</td>
                         <td>${recruitment.dueDate}</td>
-                        <td><button class="btn-primary" onclick="location.href='${contextPath}/recruitment/list/${recruitment.id}/apply'">지원서 보기</button></td>
+                        <td><button class="btn-primary" onclick="location.href='${contextPath}/recruitment/${recruitment.id}/apply-list'">지원서 보기</button></td>
                     </tr>
                 </c:forEach>
                 </tbody>

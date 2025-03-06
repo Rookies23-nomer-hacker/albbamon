@@ -106,7 +106,7 @@
 
     <!-- 주황색 테두리 추가 -->
     <main class="container-wrapper">
-        <form id="editForm" action="${contextPath}/api/post/update/${post.postId}" method="POST">
+        <form id="editForm" action="${contextPath}/post/update/${post.postId}" method="POST">
             <!-- 유저 ID를 숨겨서 전송 -->
             <input type="hidden" id="userId" name="userId" value="${sessionScope.loggedInUserId}">
 
