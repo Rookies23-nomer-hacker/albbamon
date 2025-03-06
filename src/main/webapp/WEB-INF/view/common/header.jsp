@@ -28,6 +28,15 @@
             margin-right: 10px;
             padding: 2px 10px 2px 10px;
         }
+        .premium-status {
+            font-size: 15px;
+            font-weight: normal;
+            color: #d1b502;
+            border: 1px solid #d1b502;
+            border-radius: 30px;
+            margin-right: 10px;
+            padding: 2px 10px 2px 10px;
+        }
     </style>
 </head>
 <body>
@@ -78,7 +87,10 @@
                                 <span class="user-status">기업</span>
                             </c:if>
                             <c:if test="${sessionScope.item == 'Y'}">
-                                <span class="user-status">프리미엄</span>
+                                <span class="premium-status">
+                                    <img src="/img/crown.png" style="width: 20px; margin-bottom: 5px; margin-left: -7px; margin-right: 5px">
+                                    프리미엄
+                                </span>
                             </c:if>
                         </c:if>
                        ${fn:substringBefore(sessionScope.email, '@')}님
