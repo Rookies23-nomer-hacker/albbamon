@@ -19,7 +19,6 @@
             <table class="recruitment-table">
                 <thead>
                 <tr>
-                    <th style="width: 50px;">ID</th>
                     <th style="width: 80px;">지원자명</th>
                     <th style="width: 70px;">학력</th>
                     <th style="width: 100px;">학력 상태</th>
@@ -31,7 +30,7 @@
                     <th style="width: 100px;">근무 기간</th>
                     <th style="width: 100px;">근무 일자</th>
                     <th style="width: 200px;">포트폴리오</th>
-                    <th>등록일</th>
+                    <th>지원일</th>
                     <th style="width: 100px;">지원 상태</th>
 					<th style="width: 200px;">합격/불합격</th>
                 </tr>
@@ -39,7 +38,6 @@
                 <tbody>
 					<c:forEach var="apply" items="${applyList}">
 					    <tr>
-					        <td>${apply.id}</td>
 					        <td>${apply.userName}</td>
 					        <td>${apply.school}</td>
 					        <td>${apply.status}</td>

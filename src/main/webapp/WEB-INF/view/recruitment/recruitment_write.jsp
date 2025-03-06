@@ -14,10 +14,10 @@
 <%@ include file="/WEB-INF/view/common/header.jsp" %>
 
 <main class="container mt-5">
-    <h2 class="text-center" style="margin-right: 62.8%; font-weight: bold;">채용 공고 등록</h2>
+    <h3 class="text-center" style="margin-right: 62.8%; font-weight: bold;">채용 공고 등록</h3>
     <form id="recruitmentForm" enctype="multipart/form-data" onsubmit="event.preventDefault();">
         <div class="card p-4">
-            <h3 class="mb-4" style="font-weight: bold;">모집 내용</h3>
+            <h4 class="mb-4" style="font-weight: bold;">모집 내용</h4>
 
             <div class="form-group">
                 <label for="title">공고 제목 <span class="text-danger">*</span></label>

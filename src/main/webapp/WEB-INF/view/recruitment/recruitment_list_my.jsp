@@ -19,16 +19,19 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/view/common/header.jsp" %>
-    <div class="recruitment-container">
-        <h2 class="title">나의 채용 공고</h2>
-        <div class="card">
+<main>
+    <div class="container" style="width: 60%;">
+        <div class="board-header" style="margin-top: 50px;">
+            <h3 style="font-weight: bold;">내가 작성한 채용공고</h3>
+        </div>
+        <div class="custom-pagination">
             <table class="recruitment-table">
                 <thead>
                 <tr>
-                    <th style="width: 25%;">제목</th>
-                    <th style="width: 20%;">시급</th>
-                    <th style="width: 25%;">마감 기한</th>
-                    <th style="width: 30%;">지원서 목록</th>
+                    <th style="width: 45%;">제목</th>
+                    <th style="width: 15%;">시급</th>
+                    <th style="width: 20%;">마감 기한</th>
+                    <th style="width: 20%;">지원서 목록</th>
                 </tr>
                 </thead>
                 <tbody>
