@@ -105,10 +105,10 @@
 
                         <!-- 포트폴리오 링크 -->
                         <div class="mt-3" style="border-color:#ff501b !important;">
-                            <a href="${portfolioUrl}${portfolioName}" target="_blank" class="btn btn-outline-primary btn-sm ${portfolioUrl == '#' ? 'disabled' : ''}" style="border-color:#ff501b !important; color: #ff501b !important;"
+                            <div href="${portfolioUrl}${portfolioName}" target="_blank" class="btn btn-outline-primary btn-sm ${portfolioUrl == '#' ? 'disabled' : ''}" style="border-color:#ff501b !important; color: #ff501b !important;"
                             onmouseover="this.style.backgroundColor='#ff501b'; this.style.color='white';" onmouseout="this.style.backgroundColor='white'; this.style.color='#ff501b';">
                                 포트폴리오 보기 (${fn:substring(portfolioName, 0, fn:indexOf(portfolioName, '.') - 15)}${fn:substring(portfolioName, fn:indexOf(portfolioName, '.'), fn:length(portfolioName))})
-                            </a>
+                            </div>
                         </div>
 
                         <!-- 이력서 개별 조회 -->

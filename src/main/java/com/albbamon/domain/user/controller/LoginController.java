@@ -43,7 +43,7 @@ public class LoginController {
         
         if (response.getBody() == null) {
         	model.addAttribute("error", "5회 실패로 계정이 잠겼습니다.");
-            return "/user/LoginController";
+            return "/user/login";
         }
         HttpSession session = request.getSession(false); // 기존 세션 유지
         if (session == null) {
@@ -55,7 +55,7 @@ public class LoginController {
             if (userDto.getPwChkNum()>0) {
             	session.invalidate();
             	model.addAttribute("error", "비밀번호를 "+userDto.getPwChkNum()+"회 실패했습니다.");
-                return "/user/LoginController"; // 로그인 페이지로 다시 이동
+                return "/user/login"; // 로그인 페이지로 다시 이동
             }
             session.setAttribute("userid", String.valueOf(userDto.getUserId()));
             session.setAttribute("email", userDto.getEmail());
@@ -65,7 +65,7 @@ public class LoginController {
         }
         return "redirect:/";
     }
-    @GetMapping("/api/user/log-out")
+    @GetMapping("/user/log-out")
     public String logout(HttpServletRequest request,HttpServletResponse response) {
     	
     	HttpSession session = request.getSession(false);
@@ -80,6 +80,6 @@ public class LoginController {
     @PostMapping("/user/logout")
     public String logout(HttpSession session) {
         session.invalidate(); // 세션 삭제
-        return "redirect:/user/LoginController";
+        return "redirect:/user/login";
     }
 }

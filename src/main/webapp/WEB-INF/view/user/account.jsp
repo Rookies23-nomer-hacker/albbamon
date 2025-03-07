@@ -47,6 +47,9 @@
                         <button class="custom-edit-btn" onclick="location.href='${contextPath}/user/change-pw'" >변경</button>
                     </div>
                 </div>
+                <script>
+
+                </script>
 
                 <div style="padding: 20px;">
                     <h4 style="font-weight: bold; padding-bottom: 20px; border-bottom: #cccccc 1px solid">회원 탈퇴</h4>

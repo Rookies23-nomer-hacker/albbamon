@@ -46,7 +46,7 @@ management:
       exposure:
         include: health,info
 
-# error
+  # error
   error:
     include-exception: true
     include-message: always
