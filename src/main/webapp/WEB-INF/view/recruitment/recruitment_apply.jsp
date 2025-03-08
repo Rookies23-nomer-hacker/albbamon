@@ -74,7 +74,7 @@
 
         if(!resumeExists) {
             alert('작성된 이력서가 없습니다. 지원을 위해 이력서를 작성해주세요');
-            location.href='/api/resume'
+            location.href='/resume'
         } else if(isApplied) {
             alert('이미 지원이 완료된 공고입니다');
         } else {
