@@ -200,7 +200,7 @@ public class ResumeWriteController {
 				headers.setContentType(MediaType.APPLICATION_JSON);
 							
 				HttpEntity<String> requestEntity = new HttpEntity<>(jsondata, headers);
-				ResponseEntity<String> response = restTemplate.exchange(apiBaseUrl+"/resume/write", HttpMethod.POST, requestEntity, String.class);
+				ResponseEntity<String> response = restTemplate.exchange(apiBaseUrl+"/api/resume/write", HttpMethod.POST, requestEntity, String.class);
 
 				if(response.getBody().equals("이미 이력서가 있습니다.")) {
 					redirectAttributes.addFlashAttribute("duplicated", "이미 이력서가 있습니다.");
