@@ -78,7 +78,6 @@
                                 title="${resumeImgName}">
                             <div>
                                 <p class="m-0 text-muted">${personalName}</p>
-                                <h5 class="m-0">${personalName}</h5>
                             </div>
                         </div>
 
@@ -111,12 +110,6 @@
                             </div>
                         </div>
 
-                        <!-- 이력서 개별 조회 -->
-                        <div class="mt-3">
-                            <a href="/resume/view?resumeId=${resumeId}" class="btn btn-outline-secondary btn-sm">
-                                이력서 상세 보기
-                            </a>
-                        </div>
                     </div>
                 </div>
             </div>
