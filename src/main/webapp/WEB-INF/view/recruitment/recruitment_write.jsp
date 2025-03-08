@@ -96,7 +96,7 @@
             .then(result => {
                 console.log('공고 등록 성공:', result);
                 alert('공고가 성공적으로 등록되었습니다.');
-                window.location.href = `${base_url}/recruitment/list`;
+                window.location.href = `${base_url}/recruitment/my`;
             })
             .catch(error => {
                 console.error('공고 등록 실패:', error);
