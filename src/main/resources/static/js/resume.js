@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 		let cell1 = newRow.insertCell(0);
 		cell1.innerHTML = `
-		    <a href="${base_url}/api/resume/view?resumeId=${resumeId}" style="text-decoration: none; color: inherit;">
+		    <a href="${base_url}/resume/view?resumeId=${resumeId}" style="text-decoration: none; color: inherit;">
 		        ${resumePersonal}
 		    </a>
 		    <br>
@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
         deleteBtn.style.alignItems = "center";  // 수직 중앙 정렬
         deleteBtn.style.justifyContent = "center";  // 수평 중앙 정렬
 		deleteBtn.addEventListener("click", function() {
-				    window.location.href = base_url+"/api/resume/delete";});
+				    window.location.href = base_url+"/resume/delete";});
 
         // 버튼을 컨테이너에 추가
         buttonContainer.appendChild(editBtn);
