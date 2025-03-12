@@ -38,17 +38,17 @@
                 <tbody>
 					<c:forEach var="apply" items="${applyList}">
 					    <tr>
-					        <td>${apply.userName}</td>
-					        <td>${apply.school}</td>
-					        <td>${apply.status}</td>
-					        <td>${apply.personal}</td>
-					        <td>${apply.workPlaceRegion}</td>
-					        <td>${apply.workPlaceCity}</td>
-					        <td>${apply.industryOccupation}</td>
-					        <td>${apply.employmentType}</td>
-					        <td>${apply.workingPeriod}</td>
+					        <td style="width: 80px;">${apply.userName}</td>
+					        <td style="width: 70px;">${apply.school}</td>
+					        <td style="width: 100px;">${apply.status}</td>
+					        <td style="width: 80px;">${apply.personal}</td>
+					        <td style="width: 100px;">${apply.workPlaceRegion}</td>
+					        <td style="width: 100px;">${apply.workPlaceCity}</td>
+					        <td style="width: 100px;">${apply.industryOccupation}</td>
+					        <td style="width: 100px;">${apply.employmentType}</td>
+					        <td style="width: 200px;">${apply.workingPeriod}</td>
 					        <td>${apply.workingDay}</td>
-					        <td>
+					        <td style="width: 200px;">
 					        	<a href="${apply.apiUrl}/api/resume/download?fileName=${apply.portfolioname}"
 			                       style="text-decoration: none; color: inherit; display: flex; align-items: center;"
 			                       download>
@@ -70,7 +70,7 @@
 					        </td> --%>
 					        <td>${apply.createDate}</td>
 					        <td>${apply.applyStatus}</td>
-					        <td>
+					        <td style="width: 100px;">
 					            <div>
 					                <!-- apply.id를 사용하여 버튼에 대한 클릭 이벤트 설정 -->
 									<button class="apply-pass-btn" onclick="updateStatus(${apply.id}, 'PASSED')">합격</button>
