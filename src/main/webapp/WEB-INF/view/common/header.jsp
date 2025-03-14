@@ -73,12 +73,6 @@
 				</c:if>
 				<li><a href="${contextPath}/notice" class="nav-link px-2 text-black" style="font-weight: bold; font-size: 20px; margin-left: 55px;">공지사항</a></li>
             </ul>
-<%
-    System.out.println("email: " + session.getAttribute("email"));
-    System.out.println("adminId: " + session.getAttribute("adminId"));
-    System.out.println("ceoNum: " + session.getAttribute("ceoNum"));
-    System.out.println("item: " + session.getAttribute("item"));
-%>
 
             <div class="d-flex flex-column flex-md-row align-items-center">
                 <c:if test="${empty sessionScope.email and empty sessionScope.adminId}">
@@ -86,7 +80,7 @@
                     <button type="button" class="btn btn-dark ms-2" style="border-radius: 10px; font-size: 15px; font-size: 17px" onclick="location.href='${contextPath}/user/join'">회원가입</button>
                 </c:if>
 
-                <c:if test="${not empty sessionScope.email or not empty sessionScope.adminId} "> 
+                <c:if test="${not empty sessionScope.email}"> 
                     <p class="mb-2 mb-md-0" style="color: #000000; font-size: 20px; font-weight: bold; margin-right: 10px">
                         <c:if test="${empty sessionScope.ceoNum}">
                             <span class="user-status">개인</span>
@@ -106,14 +100,15 @@
 						  <c:when test="${not empty sessionScope.email}">
 						    ${fn:substringBefore(sessionScope.email, '@')}님
 						  </c:when>
-						  <c:when test="${not empty sessionScope.adminId}">
-						    ${sessionScope.adminId} 관리자님
-						  </c:when>
 						</c:choose>
                     </p>
                     
                     <button type="button" class="btn ms-2" style=" background-color: #FF6600; color: #FFFFFF; border-radius: 10px; font-size: 15px;" onclick="location.href='${contextPath}/user/log-out'">로그아웃</button>
                     <button type="button" class="btn btn-dark ms-2" style="border-radius: 10px; font-size: 15px;" onclick="location.href='${contextPath}/user/account'">마이 페이지</button>
+                </c:if>
+                <c:if test="${not empty sessionScope.adminId}">
+                	<span style="color:black">관리자님</span>
+                	<button type="button" class="btn ms-2" style=" background-color: #FF6600; color: #FFFFFF; border-radius: 10px; font-size: 15px;" onclick="location.href='${contextPath}/user/log-out'">로그아웃</button>
                 </c:if>
             </div>
         </div>
