@@ -20,10 +20,10 @@
             <table class="recruitment-table">
                 <thead>
                 <tr>
-                    <th style="width: 20%;">기업명</th>
+                    <th style="width: 12.5%;">기업명</th>
                     <th style="width: 50%;">제목</th>
-                    <th style="width: 10%;">시급</th>
-                    <th style="width: 20%;">등록일</th>
+                    <th style="width: 12.5%;">시급</th>
+                    <th style="width: 25%;">등록일</th>
                 </tr>
                 </thead>
                 <tbody>
