@@ -1,12 +1,11 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="contextPath" value="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}"/>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>알바경험담</title>
+    <title>공지사항</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         * {
@@ -67,10 +66,6 @@
             color: #ff0000;
             margin-right: 5px;
         }
-        .notice a:hover {
- 			text-decoration: none;
-  			color: black;
-		}
         .post-list {
             list-style: none;
             padding: 0;
@@ -149,103 +144,44 @@
 		    visibility: hidden; /* 🔹 버튼 크기를 유지하면서 숨김 */
 		    pointer-events: none; /* 🔹 클릭 방지 */
 		}
+		.post-item a:hover {
+ 			text-decoration: none;
+  			color: black;
+		}
+	</style>
 
-    </style>
-</head>
+</head>	
 <body>
     <%@ include file="/WEB-INF/view/common/header.jsp" %>
 
     <div class="container" style="width: 60%;">
         <!-- 헤더 영역 -->
         <div class="board-header" style="margin-top: 50px;">
-            <h3 style="font-weight: bold;">알바경험담</h3>
-        </div>
-
-        <!-- 검색 바 -->
-        <div class="search-bar">
-            <select>
-                <option>작성일 순</option>
-                <option>조회수 순</option>
-            </select>
-            <form action="${contextPath}/post/search" method="get">
-                <input type="text" name="keyword" placeholder="검색어를 입력하세요">
-                <button type="submit" style="background-color: #ff6600;">검색</button>
-            </form>
-            <c:choose>
-                <c:when test="${isLoggedIn}">
-                    <button onclick="location.href='${contextPath}/post/write'" style="background-color: #000000;">글쓰기</button>
-                </c:when>
-                <c:otherwise>
-                    <button onclick="alert('로그인이 필요합니다.'); location.href='${contextPath}/user/sign-in';">글쓰기</button>
-                </c:otherwise>
-            </c:choose>
+            <h3 style="font-weight: bold;">공지사항</h3>
         </div>
 
         <div class="custom-pagination">
-            <!-- 공지사항 -->
-            <c:if test="${not empty noticeList}">
-                <c:forEach var="notice" items="${noticeList}">
-                    <div class="notice">
-                        <strong>공지 </strong><a href="${contextPath}/notice/${notice.id}" class="post-title">${notice.title}</a>
-                    </div>
-                </c:forEach>
-            </c:if>
-            <!--  
-            <div class="notice">
-                <p><strong>공지</strong> 의심되면 멈추세요! 보이스피싱 범죄에 연루될 수 있습니다.</p>
-            </div>
-            <div class="notice">
-                <p><strong>공지</strong> 쇼핑몰 리뷰, 공동 구매 알바 등 사기 수법에 주의하세요.</p>
-            </div>
-            -->
-            <!-- 게시글 리스트 -->
+            <!-- 공지사항 리스트 -->
             <ul class="post-list">
-                <c:if test="${not empty posts}">
-                    <c:forEach var="post" items="${posts}">
+                <c:if test="${not empty noticeList}">
+                    <c:forEach var="notice" items="${noticeList}">
                         <li class="post-item">
-                            <a href="${contextPath}/post/${post.id}" class="post-title">${post.title}</a>
-                            <p>${fn:substring(post.contents, 0, 100)}...</p>
+                            <a href="${contextPath}/notice/${notice.id}" class="post-title">${notice.title}</a>
+                            <p>${fn:substring(notice.contents, 0, 100)}...</p>
                             <div class="post-meta">
-                                작성자: ${post.userName} | 작성일: ${post.createDate}
+                                작성자: 관리자 | 작성일: ${notice.createDate}
                             </div>
                         </li>
                     </c:forEach>
                 </c:if>
 
-                <!-- 게시글이 없을 때 메시지 표시 -->
-                <c:if test="${empty posts}">
-                    <div class="no-posts">게시글이 없습니다.</div>
+                <!-- 공지사항 없을 때 -->
+                <c:if test="${empty noticeList}">
+                    <div class="no-posts">등록된 공지사항이 없습니다.</div>
                 </c:if>
             </ul>
-
-			<!-- 페이징 UI -->
-			<div class="custom-pagination-paging">
-			    <c:if test="${not empty totalPages and totalPages > 1}">
-			
-			        <!--이전 그룹 이동 버튼 -->
-			        <a href="?page=${prevGroupPage}&size=${pageSize}" class="custom-page-button ${startPage > 1 ? '' : 'disabled'}">&lt;&lt;</a>
-			
-			        <!--이전 페이지 버튼 -->
-			        <a href="?page=${currentPage - 1}&size=${pageSize}" class="custom-page-button ${currentPage > 1 ? '' : 'disabled'}">&lt;</a>
-			
-			        <!--현재 그룹의 페이지 번호 (최대 10개만 표시) -->
-			        <c:forEach var="i" begin="${startPage}" end="${endPage}">
-			            <a href="?page=${i}&size=${pageSize}" class="custom-page-button ${i == currentPage ? 'active' : ''}">${i}</a>
-			        </c:forEach>
-			
-			        <!--다음 페이지 버튼 -->
-			        <a href="?page=${currentPage + 1}&size=${pageSize}" class="custom-page-button ${currentPage < totalPages ? '' : 'disabled'}">&gt;</a>
-			
-			        <!--다음 그룹 이동 버튼 -->
-			        <a href="?page=${nextGroupPage}&size=${pageSize}" class="custom-page-button ${endPage < totalPages ? '' : 'disabled'}">&gt;&gt;</a>
-			
-			    </c:if>
-			</div>
         </div>
     </div>
-<script>
-    console.log("Pagination: startPage=${startPage}, endPage=${endPage}, currentPage=${currentPage}");
-</script>
 
     <%@ include file="/WEB-INF/view/common/footer.jsp" %>
 </body>

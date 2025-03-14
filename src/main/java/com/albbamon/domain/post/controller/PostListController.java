@@ -7,6 +7,8 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,12 +38,32 @@ public class PostListController {
     public String getAllPosts(@RequestParam(name = "page", defaultValue = "0") int page,
                               @RequestParam(name = "size", defaultValue = "10") int size,
                               Model model, HttpSession session) {
-        String url = apiBaseUrl + "/api/post/list?page=" + page + "&size=" + size;
-        ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
+        String post_url = apiBaseUrl + "/api/post/list?page=" + page + "&size=" + size;
+        String notice_url = apiBaseUrl + "/api/notice";
+        try {
+	        ResponseEntity<String> response_notice = restTemplate.exchange(notice_url,
+	                HttpMethod.GET,
+	                null,
+	                String.class
+	                );
+			if (response_notice.getStatusCode() == HttpStatus.OK) {
+	            ObjectMapper mapper = new ObjectMapper();
+	            JsonNode rootNode = mapper.readTree(response_notice.getBody());
+	            JsonNode noticeListNode = rootNode.path("noticeList"); // API에서 반환하는 필드명
+	            List<Map<String, Object>> noticeList = mapper.convertValue(
+	                    noticeListNode,
+	                    new com.fasterxml.jackson.core.type.TypeReference<List<Map<String, Object>>>() {}
+	            );
+	            model.addAttribute("noticeList", noticeList);
+			}
+        }catch (Exception e) {
+        	e.printStackTrace();
+        }
+        ResponseEntity<String> response = restTemplate.getForEntity(post_url, String.class);
         List<Map<String, String>> posts = new ArrayList<>();
         int totalPages = 1;
         int currentPage = page;
-
+        
         try {
             ObjectMapper mapper = new ObjectMapper();
             JsonNode root = mapper.readTree(response.getBody());
