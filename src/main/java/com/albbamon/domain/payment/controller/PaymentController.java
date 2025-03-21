@@ -21,7 +21,7 @@ public class PaymentController {
 
 	private static final Logger logger = LoggerFactory.getLogger(PaymentController.class);
 
-    @GetMapping("/payment")
+    @GetMapping
     public String getPaymentPage(Model model) {
     	model.addAttribute("apiBaseUrl",apiBaseUrl);
         return "payment/payment";
