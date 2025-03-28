@@ -62,7 +62,7 @@
 				    <c:if test="${not empty sessionScope.email}">
                     <li><a href="${contextPath}/recruitment/write" class="nav-link px-2 text-black" style="font-weight: bold; font-size: 20px; margin-left: 55px;">공고 등록</a></li>
 						<c:if test="${empty sessionScope.item}">
-	                    	<li><a href="${contextPath}/payment/payment" class="nav-link px-2 text-black" style="font-weight: bold; font-size: 20px; margin-left: 55px;">프리미엄 구매</a></li>
+	                    	<li><a href="${contextPath}/payment" class="nav-link px-2 text-black" style="font-weight: bold; font-size: 20px; margin-left: 55px;">프리미엄 구매</a></li>
 	                	</c:if>
 					</c:if>
 				</c:if>
